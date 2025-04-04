@@ -4,52 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Learning Platform</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>AI Learning Platform</h1>
         <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
+            <div class="logo">
+                <h1>AI Learning</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#subjects">Subjects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="login.html" class="auth-link">Login</a></li>
+                <li><a href="signup.html" class="auth-link">Sign Up</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="hero">
-        <h2>Welcome to AI Learning Platform</h2>
-        <p>Learn with the power of AI. Explore various subjects and enhance your knowledge.</p>
-    </section>
+    <main>
+        <section class="hero">
+            <h1>Learn with AI</h1>
+            <p>Unlock your potential with personalized learning experiences.</p>
+            <a href="#subjects" class="cta-button">Explore Subjects</a>
+        </section>
 
-    <section id="subjects">
-        <h2>Subjects</h2>
-        <div class="subject-cards">
-            <div class="subject-card">
-                <h3>Math</h3>
-                <p>Learn mathematics with AI-driven tools and resources.</p>
+        <section id="subjects" class="subjects">
+            <h2>Available Subjects</h2>
+            <div class="subject-panels">
+                <div class="subject-panel" style="background-color: #FFD700;">
+                    <h3>Math</h3>
+                    <p>Master the fundamentals of mathematics with AI-driven exercises.</p>
+                </div>
+                <div class="subject-panel" style="background-color: #87CEEB;">
+                    <h3>English</h3>
+                    <p>Improve your language skills with interactive lessons.</p>
+                </div>
+                <div class="subject-panel" style="background-color: #32CD32;">
+                    <h3>Chemistry</h3>
+                    <p>Explore the world of chemicals and reactions with AI assistance.</p>
+                </div>
+                <div class="subject-panel" style="background-color: #FF69B4;">
+                    <h3>Physics</h3>
+                    <p>Understand the laws of nature through AI-guided experiments.</p>
+                </div>
+                <!-- Add more subjects as needed -->
             </div>
-            <div class="subject-card">
-                <h3>English</h3>
-                <p>Improve your English skills with personalized AI assistance.</p>
-            </div>
-            <div class="subject-card">
-                <h3>Chemistry</h3>
-                <p>Explore the world of chemistry with interactive AI lessons.</p>
-            </div>
-            <div class="subject-card">
-                <h3>Physics</h3>
-                <p>Understand physics concepts with AI-powered simulations.</p>
-            </div>
-            <!-- Add more subjects as needed -->
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <footer id="contact">
-        <p>Contact us at <a href="mailto:info@ailearning.com">info@ailearning.com</a></p>
+    <footer>
+        <p>&copy; 2023 AI Learning Platform. All rights reserved.</p>
     </footer>
 
-    <script src="script.js" defer></script>
+    <script src="js/scripts.js"></script>
 </body>
 </html>
