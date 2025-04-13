@@ -8,26 +8,29 @@
         :root {
             --primary: #6c63ff;
             --primary-light: #837dff;
+            --primary-dark: #564fcc;
             --secondary: #ff9f43;
+            --secondary-light: #ffb572;
             --dark: #1e293b;
             --light: #f8fafc;
             --gray: #94a3b8;
-            --bg-gradient: linear-gradient(135deg, #6c63ff 0%, #ff9f43 100%);
+            --success: #10b981;
+            --bg-gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             --card-bg: rgba(255, 255, 255, 0.9);
             --text-color: var(--dark);
             --header-bg: rgba(255, 255, 255, 0.95);
             --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
-        /* Dark mode variables */
         .dark-mode {
             --primary: #837dff;
             --primary-light: #a29cff;
+            --primary-dark: #6c63ff;
             --secondary: #ffb572;
+            --secondary-light: #ffc795;
             --dark: #f8fafc;
             --light: #1e293b;
             --gray: #64748b;
-            --bg-gradient: linear-gradient(135deg, #4a42e6 0%, #e67e22 100%);
             --card-bg: rgba(30, 41, 59, 0.9);
             --text-color: var(--dark);
             --header-bg: rgba(30, 41, 59, 0.95);
@@ -111,39 +114,79 @@
         .auth-buttons {
             display: flex;
             gap: 1rem;
+            align-items: center;
         }
 
-        .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 500;
+        .auth-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--primary);
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .login-btn {
+            background: white;
             color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
-        .btn-outline:hover {
-            background: var(--primary);
+        .signup-btn {
+            background: var(--bg-gradient);
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(108, 99, 255, 0.2);
+            border: 2px solid transparent;
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
         }
 
-        .btn-primary:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        .login-btn:hover::before {
+            opacity: 0.2;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-light) 100%);
+        }
+
+        .auth-btn .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .auth-btn:hover .icon {
+            transform: translateX(3px);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+
+        .signup-btn {
+            animation: pulse 2s infinite;
         }
 
         .hero {
@@ -184,10 +227,16 @@
             animation: fadeIn 1s ease-out 0.2s both;
         }
 
-        .hero .btn-primary {
-            padding: 0.75rem 2rem;
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .hero .auth-btn {
+            padding: 0.8rem 2rem;
             font-size: 1.1rem;
-            animation: fadeIn 1s ease-out 0.4s both;
         }
 
         .subjects {
@@ -257,9 +306,45 @@
             font-size: 1.1rem;
         }
 
-        .subject-card .btn-primary {
-            padding: 0.75rem 1.5rem;
+        .cta-section {
+            background: var(--bg-gradient);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .cta-section .auth-btn {
+            padding: 0.8rem 2rem;
             font-size: 1.1rem;
+        }
+
+        .cta-section .login-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: white;
+        }
+
+        .cta-section .login-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         footer {
@@ -267,10 +352,8 @@
             color: var(--light);
             text-align: center;
             padding: 2rem;
-            margin-top: 4rem;
         }
 
-        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -297,7 +380,104 @@
             animation: slideUp 0.4s ease-out forwards;
         }
 
-        /* Dark mode toggle */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+            color: var(--text-color);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--gray);
+            transition: transform 0.3s;
+        }
+
+        .close-btn:hover {
+            transform: rotate(90deg);
+            color: var(--primary);
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: var(--light);
+            padding: 0.5rem;
+            border-radius: 12px;
+            margin: 0 0 2rem 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-gradient);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+        }
+
         .theme-toggle {
             background: var(--primary);
             color: white;
@@ -317,16 +497,9 @@
             transform: rotate(30deg) scale(1.1);
         }
 
-        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
         }
 
         @keyframes fadeIn {
@@ -350,7 +523,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -366,6 +538,16 @@
             .hero h1 {
                 font-size: 2.5rem;
             }
+            
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .auth-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
     </style>
 </head>
@@ -380,8 +562,14 @@
             <a href="#">Subjects</a>
             <a href="#">Progress</a>
             <div class="auth-buttons">
-                <button class="btn btn-outline" id="loginBtn">Login</button>
-                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+                <button class="auth-btn login-btn" id="loginBtn">
+                    <span class="icon">→</span>
+                    Login
+                </button>
+                <button class="auth-btn signup-btn" id="signupBtn">
+                    <span class="icon">👋</span>
+                    Sign Up
+                </button>
                 <button class="theme-toggle" id="themeToggle">🌓</button>
             </div>
         </nav>
@@ -390,7 +578,16 @@
     <section class="hero">
         <h1>Master Math with AI Assistance</h1>
         <p>Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
-        <button class="btn btn-primary">Start Learning Now</button>
+        <div class="hero-buttons">
+            <button class="auth-btn signup-btn">
+                <span class="icon">🚀</span>
+                Start Learning Free
+            </button>
+            <button class="auth-btn login-btn">
+                <span class="icon">👨‍🏫</span>
+                Existing Student?
+            </button>
+        </div>
     </section>
     
     <section class="subjects">
@@ -399,7 +596,25 @@
             <div class="subject-icon">🧮</div>
             <h3>Mathematics</h3>
             <p>From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
-            <button class="btn btn-primary">Explore Math</button>
+            <button class="auth-btn signup-btn" style="margin: 0 auto;">
+                <span class="icon">✨</span>
+                Unlock Math Skills
+            </button>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <h2>Ready to Transform Your Math Skills?</h2>
+        <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
+        <div class="cta-buttons">
+            <button class="auth-btn signup-btn">
+                <span class="icon">🌟</span>
+                Get Started Free
+            </button>
+            <button class="auth-btn login-btn">
+                <span class="icon">🔑</span>
+                Login to Continue
+            </button>
         </div>
     </section>
     
@@ -407,11 +622,10 @@
         <p>© 2023 Learn with AI. All rights reserved.</p>
     </footer>
     
-    <!-- Login Modal -->
     <div class="modal" id="loginModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Welcome Back</h3>
+                <h3>Welcome to Learn with AI</h3>
                 <button class="close-btn" id="closeLogin">&times;</button>
             </div>
             <div class="tab-buttons">
@@ -422,34 +636,38 @@
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="login-email">Email</label>
-                        <input type="email" id="login-email" required>
+                        <input type="email" id="login-email" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" required>
+                        <input type="password" id="login-password" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary form-submit">Login</button>
+                    <button type="submit" class="form-submit">
+                        <span class="icon">→</span> Login
+                    </button>
                 </form>
             </div>
             <div class="tab-content" id="signup-tab">
                 <form id="signupForm">
                     <div class="form-group">
                         <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" required>
+                        <input type="text" id="signup-name" placeholder="Your full name" required>
                     </div>
                     <div class="form-group">
                         <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" required>
+                        <input type="email" id="signup-email" placeholder="Your email address" required>
                     </div>
                     <div class="form-group">
                         <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" required>
+                        <input type="password" id="signup-password" placeholder="Create a password" required>
                     </div>
                     <div class="form-group">
                         <label for="signup-confirm">Confirm Password</label>
-                        <input type="password" id="signup-confirm" required>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary form-submit">Create Account</button>
+                    <button type="submit" class="form-submit">
+                        <span class="icon">👋</span> Create Account
+                    </button>
                 </form>
             </div>
         </div>
@@ -460,13 +678,10 @@
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            // Save preference to localStorage
             localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-            // Change emoji
             themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌓';
         });
 
-        // Check for saved preference
         if (localStorage.getItem('darkMode') === 'true') {
             document.body.classList.add('dark-mode');
             themeToggle.textContent = '☀️';
@@ -482,21 +697,11 @@
         
         function openModal(activeTab = 'login') {
             loginModal.style.display = 'flex';
-            // Set the active tab
             tabBtns.forEach(btn => {
-                if (btn.dataset.tab === activeTab) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                btn.classList.toggle('active', btn.dataset.tab === activeTab);
             });
-            
             tabContents.forEach(content => {
-                if (content.id === `${activeTab}-tab`) {
-                    content.classList.add('active');
-                } else {
-                    content.classList.remove('active');
-                }
+                content.classList.toggle('active', content.id === `${activeTab}-tab`);
             });
         }
         
@@ -504,54 +709,74 @@
             loginModal.style.display = 'none';
         }
         
+        // Add event listeners to all login/signup buttons
+        document.querySelectorAll('.login-btn, .auth-btn.login-btn').forEach(btn => {
+            if (btn.id !== 'loginBtn') {
+                btn.addEventListener('click', () => openModal('login'));
+            }
+        });
+        
+        document.querySelectorAll('.signup-btn, .auth-btn.signup-btn').forEach(btn => {
+            if (btn.id !== 'signupBtn') {
+                btn.addEventListener('click', () => openModal('signup'));
+            }
+        });
+        
         loginBtn.addEventListener('click', () => openModal('login'));
         signupBtn.addEventListener('click', () => openModal('signup'));
         closeLogin.addEventListener('click', closeModal);
         
-        // Close modal when clicking outside
         window.addEventListener('click', (e) => {
-            if (e.target === loginModal) {
-                closeModal();
-            }
+            if (e.target === loginModal) closeModal();
         });
         
-        // Tab switching
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const tabId = btn.dataset.tab;
-                
                 tabBtns.forEach(b => b.classList.remove('active'));
                 tabContents.forEach(c => c.classList.remove('active'));
-                
                 btn.classList.add('active');
                 document.getElementById(`${tabId}-tab`).classList.add('active');
             });
         });
         
-        // Form submissions (just for demo)
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Login functionality would be implemented here');
+            alert('Login successful! (This would connect to your backend)');
             closeModal();
         });
         
         document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Signup functionality would be implemented here');
+            alert('Account created! (This would connect to your backend)');
             closeModal();
         });
 
-        // Animate elements when they come into view
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
+        // Enhanced button animations
+        const authButtons = document.querySelectorAll('.auth-btn');
+        
+        authButtons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-3px)';
+                button.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.3)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+                if (button.classList.contains('signup-btn')) {
+                    button.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    button.style.boxShadow = 'none';
                 }
             });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.hero h1, .hero p, .hero .btn-primary, .subject-card').forEach(el => {
-            observer.observe(el);
+            
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translateY(1px)';
+            });
+            
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'translateY(-3px)';
+            });
         });
     </script>
 </body>
