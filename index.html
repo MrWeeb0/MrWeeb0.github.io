@@ -51,6 +51,17 @@
             min-height: 100vh;
         }
 
+        /* Page container and switching */
+        .page-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Header styles */
         header {
             background-color: var(--header-bg);
             backdrop-filter: blur(10px);
@@ -117,6 +128,7 @@
             align-items: center;
         }
 
+        /* Auth button styles */
         .auth-btn {
             padding: 0.6rem 1.2rem;
             border-radius: 50px;
@@ -189,6 +201,7 @@
             animation: pulse 2s infinite;
         }
 
+        /* Main content styles */
         .hero {
             padding: 6rem 2rem;
             text-align: center;
@@ -239,6 +252,7 @@
             font-size: 1.1rem;
         }
 
+        /* Subjects section */
         .subjects {
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -306,6 +320,7 @@
             font-size: 1.1rem;
         }
 
+        /* CTA section */
         .cta-section {
             background: var(--bg-gradient);
             padding: 5rem 2rem;
@@ -347,6 +362,7 @@
             background: rgba(255, 255, 255, 0.3);
         }
 
+        /* Footer */
         footer {
             background: var(--dark);
             color: var(--light);
@@ -354,86 +370,44 @@
             padding: 2rem;
         }
 
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+        /* Auth Pages */
+        .auth-page {
+            display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease-out;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
         }
 
-        .modal-content {
+        .auth-container {
             background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 1rem;
+            border-radius: 1.5rem;
+            padding: 3rem;
             width: 100%;
-            max-width: 450px;
+            max-width: 500px;
             box-shadow: var(--shadow);
-            transform: translateY(20px);
-            animation: slideUp 0.4s ease-out forwards;
+            text-align: center;
         }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .auth-container h2 {
+            font-size: 2.2rem;
             margin-bottom: 1.5rem;
-        }
-
-        .modal-header h3 {
-            font-size: 1.8rem;
-            color: var(--text-color);
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--gray);
-            transition: transform 0.3s;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
             color: var(--primary);
         }
 
-        .tab-buttons {
-            display: flex;
-            background: var(--light);
-            padding: 0.5rem;
-            border-radius: 12px;
-            margin: 0 0 2rem 0;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            background: none;
-            border: none;
-            cursor: pointer;
+        .auth-container p {
             color: var(--gray);
+            margin-bottom: 2rem;
         }
 
-        .tab-btn.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            text-align: left;
         }
 
         .form-group label {
@@ -460,7 +434,7 @@
             outline: none;
         }
 
-        .form-submit {
+        .auth-submit {
             width: 100%;
             padding: 0.75rem;
             background: var(--bg-gradient);
@@ -470,14 +444,30 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
         }
 
-        .form-submit:hover {
+        .auth-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
         }
 
+        .auth-switch {
+            margin-top: 1.5rem;
+            color: var(--gray);
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Theme toggle */
         .theme-toggle {
             background: var(--primary);
             color: white;
@@ -497,6 +487,7 @@
             transform: rotate(30deg) scale(1.1);
         }
 
+        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -523,6 +514,7 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -548,25 +540,29 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .auth-container {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Header (visible on all pages) -->
     <header>
-        <div class="logo">
+        <div class="logo" id="homeLink">
             <span class="logo-icon">🧠</span>
             <span>Learn with AI</span>
         </div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Subjects</a>
-            <a href="#">Progress</a>
+            <a href="#" class="nav-link" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="subjects">Subjects</a>
             <div class="auth-buttons">
-                <button class="auth-btn login-btn" id="loginBtn">
+                <button class="auth-btn login-btn" id="loginNavBtn">
                     <span class="icon">→</span>
                     Login
                 </button>
-                <button class="auth-btn signup-btn" id="signupBtn">
+                <button class="auth-btn signup-btn" id="signupNavBtn">
                     <span class="icon">👋</span>
                     Sign Up
                 </button>
@@ -574,106 +570,180 @@
             </div>
         </nav>
     </header>
-    
-    <section class="hero">
-        <h1>Master Math with AI Assistance</h1>
-        <p>Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
-        <div class="hero-buttons">
-            <button class="auth-btn signup-btn">
-                <span class="icon">🚀</span>
-                Start Learning Free
-            </button>
-            <button class="auth-btn login-btn">
-                <span class="icon">👨‍🏫</span>
-                Existing Student?
-            </button>
-        </div>
-    </section>
-    
-    <section class="subjects">
-        <h2>Our Current Subject</h2>
-        <div class="subject-card">
-            <div class="subject-icon">🧮</div>
-            <h3>Mathematics</h3>
-            <p>From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
-            <button class="auth-btn signup-btn" style="margin: 0 auto;">
-                <span class="icon">✨</span>
-                Unlock Math Skills
-            </button>
-        </div>
-    </section>
-    
-    <section class="cta-section">
-        <h2>Ready to Transform Your Math Skills?</h2>
-        <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
-        <div class="cta-buttons">
-            <button class="auth-btn signup-btn">
-                <span class="icon">🌟</span>
-                Get Started Free
-            </button>
-            <button class="auth-btn login-btn">
-                <span class="icon">🔑</span>
-                Login to Continue
-            </button>
-        </div>
-    </section>
-    
-    <footer>
-        <p>© 2023 Learn with AI. All rights reserved.</p>
-    </footer>
-    
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Welcome to Learn with AI</h3>
-                <button class="close-btn" id="closeLogin">&times;</button>
+
+    <!-- Main Content Pages -->
+    <div class="page-container" id="homePage">
+        <section class="hero">
+            <h1>Master Math with AI Assistance</h1>
+            <p>Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
+            <div class="hero-buttons">
+                <button class="auth-btn signup-btn" id="heroSignupBtn">
+                    <span class="icon">🚀</span>
+                    Start Learning Free
+                </button>
+                <button class="auth-btn login-btn" id="heroLoginBtn">
+                    <span class="icon">👨‍🏫</span>
+                    Existing Student?
+                </button>
             </div>
-            <div class="tab-buttons">
-                <button class="tab-btn active" data-tab="login">Login</button>
-                <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </section>
+        
+        <section class="subjects">
+            <h2>Our Current Subject</h2>
+            <div class="subject-card">
+                <div class="subject-icon">🧮</div>
+                <h3>Mathematics</h3>
+                <p>From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
+                <button class="auth-btn signup-btn" id="cardSignupBtn">
+                    <span class="icon">✨</span>
+                    Unlock Math Skills
+                </button>
             </div>
-            <div class="tab-content active" id="login-tab">
-                <form id="loginForm">
+        </section>
+        
+        <section class="cta-section">
+            <h2>Ready to Transform Your Math Skills?</h2>
+            <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
+            <div class="cta-buttons">
+                <button class="auth-btn signup-btn" id="ctaSignupBtn">
+                    <span class="icon">🌟</span>
+                    Get Started Free
+                </button>
+                <button class="auth-btn login-btn" id="ctaLoginBtn">
+                    <span class="icon">🔑</span>
+                    Login to Continue
+                </button>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2023 Learn with AI. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Login Page -->
+    <div class="page-container" id="loginPage">
+        <section class="auth-page">
+            <div class="auth-container">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue your learning journey</p>
+                
+                <form class="auth-form" id="loginForm">
                     <div class="form-group">
                         <label for="login-email">Email</label>
                         <input type="email" id="login-email" placeholder="Enter your email" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" placeholder="Enter your password" required>
                     </div>
-                    <button type="submit" class="form-submit">
+                    
+                    <button type="submit" class="auth-submit">
                         <span class="icon">→</span> Login
                     </button>
+                    
+                    <div class="auth-switch">
+                        Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                    </div>
                 </form>
             </div>
-            <div class="tab-content" id="signup-tab">
-                <form id="signupForm">
+        </section>
+    </div>
+
+    <!-- Signup Page -->
+    <div class="page-container" id="signupPage">
+        <section class="auth-page">
+            <div class="auth-container">
+                <h2>Create Your Account</h2>
+                <p>Start your personalized learning experience today</p>
+                
+                <form class="auth-form" id="signupForm">
                     <div class="form-group">
                         <label for="signup-name">Full Name</label>
                         <input type="text" id="signup-name" placeholder="Your full name" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="signup-email">Email</label>
                         <input type="email" id="signup-email" placeholder="Your email address" required>
                     </div>
+                    
                     <div class="form-group">
                         <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" placeholder="Create a password" required>
+                        <input type="password" id="signup-password" placeholder="Create a password (min 8 characters)" required minlength="8">
                     </div>
+                    
                     <div class="form-group">
                         <label for="signup-confirm">Confirm Password</label>
                         <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
                     </div>
-                    <button type="submit" class="form-submit">
+                    
+                    <button type="submit" class="auth-submit">
                         <span class="icon">👋</span> Create Account
                     </button>
+                    
+                    <div class="auth-switch">
+                        Already have an account? <a href="#" id="switchToLogin">Login</a>
+                    </div>
                 </form>
             </div>
-        </div>
+        </section>
     </div>
-    
+
     <script>
+        // Page Management System
+        const pages = {
+            home: document.getElementById('homePage'),
+            login: document.getElementById('loginPage'),
+            signup: document.getElementById('signupPage')
+        };
+
+        // Show a specific page and hide others
+        function showPage(pageId) {
+            Object.keys(pages).forEach(key => {
+                if (key === pageId) {
+                    pages[key].classList.add('active');
+                } else {
+                    pages[key].classList.remove('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // Set home as default page
+        showPage('home');
+
+        // Navigation event listeners
+        document.getElementById('homeLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        // Auth navigation
+        document.getElementById('loginNavBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('signupNavBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('heroLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('heroSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('cardSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('ctaLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('ctaSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('switchToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+        document.getElementById('switchToSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signup');
+        });
+
         // Dark mode toggle
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
@@ -687,69 +757,25 @@
             themeToggle.textContent = '☀️';
         }
 
-        // Modal functionality
-        const loginBtn = document.getElementById('loginBtn');
-        const signupBtn = document.getElementById('signupBtn');
-        const loginModal = document.getElementById('loginModal');
-        const closeLogin = document.getElementById('closeLogin');
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        
-        function openModal(activeTab = 'login') {
-            loginModal.style.display = 'flex';
-            tabBtns.forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.tab === activeTab);
-            });
-            tabContents.forEach(content => {
-                content.classList.toggle('active', content.id === `${activeTab}-tab`);
-            });
-        }
-        
-        function closeModal() {
-            loginModal.style.display = 'none';
-        }
-        
-        // Add event listeners to all login/signup buttons
-        document.querySelectorAll('.login-btn, .auth-btn.login-btn').forEach(btn => {
-            if (btn.id !== 'loginBtn') {
-                btn.addEventListener('click', () => openModal('login'));
-            }
-        });
-        
-        document.querySelectorAll('.signup-btn, .auth-btn.signup-btn').forEach(btn => {
-            if (btn.id !== 'signupBtn') {
-                btn.addEventListener('click', () => openModal('signup'));
-            }
-        });
-        
-        loginBtn.addEventListener('click', () => openModal('login'));
-        signupBtn.addEventListener('click', () => openModal('signup'));
-        closeLogin.addEventListener('click', closeModal);
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === loginModal) closeModal();
-        });
-        
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const tabId = btn.dataset.tab;
-                tabBtns.forEach(b => b.classList.remove('active'));
-                tabContents.forEach(c => c.classList.remove('active'));
-                btn.classList.add('active');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
-        
+        // Form submissions
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Login successful! (This would connect to your backend)');
-            closeModal();
+            alert('Login successful! Redirecting to dashboard...');
+            // In a real app, you would handle authentication here
         });
-        
+
         document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Account created! (This would connect to your backend)');
-            closeModal();
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            alert('Account created successfully! Redirecting to dashboard...');
+            // In a real app, you would handle registration here
         });
 
         // Enhanced button animations
