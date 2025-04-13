@@ -1,134 +1,381 @@
-Here's a more visually appealing and intricate version of your "Learn with AI" website frontend. I’ve added gradients, animations, and enhanced styling to make it more engaging:
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn with AI</title>
+    <title>Learn with AI - Master Math</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #6366f1;
+            --secondary: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+        }
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #f0f4f8, #c8e0eb);
-            color: #333;
-            overflow-x: hidden;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
         }
         header {
-            background: linear-gradient(90deg, #4caf50, #1e88e5);
-            color: white;
-            padding: 30px 15px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        header h1 {
-            font-size: 3rem;
-            animation: fadeInDown 1s ease;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
         }
-        header p {
-            font-size: 1.2rem;
-            margin: 10px 0;
-            animation: fadeInUp 1s ease;
-        }
-        @keyframes fadeInDown {
-            0% { transform: translateY(-20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        @keyframes fadeInUp {
-            0% { transform: translateY(20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
+        .logo-icon {
+            font-size: 2rem;
         }
         nav {
             display: flex;
-            justify-content: flex-end;
+            gap: 1.5rem;
             align-items: center;
-            padding: 15px 30px;
-            background-color: #333;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
         nav a {
-            color: white;
-            margin: 0 15px;
             text-decoration: none;
-            font-weight: bold;
-            padding: 8px 15px;
-            border-radius: 20px;
-            background: linear-gradient(90deg, #2196f3, #21cbf3);
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.2s;
         }
         nav a:hover {
-            transform: scale(1.1);
-            background: linear-gradient(90deg, #1e88e5, #0097a7);
+            color: var(--primary);
         }
-        .container {
-            padding: 50px 20px;
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        .btn-primary:hover {
+            background: var(--primary-light);
+        }
+        .hero {
+            padding: 4rem 2rem;
             text-align: center;
-            animation: fadeIn 1.5s ease;
-        }
-        .container h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .container p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 700px;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
-        .subject {
-            margin: 30px auto;
-            padding: 20px;
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+        .subjects {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .subjects h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--dark);
+        }
+        .subject-card {
             background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
         }
-        .subject h3 {
-            margin-bottom: 15px;
-            color: #4caf50;
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .subject-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .subject-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        .subject-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
         footer {
-            text-align: center;
-            padding: 20px;
-            background: linear-gradient(90deg, #4caf50, #1e88e5);
+            background: var(--dark);
             color: white;
-            position: relative;
-            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
         }
-        footer p {
-            margin: 0;
-            font-size: 0.9rem;
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .modal-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .form-submit {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--gray);
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 0.75rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--gray);
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Learn with AI</h1>
-        <p>Master Math with the Power of Artificial Intelligence!</p>
+        <div class="logo">
+            <span class="logo-icon">🧠</span>
+            <span>Learn with AI</span>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Subjects</a>
+            <a href="#">Progress</a>
+            <div class="auth-buttons">
+                <button class="btn btn-outline" id="loginBtn">Login</button>
+                <button class="btn btn-primary" id="signupBtn">Sign Up</button>
+            </div>
+        </nav>
     </header>
-    <nav>
-        <a href="#login">Login</a>
-        <a href="#signup">Signup</a>
-    </nav>
-    <div class="container">
-        <h2>Welcome to Learn with AI!</h2>
-        <p>Unlock your potential with cutting-edge, AI-driven learning. Let us take your math skills to the next level with personalized and interactive lessons.</p>
-        <div class="subject">
-            <h3>Math Subject</h3>
-            <p>Embark on a journey through algebra, geometry, calculus, and beyond. Make learning math a delightful adventure!</p>
+    
+    <section class="hero">
+        <h1>Master Math with AI Assistance</h1>
+        <p>Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
+        <button class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 1.1rem;">Start Learning Now</button>
+    </section>
+    
+    <section class="subjects">
+        <h2>Our Current Subject</h2>
+        <div class="subject-card">
+            <div class="subject-icon">➗</div>
+            <h3>Mathematics</h3>
+            <p>From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
+            <button class="btn btn-primary">Explore Math</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>© 2023 Learn with AI. All rights reserved.</p>
+    </footer>
+    
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Welcome Back</h3>
+                <button class="close-btn" id="closeLogin">&times;</button>
+            </div>
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="login">Login</button>
+                <button class="tab-btn" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="tab-content active" id="login-tab">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">Login</button>
+                </form>
+            </div>
+            <div class="tab-content" id="signup-tab">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary form-submit">Create Account</button>
+                </form>
+            </div>
         </div>
     </div>
-    <footer>
-        <p>© 2025 Learn with AI. All Rights Reserved.</p>
-    </footer>
+    
+    <script>
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const signupBtn = document.getElementById('signupBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeLogin = document.getElementById('closeLogin');
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        function openModal(activeTab = 'login') {
+            loginModal.style.display = 'flex';
+            tabBtns.forEach(btn => {
+                if (btn.dataset.tab === activeTab) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            tabContents.forEach(content => {
+                if (content.id === `${activeTab}-tab`) {
+                    content.classList.add('active');
+                } else {
+                    content.classList.remove('active');
+                }
+            });
+        }
+        
+        function closeModal() {
+            loginModal.style.display = 'none';
+        }
+        
+        loginBtn.addEventListener('click', () => openModal('login'));
+        signupBtn.addEventListener('click', () => openModal('signup'));
+        closeLogin.addEventListener('click', closeModal);
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                closeModal();
+            }
+        });
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.dataset.tab;
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Login functionality would be implemented here');
+            closeModal();
+        });
+        
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Signup functionality would be implemented here');
+            closeModal();
+        });
+    </script>
 </body>
 </html>
-
-
