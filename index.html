@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn with AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-br from-purple-500 to-blue-500 flex flex-col items-center justify-center min-h-screen p-4 sm:p-8">
+    <div class="max-w-4xl w-full space-y-8">
+      <div class="text-center space-y-4">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-yellow-400">
+          Learn with AI
+        </h1>
+        <p class="text-lg sm:text-xl text-white/80 max-w-2xl mx-auto">
+          Revolutionize your learning experience with AI. For now, we focus on Math. More subjects coming soon!
+        </p>
+        <div class="w-full flex justify-center">
+          <button id="get-started-btn" class="bg-gradient-to-r from-pink-500 to-yellow-500 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 px-6 sm:px-8 py-3 sm:py-4 rounded-full flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rocket w-5 h-5"><path d="M13 9V3.5a2.5 2.5 0 0 0-5 0V9"></path><path d="M6.27 15.27a8 8 0 0 0 11.31 0z"></path><path d="M12 7v11"></path></svg>
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right w-4 h-4 ml-1"><path d="m9 18 6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+      <div class="bg-white shadow-xl rounded-xl border border-white/10">
+        <div class="p-6">
+          <h2 class="text-2xl font-semibold text-gray-900 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain w-6 h-6"><path d="M20 12a8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8z"></path><path d="M12 8v4"></path><path d="M12 16v-4"></path><path d="M8 12h.01"></path><path d="M16 12h.01"></path></svg>
+            Welcome Back
+          </h2>
+          <p class="text-gray-500">Login to your account or sign up to start learning.</p>
+        </div>
+        <div class="p-6">
+          <div class="flex space-x-4 mb-6">
+            <button id="login-tab" class="flex-1 text-gray-700 data-[state=active]:bg-pink-500/20 data-[state=active]:text-pink-600 rounded-md py-2 px-4 transition-colors duration-200">Login</button>
+            <button id="signup-tab" class="flex-1 text-gray-700 data-[state=active]:bg-yellow-500/20 data-[state=active]:text-yellow-600 rounded-md py-2 px-4 transition-colors duration-200">Sign Up</button>
+          </div>
+          <div id="login-form" class="space-y-4">
+            <div class="space-y-2">
+              <label for="email" class="text-gray-700 block text-sm font-medium">Email</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-2 rounded-md bg-gray-50 text-gray-900 border border-gray-300 focus:border-purple-500 focus:ring-purple-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="password" class="text-gray-700 block text-sm font-medium">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                class="w-full px-4 py-2 rounded-md bg-gray-50 text-gray-900 border border-gray-300 focus:border-purple-500 focus:ring-purple-500"
+                required
+              />
+            </div>
+            <button type="submit" class="w-full bg-purple-500/90 text-white hover:bg-purple-500 shadow-md hover:shadow-lg transition-colors duration-300 rounded-md py-2 px-4">
+              Login
+            </button>
+          </div>
+          <div id="signup-form" class="space-y-4 hidden">
+            <div class="space-y-2">
+              <label for="name" class="text-gray-700 block text-sm font-medium">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                class="w-full px-4 py-2 rounded-md bg-gray-50 text-gray-900 border border-gray-300 focus:border-yellow-500 focus:ring-yellow-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="email" class="text-gray-700 block text-sm font-medium">Email</label>
+              <input
+                type="email"
+                id="email-signup"
+                placeholder="Enter your email"
+                class="w-full px-4 py-2 rounded-md bg-gray-50 text-gray-900 border border-gray-300 focus:border-yellow-500 focus:ring-yellow-500"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="password" class="text-gray-700 block text-sm font-medium">Password</label>
+              <input
+                type="password"
+                id="password-signup"
+                placeholder="Enter your password"
+                class="w-full px-4 py-2 rounded-md bg-gray-50 text-gray-900 border border-gray-300 focus:border-yellow-500 focus:ring-yellow-500"
+                required
+              />
+            </div>
+            <button type="submit" class="w-full bg-yellow-500/90 text-white hover:bg-yellow-500 shadow-md hover:shadow-lg transition-colors duration-300 rounded-md py-2 px-4">
+              Sign Up
+            </button>
+          </div>
+        </div>
+        <div class="p-6 text-center">
+          <p class="text-gray-600 text-sm">
+            By using this platform, you agree to our
+            <a href="#" class="text-blue-400 hover:underline">Terms of Service</a> and
+            <a href="#" class="text-blue-400 hover:underline">Privacy Policy</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      const loginTab = document.getElementById("login-tab");
+      const signupTab = document.getElementById("signup-tab");
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const getStartedBtn = document.getElementById("get-started-btn");
+
+      loginTab.addEventListener("click", () => {
+        loginTab.classList.add("data-[state=active]:bg-pink-500/20", "data-[state=active]:text-pink-600");
+        signupTab.classList.remove("data-[state=active]:bg-yellow-500/20", "data-[state=active]:text-yellow-600");
+        loginForm.classList.remove("hidden");
+        signupForm.classList.add("hidden");
+      });
+
+      signupTab.addEventListener("click", () => {
+        signupTab.classList.add("data-[state=active]:bg-yellow-500/20", "data-[state=active]:text-yellow-600");
+        loginTab.classList.remove("data-[state=active]:bg-pink-500/20", "data-[state=active]:text-pink-600");
+        signupForm.classList.remove("hidden");
+        loginForm.classList.add("hidden");
+      });
+
+      getStartedBtn.addEventListener("click", () => {
+        // Handle the click event, e.g., scroll to the form or redirect
+        console.log('Get Started button clicked!');
+      });
+    </script>
+  </body>
+</html>
