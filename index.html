@@ -15,6 +15,8 @@
             --light: #f8fafc;
             --gray: #94a3b8;
             --success: #10b981;
+            --pink: #ec4899;
+            --purple: #8b5cf6;
             --bg-gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             --card-bg: rgba(255, 255, 255, 0.9);
             --text-color: var(--dark);
@@ -370,7 +372,7 @@
             padding: 2rem;
         }
 
-        /* Auth Pages with Background Animations */
+        /* Auth Pages with Colorful Background Animations */
         .auth-page {
             position: relative;
             display: flex;
@@ -379,6 +381,7 @@
             min-height: calc(100vh - 80px);
             padding: 2rem;
             overflow: hidden;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
         }
 
         .auth-bg {
@@ -388,54 +391,71 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.15;
+            overflow: hidden;
         }
 
-        .auth-bg-circle {
+        .auth-bg-shape {
             position: absolute;
-            border-radius: 50%;
             filter: blur(60px);
-            opacity: 0.8;
-            animation: float 15s infinite linear;
+            opacity: 0.7;
+            animation: float 25s infinite linear;
+            mix-blend-mode: multiply;
         }
 
-        .circle-1 {
-            width: 150px;
-            height: 150px;
+        /* Colorful Shapes with Different Animations */
+        .shape-1 {
+            width: 300px;
+            height: 300px;
             background: var(--primary);
-            top: 20%;
-            left: 10%;
+            top: 10%;
+            left: 5%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             animation-delay: 0s;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            background: var(--secondary);
-            top: 60%;
-            left: 80%;
-            animation-delay: 2s;
-            animation-duration: 20s;
-        }
-
-        .circle-3 {
-            width: 250px;
-            height: 250px;
-            background: var(--primary-light);
-            top: 30%;
-            left: 50%;
-            animation-delay: 4s;
             animation-duration: 25s;
         }
 
-        .circle-4 {
-            width: 180px;
-            height: 180px;
-            background: var(--secondary-light);
-            bottom: 10%;
-            left: 30%;
-            animation-delay: 1s;
-            animation-duration: 18s;
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 5%;
+            right: 5%;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: 3s;
+            animation-duration: 30s;
+        }
+
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--success);
+            top: 40%;
+            right: 20%;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation-delay: 6s;
+            animation-duration: 20s;
+        }
+
+        .shape-4 {
+            width: 350px;
+            height: 350px;
+            background: var(--pink);
+            bottom: 15%;
+            left: 15%;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            animation-delay: 9s;
+            animation-duration: 35s;
+        }
+
+        .shape-5 {
+            width: 200px;
+            height: 200px;
+            background: var(--purple);
+            top: 20%;
+            right: 10%;
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            animation-delay: 12s;
+            animation-duration: 28s;
         }
 
         @keyframes float {
@@ -443,40 +463,41 @@
                 transform: translate(0, 0) rotate(0deg);
             }
             25% {
-                transform: translate(50px, 50px) rotate(90deg);
+                transform: translate(100px, 100px) rotate(90deg);
             }
             50% {
-                transform: translate(100px, -30px) rotate(180deg);
+                transform: translate(200px, -50px) rotate(180deg);
             }
             75% {
-                transform: translate(-30px, 70px) rotate(270deg);
+                transform: translate(-50px, 150px) rotate(270deg);
             }
             100% {
                 transform: translate(0, 0) rotate(360deg);
             }
         }
 
-        /* Auth Container Enhancements */
+        /* Pulsing Glow Effect */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+            50% { box-shadow: 0 0 40px 20px rgba(108, 99, 255, 0.5); }
+            100% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+        }
+
         .auth-container {
             background: var(--card-bg);
             border-radius: 1.5rem;
             padding: 3rem;
             width: 100%;
             max-width: 500px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 30px rgba(108, 99, 255, 0.3);
             text-align: center;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transform: translateY(20px);
             opacity: 0;
-            animation: fadeInUp 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            animation: fadeInUp 0.5s ease-out forwards, pulse-glow 6s infinite;
+            position: relative;
+            z-index: 1;
         }
 
         .auth-container h2 {
@@ -581,17 +602,12 @@
         }
 
         /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        @keyframes slideUp {
+        @keyframes fadeInUp {
             from { 
                 opacity: 0;
                 transform: translateY(20px);
@@ -636,6 +652,10 @@
 
             .auth-container {
                 padding: 2rem 1.5rem;
+            }
+            
+            .auth-bg-shape {
+                filter: blur(40px);
             }
         }
     </style>
@@ -714,14 +734,15 @@
         </footer>
     </div>
 
-    <!-- Login Page -->
+    <!-- Login Page with Colorful Background -->
     <div class="page-container" id="loginPage">
         <section class="auth-page">
             <div class="auth-bg">
-                <div class="auth-bg-circle circle-1"></div>
-                <div class="auth-bg-circle circle-2"></div>
-                <div class="auth-bg-circle circle-3"></div>
-                <div class="auth-bg-circle circle-4"></div>
+                <div class="auth-bg-shape shape-1"></div>
+                <div class="auth-bg-shape shape-2"></div>
+                <div class="auth-bg-shape shape-3"></div>
+                <div class="auth-bg-shape shape-4"></div>
+                <div class="auth-bg-shape shape-5"></div>
             </div>
             <div class="auth-container">
                 <h2>Welcome Back</h2>
@@ -750,14 +771,15 @@
         </section>
     </div>
 
-    <!-- Signup Page -->
+    <!-- Signup Page with Colorful Background -->
     <div class="page-container" id="signupPage">
         <section class="auth-page">
             <div class="auth-bg">
-                <div class="auth-bg-circle circle-1"></div>
-                <div class="auth-bg-circle circle-2"></div>
-                <div class="auth-bg-circle circle-3"></div>
-                <div class="auth-bg-circle circle-4"></div>
+                <div class="auth-bg-shape shape-1"></div>
+                <div class="auth-bg-shape shape-2"></div>
+                <div class="auth-bg-shape shape-3"></div>
+                <div class="auth-bg-shape shape-4"></div>
+                <div class="auth-bg-shape shape-5"></div>
             </div>
             <div class="auth-container">
                 <h2>Create Your Account</h2>
@@ -913,6 +935,22 @@
         // Input field animations
         document.querySelectorAll('.auth-form input').forEach((input, index) => {
             input.style.animationDelay = `${index * 0.05 + 0.1}s`;
+        });
+
+        // Randomize shape animations for more organic feel
+        document.querySelectorAll('.auth-bg-shape').forEach((shape, index) => {
+            const randomDelay = Math.random() * 5;
+            const randomDuration = 20 + Math.random() * 20;
+            const randomSize = 200 + Math.random() * 200;
+            
+            shape.style.animationDelay = `${randomDelay}s`;
+            shape.style.animationDuration = `${randomDuration}s`;
+            shape.style.width = `${randomSize}px`;
+            shape.style.height = `${randomSize}px`;
+            
+            // Randomize position
+            shape.style.top = `${Math.random() * 80}%`;
+            shape.style.left = `${Math.random() * 80}%`;
         });
     </script>
 </body>
