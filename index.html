@@ -370,15 +370,93 @@
             padding: 2rem;
         }
 
-        /* Auth Pages */
+        /* Auth Pages with Background Animations */
         .auth-page {
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: calc(100vh - 80px);
             padding: 2rem;
+            overflow: hidden;
         }
 
+        .auth-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        .auth-bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.8;
+            animation: float 15s infinite linear;
+        }
+
+        .circle-1 {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .circle-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--secondary);
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            animation-duration: 20s;
+        }
+
+        .circle-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--primary-light);
+            top: 30%;
+            left: 50%;
+            animation-delay: 4s;
+            animation-duration: 25s;
+        }
+
+        .circle-4 {
+            width: 180px;
+            height: 180px;
+            background: var(--secondary-light);
+            bottom: 10%;
+            left: 30%;
+            animation-delay: 1s;
+            animation-duration: 18s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(100px, -30px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-30px, 70px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Auth Container Enhancements */
         .auth-container {
             background: var(--card-bg);
             border-radius: 1.5rem;
@@ -387,6 +465,18 @@
             max-width: 500px;
             box-shadow: var(--shadow);
             text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         .auth-container h2 {
@@ -426,6 +516,9 @@
             background: var(--light);
             color: var(--text-color);
             transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
         }
 
         .form-group input:focus {
@@ -624,6 +717,12 @@
     <!-- Login Page -->
     <div class="page-container" id="loginPage">
         <section class="auth-page">
+            <div class="auth-bg">
+                <div class="auth-bg-circle circle-1"></div>
+                <div class="auth-bg-circle circle-2"></div>
+                <div class="auth-bg-circle circle-3"></div>
+                <div class="auth-bg-circle circle-4"></div>
+            </div>
             <div class="auth-container">
                 <h2>Welcome Back</h2>
                 <p>Sign in to continue your learning journey</p>
@@ -631,19 +730,19 @@
                 <form class="auth-form" id="loginForm">
                     <div class="form-group">
                         <label for="login-email">Email</label>
-                        <input type="email" id="login-email" placeholder="Enter your email" required>
+                        <input type="email" id="login-email" placeholder="Enter your email" required style="animation-delay: 0.1s;">
                     </div>
                     
                     <div class="form-group">
                         <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="Enter your password" required>
+                        <input type="password" id="login-password" placeholder="Enter your password" required style="animation-delay: 0.2s;">
                     </div>
                     
-                    <button type="submit" class="auth-submit">
+                    <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
                         <span class="icon">→</span> Login
                     </button>
                     
-                    <div class="auth-switch">
+                    <div class="auth-switch" style="animation-delay: 0.4s;">
                         Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
                     </div>
                 </form>
@@ -654,6 +753,12 @@
     <!-- Signup Page -->
     <div class="page-container" id="signupPage">
         <section class="auth-page">
+            <div class="auth-bg">
+                <div class="auth-bg-circle circle-1"></div>
+                <div class="auth-bg-circle circle-2"></div>
+                <div class="auth-bg-circle circle-3"></div>
+                <div class="auth-bg-circle circle-4"></div>
+            </div>
             <div class="auth-container">
                 <h2>Create Your Account</h2>
                 <p>Start your personalized learning experience today</p>
@@ -661,29 +766,29 @@
                 <form class="auth-form" id="signupForm">
                     <div class="form-group">
                         <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" placeholder="Your full name" required>
+                        <input type="text" id="signup-name" placeholder="Your full name" required style="animation-delay: 0.1s;">
                     </div>
                     
                     <div class="form-group">
                         <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" placeholder="Your email address" required>
+                        <input type="email" id="signup-email" placeholder="Your email address" required style="animation-delay: 0.15s;">
                     </div>
                     
                     <div class="form-group">
                         <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" placeholder="Create a password (min 8 characters)" required minlength="8">
+                        <input type="password" id="signup-password" placeholder="Create a password (min 8 characters)" required minlength="8" style="animation-delay: 0.2s;">
                     </div>
                     
                     <div class="form-group">
                         <label for="signup-confirm">Confirm Password</label>
-                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required style="animation-delay: 0.25s;">
                     </div>
                     
-                    <button type="submit" class="auth-submit">
+                    <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
                         <span class="icon">👋</span> Create Account
                     </button>
                     
-                    <div class="auth-switch">
+                    <div class="auth-switch" style="animation-delay: 0.4s;">
                         Already have an account? <a href="#" id="switchToLogin">Login</a>
                     </div>
                 </form>
@@ -803,6 +908,11 @@
             button.addEventListener('mouseup', () => {
                 button.style.transform = 'translateY(-3px)';
             });
+        });
+
+        // Input field animations
+        document.querySelectorAll('.auth-form input').forEach((input, index) => {
+            input.style.animationDelay = `${index * 0.05 + 0.1}s`;
         });
     </script>
 </body>
