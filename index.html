@@ -54,6 +54,16 @@
             line-height: 1.6;
         }
 
+        /* Page container and switching */
+        .page-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
         /* Header styles */
         header {
             background-color: var(--header-bg);
@@ -81,6 +91,7 @@
         .logo-icon {
             font-size: 2rem;
             display: inline-block;
+            animation: float 3s ease-in-out infinite;
         }
 
         /* Navigation */
@@ -102,6 +113,21 @@
             color: var(--primary);
         }
 
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         .auth-buttons {
             display: flex;
             gap: 1rem;
@@ -109,6 +135,7 @@
             margin-left: 1rem;
         }
 
+        /* Auth button styles */
         .auth-btn {
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
@@ -118,18 +145,67 @@
             align-items: center;
             gap: 0.5rem;
             border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .login-btn {
             background: transparent;
             color: var(--text-color);
+            border: 2px solid var(--primary);
+        }
+
+        .login-btn:hover::before {
+            opacity: 0.1;
         }
 
         .signup-btn {
-            background: var(--primary);
+            background: var(--bg-gradient);
             color: white;
         }
 
+        .signup-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-light) 100%);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+        }
+
+        .auth-btn .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .auth-btn:hover .icon {
+            transform: translateX(3px);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+
+        .signup-btn {
+            animation: pulse 2s infinite;
+        }
+
+        /* Theme toggle */
         .theme-toggle {
             background: transparent;
             border: none;
@@ -140,126 +216,115 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
         }
 
         .theme-toggle:hover {
             background: rgba(0, 0, 0, 0.1);
+            transform: rotate(30deg);
         }
 
-        /* Page container */
-        .page-container {
-            display: none;
-            padding-bottom: 3rem;
-        }
-
-        .page-container.active {
-            display: block;
-        }
-
-        /* Home Page */
+        /* Main content styles */
         .hero {
+            padding: 6rem 2rem;
             text-align: center;
-            padding: 5rem 2rem;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
             background: var(--bg-gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            animation: fadeIn 1s ease-out;
         }
 
         .hero p {
             font-size: 1.2rem;
             color: var(--gray);
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            animation: fadeIn 1s ease-out 0.2s both;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             justify-content: center;
-            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
+        .hero .auth-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Subjects section */
         .subjects {
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
 
         .subjects h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
             color: var(--text-color);
+            position: relative;
+        }
+
+        .subjects h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
         }
 
         .subject-card {
             background: var(--card-bg);
             border-radius: 1.5rem;
-            padding: 2rem;
+            padding: 3rem 2rem;
             box-shadow: var(--shadow);
             max-width: 500px;
             margin: 0 auto;
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .subject-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .subject-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
         }
 
         .subject-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
             color: var(--text-color);
         }
 
         .subject-card p {
             color: var(--gray);
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: var(--card-bg);
-            margin: 3rem 0;
-        }
-
-        .cta-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: var(--gray);
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray);
-            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
         }
 
         /* Math Subject Page */
@@ -296,12 +361,6 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
         .math-topics {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -315,6 +374,22 @@
             padding: 2rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+            z-index: -1;
+            animation: rotate 15s linear infinite;
         }
 
         .topic-card:hover {
@@ -326,6 +401,7 @@
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .topic-card h3 {
@@ -337,6 +413,7 @@
         .topic-card p {
             color: var(--gray);
             margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
         .topic-progress {
@@ -389,6 +466,8 @@
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
             text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .feature-card:hover {
@@ -400,6 +479,7 @@
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
+            display: inline-block;
         }
 
         .feature-card h3 {
@@ -410,26 +490,298 @@
 
         .feature-card p {
             color: var(--gray);
+            line-height: 1.6;
         }
 
-        .math-cta {
+        /* CTA section */
+        .cta-section {
             background: var(--bg-gradient);
-            padding: 4rem 2rem;
-            border-radius: 1.5rem;
+            padding: 5rem 2rem;
             text-align: center;
             margin: 4rem 0;
             color: white;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
         }
 
-        .math-cta h2 {
-            font-size: 2rem;
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
 
-        .math-cta p {
+        .cta-section p {
             max-width: 700px;
             margin: 0 auto 2rem auto;
+            font-size: 1.2rem;
             opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .cta-section .auth-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-section .login-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: white;
+        }
+
+        .cta-section .login-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Auth Pages with Colorful Background Animations */
+        .auth-page {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+        }
+
+        .auth-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .auth-bg-shape {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: float 25s infinite linear;
+            mix-blend-mode: multiply;
+        }
+
+        /* Colorful Shapes with Different Animations */
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 5%;
+            right: 5%;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: 3s;
+            animation-duration: 30s;
+        }
+
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--success);
+            top: 40%;
+            right: 20%;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation-delay: 6s;
+            animation-duration: 20s;
+        }
+
+        .shape-4 {
+            width: 350px;
+            height: 350px;
+            background: var(--pink);
+            bottom: 15%;
+            left: 15%;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            animation-delay: 9s;
+            animation-duration: 35s;
+        }
+
+        .shape-5 {
+            width: 200px;
+            height: 200px;
+            background: var(--purple);
+            top: 20%;
+            right: 10%;
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            animation-delay: 12s;
+            animation-duration: 28s;
+        }
+
+        /* Pulsing Glow Effect */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+            50% { box-shadow: 0 0 40px 20px rgba(108, 99, 255, 0.5); }
+            100% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+        }
+
+        .auth-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 30px rgba(108, 99, 255, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards, pulse-glow 6s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-container h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .auth-container p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-gradient);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .auth-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .auth-switch {
+            margin-top: 1.5rem;
+            color: var(--gray);
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         /* Responsive adjustments */
@@ -439,33 +791,53 @@
                 gap: 1rem;
                 padding: 1rem;
             }
-
+            
             nav {
                 width: 100%;
                 justify-content: space-between;
             }
-
+            
             .hero h1, .math-header h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+            }
+            
+            .hero p, .math-header p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .auth-buttons {
+                margin-left: 0;
             }
 
             .math-icon {
                 font-size: 4rem;
             }
-
-            .hero-buttons, .cta-buttons {
-                flex-direction: column;
-                align-items: center;
+            
+            .math-topics {
+                grid-template-columns: 1fr;
             }
-
-            .auth-buttons {
-                margin-left: 0;
+            
+            .topic-card, .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .auth-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .auth-bg-shape {
+                filter: blur(40px);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header (visible on all pages) -->
     <header>
         <a href="#" class="logo" id="homeLink">
             <span class="logo-icon">🧠</span>
@@ -519,17 +891,19 @@
         </section>
         
         <section class="cta-section">
-            <h2>Ready to Transform Your Math Skills?</h2>
-            <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
-            <div class="cta-buttons">
-                <button class="auth-btn signup-btn" id="ctaSignupBtn">
-                    <span class="icon">🌟</span>
-                    Get Started Free
-                </button>
-                <button class="auth-btn login-btn" id="ctaLoginBtn">
-                    <span class="icon">🔑</span>
-                    Login to Continue
-                </button>
+            <div class="cta-content">
+                <h2>Ready to Transform Your Math Skills?</h2>
+                <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
+                <div class="cta-buttons">
+                    <button class="auth-btn signup-btn" id="ctaSignupBtn">
+                        <span class="icon">🌟</span>
+                        Get Started Free
+                    </button>
+                    <button class="auth-btn login-btn" id="ctaLoginBtn">
+                        <span class="icon">🔑</span>
+                        Login to Continue
+                    </button>
+                </div>
             </div>
         </section>
         
@@ -647,12 +1021,14 @@
                 </div>
             </div>
 
-            <div class="math-cta">
-                <h2>Ready to Master Math?</h2>
-                <p>Join thousands of students who are transforming their math skills with our AI-powered platform.</p>
-                <button class="auth-btn signup-btn" style="margin: 0 auto;">
-                    <span class="icon">🌟</span> Start Learning Free
-                </button>
+            <div class="cta-section">
+                <div class="cta-content">
+                    <h2>Ready to Master Math?</h2>
+                    <p>Join thousands of students who are transforming their math skills with our AI-powered platform.</p>
+                    <button class="auth-btn signup-btn" style="margin: 0 auto;">
+                        <span class="icon">🌟</span> Start Learning Free
+                    </button>
+                </div>
             </div>
         </section>
         
@@ -661,11 +1037,97 @@
         </footer>
     </div>
 
+    <!-- Login Page with Colorful Background -->
+    <div class="page-container" id="loginPage">
+        <section class="auth-page">
+            <div class="auth-bg">
+                <div class="auth-bg-shape shape-1"></div>
+                <div class="auth-bg-shape shape-2"></div>
+                <div class="auth-bg-shape shape-3"></div>
+                <div class="auth-bg-shape shape-4"></div>
+                <div class="auth-bg-shape shape-5"></div>
+            </div>
+            <div class="auth-container">
+                <h2>Welcome Back</h2>
+                <p>Sign in to continue your learning journey</p>
+                
+                <form class="auth-form" id="loginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email" required style="animation-delay: 0.1s;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password" required style="animation-delay: 0.2s;">
+                    </div>
+                    
+                    <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
+                        <span class="icon">→</span> Login
+                    </button>
+                    
+                    <div class="auth-switch" style="animation-delay: 0.4s;">
+                        Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Signup Page with Colorful Background -->
+    <div class="page-container" id="signupPage">
+        <section class="auth-page">
+            <div class="auth-bg">
+                <div class="auth-bg-shape shape-1"></div>
+                <div class="auth-bg-shape shape-2"></div>
+                <div class="auth-bg-shape shape-3"></div>
+                <div class="auth-bg-shape shape-4"></div>
+                <div class="auth-bg-shape shape-5"></div>
+            </div>
+            <div class="auth-container">
+                <h2>Create Your Account</h2>
+                <p>Start your personalized learning experience today</p>
+                
+                <form class="auth-form" id="signupForm">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Your full name" required style="animation-delay: 0.1s;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" placeholder="Your email address" required style="animation-delay: 0.15s;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Create a password (min 8 characters)" required minlength="8" style="animation-delay: 0.2s;">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" placeholder="Confirm your password" required style="animation-delay: 0.25s;">
+                    </div>
+                    
+                    <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
+                        <span class="icon">👋</span> Create Account
+                    </button>
+                    
+                    <div class="auth-switch" style="animation-delay: 0.4s;">
+                        Already have an account? <a href="#" id="switchToLogin">Login</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
     <script>
         // Page Management System
         const pages = {
             home: document.getElementById('homePage'),
-            math: document.getElementById('mathPage')
+            math: document.getElementById('mathPage'),
+            login: document.getElementById('loginPage'),
+            signup: document.getElementById('signupPage')
         };
 
         // Show a specific page and hide others
@@ -709,9 +1171,23 @@
             });
         });
 
-        // Button event listeners
+        // Auth navigation
+        document.getElementById('loginNavBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('signupNavBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('heroLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('heroSignupBtn').addEventListener('click', () => showPage('signup'));
         document.getElementById('cardSignupBtn').addEventListener('click', () => showPage('math'));
-        
+        document.getElementById('ctaLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('ctaSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('switchToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+        document.getElementById('switchToSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signup');
+        });
+
         // Dark mode toggle
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
@@ -726,17 +1202,104 @@
             themeToggle.textContent = '☀️';
         }
 
-        // Button hover effects
-        const buttons = document.querySelectorAll('.auth-btn, .start-btn');
-        buttons.forEach(button => {
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Login successful! Redirecting to dashboard...');
+            // In a real app, you would handle authentication here
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirm) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            alert('Account created successfully! Redirecting to dashboard...');
+            // In a real app, you would handle registration here
+        });
+
+        // Enhanced button animations
+        const authButtons = document.querySelectorAll('.auth-btn, .start-btn');
+        
+        authButtons.forEach(button => {
             button.addEventListener('mouseenter', () => {
                 button.style.transform = 'translateY(-3px)';
-                button.style.boxShadow = '0 8px 15px rgba(0, 0, 0, 0.1)';
+                button.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.3)';
             });
             
             button.addEventListener('mouseleave', () => {
                 button.style.transform = 'translateY(0)';
-                button.style.boxShadow = 'none';
+                if (button.classList.contains('signup-btn') || button.classList.contains('start-btn')) {
+                    button.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    button.style.boxShadow = 'none';
+                }
+            });
+            
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translateY(1px)';
+            });
+            
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'translateY(-3px)';
+            });
+        });
+
+        // Start learning buttons functionality
+        document.querySelectorAll('.start-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const topicTitle = button.closest('.topic-card').querySelector('h3').textContent;
+                alert(`Starting lesson: ${topicTitle}\nThis would launch the interactive learning interface in a real application.`);
+            });
+        });
+
+        // Randomize shape animations for more organic feel
+        document.querySelectorAll('.auth-bg-shape').forEach((shape, index) => {
+            const randomDelay = Math.random() * 5;
+            const randomDuration = 20 + Math.random() * 20;
+            const randomSize = 200 + Math.random() * 200;
+            
+            shape.style.animationDelay = `${randomDelay}s`;
+            shape.style.animationDuration = `${randomDuration}s`;
+            shape.style.width = `${randomSize}px`;
+            shape.style.height = `${randomSize}px`;
+            
+            // Randomize position
+            shape.style.top = `${Math.random() * 80}%`;
+            shape.style.left = `${Math.random() * 80}%`;
+        });
+
+        // Input field animations
+        document.querySelectorAll('.auth-form input').forEach((input, index) => {
+            input.style.animationDelay = `${index * 0.05 + 0.1}s`;
+        });
+
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            // Animate hero elements
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero-buttons');
+            heroElements.forEach((el, i) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${i * 0.2}s forwards`;
+                el.style.opacity = '0';
+            });
+
+            // Animate subject card
+            const subjectCard = document.querySelector('.subject-card');
+            if (subjectCard) {
+                subjectCard.style.animation = 'fadeInUp 0.8s ease-out 0.4s forwards';
+                subjectCard.style.opacity = '0';
+            }
+
+            // Animate CTA section
+            const ctaElements = document.querySelectorAll('.cta-section h2, .cta-section p, .cta-buttons');
+            ctaElements.forEach((el, i) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${0.4 + i * 0.1}s forwards`;
+                el.style.opacity = '0';
             });
         });
     </script>
