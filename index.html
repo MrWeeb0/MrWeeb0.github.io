@@ -135,6 +135,31 @@
             margin-left: 1rem;
         }
 
+        /* Language Selector */
+        .language-selector {
+            margin-left: 1rem;
+        }
+
+        .language-selector select {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .language-selector select:hover {
+            border-color: var(--primary);
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+
         /* Auth button styles */
         .auth-btn {
             padding: 0.5rem 1rem;
@@ -841,21 +866,27 @@
     <header>
         <a href="#" class="logo" id="homeLink">
             <span class="logo-icon">🧠</span>
-            <span>Learn with AI</span>
+            <span data-i18n="logo">Learn with AI</span>
         </a>
         <nav>
-            <a href="#" class="nav-link" data-page="home">Home</a>
-            <a href="#" class="nav-link" data-page="math">Math</a>
+            <a href="#" class="nav-link" data-page="home" data-i18n="home">Home</a>
+            <a href="#" class="nav-link" data-page="math" data-i18n="math">Math</a>
             <div class="auth-buttons">
                 <button class="auth-btn login-btn" id="loginNavBtn">
                     <span class="icon">→</span>
-                    Login
+                    <span data-i18n="login">Login</span>
                 </button>
                 <button class="auth-btn signup-btn" id="signupNavBtn">
                     <span class="icon">👋</span>
-                    Sign Up
+                    <span data-i18n="signup">Sign Up</span>
                 </button>
                 <button class="theme-toggle" id="themeToggle">🌓</button>
+                <div class="language-selector">
+                    <select id="languageSelect">
+                        <option value="en">English</option>
+                        <option value="ro">Română</option>
+                    </select>
+                </div>
             </div>
         </nav>
     </header>
@@ -863,52 +894,52 @@
     <!-- Home Page -->
     <div class="page-container" id="homePage">
         <section class="hero">
-            <h1>Master Math with AI Assistance</h1>
-            <p>Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
+            <h1 data-i18n="heroTitle">Master Math with AI Assistance</h1>
+            <p data-i18n="heroText">Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.</p>
             <div class="hero-buttons">
                 <button class="auth-btn signup-btn" id="heroSignupBtn">
                     <span class="icon">🚀</span>
-                    Start Learning Free
+                    <span data-i18n="startLearning">Start Learning Free</span>
                 </button>
                 <button class="auth-btn login-btn" id="heroLoginBtn">
                     <span class="icon">👨‍🏫</span>
-                    Existing Student?
+                    <span data-i18n="existingStudent">Existing Student?</span>
                 </button>
             </div>
         </section>
         
         <section class="subjects">
-            <h2>Featured Subject</h2>
+            <h2 data-i18n="featuredSubject">Featured Subject</h2>
             <div class="subject-card">
                 <div class="subject-icon">🧮</div>
-                <h3>Mathematics</h3>
-                <p>From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
+                <h3 data-i18n="math">Math</h3>
+                <p data-i18n="mathDescription">From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.</p>
                 <button class="auth-btn signup-btn" id="cardSignupBtn">
                     <span class="icon">✨</span>
-                    Explore Math
+                    <span data-i18n="exploreMath">Explore Math</span>
                 </button>
             </div>
         </section>
         
         <section class="cta-section">
             <div class="cta-content">
-                <h2>Ready to Transform Your Math Skills?</h2>
-                <p>Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
+                <h2 data-i18n="ctaTitle">Ready to Transform Your Math Skills?</h2>
+                <p data-i18n="ctaText">Join thousands of students who are mastering mathematics with our AI-powered learning platform.</p>
                 <div class="cta-buttons">
                     <button class="auth-btn signup-btn" id="ctaSignupBtn">
                         <span class="icon">🌟</span>
-                        Get Started Free
+                        <span data-i18n="getStarted">Get Started Free</span>
                     </button>
                     <button class="auth-btn login-btn" id="ctaLoginBtn">
                         <span class="icon">🔑</span>
-                        Login to Continue
+                        <span data-i18n="continueLogin">Login to Continue</span>
                     </button>
                 </div>
             </div>
         </section>
         
         <footer>
-            <p>© 2023 Learn with AI. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -917,80 +948,80 @@
         <section class="math-page">
             <div class="math-header">
                 <div class="math-icon">🧮</div>
-                <h1>Mathematics</h1>
-                <p>Master mathematical concepts with our AI-powered learning system. From basic arithmetic to advanced calculus, we've got you covered.</p>
+                <h1 data-i18n="math">Mathematics</h1>
+                <p data-i18n="mathText">Master mathematical concepts with our AI-powered learning system. From basic arithmetic to advanced calculus, we've got you covered.</p>
             </div>
 
             <div class="math-topics">
                 <div class="topic-card">
                     <div class="topic-icon">➕</div>
-                    <h3>Arithmetic Basics</h3>
-                    <p>Learn addition, subtraction, multiplication, and division with interactive exercises.</p>
+                    <h3 data-i18n="arithmetic">Arithmetic Basics</h3>
+                    <p data-i18n="arithmeticDesc">Learn addition, subtraction, multiplication, and division with interactive exercises.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 25%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
 
                 <div class="topic-card">
                     <div class="topic-icon">📈</div>
-                    <h3>Algebra Fundamentals</h3>
-                    <p>Master variables, equations, and functions with step-by-step guidance.</p>
+                    <h3 data-i18n="algebra">Algebra Fundamentals</h3>
+                    <p data-i18n="algebraDesc">Master variables, equations, and functions with step-by-step guidance.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 10%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
 
                 <div class="topic-card">
                     <div class="topic-icon">📐</div>
-                    <h3>Geometry</h3>
-                    <p>Explore shapes, angles, and spatial relationships with visual learning tools.</p>
+                    <h3 data-i18n="geometry">Geometry</h3>
+                    <p data-i18n="geometryDesc">Explore shapes, angles, and spatial relationships with visual learning tools.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 5%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
 
                 <div class="topic-card">
                     <div class="topic-icon">∞</div>
-                    <h3>Calculus</h3>
-                    <p>Understand derivatives, integrals, and limits with AI-powered explanations.</p>
+                    <h3 data-i18n="calculus">Calculus</h3>
+                    <p data-i18n="calculusDesc">Understand derivatives, integrals, and limits with AI-powered explanations.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 0%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
 
                 <div class="topic-card">
                     <div class="topic-icon">📊</div>
-                    <h3>Statistics</h3>
-                    <p>Learn data analysis, probability, and statistical methods with real-world examples.</p>
+                    <h3 data-i18n="statistics">Statistics</h3>
+                    <p data-i18n="statisticsDesc">Learn data analysis, probability, and statistical methods with real-world examples.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 15%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
 
                 <div class="topic-card">
                     <div class="topic-icon">🧩</div>
-                    <h3>Problem Solving</h3>
-                    <p>Develop critical thinking skills with challenging math problems and puzzles.</p>
+                    <h3 data-i18n="problemSolving">Problem Solving</h3>
+                    <p data-i18n="problemSolvingDesc">Develop critical thinking skills with challenging math problems and puzzles.</p>
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 20%"></div>
                     </div>
                     <button class="start-btn">
-                        <span class="icon">🚀</span> Start Learning
+                        <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
             </div>
@@ -998,42 +1029,42 @@
             <div class="math-features">
                 <div class="feature-card">
                     <div class="feature-icon">🤖</div>
-                    <h3>AI Tutor</h3>
-                    <p>Get personalized explanations and step-by-step solutions tailored to your learning style.</p>
+                    <h3 data-i18n="aiTutor">AI Tutor</h3>
+                    <p data-i18n="aiTutorDesc">Get personalized explanations and step-by-step solutions tailored to your learning style.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
-                    <h3>Interactive Exercises</h3>
-                    <p>Practice with engaging, interactive problems that adapt to your skill level.</p>
+                    <h3 data-i18n="interactiveExercises">Interactive Exercises</h3>
+                    <p data-i18n="interactiveExercisesDesc">Practice with engaging, interactive problems that adapt to your skill level.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
-                    <h3>Progress Tracking</h3>
-                    <p>Monitor your improvement with detailed analytics and personalized recommendations.</p>
+                    <h3 data-i18n="progressTracking">Progress Tracking</h3>
+                    <p data-i18n="progressTrackingDesc">Monitor your improvement with detailed analytics and personalized recommendations.</p>
                 </div>
 
                 <div class="feature-card">
                     <div class="feature-icon">🏆</div>
-                    <h3>Gamification</h3>
-                    <p>Earn badges and rewards as you master new concepts and complete challenges.</p>
+                    <h3 data-i18n="gamification">Gamification</h3>
+                    <p data-i18n="gamificationDesc">Earn badges and rewards as you master new concepts and complete challenges.</p>
                 </div>
             </div>
 
             <div class="cta-section">
                 <div class="cta-content">
-                    <h2>Ready to Master Math?</h2>
-                    <p>Join thousands of students who are transforming their math skills with our AI-powered platform.</p>
+                    <h2 data-i18n="mathCtaTitle">Ready to Master Math?</h2>
+                    <p data-i18n="mathCtaText">Join thousands of students who are transforming their math skills with our AI-powered platform.</p>
                     <button class="auth-btn signup-btn" style="margin: 0 auto;">
-                        <span class="icon">🌟</span> Start Learning Free
+                        <span class="icon">🌟</span> <span data-i18n="startLearning">Start Learning Free</span>
                     </button>
                 </div>
             </div>
         </section>
         
         <footer>
-            <p>© 2023 Learn with AI. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -1048,26 +1079,26 @@
                 <div class="auth-bg-shape shape-5"></div>
             </div>
             <div class="auth-container">
-                <h2>Welcome Back</h2>
-                <p>Sign in to continue your learning journey</p>
+                <h2 data-i18n="welcomeBack">Welcome Back</h2>
+                <p data-i18n="signInText">Sign in to continue your learning journey</p>
                 
                 <form class="auth-form" id="loginForm">
                     <div class="form-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" id="login-email" placeholder="Enter your email" required style="animation-delay: 0.1s;">
+                        <label for="login-email" data-i18n="email">Email</label>
+                        <input type="email" id="login-email" data-i18n-placeholder="enterEmail" placeholder="Enter your email" required style="animation-delay: 0.1s;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" id="login-password" placeholder="Enter your password" required style="animation-delay: 0.2s;">
+                        <label for="login-password" data-i18n="password">Password</label>
+                        <input type="password" id="login-password" data-i18n-placeholder="enterPassword" placeholder="Enter your password" required style="animation-delay: 0.2s;">
                     </div>
                     
                     <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
-                        <span class="icon">→</span> Login
+                        <span class="icon">→</span> <span data-i18n="login">Login</span>
                     </button>
                     
                     <div class="auth-switch" style="animation-delay: 0.4s;">
-                        Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                        <span data-i18n="dontHaveAccount">Don't have an account?</span> <a href="#" id="switchToSignup" data-i18n="signup">Sign up</a>
                     </div>
                 </form>
             </div>
@@ -1085,36 +1116,36 @@
                 <div class="auth-bg-shape shape-5"></div>
             </div>
             <div class="auth-container">
-                <h2>Create Your Account</h2>
-                <p>Start your personalized learning experience today</p>
+                <h2 data-i18n="createAccount">Create Your Account</h2>
+                <p data-i18n="startExperience">Start your personalized learning experience today</p>
                 
                 <form class="auth-form" id="signupForm">
                     <div class="form-group">
-                        <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" placeholder="Your full name" required style="animation-delay: 0.1s;">
+                        <label for="signup-name" data-i18n="fullName">Full Name</label>
+                        <input type="text" id="signup-name" data-i18n-placeholder="yourName" placeholder="Your full name" required style="animation-delay: 0.1s;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" placeholder="Your email address" required style="animation-delay: 0.15s;">
+                        <label for="signup-email" data-i18n="email">Email</label>
+                        <input type="email" id="signup-email" data-i18n-placeholder="enterEmail" placeholder="Your email address" required style="animation-delay: 0.15s;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" placeholder="Create a password (min 8 characters)" required minlength="8" style="animation-delay: 0.2s;">
+                        <label for="signup-password" data-i18n="password">Password</label>
+                        <input type="password" id="signup-password" data-i18n-placeholder="minPassword" placeholder="Create a password (min 8 characters)" required minlength="8" style="animation-delay: 0.2s;">
                     </div>
                     
                     <div class="form-group">
-                        <label for="signup-confirm">Confirm Password</label>
+                        <label for="signup-confirm" data-i18n="confirmPassword">Confirm Password</label>
                         <input type="password" id="signup-confirm" placeholder="Confirm your password" required style="animation-delay: 0.25s;">
                     </div>
                     
                     <button type="submit" class="auth-submit" style="animation-delay: 0.3s;">
-                        <span class="icon">👋</span> Create Account
+                        <span class="icon">👋</span> <span data-i18n="createAccount">Create Account</span>
                     </button>
                     
                     <div class="auth-switch" style="animation-delay: 0.4s;">
-                        Already have an account? <a href="#" id="switchToLogin">Login</a>
+                        <span data-i18n="alreadyHaveAccount">Already have an account?</span> <a href="#" id="switchToLogin" data-i18n="login">Login</a>
                     </div>
                 </form>
             </div>
@@ -1122,6 +1153,185 @@
     </div>
 
     <script>
+        // Language translations
+        const translations = {
+            en: {
+                // Header
+                logo: "Learn with AI",
+                home: "Home",
+                math: "Math",
+                login: "Login",
+                signup: "Sign Up",
+                
+                // Home Page
+                heroTitle: "Master Math with AI Assistance",
+                heroText: "Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.",
+                startLearning: "Start Learning Free",
+                existingStudent: "Existing Student?",
+                featuredSubject: "Featured Subject",
+                mathDescription: "From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.",
+                exploreMath: "Explore Math",
+                ctaTitle: "Ready to Transform Your Math Skills?",
+                ctaText: "Join thousands of students who are mastering mathematics with our AI-powered learning platform.",
+                getStarted: "Get Started Free",
+                continueLogin: "Login to Continue",
+                
+                // Math Page
+                mathTitle: "Mathematics",
+                mathText: "Master mathematical concepts with our AI-powered learning system. From basic arithmetic to advanced calculus, we've got you covered.",
+                arithmetic: "Arithmetic Basics",
+                arithmeticDesc: "Learn addition, subtraction, multiplication, and division with interactive exercises.",
+                algebra: "Algebra Fundamentals",
+                algebraDesc: "Master variables, equations, and functions with step-by-step guidance.",
+                geometry: "Geometry",
+                geometryDesc: "Explore shapes, angles, and spatial relationships with visual learning tools.",
+                calculus: "Calculus",
+                calculusDesc: "Understand derivatives, integrals, and limits with AI-powered explanations.",
+                statistics: "Statistics",
+                statisticsDesc: "Learn data analysis, probability, and statistical methods with real-world examples.",
+                problemSolving: "Problem Solving",
+                problemSolvingDesc: "Develop critical thinking skills with challenging math problems and puzzles.",
+                aiTutor: "AI Tutor",
+                aiTutorDesc: "Get personalized explanations and step-by-step solutions tailored to your learning style.",
+                interactiveExercises: "Interactive Exercises",
+                interactiveExercisesDesc: "Practice with engaging, interactive problems that adapt to your skill level.",
+                progressTracking: "Progress Tracking",
+                progressTrackingDesc: "Monitor your improvement with detailed analytics and personalized recommendations.",
+                gamification: "Gamification",
+                gamificationDesc: "Earn badges and rewards as you master new concepts and complete challenges.",
+                mathCtaTitle: "Ready to Master Math?",
+                mathCtaText: "Join thousands of students who are transforming their math skills with our AI-powered platform.",
+                
+                // Auth Pages
+                welcomeBack: "Welcome Back",
+                signInText: "Sign in to continue your learning journey",
+                email: "Email",
+                enterEmail: "Enter your email",
+                password: "Password",
+                enterPassword: "Enter your password",
+                dontHaveAccount: "Don't have an account?",
+                createAccount: "Create Your Account",
+                startExperience: "Start your personalized learning experience today",
+                fullName: "Full Name",
+                yourName: "Your full name",
+                confirmPassword: "Confirm Password",
+                minPassword: "Create a password (min 8 characters)",
+                alreadyHaveAccount: "Already have an account?",
+                
+                // Footer
+                copyright: "© 2023 Learn with AI. All rights reserved."
+            },
+            ro: {
+                // Header
+                logo: "Învață cu AI",
+                home: "Acasă",
+                math: "Matematică",
+                login: "Autentificare",
+                signup: "Înregistrare",
+                
+                // Home Page
+                heroTitle: "Stăpânește Matematica cu Ajutorul AI",
+                heroText: "Tutorul nostru inteligent se adaptează stilului tău de învățare, oferind lecții personalizate și probleme de practică pentru a te ajuta să excelezi în matematică.",
+                startLearning: "Începe să Înveți Gratuit",
+                existingStudent: "Ești deja student?",
+                featuredSubject: "Materie Recomandată",
+                mathDescription: "De la aritmetica de bază la calcul avansat, tutorul nostru AI te ghidează prin fiecare concept matematic cu lecții interactive și feedback în timp real.",
+                exploreMath: "Explorează Matematica",
+                ctaTitle: "Ești Gata să-ți Îmbunătățești Abilitățile Matematice?",
+                ctaText: "Alătură-te miilor de studenți care stăpânesc matematica cu platforma noastră de învățare alimentată de AI.",
+                getStarted: "Începe Gratuit",
+                continueLogin: "Autentifică-te",
+                
+                // Math Page
+                mathTitle: "Matematică",
+                mathText: "Stăpânește concepte matematice cu sistemul nostru de învățare alimentat de AI. De la aritmetică de bază la calcul avansat, te avem acoperit.",
+                arithmetic: "Bazele Aritmeticii",
+                arithmeticDesc: "Învață adunarea, scăderea, înmulțirea și împărțirea cu exerciții interactive.",
+                algebra: "Fundamentele Algebrei",
+                algebraDesc: "Stăpânește variabilele, ecuațiile și funcțiile cu ghidare pas cu pas.",
+                geometry: "Geometrie",
+                geometryDesc: "Explorează forme, unghiuri și relații spațiale cu instrumente vizuale de învățare.",
+                calculus: "Calcul",
+                calculusDesc: "Înțelege derivatele, integralele și limitele cu explicații bazate pe AI.",
+                statistics: "Statistică",
+                statisticsDesc: "Învață analiza datelor, probabilitatea și metodele statistice cu exemple din lumea reală.",
+                problemSolving: "Rezolvare de Probleme",
+                problemSolvingDesc: "Dezvoltă abilități de gândire critică cu probleme și puzzle-uri matematice provocatoare.",
+                aiTutor: "Tutor AI",
+                aiTutorDesc: "Obține explicații personalizate și soluții pas cu pas adaptate stilului tău de învățare.",
+                interactiveExercises: "Exerciții Interactive",
+                interactiveExercisesDesc: "Exersează cu probleme interactive care se adaptează la nivelul tău de abilitate.",
+                progressTracking: "Urmărire Progres",
+                progressTrackingDesc: "Monitorizează îmbunătățirea ta cu analize detaliate și recomandări personalizate.",
+                gamification: "Gamificare",
+                gamificationDesc: "Câștigă insigne și recompense pe măsură ce stăpânești noi concepte și completezi provocări.",
+                mathCtaTitle: "Ești Gata să Stăpânești Matematica?",
+                mathCtaText: "Alătură-te miilor de studenți care își transformă abilitățile matematice cu platforma noastră alimentată de AI.",
+                
+                // Auth Pages
+                welcomeBack: "Bine ai revenit",
+                signInText: "Autentifică-te pentru a-ți continua călătoria de învățare",
+                email: "Email",
+                enterEmail: "Introdu adresa de email",
+                password: "Parolă",
+                enterPassword: "Introdu parola",
+                dontHaveAccount: "Nu ai un cont?",
+                createAccount: "Creează Cont",
+                startExperience: "Începe experiența ta personalizată de învățare astăzi",
+                fullName: "Nume complet",
+                yourName: "Numele tău complet",
+                confirmPassword: "Confirmă Parola",
+                minPassword: "Creează o parolă (minim 8 caractere)",
+                alreadyHaveAccount: "Ai deja un cont?",
+                
+                // Footer
+                copyright: "© 2025 Ze 0 GOUT. Toate drepturile rezervate."
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Function to translate the page
+        function translatePage(lang) {
+            currentLanguage = lang;
+            document.getElementById('languageSelect').value = lang;
+            
+            // Get all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            // Translate each element
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Translate placeholders
+            const inputs = document.querySelectorAll('[data-i18n-placeholder]');
+            inputs.forEach(input => {
+                const key = input.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    input.placeholder = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize language from localStorage or browser preference
+        function initLanguage() {
+            const savedLang = localStorage.getItem('language');
+            const browserLang = navigator.language.substring(0, 2);
+            
+            if (savedLang) {
+                currentLanguage = savedLang;
+            } else if (browserLang === 'ro') {
+                currentLanguage = 'ro';
+            }
+            
+            translatePage(currentLanguage);
+        }
+
         // Page Management System
         const pages = {
             home: document.getElementById('homePage'),
@@ -1188,6 +1398,13 @@
             showPage('signup');
         });
 
+        // Language selector event
+        document.getElementById('languageSelect').addEventListener('change', (e) => {
+            const lang = e.target.value;
+            localStorage.setItem('language', lang);
+            translatePage(lang);
+        });
+
         // Dark mode toggle
         const themeToggle = document.getElementById('themeToggle');
         themeToggle.addEventListener('click', () => {
@@ -1205,7 +1422,7 @@
         // Form submissions
         document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Login successful! Redirecting to dashboard...');
+            alert(currentLanguage === 'en' ? 'Login successful! Redirecting to dashboard...' : 'Autentificare reușită! Redirecționare către panoul de control...');
             // In a real app, you would handle authentication here
         });
 
@@ -1215,11 +1432,11 @@
             const confirm = document.getElementById('signup-confirm').value;
             
             if (password !== confirm) {
-                alert('Passwords do not match!');
+                alert(currentLanguage === 'en' ? 'Passwords do not match!' : 'Parolele nu se potrivesc!');
                 return;
             }
             
-            alert('Account created successfully! Redirecting to dashboard...');
+            alert(currentLanguage === 'en' ? 'Account created successfully! Redirecting to dashboard...' : 'Cont creat cu succes! Redirecționare către panoul de control...');
             // In a real app, you would handle registration here
         });
 
@@ -1254,7 +1471,10 @@
         document.querySelectorAll('.start-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const topicTitle = button.closest('.topic-card').querySelector('h3').textContent;
-                alert(`Starting lesson: ${topicTitle}\nThis would launch the interactive learning interface in a real application.`);
+                const message = currentLanguage === 'en' 
+                    ? `Starting lesson: ${topicTitle}\nThis would launch the interactive learning interface in a real application.`
+                    : `Începere lecție: ${topicTitle}\nÎntr-o aplicație reală, aceasta ar lansa interfața interactivă de învățare.`;
+                alert(message);
             });
         });
 
@@ -1281,6 +1501,9 @@
 
         // Initialize animations when page loads
         window.addEventListener('load', () => {
+            // Initialize language
+            initLanguage();
+            
             // Animate hero elements
             const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero-buttons');
             heroElements.forEach((el, i) => {
