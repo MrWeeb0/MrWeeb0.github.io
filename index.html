@@ -809,6 +809,281 @@
             to { transform: rotate(360deg); }
         }
 
+        /* Learning Interface Styles */
+        .learning-interface {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .learning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-to-topics {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-topics:hover {
+            text-decoration: underline;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+
+        .progress-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--gray);
+        }
+
+        .progress-circle.active {
+            background-color: var(--success);
+        }
+
+        .progress-circle.completed {
+            background-color: var(--primary);
+        }
+
+        .lesson-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .lesson-content {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-content img {
+            max-width: 100%;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .example {
+            background: rgba(108, 99, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin: 1.5rem 0;
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .practice-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .practice-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .answer-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-option {
+            background: var(--light);
+            border: 2px solid var(--gray);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .answer-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .answer-option.selected {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .answer-option.correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .answer-option.incorrect {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: white;
+        }
+
+        .math-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 0.8rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--light);
+            color: var(--text-color);
+        }
+
+        .math-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 0.8rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid var(--success);
+        }
+
+        .feedback.incorrect {
+            background: rgba(236, 72, 153, 0.2);
+            border-left: 4px solid var(--pink);
+        }
+
+        .feedback-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            margin-top: 1.5rem;
+        }
+
+        .next-btn:hover {
+            background: #0d9e6e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .completion-screen {
+            text-align: center;
+            padding: 3rem;
+            display: none;
+        }
+
+        .completion-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        .completion-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+
+        .completion-message {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Math expression styling */
+        .math-expression {
+            font-family: "Times New Roman", Times, serif;
+            font-style: italic;
+            font-size: 1.2em;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
@@ -858,6 +1133,20 @@
             .auth-bg-shape {
                 filter: blur(40px);
             }
+
+            .learning-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .answer-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-container, .practice-container {
+                padding: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -869,8 +1158,8 @@
             <span data-i18n="logo">Learn with AI</span>
         </a>
         <nav>
-            <a href="#" class="nav-link" data-page="home" data-i18n="home">Home</a>
-            <a href="#" class="nav-link" data-page="math" data-i18n="math">Math</a>
+            <a href="#" class="nav-link" data-page="home">Home</a>
+            <a href="#" class="nav-link" data-page="math">Math</a>
             <div class="auth-buttons">
                 <button class="auth-btn login-btn" id="loginNavBtn">
                     <span class="icon">→</span>
@@ -939,7 +1228,7 @@
         </section>
         
         <footer>
-            <p data-i18n="copyright">© 2025 Ze 0 GOUT. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -960,7 +1249,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 25%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="arithmetic">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -972,7 +1261,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 10%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="algebra">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -984,7 +1273,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 5%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="geometry">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -996,7 +1285,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 0%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="calculus">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -1008,7 +1297,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 15%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="statistics">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -1020,7 +1309,7 @@
                     <div class="topic-progress">
                         <div class="progress-bar" style="width: 20%"></div>
                     </div>
-                    <button class="start-btn">
+                    <button class="start-btn" data-topic="problemSolving">
                         <span class="icon">🚀</span> <span data-i18n="startLearning">Start Learning</span>
                     </button>
                 </div>
@@ -1064,7 +1353,7 @@
         </section>
         
         <footer>
-            <p data-i18n="copyright">© 2025 Ze 0 GOUT. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -1152,6 +1441,93 @@
         </section>
     </div>
 
+    <!-- Learning Interface Page -->
+    <div class="page-container" id="learningPage">
+        <section class="learning-interface">
+            <div class="learning-header">
+                <a href="#" class="back-to-topics" id="backToTopics">
+                    <span class="icon">←</span>
+                    <span data-i18n="backToTopics">Back to Topics</span>
+                </a>
+                <div class="progress-indicator">
+                    <div class="progress-circle completed"></div>
+                    <div class="progress-circle active"></div>
+                    <div class="progress-circle"></div>
+                    <div class="progress-circle"></div>
+                    <span data-i18n="step">Step</span> <span id="currentStep">2</span> <span data-i18n="of">of</span> <span id="totalSteps">4</span>
+                </div>
+            </div>
+
+            <div class="lesson-container">
+                <h2 class="lesson-title" id="lessonTitle" data-i18n="arithmeticLessonTitle">Understanding Basic Addition</h2>
+                <div class="lesson-content" id="lessonContent">
+                    <p data-i18n="arithmeticLesson1">Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.</p>
+                    
+                    <div class="example">
+                        <div class="example-title" data-i18n="example">Example</div>
+                        <p data-i18n="arithmeticExample1">If you have 3 apples and you get 2 more apples, how many apples do you have in total?</p>
+                        <p class="math-expression">3 + 2 = 5</p>
+                        <p data-i18n="arithmeticExample1Explanation">This means when you combine 3 and 2, the total is 5.</p>
+                    </div>
+                    
+                    <p data-i18n="arithmeticLesson2">The numbers being added are called "addends" and the result is called the "sum".</p>
+                    
+                    <div class="example">
+                        <div class="example-title" data-i18n="visualization">Visualization</div>
+                        <img src="https://via.placeholder.com/600x200?text=Visualization+of+Addition" alt="Addition visualization">
+                        <p data-i18n="arithmeticVisualExplanation">Visual representation helps understand how quantities combine.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="practice-container">
+                <h3 class="practice-title" data-i18n="practice">Practice</h3>
+                <p class="problem-statement" id="problemStatement" data-i18n="arithmeticProblem1">What is the sum of 4 and 5?</p>
+                
+                <div class="answer-options" id="answerOptions">
+                    <div class="answer-option" data-value="8">8</div>
+                    <div class="answer-option" data-value="9">9</div>
+                    <div class="answer-option" data-value="10">10</div>
+                    <div class="answer-option" data-value="11">11</div>
+                </div>
+                
+                <div class="feedback correct" id="correctFeedback">
+                    <div class="feedback-title" data-i18n="correct">Correct! 🎉</div>
+                    <p id="correctFeedbackText" data-i18n="arithmeticFeedbackCorrect">Great job! 4 + 5 equals 9. You're getting the hang of addition!</p>
+                </div>
+                
+                <div class="feedback incorrect" id="incorrectFeedback">
+                    <div class="feedback-title" data-i18n="incorrect">Not Quite</div>
+                    <p id="incorrectFeedbackText" data-i18n="arithmeticFeedbackIncorrect">Remember, addition combines quantities. Try counting up from the larger number: 5... 6, 7, 8, 9.</p>
+                </div>
+                
+                <button class="submit-btn" id="submitAnswer" data-i18n="submitAnswer">Submit Answer</button>
+                <button class="next-btn" id="nextQuestion" data-i18n="nextQuestion">Next Question</button>
+            </div>
+
+            <div class="step-navigation">
+                <button class="auth-btn login-btn" id="prevStep" disabled>
+                    <span class="icon">←</span>
+                    <span data-i18n="previous">Previous</span>
+                </button>
+                <button class="auth-btn signup-btn" id="nextStep">
+                    <span class="icon">→</span>
+                    <span data-i18n="next">Next</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="completion-screen" id="completionScreen">
+            <div class="completion-icon">🎉</div>
+            <h2 class="completion-title" data-i18n="lessonComplete">Lesson Complete!</h2>
+            <p class="completion-message" id="completionMessage" data-i18n="completionMessage">Congratulations! You've completed this lesson on basic addition. You're one step closer to mastering arithmetic!</p>
+            <button class="auth-btn signup-btn" id="continueLearning">
+                <span class="icon">📚</span>
+                <span data-i18n="continueLearning">Continue Learning</span>
+            </button>
+        </section>
+    </div>
+
     <script>
         // Language translations
         const translations = {
@@ -1218,8 +1594,31 @@
                 minPassword: "Create a password (min 8 characters)",
                 alreadyHaveAccount: "Already have an account?",
                 
-                // Footer
-                copyright: "© 2025 Ze 0 GOUT. All rights reserved."
+                // Learning Interface
+                backToTopics: "Back to Topics",
+                step: "Step",
+                of: "of",
+                arithmeticLessonTitle: "Understanding Basic Addition",
+                arithmeticLesson1: "Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.",
+                arithmeticExample1: "If you have 3 apples and you get 2 more apples, how many apples do you have in total?",
+                arithmeticExample1Explanation: "This means when you combine 3 and 2, the total is 5.",
+                arithmeticLesson2: "The numbers being added are called \"addends\" and the result is called the \"sum\".",
+                example: "Example",
+                visualization: "Visualization",
+                arithmeticVisualExplanation: "Visual representation helps understand how quantities combine.",
+                practice: "Practice",
+                arithmeticProblem1: "What is the sum of 4 and 5?",
+                correct: "Correct! 🎉",
+                arithmeticFeedbackCorrect: "Great job! 4 + 5 equals 9. You're getting the hang of addition!",
+                incorrect: "Not Quite",
+                arithmeticFeedbackIncorrect: "Remember, addition combines quantities. Try counting up from the larger number: 5... 6, 7, 8, 9.",
+                submitAnswer: "Submit Answer",
+                nextQuestion: "Next Question",
+                previous: "Previous",
+                next: "Next",
+                lessonComplete: "Lesson Complete!",
+                completionMessage: "Congratulations! You've completed this lesson on basic addition. You're one step closer to mastering arithmetic!",
+                continueLearning: "Continue Learning"
             },
             ro: {
                 // Header
@@ -1284,8 +1683,31 @@
                 minPassword: "Creează o parolă (minim 8 caractere)",
                 alreadyHaveAccount: "Ai deja un cont?",
                 
-                // Footer
-                copyright: "© 2025 Ze 0 GOUT. Toate drepturile rezervate."
+                // Learning Interface
+                backToTopics: "Înapoi la Subiecte",
+                step: "Pasul",
+                of: "din",
+                arithmeticLessonTitle: "Înțelegerea Adunării de Bază",
+                arithmeticLesson1: "Adunarea este una dintre cele patru operații aritmetice de bază. Combină două sau mai multe numere pentru a forma o sumă.",
+                arithmeticExample1: "Dacă ai 3 mere și primești încă 2 mere, câte mere ai în total?",
+                arithmeticExample1Explanation: "Aceasta înseamnă că atunci când combini 3 și 2, totalul este 5.",
+                arithmeticLesson2: "Numerele care se adună se numesc \"termeni\" iar rezultatul se numește \"sumă\".",
+                example: "Exemplu",
+                visualization: "Vizualizare",
+                arithmeticVisualExplanation: "Reprezentarea vizuală ajută la înțelegerea modului în care se combină cantitățile.",
+                practice: "Exercițiu",
+                arithmeticProblem1: "Care este suma dintre 4 și 5?",
+                correct: "Corect! 🎉",
+                arithmeticFeedbackCorrect: "Foarte bine! 4 + 5 este egal cu 9. Începi să înțelegi adunarea!",
+                incorrect: "Nu chiar",
+                arithmeticFeedbackIncorrect: "Ține minte, adunarea combină cantități. Încearcă să numeri pornind de la numărul mai mare: 5... 6, 7, 8, 9.",
+                submitAnswer: "Trimite Răspunsul",
+                nextQuestion: "Următoarea Întrebare",
+                previous: "Anterior",
+                next: "Următorul",
+                lessonComplete: "Lecție Finalizată!",
+                completionMessage: "Felicitări! Ai finalizat această lecție despre adunarea de bază. Ești cu un pas mai aproape de a stăpâni aritmetica!",
+                continueLearning: "Continuă Învățarea"
             }
         };
 
@@ -1316,6 +1738,11 @@
                     input.placeholder = translations[lang][key];
                 }
             });
+            
+            // Update lesson content if on learning page
+            if (document.getElementById('learningPage').classList.contains('active')) {
+                updateLessonContent();
+            }
         }
 
         // Initialize language from localStorage or browser preference
@@ -1337,7 +1764,8 @@
             home: document.getElementById('homePage'),
             math: document.getElementById('mathPage'),
             login: document.getElementById('loginPage'),
-            signup: document.getElementById('signupPage')
+            signup: document.getElementById('signupPage'),
+            learning: document.getElementById('learningPage')
         };
 
         // Show a specific page and hide others
@@ -1357,6 +1785,11 @@
                                 }, 100);
                             });
                         }, 500);
+                    }
+                    
+                    // Reset learning interface when showing learning page
+                    if (key === 'learning') {
+                        resetPracticeInterface();
                     }
                 } else {
                     pages[key].classList.remove('active');
@@ -1467,36 +1900,345 @@
             });
         });
 
+        // Learning Interface Functionality
+        let currentPracticeStep = 1;
+        const totalPracticeSteps = 4;
+        let selectedAnswer = null;
+        let answerSubmitted = false;
+        let currentTopic = 'arithmetic';
+
+        // Back to topics button
+        document.getElementById('backToTopics').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('math');
+        });
+
         // Start learning buttons functionality
         document.querySelectorAll('.start-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const topicTitle = button.closest('.topic-card').querySelector('h3').textContent;
-                const message = currentLanguage === 'en' 
-                    ? `Starting lesson: ${topicTitle}\nThis would launch the interactive learning interface in a real application.`
-                    : `Începere lecție: ${topicTitle}\nÎntr-o aplicație reală, aceasta ar lansa interfața interactivă de învățare.`;
-                alert(message);
+            button.addEventListener('click', function() {
+                currentTopic = this.getAttribute('data-topic');
+                showPage('learning');
             });
         });
 
-        // Randomize shape animations for more organic feel
-        document.querySelectorAll('.auth-bg-shape').forEach((shape, index) => {
-            const randomDelay = Math.random() * 5;
-            const randomDuration = 20 + Math.random() * 20;
-            const randomSize = 200 + Math.random() * 200;
+        // Function to reset the practice interface
+        function resetPracticeInterface() {
+            currentPracticeStep = 1;
+            selectedAnswer = null;
+            answerSubmitted = false;
             
-            shape.style.animationDelay = `${randomDelay}s`;
-            shape.style.animationDuration = `${randomDuration}s`;
-            shape.style.width = `${randomSize}px`;
-            shape.style.height = `${randomSize}px`;
+            // Update progress indicator
+            document.getElementById('currentStep').textContent = currentPracticeStep;
+            document.getElementById('totalSteps').textContent = totalPracticeSteps;
             
-            // Randomize position
-            shape.style.top = `${Math.random() * 80}%`;
-            shape.style.left = `${Math.random() * 80}%`;
+            // Reset progress circles
+            const progressCircles = document.querySelectorAll('.progress-circle');
+            progressCircles.forEach((circle, index) => {
+                circle.classList.remove('active', 'completed');
+                if (index < currentPracticeStep - 1) {
+                    circle.classList.add('completed');
+                } else if (index === currentPracticeStep - 1) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            // Reset practice UI
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.getElementById('correctFeedback').style.display = 'none';
+            document.getElementById('incorrectFeedback').style.display = 'none';
+            document.getElementById('submitAnswer').style.display = 'block';
+            document.getElementById('nextQuestion').style.display = 'none';
+            document.getElementById('prevStep').disabled = true;
+            
+            // Hide completion screen
+            document.getElementById('completionScreen').style.display = 'none';
+            document.querySelector('.learning-interface').style.display = 'block';
+            
+            // Update lesson content based on current topic and step
+            updateLessonContent();
+        }
+
+        // Function to update lesson content based on current topic and step
+        function updateLessonContent() {
+            // Topic-specific content (in a real app, this would come from a database)
+            const topics = {
+                arithmetic: {
+                    title: currentLanguage === 'en' ? 'Understanding Basic Addition' : 'Înțelegerea Adunării de Bază',
+                    steps: [
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.' : 
+                                'Adunarea este una dintre cele patru operații aritmetice de bază. Combină două sau mai multe numere pentru a forma o sumă.',
+                            example: currentLanguage === 'en' ? 
+                                'If you have 3 apples and you get 2 more apples, how many apples do you have in total?' : 
+                                'Dacă ai 3 mere și primești încă 2 mere, câte mere ai în total?',
+                            exampleExplanation: currentLanguage === 'en' ? 
+                                'This means when you combine 3 and 2, the total is 5.' : 
+                                'Aceasta înseamnă că atunci când combini 3 și 2, totalul este 5.'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'The numbers being added are called "addends" and the result is called the "sum".' : 
+                                'Numerele care se adună se numesc "termeni" iar rezultatul se numește "sumă".',
+                            example: currentLanguage === 'en' ? 
+                                'Visual representation helps understand how quantities combine.' : 
+                                'Reprezentarea vizuală ajută la înțelegerea modului în care se combină cantitățile.'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is commutative, meaning the order of the numbers doesn\'t change the result (a + b = b + a).' : 
+                                'Adunarea este comutativă, ceea ce înseamnă că ordinea numerelor nu schimbă rezultatul (a + b = b + a).',
+                            example: currentLanguage === 'en' ? 
+                                'For example: 4 + 5 = 5 + 4 = 9' : 
+                                'De exemplu: 4 + 5 = 5 + 4 = 9'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is also associative, meaning when adding three or more numbers, the grouping doesn\'t matter ((a + b) + c = a + (b + c)).' : 
+                                'Adunarea este și asociativă, ceea ce înseamnă că atunci când aduni trei sau mai multe numere, gruparea nu contează ((a + b) + c = a + (b + c)).',
+                            example: currentLanguage === 'en' ? 
+                                'For example: (2 + 3) + 4 = 2 + (3 + 4) = 9' : 
+                                'De exemplu: (2 + 3) + 4 = 2 + (3 + 4) = 9'
+                        }
+                    ],
+                    problems: [
+                        {
+                            question: currentLanguage === 'en' ? 'What is the sum of 4 and 5?' : 'Care este suma dintre 4 și 5?',
+                            options: ['8', '9', '10', '11'],
+                            correctAnswer: '9',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Great job! 4 + 5 equals 9. You\'re getting the hang of addition!' : 'Foarte bine! 4 + 5 este egal cu 9. Începi să înțelegi adunarea!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Remember, addition combines quantities. Try counting up from the larger number: 5... 6, 7, 8, 9.' : 'Ține minte, adunarea combină cantități. Încearcă să numeri pornind de la numărul mai mare: 5... 6, 7, 8, 9.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'Calculate: 7 + 3 = ?' : 'Calculează: 7 + 3 = ?',
+                            options: ['9', '10', '11', '12'],
+                            correctAnswer: '10',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Excellent! 7 + 3 equals 10. You\'re doing great!' : 'Excelent! 7 + 3 este egal cu 10. Te descurci minunat!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Try counting up from the larger number: 7... 8, 9, 10.' : 'Încearcă să numeri pornind de la numărul mai mare: 7... 8, 9, 10.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'If you have 6 pencils and get 4 more, how many do you have?' : 'Dacă ai 6 creioane și primești încă 4, câte ai în total?',
+                            options: ['9', '10', '11', '12'],
+                            correctAnswer: '10',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Perfect! 6 + 4 equals 10. You\'ve mastered this concept!' : 'Perfect! 6 + 4 este egal cu 10. Ai stăpânit acest concept!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Remember to combine the quantities: start with 6 and count up 4 more.' : 'Nu uita să combini cantitățile: începe cu 6 și numără încă 4.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'Solve: 9 + 2 = ?' : 'Rezolvă: 9 + 2 = ?',
+                            options: ['10', '11', '12', '13'],
+                            correctAnswer: '11',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Fantastic! 9 + 2 equals 11. You\'re ready for more challenging problems!' : 'Fantastic! 9 + 2 este egal cu 11. Ești pregătit pentru probleme mai provocatoare!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Try counting up from 9: 10, 11.' : 'Încearcă să numeri pornind de la 9: 10, 11.'
+                        }
+                    ],
+                    completionMessage: currentLanguage === 'en' ? 
+                        'Congratulations! You\'ve completed this lesson on basic addition. You\'re one step closer to mastering arithmetic!' : 
+                        'Felicitări! Ai finalizat această lecție despre adunarea de bază. Ești cu un pas mai aproape de a stăpâni aritmetica!'
+                },
+                // Other topics would be defined similarly
+                algebra: {
+                    title: currentLanguage === 'en' ? 'Algebra Fundamentals' : 'Fundamentele Algebrei',
+                    // ... similar structure for algebra content
+                },
+                geometry: {
+                    title: currentLanguage === 'en' ? 'Geometry Basics' : 'Bazele Geometriei',
+                    // ... similar structure for geometry content
+                }
+            };
+
+            const topic = topics[currentTopic] || topics.arithmetic;
+            
+            // Update lesson title
+            document.getElementById('lessonTitle').textContent = topic.title;
+            
+            // Update lesson content
+            const lessonContent = document.getElementById('lessonContent');
+            const currentStepContent = topic.steps[currentPracticeStep - 1];
+            
+            lessonContent.innerHTML = `
+                <p>${currentStepContent.lesson}</p>
+                <div class="example">
+                    <div class="example-title">${currentLanguage === 'en' ? 'Example' : 'Exemplu'}</div>
+                    <p>${currentStepContent.example}</p>
+                    ${currentStepContent.example.includes('+') ? `<p class="math-expression">${currentStepContent.example.split('?')[0]}</p>` : ''}
+                    <p>${currentStepContent.exampleExplanation}</p>
+                </div>
+            `;
+            
+            // Update problem statement and options
+            const problem = topic.problems[currentPracticeStep - 1];
+            document.getElementById('problemStatement').textContent = problem.question;
+            
+            const answerOptions = document.getElementById('answerOptions');
+            answerOptions.innerHTML = '';
+            problem.options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'answer-option';
+                optionElement.dataset.value = option;
+                optionElement.textContent = option;
+                answerOptions.appendChild(optionElement);
+                
+                optionElement.addEventListener('click', function() {
+                    if (answerSubmitted) return;
+                    
+                    document.querySelectorAll('.answer-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    selectedAnswer = this.dataset.value;
+                });
+            });
+            
+            // Update feedback messages
+            document.getElementById('correctFeedbackText').textContent = problem.feedbackCorrect;
+            document.getElementById('incorrectFeedbackText').textContent = problem.feedbackIncorrect;
+            
+            // Update submit button with correct answer
+            document.getElementById('submitAnswer').dataset.correctAnswer = problem.correctAnswer;
+            
+            // Update completion message
+            document.getElementById('completionMessage').textContent = topic.completionMessage;
+        }
+
+        // Answer selection
+        document.querySelectorAll('.answer-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (answerSubmitted) return;
+                
+                document.querySelectorAll('.answer-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                this.classList.add('selected');
+                selectedAnswer = this.dataset.value;
+            });
         });
 
-        // Input field animations
-        document.querySelectorAll('.auth-form input').forEach((input, index) => {
-            input.style.animationDelay = `${index * 0.05 + 0.1}s`;
+        // Submit answer
+        document.getElementById('submitAnswer').addEventListener('click', function() {
+            if (!selectedAnswer) {
+                alert(currentLanguage === 'en' ? 'Please select an answer' : 'Te rugăm să selectezi un răspuns');
+                return;
+            }
+            
+            answerSubmitted = true;
+            const correctAnswer = this.dataset.correctAnswer;
+            
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                if (option.dataset.value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.classList.contains('selected')) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedAnswer === correctAnswer) {
+                document.getElementById('correctFeedback').style.display = 'block';
+                document.getElementById('incorrectFeedback').style.display = 'none';
+            } else {
+                document.getElementById('correctFeedback').style.display = 'none';
+                document.getElementById('incorrectFeedback').style.display = 'block';
+            }
+            
+            this.style.display = 'none';
+            document.getElementById('nextQuestion').style.display = 'block';
+        });
+
+        // Next question
+        document.getElementById('nextQuestion').addEventListener('click', function() {
+            currentPracticeStep++;
+            
+            // Update progress indicator
+            document.getElementById('currentStep').textContent = currentPracticeStep;
+            
+            // Update progress circles
+            const progressCircles = document.querySelectorAll('.progress-circle');
+            progressCircles.forEach((circle, index) => {
+                circle.classList.remove('active');
+                if (index < currentPracticeStep - 1) {
+                    circle.classList.add('completed');
+                } else if (index === currentPracticeStep - 1) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            if (currentPracticeStep > totalPracticeSteps) {
+                // Show completion screen
+                document.querySelector('.learning-interface').style.display = 'none';
+                document.getElementById('completionScreen').style.display = 'block';
+                return;
+            }
+            
+            // Reset for next question
+            selectedAnswer = null;
+            answerSubmitted = false;
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.getElementById('correctFeedback').style.display = 'none';
+            document.getElementById('incorrectFeedback').style.display = 'none';
+            document.getElementById('submitAnswer').style.display = 'block';
+            this.style.display = 'none';
+            
+            // Update navigation buttons
+            document.getElementById('prevStep').disabled = currentPracticeStep === 1;
+            
+            // Update lesson content
+            updateLessonContent();
+        });
+
+        // Navigation buttons
+        document.getElementById('prevStep').addEventListener('click', function() {
+            if (currentPracticeStep > 1) {
+                currentPracticeStep--;
+                
+                // Update progress indicator
+                document.getElementById('currentStep').textContent = currentPracticeStep;
+                
+                // Update progress circles
+                const progressCircles = document.querySelectorAll('.progress-circle');
+                progressCircles.forEach((circle, index) => {
+                    circle.classList.remove('active', 'completed');
+                    if (index < currentPracticeStep - 1) {
+                        circle.classList.add('completed');
+                    } else if (index === currentPracticeStep - 1) {
+                        circle.classList.add('active');
+                    }
+                });
+                
+                // Reset for previous question
+                selectedAnswer = null;
+                answerSubmitted = false;
+                document.querySelectorAll('.answer-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                document.getElementById('correctFeedback').style.display = 'none';
+                document.getElementById('incorrectFeedback').style.display = 'none';
+                document.getElementById('submitAnswer').style.display = 'block';
+                document.getElementById('nextQuestion').style.display = 'none';
+                
+                // Update navigation buttons
+                this.disabled = currentPracticeStep === 1;
+                
+                // Update lesson content
+                updateLessonContent();
+            }
+        });
+
+        document.getElementById('nextStep').addEventListener('click', function() {
+            document.getElementById('nextQuestion').click();
+        });
+
+        // Continue learning button
+        document.getElementById('continueLearning').addEventListener('click', function() {
+            showPage('math');
         });
 
         // Initialize animations when page loads
