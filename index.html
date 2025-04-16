@@ -1136,6 +1136,300 @@
             font-size: 1.2em;
         }
 
+        /* Gamification Elements */
+        .gamification-panel {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            width: 250px;
+            z-index: 90;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+        }
+
+        .gamification-panel.active {
+            transform: translateX(0);
+        }
+
+        .gamification-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .gamification-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .xp-bar {
+            height: 10px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .xp-progress {
+            height: 100%;
+            background: var(--bg-gradient);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .badge.locked {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        .badge.unlocked {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+        }
+
+        .badge-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .badge:hover .badge-tooltip {
+            opacity: 1;
+        }
+
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 159, 67, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        .streak-icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .achievement-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+
+        .achievement-notification.active {
+            transform: translateX(0);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .achievement-text h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-color);
+        }
+
+        .achievement-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* AI Chat Interface */
+        .ai-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-chat.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .ai-chat-header {
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 1rem 1rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .ai-chat-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-chat-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .ai-message {
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .ai-message.bot {
+            align-self: flex-start;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 0 1rem 1rem 1rem;
+        }
+
+        .ai-message.user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-radius: 1rem 0 1rem 1rem;
+        }
+
+        .ai-chat-input {
+            display: flex;
+            padding: 0.5rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem 0 0 0.5rem;
+            outline: none;
+            background: var(--light);
+            color: var(--text-color);
+        }
+
+        .ai-chat-input button {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .ai-chat-input button:hover {
+            background: var(--primary-dark);
+        }
+
+        .ai-chat-launcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .ai-chat-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chat-launcher-icon {
+            font-size: 1.5rem;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
@@ -1208,6 +1502,23 @@
             .video-icon {
                 font-size: 3rem;
             }
+
+            /* Gamification and chat adjustments */
+            .gamification-panel {
+                width: 250px;
+                right: 10px;
+            }
+
+            .ai-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 80px;
+            }
+
+            .ai-chat-launcher {
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -1240,6 +1551,60 @@
             </div>
         </nav>
     </header>
+
+    <!-- Gamification Panel -->
+    <div class="gamification-toggle" id="gamificationToggle">🏆</div>
+    <div class="gamification-panel" id="gamificationPanel">
+        <h3 data-i18n="myProgress">My Progress</h3>
+        <div class="xp-bar">
+            <div class="xp-progress" id="xpProgress" style="width: 45%;"></div>
+        </div>
+        <div class="streak-counter">
+            <span class="streak-icon">🔥</span>
+            <span id="streakCount" data-i18n="dayStreak">3-day streak</span>
+        </div>
+        <h4 data-i18n="myBadges">My Badges</h4>
+        <div class="badges-container">
+            <div class="badge unlocked" data-badge="starter">
+                🎯
+                <span class="badge-tooltip" data-i18n="starterBadge">Starter Badge: Completed first lesson</span>
+            </div>
+            <div class="badge unlocked" data-badge="streak">
+                🔥
+                <span class="badge-tooltip" data-i18n="streakBadge">3-Day Streak: Learned for 3 consecutive days</span>
+            </div>
+            <div class="badge locked" data-badge="master">
+                🏅
+                <span class="badge-tooltip" data-i18n="masterBadge">Master: Complete all lessons in a topic</span>
+            </div>
+            <div class="badge locked" data-badge="champion">
+                🏆
+                <span class="badge-tooltip" data-i18n="championBadge">Champion: Earn all badges</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Launcher -->
+    <div class="ai-chat-launcher" id="aiChatLauncher">
+        <span class="ai-chat-launcher-icon">🤖</span>
+    </div>
+
+    <!-- AI Chat Interface -->
+    <div class="ai-chat" id="aiChat">
+        <div class="ai-chat-header" id="aiChatHeader">
+            <h3><span>🤖</span> <span data-i18n="aiTutor">AI Tutor</span></h3>
+            <button class="ai-chat-toggle" id="aiChatClose">×</button>
+        </div>
+        <div class="ai-chat-body" id="aiChatBody">
+            <div class="ai-message bot">
+                <span data-i18n="aiWelcome">Hello! I'm your AI tutor. How can I help you with your learning today?</span>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiChatInput" placeholder="Ask me anything..." data-i18n-placeholder="askQuestion">
+            <button id="aiChatSend">➤</button>
+        </div>
+    </div>
 
     <!-- Home Page -->
     <div class="page-container" id="homePage">
@@ -1289,7 +1654,7 @@
         </section>
         
         <footer>
-            <p data-i18n="copyright">© 2025 Ze 0 GOUT. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -1414,7 +1779,7 @@
         </section>
         
         <footer>
-            <p data-i18n="copyright">© 2025 Ze 0 GOUT. All rights reserved.</p>
+            <p data-i18n="copyright">© 2023 Learn with AI. All rights reserved.</p>
         </footer>
     </div>
 
@@ -1525,8 +1890,8 @@
                     <p data-i18n="arithmeticLesson1">Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.</p>
                     
                     <!-- Video Placeholder - Will be populated based on language and topic -->
-                    <div class="video-container" id="https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr">
-                        <div class="video-placeholder" id="https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr">
+                    <div class="video-container" id="lessonVideoContainer">
+                        <div class="video-placeholder" id="lessonVideoPlaceholder">
                             <div class="video-icon">▶️</div>
                             <div class="video-prompt" data-i18n="watchVideo">Watch explanatory video</div>
                         </div>
@@ -1547,8 +1912,8 @@
                 <h3 class="practice-title" data-i18n="practice">Practice</h3>
                 
                 <!-- Video Placeholder for Practice Example -->
-                <div class="video-container" id="https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr">
-                    <div class="video-placeholder" id="https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr">
+                <div class="video-container" id="practiceVideoContainer">
+                    <div class="video-placeholder" id="practiceVideoPlaceholder">
                         <div class="video-icon">▶️</div>
                         <div class="video-prompt" data-i18n="watchExample">Watch worked example</div>
                     </div>
@@ -1607,6 +1972,15 @@
                 <span data-i18n="continueLearning">Continue Learning</span>
             </button>
         </section>
+    </div>
+
+    <!-- Achievement Notification -->
+    <div class="achievement-notification" id="achievementNotification">
+        <div class="achievement-icon">🏆</div>
+        <div class="achievement-text">
+            <h4 id="achievementTitle" data-i18n="achievementUnlocked">Achievement Unlocked!</h4>
+            <p id="achievementDesc" data-i18n="starterAchievement">Starter Badge: Completed your first lesson</p>
+        </div>
     </div>
 
     <script>
@@ -1702,7 +2076,22 @@
                 continueLearning: "Continue Learning",
                 watchVideo: "Watch explanatory video",
                 watchExample: "Watch worked example",
-                watchSummary: "Watch lesson summary"
+                watchSummary: "Watch lesson summary",
+                
+                // Gamification
+                myProgress: "My Progress",
+                dayStreak: "3-day streak",
+                myBadges: "My Badges",
+                starterBadge: "Starter Badge: Completed first lesson",
+                streakBadge: "3-Day Streak: Learned for 3 consecutive days",
+                masterBadge: "Master: Complete all lessons in a topic",
+                championBadge: "Champion: Earn all badges",
+                achievementUnlocked: "Achievement Unlocked!",
+                starterAchievement: "Starter Badge: Completed your first lesson",
+                
+                // AI Chat
+                aiWelcome: "Hello! I'm your AI tutor. How can I help you with your learning today?",
+                askQuestion: "Ask me anything..."
             },
             ro: {
                 // Header
@@ -1794,7 +2183,22 @@
                 continueLearning: "Continuă Învățarea",
                 watchVideo: "Urmărește videoclip explicativ",
                 watchExample: "Urmărește exemplu rezolvat",
-                watchSummary: "Urmărește rezumatul lecției"
+                watchSummary: "Urmărește rezumatul lecției",
+                
+                // Gamification
+                myProgress: "Progresul meu",
+                dayStreak: "Șir de 3 zile",
+                myBadges: "Insignele mele",
+                starterBadge: "Insigna Începător: Ai finalizat prima lecție",
+                streakBadge: "Șir de 3 Zile: Ai învățat timp de 3 zile consecutive",
+                masterBadge: "Maestru: Finalizează toate lecțiile dintr-un subiect",
+                championBadge: "Campion: Câștigă toate insignele",
+                achievementUnlocked: "Realizare Deblocată!",
+                starterAchievement: "Insigna Începător: Ai finalizat prima lecție",
+                
+                // AI Chat
+                aiWelcome: "Bună! Sunt tutorul tău AI. Cu ce te pot ajuta în învățarea ta astăzi?",
+                askQuestion: "Întreabă-mă orice..."
             }
         };
 
@@ -1802,66 +2206,66 @@
         const videoResources = {
             en: {
                 arithmetic: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Basic addition
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Addition examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Addition summary
+                    lesson: "https://www.youtube.com/embed/Aq8l2cdjWtE", // Basic addition
+                    practice: "https://www.youtube.com/embed/Fe8u2I3vmHU", // Addition examples
+                    summary: "https://www.youtube.com/embed/Fe8u2I3vmHU"  // Addition summary
                 },
                 algebra: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Basic algebra
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Algebra examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Algebra summary
+                    lesson: "https://www.youtube.com/embed/NybHckSEQBI", // Basic algebra
+                    practice: "https://www.youtube.com/embed/WgESpw4_J5s", // Algebra examples
+                    summary: "https://www.youtube.com/embed/WgESpw4_J5s"  // Algebra summary
                 },
                 geometry: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Basic geometry
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Geometry examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Geometry summary
+                    lesson: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Basic geometry
+                    practice: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Geometry examples
+                    summary: "https://www.youtube.com/embed/3S1jZ4xWrN4"  // Geometry summary
                 },
                 calculus: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Basic calculus
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Calculus examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Calculus summary
+                    lesson: "https://www.youtube.com/embed/5yfh5cf4-0w", // Basic calculus
+                    practice: "https://www.youtube.com/embed/5yfh5cf4-0w", // Calculus examples
+                    summary: "https://www.youtube.com/embed/5yfh5cf4-0w"  // Calculus summary
                 },
                 statistics: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Basic statistics
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Statistics examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Statistics summary
+                    lesson: "https://www.youtube.com/embed/xxpc-HPKN28", // Basic statistics
+                    practice: "https://www.youtube.com/embed/xxpc-HPKN28", // Statistics examples
+                    summary: "https://www.youtube.com/embed/xxpc-HPKN28"  // Statistics summary
                 },
                 problemSolving: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Problem solving
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Problem examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Problem solving summary
+                    lesson: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem solving
+                    practice: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem examples
+                    summary: "https://www.youtube.com/embed/6sBB-gRhfjE"  // Problem solving summary
                 }
             },
             ro: {
                 arithmetic: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian addition video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/ABC123", // Romanian addition video
+                    practice: "https://www.youtube.com/embed/DEF456", // Romanian examples
+                    summary: "https://www.youtube.com/embed/GHI789"  // Romanian summary
                 },
                 algebra: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian algebra video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/JKL012", // Romanian algebra video
+                    practice: "https://www.youtube.com/embed/MNO345", // Romanian examples
+                    summary: "https://www.youtube.com/embed/PQR678"  // Romanian summary
                 },
                 geometry: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian geometry video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/STU901", // Romanian geometry video
+                    practice: "https://www.youtube.com/embed/VWX234", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA567"  // Romanian summary
                 },
                 calculus: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian calculus video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/BCD890", // Romanian calculus video
+                    practice: "https://www.youtube.com/embed/EFG123", // Romanian examples
+                    summary: "https://www.youtube.com/embed/HIJ456"  // Romanian summary
                 },
                 statistics: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian statistics video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/KLM789", // Romanian statistics video
+                    practice: "https://www.youtube.com/embed/NOP012", // Romanian examples
+                    summary: "https://www.youtube.com/embed/QRS345"  // Romanian summary
                 },
                 problemSolving: {
-                    lesson: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian problem solving video
-                    practice: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr", // Romanian examples
-                    summary: "https://youtu.be/2iPOgMBWu58?si=HjVtptrbKOhg_Tdr"  // Romanian summary
+                    lesson: "https://www.youtube.com/embed/TUV678", // Romanian problem solving video
+                    practice: "https://www.youtube.com/embed/WXY901", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA234"  // Romanian summary
                 }
             }
         };
@@ -2333,9 +2737,15 @@
             if (selectedAnswer === correctAnswer) {
                 document.getElementById('correctFeedback').style.display = 'block';
                 document.getElementById('incorrectFeedback').style.display = 'none';
+                
+                // Award XP for correct answer
+                awardXP(10);
             } else {
                 document.getElementById('correctFeedback').style.display = 'none';
                 document.getElementById('incorrectFeedback').style.display = 'block';
+                
+                // Award some XP even for incorrect answer (participation)
+                awardXP(5);
             }
             
             this.style.display = 'none';
@@ -2364,6 +2774,10 @@
                 // Show completion screen
                 document.querySelector('.learning-interface').style.display = 'none';
                 document.getElementById('completionScreen').style.display = 'block';
+                
+                // Award XP and check for achievements
+                awardXP(50);
+                checkForAchievements();
                 return;
             }
             
@@ -2433,6 +2847,159 @@
         document.getElementById('continueLearning').addEventListener('click', function() {
             showPage('math');
         });
+
+        // Gamification System
+        let xp = 0;
+        let streak = 0;
+        const unlockedBadges = ['starter', 'streak'];
+        
+        // Toggle gamification panel
+        document.getElementById('gamificationToggle').addEventListener('click', function() {
+            document.getElementById('gamificationPanel').classList.toggle('active');
+        });
+        
+        // Award XP function
+        function awardXP(amount) {
+            xp += amount;
+            const xpBar = document.getElementById('xpProgress');
+            const newWidth = Math.min(100, (xp % 1000) / 10); // Show progress to next level (1000 XP per level)
+            xpBar.style.width = `${newWidth}%`;
+            
+            // Check for level up
+            if (xp % 1000 === 0) {
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Level Up!' : 'Nivel Crescut!',
+                    currentLanguage === 'en' ? `You've reached level ${Math.floor(xp / 1000) + 1}!` : `Ai atins nivelul ${Math.floor(xp / 1000) + 1}!`
+                );
+            }
+        }
+        
+        // Check for achievements
+        function checkForAchievements() {
+            // Check if this is the first completed lesson
+            if (!unlockedBadges.includes('starter')) {
+                unlockedBadges.push('starter');
+                document.querySelector('.badge[data-badge="starter"]').classList.add('unlocked');
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Starter Badge Unlocked!' : 'Insigna Începător Deblocată!',
+                    currentLanguage === 'en' ? 'Congratulations on completing your first lesson!' : 'Felicitări pentru finalizarea primei lecții!'
+                );
+            }
+            
+            // Check for streak achievements
+            streak++;
+            if (streak >= 3 && !unlockedBadges.includes('streak')) {
+                unlockedBadges.push('streak');
+                document.querySelector('.badge[data-badge="streak"]').classList.add('unlocked');
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Streak Badge Unlocked!' : 'Insigna Serii Deblocată!',
+                    currentLanguage === 'en' ? 'You\'ve learned for 3 consecutive days!' : 'Ai învățat timp de 3 zile consecutive!'
+                );
+            }
+            
+            // Update streak counter
+            document.getElementById('streakCount').textContent = 
+                currentLanguage === 'en' ? `${streak}-day streak` : `Șir de ${streak} zile`;
+        }
+        
+        // Show achievement notification
+        function showAchievementNotification(title, description) {
+            const notification = document.getElementById('achievementNotification');
+            document.getElementById('achievementTitle').textContent = title;
+            document.getElementById('achievementDesc').textContent = description;
+            
+            notification.classList.add('active');
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 5000);
+        }
+        
+        // AI Chat System
+        const aiChat = document.getElementById('aiChat');
+        const aiChatLauncher = document.getElementById('aiChatLauncher');
+        const aiChatClose = document.getElementById('aiChatClose');
+        const aiChatHeader = document.getElementById('aiChatHeader');
+        const aiChatBody = document.getElementById('aiChatBody');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const aiChatSend = document.getElementById('aiChatSend');
+        
+        // Toggle chat interface
+        function toggleChat() {
+            aiChat.classList.toggle('active');
+        }
+        
+        // Open chat
+        aiChatLauncher.addEventListener('click', toggleChat);
+        aiChatHeader.addEventListener('click', toggleChat);
+        
+        // Close chat
+        aiChatClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleChat();
+        });
+        
+        // Send message
+        function sendMessage() {
+            const message = aiChatInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message to chat
+            addMessage(message, 'user');
+            aiChatInput.value = '';
+            
+            // Simulate AI response (in a real app, this would call an API)
+            setTimeout(() => {
+                const responses = {
+                    en: {
+                        greetings: ["Hello! How can I help you with your math learning today?", "Hi there! What math concept are you working on?"],
+                        help: ["I can help explain math concepts, provide examples, or guide you through problems. What do you need help with?", "I'm here to assist with your math questions. What's troubling you?"],
+                        addition: ["Addition is combining numbers to find their total. For example, 2 + 3 = 5. Would you like more examples?", "Adding numbers means putting them together. 4 + 1 = 5. Need practice problems?"],
+                        default: ["I'm not sure I understand. Could you rephrase your question?", "I'm still learning. Can you ask your question differently?"]
+                    },
+                    ro: {
+                        greetings: ["Bună! Cu ce te pot ajuta în învățarea matematicii astăzi?", "Salut! La ce concept matematic lucrezi?"],
+                        help: ["Pot explica concepte matematice, oferi exemple sau te ghida prin probleme. Cu ce ai nevoie de ajutor?", "Sunt aici să te ajut cu întrebările tale de matematică. Ce te deranjează?"],
+                        addition: ["Adunarea înseamnă combinarea numerelor pentru a afla totalul. De exemplu, 2 + 3 = 5. Dorești mai multe exemple?", "A aduna numere înseamnă a le pune împreună. 4 + 1 = 5. Ai nevoie de probleme de practică?"],
+                        default: ["Nu sunt sigur că am înțeles. Poți reformula întrebarea?", "Încă învăț. Poți pune întrebarea altfel?"]
+                    }
+                };
+                
+                const langResponses = responses[currentLanguage] || responses.en;
+                let response;
+                
+                if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
+                    response = langResponses.greetings[Math.floor(Math.random() * langResponses.greetings.length)];
+                } else if (message.toLowerCase().includes('help')) {
+                    response = langResponses.help[Math.floor(Math.random() * langResponses.help.length)];
+                } else if (message.toLowerCase().includes('add') || message.toLowerCase().includes('addition')) {
+                    response = langResponses.addition[Math.floor(Math.random() * langResponses.addition.length)];
+                } else {
+                    response = langResponses.default[Math.floor(Math.random() * langResponses.default.length)];
+                }
+                
+                addMessage(response, 'bot');
+            }, 1000);
+        }
+        
+        // Add message to chat
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `ai-message ${sender}`;
+            messageElement.textContent = text;
+            aiChatBody.appendChild(messageElement);
+            aiChatBody.scrollTop = aiChatBody.scrollHeight;
+        }
+        
+        // Send message on button click or Enter key
+        aiChatSend.addEventListener('click', sendMessage);
+        aiChatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Initialize chat with welcome message
+        addMessage(translations[currentLanguage].aiWelcome, 'bot');
 
         // Initialize animations when page loads
         window.addEventListener('load', () => {
