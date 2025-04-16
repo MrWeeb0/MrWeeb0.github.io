@@ -901,6 +901,58 @@
             color: var(--primary);
         }
 
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 1.5rem 0;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: #000;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .video-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-prompt {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .practice-container {
             background: var(--card-bg);
             border-radius: 1.5rem;
@@ -1146,6 +1198,15 @@
             
             .lesson-container, .practice-container {
                 padding: 1.5rem;
+            }
+
+            /* Video responsive adjustments */
+            .video-prompt {
+                font-size: 1rem;
+            }
+            
+            .video-icon {
+                font-size: 3rem;
             }
         }
     </style>
@@ -1463,6 +1524,14 @@
                 <div class="lesson-content" id="lessonContent">
                     <p data-i18n="arithmeticLesson1">Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.</p>
                     
+                    <!-- Video Placeholder - Will be populated based on language and topic -->
+                    <div class="video-container" id="lessonVideoContainer">
+                        <div class="video-placeholder" id="lessonVideoPlaceholder">
+                            <div class="video-icon">▶️</div>
+                            <div class="video-prompt" data-i18n="watchVideo">Watch explanatory video</div>
+                        </div>
+                    </div>
+                    
                     <div class="example">
                         <div class="example-title" data-i18n="example">Example</div>
                         <p data-i18n="arithmeticExample1">If you have 3 apples and you get 2 more apples, how many apples do you have in total?</p>
@@ -1471,17 +1540,20 @@
                     </div>
                     
                     <p data-i18n="arithmeticLesson2">The numbers being added are called "addends" and the result is called the "sum".</p>
-                    
-                    <div class="example">
-                        <div class="example-title" data-i18n="visualization">Visualization</div>
-                        <img src="https://via.placeholder.com/600x200?text=Visualization+of+Addition" alt="Addition visualization">
-                        <p data-i18n="arithmeticVisualExplanation">Visual representation helps understand how quantities combine.</p>
-                    </div>
                 </div>
             </div>
 
             <div class="practice-container">
                 <h3 class="practice-title" data-i18n="practice">Practice</h3>
+                
+                <!-- Video Placeholder for Practice Example -->
+                <div class="video-container" id="practiceVideoContainer">
+                    <div class="video-placeholder" id="practiceVideoPlaceholder">
+                        <div class="video-icon">▶️</div>
+                        <div class="video-prompt" data-i18n="watchExample">Watch worked example</div>
+                    </div>
+                </div>
+                
                 <p class="problem-statement" id="problemStatement" data-i18n="arithmeticProblem1">What is the sum of 4 and 5?</p>
                 
                 <div class="answer-options" id="answerOptions">
@@ -1521,6 +1593,15 @@
             <div class="completion-icon">🎉</div>
             <h2 class="completion-title" data-i18n="lessonComplete">Lesson Complete!</h2>
             <p class="completion-message" id="completionMessage" data-i18n="completionMessage">Congratulations! You've completed this lesson on basic addition. You're one step closer to mastering arithmetic!</p>
+            
+            <!-- Video Placeholder for Summary -->
+            <div class="video-container" id="summaryVideoContainer" style="max-width: 800px; margin: 2rem auto;">
+                <div class="video-placeholder" id="summaryVideoPlaceholder">
+                    <div class="video-icon">🎬</div>
+                    <div class="video-prompt" data-i18n="watchSummary">Watch lesson summary</div>
+                </div>
+            </div>
+            
             <button class="auth-btn signup-btn" id="continueLearning">
                 <span class="icon">📚</span>
                 <span data-i18n="continueLearning">Continue Learning</span>
@@ -1618,7 +1699,10 @@
                 next: "Next",
                 lessonComplete: "Lesson Complete!",
                 completionMessage: "Congratulations! You've completed this lesson on basic addition. You're one step closer to mastering arithmetic!",
-                continueLearning: "Continue Learning"
+                continueLearning: "Continue Learning",
+                watchVideo: "Watch explanatory video",
+                watchExample: "Watch worked example",
+                watchSummary: "Watch lesson summary"
             },
             ro: {
                 // Header
@@ -1707,7 +1791,78 @@
                 next: "Următorul",
                 lessonComplete: "Lecție Finalizată!",
                 completionMessage: "Felicitări! Ai finalizat această lecție despre adunarea de bază. Ești cu un pas mai aproape de a stăpâni aritmetica!",
-                continueLearning: "Continuă Învățarea"
+                continueLearning: "Continuă Învățarea",
+                watchVideo: "Urmărește videoclip explicativ",
+                watchExample: "Urmărește exemplu rezolvat",
+                watchSummary: "Urmărește rezumatul lecției"
+            }
+        };
+
+        // Video Resources - Replace with your actual YouTube video IDs
+        const videoResources = {
+            en: {
+                arithmetic: {
+                    lesson: "https://www.youtube.com/embed/Aq8l2cdjWtE", // Basic addition
+                    practice: "https://www.youtube.com/embed/Fe8u2I3vmHU", // Addition examples
+                    summary: "https://www.youtube.com/embed/Fe8u2I3vmHU"  // Addition summary
+                },
+                algebra: {
+                    lesson: "https://www.youtube.com/embed/NybHckSEQBI", // Basic algebra
+                    practice: "https://www.youtube.com/embed/WgESpw4_J5s", // Algebra examples
+                    summary: "https://www.youtube.com/embed/WgESpw4_J5s"  // Algebra summary
+                },
+                geometry: {
+                    lesson: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Basic geometry
+                    practice: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Geometry examples
+                    summary: "https://www.youtube.com/embed/3S1jZ4xWrN4"  // Geometry summary
+                },
+                calculus: {
+                    lesson: "https://www.youtube.com/embed/5yfh5cf4-0w", // Basic calculus
+                    practice: "https://www.youtube.com/embed/5yfh5cf4-0w", // Calculus examples
+                    summary: "https://www.youtube.com/embed/5yfh5cf4-0w"  // Calculus summary
+                },
+                statistics: {
+                    lesson: "https://www.youtube.com/embed/xxpc-HPKN28", // Basic statistics
+                    practice: "https://www.youtube.com/embed/xxpc-HPKN28", // Statistics examples
+                    summary: "https://www.youtube.com/embed/xxpc-HPKN28"  // Statistics summary
+                },
+                problemSolving: {
+                    lesson: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem solving
+                    practice: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem examples
+                    summary: "https://www.youtube.com/embed/6sBB-gRhfjE"  // Problem solving summary
+                }
+            },
+            ro: {
+                arithmetic: {
+                    lesson: "https://www.youtube.com/embed/ABC123", // Romanian addition video
+                    practice: "https://www.youtube.com/embed/DEF456", // Romanian examples
+                    summary: "https://www.youtube.com/embed/GHI789"  // Romanian summary
+                },
+                algebra: {
+                    lesson: "https://www.youtube.com/embed/JKL012", // Romanian algebra video
+                    practice: "https://www.youtube.com/embed/MNO345", // Romanian examples
+                    summary: "https://www.youtube.com/embed/PQR678"  // Romanian summary
+                },
+                geometry: {
+                    lesson: "https://www.youtube.com/embed/STU901", // Romanian geometry video
+                    practice: "https://www.youtube.com/embed/VWX234", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA567"  // Romanian summary
+                },
+                calculus: {
+                    lesson: "https://www.youtube.com/embed/BCD890", // Romanian calculus video
+                    practice: "https://www.youtube.com/embed/EFG123", // Romanian examples
+                    summary: "https://www.youtube.com/embed/HIJ456"  // Romanian summary
+                },
+                statistics: {
+                    lesson: "https://www.youtube.com/embed/KLM789", // Romanian statistics video
+                    practice: "https://www.youtube.com/embed/NOP012", // Romanian examples
+                    summary: "https://www.youtube.com/embed/QRS345"  // Romanian summary
+                },
+                problemSolving: {
+                    lesson: "https://www.youtube.com/embed/TUV678", // Romanian problem solving video
+                    practice: "https://www.youtube.com/embed/WXY901", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA234"  // Romanian summary
+                }
             }
         };
 
@@ -1796,6 +1951,25 @@
                 }
             });
             window.scrollTo(0, 0);
+        }
+
+        // Function to load video into placeholder
+        function loadVideo(containerId, placeholderId, videoUrl) {
+            const container = document.getElementById(containerId);
+            const placeholder = document.getElementById(placeholderId);
+            
+            // Clear any existing iframe
+            container.innerHTML = '';
+            container.appendChild(placeholder);
+            
+            placeholder.addEventListener('click', function() {
+                container.innerHTML = `
+                    <iframe class="video-iframe" src="${videoUrl}?autoplay=1&rel=0" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                `;
+            });
         }
 
         // Set home as default page
@@ -2060,6 +2234,15 @@
             
             lessonContent.innerHTML = `
                 <p>${currentStepContent.lesson}</p>
+                
+                <!-- Video Placeholder -->
+                <div class="video-container" id="lessonVideoContainer">
+                    <div class="video-placeholder" id="lessonVideoPlaceholder">
+                        <div class="video-icon">▶️</div>
+                        <div class="video-prompt" data-i18n="watchVideo">${translations[currentLanguage].watchVideo}</div>
+                    </div>
+                </div>
+                
                 <div class="example">
                     <div class="example-title">${currentLanguage === 'en' ? 'Example' : 'Exemplu'}</div>
                     <p>${currentStepContent.example}</p>
@@ -2067,6 +2250,10 @@
                     <p>${currentStepContent.exampleExplanation}</p>
                 </div>
             `;
+            
+            // Load video for lesson
+            const videos = videoResources[currentLanguage][currentTopic] || videoResources.en.arithmetic;
+            loadVideo('lessonVideoContainer', 'lessonVideoPlaceholder', videos.lesson);
             
             // Update problem statement and options
             const problem = topic.problems[currentPracticeStep - 1];
@@ -2102,6 +2289,12 @@
             
             // Update completion message
             document.getElementById('completionMessage').textContent = topic.completionMessage;
+            
+            // Load practice video
+            loadVideo('practiceVideoContainer', 'practiceVideoPlaceholder', videos.practice);
+            
+            // Load summary video
+            loadVideo('summaryVideoContainer', 'summaryVideoPlaceholder', videos.summary);
         }
 
         // Answer selection
