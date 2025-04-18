@@ -1345,13 +1345,85 @@
             cursor: pointer;
         }
 
+        /* Subject-specific AI Chat */
+        .ai-chat-subject-selector {
+            padding: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-subject-selector select {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0.3rem;
+            font-size: 0.9rem;
+            width: 70%;
+        }
+
+        .ai-chat-subject-selector select option {
+            background: var(--primary);
+            color: white;
+        }
+
+        .ai-chat-subject-selector select:focus {
+            outline: none;
+        }
+
+        .ai-chat-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray);
+            padding: 0 0.5rem;
+            background: var(--primary-light);
+        }
+
+        .ai-chat-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-bottom: 2px solid transparent;
+            color: white;
+        }
+
+        .ai-chat-tab.active {
+            border-bottom: 2px solid white;
+            font-weight: 600;
+        }
+
+        .ai-chat-content {
+            display: none;
+        }
+
+        .ai-chat-content.active {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .ai-chat-add-subject {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
         .ai-chat-body {
             flex: 1;
-            padding: 1rem;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
         }
 
         .ai-message {
@@ -1595,11 +1667,29 @@
             <h3><span>🤖</span> <span data-i18n="aiTutor">AI Tutor</span></h3>
             <button class="ai-chat-toggle" id="aiChatClose">×</button>
         </div>
-        <div class="ai-chat-body" id="aiChatBody">
-            <div class="ai-message bot">
-                <span data-i18n="aiWelcome">Hello! I'm your AI tutor. How can I help you with your learning today?</span>
+        
+        <!-- Subject Selector and Tabs -->
+        <div class="ai-chat-subject-selector">
+            <select id="aiChatSubjectSelect">
+                <option value="math" data-i18n="math">Math</option>
+                <option value="science" data-i18n="science">Science</option>
+                <option value="history" data-i18n="history">History</option>
+                <option value="language" data-i18n="language">Language</option>
+            </select>
+            <button class="ai-chat-add-subject" id="aiChatAddSubject">+</button>
+        </div>
+        
+        <div class="ai-chat-tabs" id="aiChatTabs">
+            <!-- Tabs will be added dynamically -->
+        </div>
+        
+        <div class="ai-chat-body">
+            <!-- Chat contents will be added dynamically -->
+            <div class="ai-chat-content active" id="mathChatContent">
+                <!-- Messages will be added here -->
             </div>
         </div>
+        
         <div class="ai-chat-input">
             <input type="text" id="aiChatInput" placeholder="Ask me anything..." data-i18n-placeholder="askQuestion">
             <button id="aiChatSend">➤</button>
@@ -2091,7 +2181,10 @@
                 
                 // AI Chat
                 aiWelcome: "Hello! I'm your AI tutor. How can I help you with your learning today?",
-                askQuestion: "Ask me anything..."
+                askQuestion: "Ask me anything...",
+                science: "Science",
+                history: "History",
+                language: "Language"
             },
             ro: {
                 // Header
@@ -2198,7 +2291,10 @@
                 
                 // AI Chat
                 aiWelcome: "Bună! Sunt tutorul tău AI. Cu ce te pot ajuta în învățarea ta astăzi?",
-                askQuestion: "Întreabă-mă orice..."
+                askQuestion: "Întreabă-mă orice...",
+                science: "Știință",
+                history: "Istorie",
+                language: "Limba"
             }
         };
 
@@ -2914,14 +3010,244 @@
             }, 5000);
         }
         
-        // AI Chat System
+        // AI Chat System with Subject-Specific Chats
         const aiChat = document.getElementById('aiChat');
         const aiChatLauncher = document.getElementById('aiChatLauncher');
         const aiChatClose = document.getElementById('aiChatClose');
         const aiChatHeader = document.getElementById('aiChatHeader');
-        const aiChatBody = document.getElementById('aiChatBody');
         const aiChatInput = document.getElementById('aiChatInput');
         const aiChatSend = document.getElementById('aiChatSend');
+        const aiChatSubjectSelect = document.getElementById('aiChatSubjectSelect');
+        const aiChatAddSubject = document.getElementById('aiChatAddSubject');
+        const aiChatTabs = document.getElementById('aiChatTabs');
+        
+        // Chat data structure
+        const chatData = {
+            math: {
+                name: 'Math',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: true
+            },
+            science: {
+                name: 'Science',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            },
+            history: {
+                name: 'History',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            },
+            language: {
+                name: 'Language',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            }
+        };
+        
+        // Current active subject
+        let currentSubject = 'math';
+        
+        // Initialize chat interface
+        function initChat() {
+            // Create tabs for each subject
+            aiChatTabs.innerHTML = '';
+            Object.keys(chatData).forEach(subject => {
+                const tab = document.createElement('div');
+                tab.className = `ai-chat-tab ${chatData[subject].active ? 'active' : ''}`;
+                tab.textContent = chatData[subject].name;
+                tab.dataset.subject = subject;
+                aiChatTabs.appendChild(tab);
+                
+                tab.addEventListener('click', () => {
+                    switchSubject(subject);
+                });
+            });
+            
+            // Create chat content areas
+            document.querySelector('.ai-chat-body').innerHTML = '';
+            Object.keys(chatData).forEach(subject => {
+                const content = document.createElement('div');
+                content.className = `ai-chat-content ${chatData[subject].active ? 'active' : ''}`;
+                content.id = `${subject}ChatContent`;
+                document.querySelector('.ai-chat-body').appendChild(content);
+                
+                // Add existing messages
+                chatData[subject].messages.forEach(msg => {
+                    addMessageToContent(msg.text, msg.sender, content);
+                });
+            });
+            
+            // Set the current subject
+            switchSubject(currentSubject);
+        }
+        
+        // Switch between subjects
+        function switchSubject(subject) {
+            currentSubject = subject;
+            
+            // Update tabs
+            document.querySelectorAll('.ai-chat-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.subject === subject) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Update chat contents
+            document.querySelectorAll('.ai-chat-content').forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${subject}ChatContent`) {
+                    content.classList.add('active');
+                }
+            });
+            
+            // Update subject selector
+            aiChatSubjectSelect.value = subject;
+        }
+        
+        // Add a new subject
+        aiChatAddSubject.addEventListener('click', () => {
+            const newSubject = prompt(currentLanguage === 'en' ? 'Enter new subject name:' : 'Introduceți numele noului subiect:');
+            if (newSubject && newSubject.trim() !== '') {
+                const subjectKey = newSubject.toLowerCase().replace(/\s+/g, '-');
+                if (!chatData[subjectKey]) {
+                    chatData[subjectKey] = {
+                        name: newSubject,
+                        messages: [
+                            { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                        ],
+                        active: false
+                    };
+                    
+                    // Add to subject selector
+                    const option = document.createElement('option');
+                    option.value = subjectKey;
+                    option.textContent = newSubject;
+                    aiChatSubjectSelect.appendChild(option);
+                    
+                    // Reinitialize chat to show new subject
+                    initChat();
+                    switchSubject(subjectKey);
+                }
+            }
+        });
+        
+        // Change subject from selector
+        aiChatSubjectSelect.addEventListener('change', () => {
+            switchSubject(aiChatSubjectSelect.value);
+        });
+        
+        // Add message to specific content area
+        function addMessageToContent(text, sender, contentElement) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `ai-message ${sender}`;
+            messageElement.textContent = text;
+            contentElement.appendChild(messageElement);
+            contentElement.scrollTop = contentElement.scrollHeight;
+        }
+        
+        // Send message
+        function sendMessage() {
+            const message = aiChatInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message to current subject chat
+            chatData[currentSubject].messages.push({
+                text: message,
+                sender: 'user'
+            });
+            
+            const contentElement = document.getElementById(`${currentSubject}ChatContent`);
+            addMessageToContent(message, 'user', contentElement);
+            aiChatInput.value = '';
+            
+            // Simulate AI response based on subject
+            setTimeout(() => {
+                let response;
+                const langResponses = translations[currentLanguage];
+                
+                if (currentSubject === 'math') {
+                    if (message.toLowerCase().includes('add') || message.toLowerCase().includes('addition')) {
+                        response = currentLanguage === 'en' ? 
+                            "Addition is combining numbers to find their total. For example, 2 + 3 = 5. Would you like more examples?" :
+                            "Adunarea înseamnă combinarea numerelor pentru a afla totalul. De exemplu, 2 + 3 = 5. Dorești mai multe exemple?";
+                    } else if (message.toLowerCase().includes('multiply') || message.toLowerCase().includes('multiplication')) {
+                        response = currentLanguage === 'en' ?
+                            "Multiplication is repeated addition. For example, 3 × 4 means adding 3 four times: 3 + 3 + 3 + 3 = 12." :
+                            "Înmulțirea este adunare repetată. De exemplu, 3 × 4 înseamnă să aduni 3 de patru ori: 3 + 3 + 3 + 3 = 12.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                } 
+                else if (currentSubject === 'science') {
+                    if (message.toLowerCase().includes('photosynthesis')) {
+                        response = currentLanguage === 'en' ?
+                            "Photosynthesis is how plants make food using sunlight, converting carbon dioxide and water into glucose and oxygen." :
+                            "Fotosinteza este procesul prin care plantele produc hrană folosind lumina soarelui, transformând dioxidul de carbon și apa în glucoză și oxigen.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else if (currentSubject === 'history') {
+                    if (message.toLowerCase().includes('rome') || message.toLowerCase().includes('roman')) {
+                        response = currentLanguage === 'en' ?
+                            "The Roman Empire was one of the most powerful civilizations in history, lasting from 27 BC to 476 AD in the West." :
+                            "Imperiul Roman a fost una dintre cele mai puternice civilizații din istorie, durând din 27 î.Hr. până în 476 d.Hr. în partea de vest.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else if (currentSubject === 'language') {
+                    if (message.toLowerCase().includes('grammar')) {
+                        response = currentLanguage === 'en' ?
+                            "Grammar is the set of structural rules governing the composition of clauses, phrases, and words in any language." :
+                            "Gramatica este ansamblul de reguli structurale care guvernează alcătuirea propozițiilor, frazelor și cuvintelor în orice limbă.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else {
+                    // For custom subjects
+                    response = getDefaultResponse();
+                }
+                
+                // Add AI response to chat
+                chatData[currentSubject].messages.push({
+                    text: response,
+                    sender: 'bot'
+                });
+                addMessageToContent(response, 'bot', contentElement);
+            }, 1000);
+        }
+        
+        function getDefaultResponse() {
+            const responses = {
+                en: [
+                    "I'm not sure I understand. Could you rephrase your question?",
+                    "I'm still learning. Can you ask your question differently?",
+                    "That's an interesting question. Let me think about how to best explain this.",
+                    "I'm designed to help with learning. Could you be more specific about what you need?"
+                ],
+                ro: [
+                    "Nu sunt sigur că am înțeles. Poți reformula întrebarea?",
+                    "Încă învăț. Poți pune întrebarea altfel?",
+                    "Aceasta este o întrebare interesantă. Lasă-mă să mă gândesc cum să explic acest lucru cel mai bine.",
+                    "Sunt conceput să ajut la învățare. Poți fi mai specific în legătură cu ceea ce ai nevoie?"
+                ]
+            };
+            
+            const langResponses = responses[currentLanguage] || responses.en;
+            return langResponses[Math.floor(Math.random() * langResponses.length)];
+        }
         
         // Toggle chat interface
         function toggleChat() {
@@ -2938,58 +3264,6 @@
             toggleChat();
         });
         
-        // Send message
-        function sendMessage() {
-            const message = aiChatInput.value.trim();
-            if (message === '') return;
-            
-            // Add user message to chat
-            addMessage(message, 'user');
-            aiChatInput.value = '';
-            
-            // Simulate AI response (in a real app, this would call an API)
-            setTimeout(() => {
-                const responses = {
-                    en: {
-                        greetings: ["Hello! How can I help you with your math learning today?", "Hi there! What math concept are you working on?"],
-                        help: ["I can help explain math concepts, provide examples, or guide you through problems. What do you need help with?", "I'm here to assist with your math questions. What's troubling you?"],
-                        addition: ["Addition is combining numbers to find their total. For example, 2 + 3 = 5. Would you like more examples?", "Adding numbers means putting them together. 4 + 1 = 5. Need practice problems?"],
-                        default: ["I'm not sure I understand. Could you rephrase your question?", "I'm still learning. Can you ask your question differently?"]
-                    },
-                    ro: {
-                        greetings: ["Bună! Cu ce te pot ajuta în învățarea matematicii astăzi?", "Salut! La ce concept matematic lucrezi?"],
-                        help: ["Pot explica concepte matematice, oferi exemple sau te ghida prin probleme. Cu ce ai nevoie de ajutor?", "Sunt aici să te ajut cu întrebările tale de matematică. Ce te deranjează?"],
-                        addition: ["Adunarea înseamnă combinarea numerelor pentru a afla totalul. De exemplu, 2 + 3 = 5. Dorești mai multe exemple?", "A aduna numere înseamnă a le pune împreună. 4 + 1 = 5. Ai nevoie de probleme de practică?"],
-                        default: ["Nu sunt sigur că am înțeles. Poți reformula întrebarea?", "Încă învăț. Poți pune întrebarea altfel?"]
-                    }
-                };
-                
-                const langResponses = responses[currentLanguage] || responses.en;
-                let response;
-                
-                if (message.toLowerCase().includes('hello') || message.toLowerCase().includes('hi')) {
-                    response = langResponses.greetings[Math.floor(Math.random() * langResponses.greetings.length)];
-                } else if (message.toLowerCase().includes('help')) {
-                    response = langResponses.help[Math.floor(Math.random() * langResponses.help.length)];
-                } else if (message.toLowerCase().includes('add') || message.toLowerCase().includes('addition')) {
-                    response = langResponses.addition[Math.floor(Math.random() * langResponses.addition.length)];
-                } else {
-                    response = langResponses.default[Math.floor(Math.random() * langResponses.default.length)];
-                }
-                
-                addMessage(response, 'bot');
-            }, 1000);
-        }
-        
-        // Add message to chat
-        function addMessage(text, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.className = `ai-message ${sender}`;
-            messageElement.textContent = text;
-            aiChatBody.appendChild(messageElement);
-            aiChatBody.scrollTop = aiChatBody.scrollHeight;
-        }
-        
         // Send message on button click or Enter key
         aiChatSend.addEventListener('click', sendMessage);
         aiChatInput.addEventListener('keypress', (e) => {
@@ -2998,8 +3272,8 @@
             }
         });
         
-        // Initialize chat with welcome message
-        addMessage(translations[currentLanguage].aiWelcome, 'bot');
+        // Initialize chat when page loads
+        initChat();
 
         // Initialize animations when page loads
         window.addEventListener('load', () => {
