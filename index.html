@@ -1300,21 +1300,19 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 400px; /* Increased from 350px */
-            height: 600px; /* Added fixed height */
-            max-height: 80vh; /* Limit to 80% of viewport height */
+            width: 350px;
+            max-height: 500px;
             background: var(--card-bg);
-            border-radius: 16px; /* More rounded corners */
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 30px rgba(108, 99, 255, 0.3);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
             z-index: 100;
-            transform: translateY(120%);
+            transform: translateY(100%);
             opacity: 0;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px); /* More blur for frosted glass effect */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden; /* Prevent content from overflowing rounded corners */
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .ai-chat.active {
@@ -1323,73 +1321,49 @@
         }
 
         .ai-chat-header {
-            padding: 16px 20px;
+            padding: 1rem;
             background: var(--primary);
             color: white;
-            border-radius: 16px 16px 0 0;
+            border-radius: 1rem 1rem 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .ai-chat-header h3 {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .ai-chat-header .ai-icon {
-            font-size: 1.5rem;
-            animation: pulse 2s infinite;
+            gap: 0.5rem;
         }
 
         .ai-chat-toggle {
             background: none;
             border: none;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            transition: transform 0.3s;
         }
 
-        .ai-chat-toggle:hover {
-            transform: scale(1.2);
-        }
-
-        /* Subject Selector */
+        /* Subject-specific AI Chat */
         .ai-chat-subject-selector {
-            padding: 12px 16px;
-            background: var(--primary-dark);
+            padding: 0.5rem;
+            background: var(--primary);
             color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 10px;
         }
 
         .ai-chat-subject-selector select {
-            flex: 1;
             background: rgba(255, 255, 255, 0.2);
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 8px 12px;
+            border-radius: 0.3rem;
+            padding: 0.3rem;
             font-size: 0.9rem;
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 8px center;
-            background-size: 16px;
-        }
-
-        .ai-chat-subject-selector select:focus {
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+            width: 70%;
         }
 
         .ai-chat-subject-selector select option {
@@ -1397,223 +1371,117 @@
             color: white;
         }
 
-        .ai-chat-add-subject {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            border-radius: 8px;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
+        .ai-chat-subject-selector select:focus {
+            outline: none;
         }
 
-        .ai-chat-add-subject:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        /* Tabs */
         .ai-chat-tabs {
             display: flex;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--gray);
+            padding: 0 0.5rem;
             background: var(--primary-light);
-            overflow-x: auto;
-            scrollbar-width: none; /* Hide scrollbar for Firefox */
-        }
-
-        .ai-chat-tabs::-webkit-scrollbar {
-            display: none; /* Hide scrollbar for Chrome/Safari */
         }
 
         .ai-chat-tab {
-            padding: 12px 16px;
+            padding: 0.5rem 1rem;
             cursor: pointer;
             font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            white-space: nowrap;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+            color: white;
         }
 
         .ai-chat-tab.active {
-            color: white;
-            border-bottom-color: white;
+            border-bottom: 2px solid white;
             font-weight: 600;
-        }
-
-        /* Chat Body */
-        .ai-chat-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background: var(--light);
         }
 
         .ai-chat-content {
             display: none;
-            flex-direction: column;
-            gap: 12px;
         }
 
         .ai-chat-content.active {
             display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
         }
 
-        /* Messages */
+        .ai-chat-add-subject {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
         .ai-message {
-            max-width: 85%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            position: relative;
-            animation: fadeIn 0.3s ease-out;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
         .ai-message.bot {
             align-self: flex-start;
             background: rgba(108, 99, 255, 0.1);
-            border-radius: 0 18px 18px 18px;
-            color: var(--text-color);
-            border: 1px solid rgba(108, 99, 255, 0.2);
+            border-radius: 0 1rem 1rem 1rem;
         }
 
         .ai-message.user {
             align-self: flex-end;
             background: var(--primary);
             color: white;
-            border-radius: 18px 0 18px 18px;
-        }
-
-        .ai-message.bot::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -8px;
-            width: 0;
-            height: 0;
-            border: 8px solid transparent;
-            border-right-color: rgba(108, 99, 255, 0.1);
-            border-left: 0;
-            border-top: 0;
-            margin-top: 0;
-        }
-
-        .ai-message.user::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -8px;
-            width: 0;
-            height: 0;
-            border: 8px solid transparent;
-            border-left-color: var(--primary);
-            border-right: 0;
-            border-top: 0;
-            margin-top: 0;
-        }
-
-        /* Typing indicator */
-        .typing-indicator {
-            display: flex;
-            align-self: flex-start;
-            padding: 12px 16px;
-            background: rgba(108, 99, 255, 0.1);
-            border-radius: 0 18px 18px 18px;
-            margin-bottom: 8px;
-            border: 1px solid rgba(108, 99, 255, 0.2);
-        }
-
-        .typing-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            margin: 0 3px;
-            animation: typingAnimation 1.4s infinite ease-in-out;
-        }
-
-        .typing-dot:nth-child(1) {
-            animation-delay: 0s;
-        }
-
-        .typing-dot:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .typing-dot:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes typingAnimation {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-5px); }
-        }
-
-        /* Input Area */
-        .ai-chat-input-area {
-            padding: 16px;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            background: var(--card-bg);
-            display: flex;
-            gap: 10px;
+            border-radius: 1rem 0 1rem 1rem;
         }
 
         .ai-chat-input {
+            display: flex;
+            padding: 0.5rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .ai-chat-input input {
             flex: 1;
-            padding: 12px 16px;
+            padding: 0.5rem;
             border: 1px solid var(--gray);
-            border-radius: 24px;
-            font-size: 0.95rem;
+            border-radius: 0.5rem 0 0 0.5rem;
             outline: none;
             background: var(--light);
             color: var(--text-color);
-            transition: all 0.3s;
         }
 
-        .ai-chat-input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
-        }
-
-        .ai-chat-send-btn {
-            width: 48px;
-            height: 48px;
+        .ai-chat-input button {
+            padding: 0.5rem 1rem;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 50%;
+            border-radius: 0 0.5rem 0.5rem 0;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
         }
 
-        .ai-chat-send-btn:hover {
+        .ai-chat-input button:hover {
             background: var(--primary-dark);
-            transform: scale(1.05);
         }
 
-        .ai-chat-send-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Launcher Button */
         .ai-chat-launcher {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 64px;
-            height: 64px;
+            width: 60px;
+            height: 60px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -1622,73 +1490,18 @@
             justify-content: center;
             cursor: pointer;
             z-index: 90;
-            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            border: none;
-            outline: none;
         }
 
         .ai-chat-launcher:hover {
             transform: scale(1.1);
-            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
-        }
-
-        .ai-chat-launcher:active {
-            transform: scale(0.95);
         }
 
         .ai-chat-launcher-icon {
-            font-size: 1.8rem;
-            animation: pulse 2s infinite;
+            font-size: 1.5rem;
         }
 
-        .ai-chat-launcher-badge {
-            position: absolute;
-            top: -5px;
-            right: -5px;
-            background: var(--secondary);
-            color: white;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .ai-chat {
-                width: calc(100% - 40px);
-                right: 20px;
-                bottom: 80px;
-                height: 70vh;
-            }
-
-            .ai-chat-launcher {
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* Animation for new messages */
-        @keyframes messageAppear {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .new-message {
-            animation: messageAppear 0.3s ease-out;
-        }
         /* Responsive adjustments */
         @media (max-width: 768px) {
             header {
@@ -1846,17 +1659,16 @@
     <!-- AI Chat Launcher -->
     <div class="ai-chat-launcher" id="aiChatLauncher">
         <span class="ai-chat-launcher-icon">🤖</span>
-        <div class="ai-chat-launcher-badge" id="aiChatBadge" style="display: none;">3</div>
     </div>
 
-    <!-- Enhanced AI Chat Interface -->
+    <!-- AI Chat Interface -->
     <div class="ai-chat" id="aiChat">
         <div class="ai-chat-header" id="aiChatHeader">
-            <h3><span class="ai-icon">🤖</span> <span data-i18n="aiTutor">AI Tutor</span></h3>
+            <h3><span>🤖</span> <span data-i18n="aiTutor">AI Tutor</span></h3>
             <button class="ai-chat-toggle" id="aiChatClose">×</button>
         </div>
         
-        <!-- Subject Selector -->
+        <!-- Subject Selector and Tabs -->
         <div class="ai-chat-subject-selector">
             <select id="aiChatSubjectSelect">
                 <option value="math" data-i18n="math">Math</option>
@@ -1864,28 +1676,23 @@
                 <option value="history" data-i18n="history">History</option>
                 <option value="language" data-i18n="language">Language</option>
             </select>
-            <button class="ai-chat-add-subject" id="aiChatAddSubject" title="Add new subject">+</button>
+            <button class="ai-chat-add-subject" id="aiChatAddSubject">+</button>
         </div>
         
-        <!-- Tabs -->
         <div class="ai-chat-tabs" id="aiChatTabs">
             <!-- Tabs will be added dynamically -->
         </div>
         
-        <!-- Chat Body -->
-        <div class="ai-chat-body" id="aiChatBody">
+        <div class="ai-chat-body">
             <!-- Chat contents will be added dynamically -->
             <div class="ai-chat-content active" id="mathChatContent">
-                <div class="ai-message bot new-message">
-                    Hello! I'm your AI math tutor. How can I help you with math today?
-                </div>
+                <!-- Messages will be added here -->
             </div>
         </div>
         
-        <!-- Input Area -->
-        <div class="ai-chat-input-area">
-            <input type="text" id="aiChatInput" placeholder="Ask me anything..." data-i18n-placeholder="askQuestion" class="ai-chat-input">
-            <button id="aiChatSend" class="ai-chat-send-btn">➤</button>
+        <div class="ai-chat-input">
+            <input type="text" id="aiChatInput" placeholder="Ask me anything..." data-i18n-placeholder="askQuestion">
+            <button id="aiChatSend">➤</button>
         </div>
     </div>
 
@@ -3204,80 +3011,59 @@
         }
         
         // AI Chat System with Subject-Specific Chats
-const aiChat = document.getElementById('aiChat');
+        const aiChat = document.getElementById('aiChat');
         const aiChatLauncher = document.getElementById('aiChatLauncher');
         const aiChatClose = document.getElementById('aiChatClose');
         const aiChatHeader = document.getElementById('aiChatHeader');
-        const aiChatBody = document.getElementById('aiChatBody');
         const aiChatInput = document.getElementById('aiChatInput');
         const aiChatSend = document.getElementById('aiChatSend');
         const aiChatSubjectSelect = document.getElementById('aiChatSubjectSelect');
         const aiChatAddSubject = document.getElementById('aiChatAddSubject');
         const aiChatTabs = document.getElementById('aiChatTabs');
-        const aiChatBadge = document.getElementById('aiChatBadge');
         
-        // Chat data structure with enhanced properties
+        // Chat data structure
         const chatData = {
             math: {
                 name: 'Math',
-                icon: '🧮',
-                color: 'var(--primary)',
                 messages: [
-                    { text: translations[currentLanguage].aiWelcome, sender: 'bot', timestamp: new Date() }
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
                 ],
-                active: true,
-                unread: 0
+                active: true
             },
             science: {
                 name: 'Science',
-                icon: '🔬',
-                color: 'var(--success)',
                 messages: [
-                    { text: translations[currentLanguage].aiWelcome, sender: 'bot', timestamp: new Date() }
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
                 ],
-                active: false,
-                unread: 0
+                active: false
             },
             history: {
                 name: 'History',
-                icon: '🏛️',
-                color: 'var(--secondary)',
                 messages: [
-                    { text: translations[currentLanguage].aiWelcome, sender: 'bot', timestamp: new Date() }
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
                 ],
-                active: false,
-                unread: 0
+                active: false
             },
             language: {
                 name: 'Language',
-                icon: '🗣️',
-                color: 'var(--pink)',
                 messages: [
-                    { text: translations[currentLanguage].aiWelcome, sender: 'bot', timestamp: new Date() }
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
                 ],
-                active: false,
-                unread: 0
+                active: false
             }
         };
         
         // Current active subject
         let currentSubject = 'math';
-        let isTyping = false;
         
-        // Initialize chat interface with enhanced features
+        // Initialize chat interface
         function initChat() {
-            // Create tabs for each subject with icons
+            // Create tabs for each subject
             aiChatTabs.innerHTML = '';
             Object.keys(chatData).forEach(subject => {
                 const tab = document.createElement('div');
                 tab.className = `ai-chat-tab ${chatData[subject].active ? 'active' : ''}`;
-                tab.innerHTML = `<span>${chatData[subject].icon} ${chatData[subject].name}</span>`;
-                if (chatData[subject].unread > 0) {
-                    const badge = document.createElement('span');
-                    badge.className = 'unread-badge';
-                    badge.textContent = chatData[subject].unread;
-                    tab.appendChild(badge);
-                }
+                tab.textContent = chatData[subject].name;
                 tab.dataset.subject = subject;
                 aiChatTabs.appendChild(tab);
                 
@@ -3287,105 +3073,70 @@ const aiChat = document.getElementById('aiChat');
             });
             
             // Create chat content areas
-            aiChatBody.innerHTML = '';
+            document.querySelector('.ai-chat-body').innerHTML = '';
             Object.keys(chatData).forEach(subject => {
                 const content = document.createElement('div');
                 content.className = `ai-chat-content ${chatData[subject].active ? 'active' : ''}`;
                 content.id = `${subject}ChatContent`;
-                content.style.display = 'none';
-                aiChatBody.appendChild(content);
+                document.querySelector('.ai-chat-body').appendChild(content);
                 
-                // Add existing messages with timestamps
+                // Add existing messages
                 chatData[subject].messages.forEach(msg => {
-                    addMessageToContent(msg.text, msg.sender, content, msg.timestamp);
+                    addMessageToContent(msg.text, msg.sender, content);
                 });
             });
             
             // Set the current subject
             switchSubject(currentSubject);
-            
-            // Update notification badge
-            updateUnreadBadge();
         }
         
-        // Switch between subjects with animation
+        // Switch between subjects
         function switchSubject(subject) {
-            // Mark messages as read when switching to subject
-            chatData[subject].unread = 0;
-            updateUnreadBadge();
+            currentSubject = subject;
             
             // Update tabs
             document.querySelectorAll('.ai-chat-tab').forEach(tab => {
                 tab.classList.remove('active');
                 if (tab.dataset.subject === subject) {
                     tab.classList.add('active');
-                    // Remove unread badge when switching to tab
-                    const badge = tab.querySelector('.unread-badge');
-                    if (badge) badge.remove();
                 }
             });
             
-            // Animate chat content transition
-            const currentContent = document.querySelector('.ai-chat-content.active');
-            const newContent = document.getElementById(`${subject}ChatContent`);
+            // Update chat contents
+            document.querySelectorAll('.ai-chat-content').forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${subject}ChatContent`) {
+                    content.classList.add('active');
+                }
+            });
             
-            if (currentContent) {
-                currentContent.style.animation = 'fadeOut 0.2s ease-out forwards';
-                setTimeout(() => {
-                    currentContent.classList.remove('active');
-                    currentContent.style.display = 'none';
-                    currentContent.style.animation = '';
-                    
-                    newContent.style.display = 'flex';
-                    newContent.style.animation = 'fadeIn 0.3s ease-out forwards';
-                    setTimeout(() => {
-                        newContent.classList.add('active');
-                        newContent.style.animation = '';
-                        newContent.scrollTop = newContent.scrollHeight;
-                    }, 50);
-                }, 200);
-            }
-            
-            currentSubject = subject;
+            // Update subject selector
             aiChatSubjectSelect.value = subject;
         }
         
-        // Add a new subject with color and icon selection
+        // Add a new subject
         aiChatAddSubject.addEventListener('click', () => {
-            const newSubjectName = prompt(currentLanguage === 'en' ? 
-                'Enter new subject name:' : 'Introduceți numele noului subiect:');
-            
-            if (newSubjectName && newSubjectName.trim() !== '') {
-                const subjectKey = newSubjectName.toLowerCase().replace(/\s+/g, '-');
+            const newSubject = prompt(currentLanguage === 'en' ? 'Enter new subject name:' : 'Introduceți numele noului subiect:');
+            if (newSubject && newSubject.trim() !== '') {
+                const subjectKey = newSubject.toLowerCase().replace(/\s+/g, '-');
                 if (!chatData[subjectKey]) {
-                    // Default properties for new subject
                     chatData[subjectKey] = {
-                        name: newSubjectName,
-                        icon: '📚', // Default icon
-                        color: 'var(--primary)',
+                        name: newSubject,
                         messages: [
-                            { 
-                                text: translations[currentLanguage].aiWelcome, 
-                                sender: 'bot',
-                                timestamp: new Date()
-                            }
+                            { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
                         ],
-                        active: false,
-                        unread: 0
+                        active: false
                     };
                     
                     // Add to subject selector
                     const option = document.createElement('option');
                     option.value = subjectKey;
-                    option.textContent = newSubjectName;
+                    option.textContent = newSubject;
                     aiChatSubjectSelect.appendChild(option);
                     
                     // Reinitialize chat to show new subject
                     initChat();
                     switchSubject(subjectKey);
-                    
-                    // Notify user
-                    showSystemMessage(`${newSubjectName} chat created!`, subjectKey);
                 }
             }
         });
@@ -3395,110 +3146,35 @@ const aiChat = document.getElementById('aiChat');
             switchSubject(aiChatSubjectSelect.value);
         });
         
-        // Add message to specific content area with timestamp
-        function addMessageToContent(text, sender, contentElement, timestamp = new Date()) {
+        // Add message to specific content area
+        function addMessageToContent(text, sender, contentElement) {
             const messageElement = document.createElement('div');
-            messageElement.className = `ai-message ${sender} new-message`;
-            messageElement.innerHTML = `
-                <div class="message-text">${text}</div>
-                <div class="message-time">${formatTime(timestamp)}</div>
-            `;
-            contentElement.appendChild(messageElement);
-            contentElement.scrollTop = contentElement.scrollHeight;
-            
-            // Remove new-message class after animation completes
-            setTimeout(() => {
-                messageElement.classList.remove('new-message');
-            }, 300);
-        }
-        
-        // Format time as HH:MM
-        function formatTime(date) {
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        }
-        
-        // Show typing indicator
-        function showTypingIndicator(subject) {
-            if (isTyping) return;
-            
-            isTyping = true;
-            const contentElement = document.getElementById(`${subject}ChatContent`);
-            const typingElement = document.createElement('div');
-            typingElement.className = 'typing-indicator';
-            typingElement.innerHTML = `
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-                <div class="typing-dot"></div>
-            `;
-            contentElement.appendChild(typingElement);
-            contentElement.scrollTop = contentElement.scrollHeight;
-            
-            return typingElement;
-        }
-        
-        // Hide typing indicator
-        function hideTypingIndicator(typingElement) {
-            if (typingElement && typingElement.parentNode) {
-                typingElement.parentNode.removeChild(typingElement);
-            }
-            isTyping = false;
-        }
-        
-        // Show system message
-        function showSystemMessage(text, subject) {
-            const contentElement = document.getElementById(`${subject}ChatContent`);
-            const messageElement = document.createElement('div');
-            messageElement.className = 'ai-message system new-message';
+            messageElement.className = `ai-message ${sender}`;
             messageElement.textContent = text;
             contentElement.appendChild(messageElement);
             contentElement.scrollTop = contentElement.scrollHeight;
         }
         
-        // Update unread badge on launcher
-        function updateUnreadBadge() {
-            const totalUnread = Object.values(chatData).reduce((sum, subject) => sum + subject.unread, 0);
-            if (totalUnread > 0) {
-                aiChatBadge.textContent = totalUnread > 9 ? '9+' : totalUnread;
-                aiChatBadge.style.display = 'flex';
-                
-                // Pulse animation for new messages
-                if (totalUnread === 1) {
-                    aiChatLauncher.style.animation = 'pulse 1s 3';
-                }
-            } else {
-                aiChatBadge.style.display = 'none';
-                aiChatLauncher.style.animation = '';
-            }
-        }
-        
-        // Send message with enhanced features
+        // Send message
         function sendMessage() {
             const message = aiChatInput.value.trim();
             if (message === '') return;
             
             // Add user message to current subject chat
-            const userMessage = {
+            chatData[currentSubject].messages.push({
                 text: message,
-                sender: 'user',
-                timestamp: new Date()
-            };
-            chatData[currentSubject].messages.push(userMessage);
+                sender: 'user'
+            });
             
             const contentElement = document.getElementById(`${currentSubject}ChatContent`);
-            addMessageToContent(message, 'user', contentElement, userMessage.timestamp);
+            addMessageToContent(message, 'user', contentElement);
             aiChatInput.value = '';
             
-            // Show typing indicator
-            const typingElement = showTypingIndicator(currentSubject);
-            
-            // Simulate AI response with delay
+            // Simulate AI response based on subject
             setTimeout(() => {
-                hideTypingIndicator(typingElement);
-                
                 let response;
                 const langResponses = translations[currentLanguage];
                 
-                // Enhanced subject-specific responses
                 if (currentSubject === 'math') {
                     if (message.toLowerCase().includes('add') || message.toLowerCase().includes('addition')) {
                         response = currentLanguage === 'en' ? 
@@ -3508,10 +3184,6 @@ const aiChat = document.getElementById('aiChat');
                         response = currentLanguage === 'en' ?
                             "Multiplication is repeated addition. For example, 3 × 4 means adding 3 four times: 3 + 3 + 3 + 3 = 12." :
                             "Înmulțirea este adunare repetată. De exemplu, 3 × 4 înseamnă să aduni 3 de patru ori: 3 + 3 + 3 + 3 = 12.";
-                    } else if (message.toLowerCase().includes('help') || message.toLowerCase().includes('support')) {
-                        response = currentLanguage === 'en' ?
-                            "I can help with:\n- Basic arithmetic (+, -, ×, ÷)\n- Algebra equations\n- Geometry concepts\n- Calculus basics\n\nWhat specific topic do you need help with?" :
-                            "Pot ajuta cu:\n- Aritmetică de bază (+, -, ×, ÷)\n- Ecuații algebrice\n- Concepte de geometrie\n- Bazele calculului\n\nCu ce subiect anume ai nevoie de ajutor?";
                     } else {
                         response = getDefaultResponse();
                     }
@@ -3521,10 +3193,6 @@ const aiChat = document.getElementById('aiChat');
                         response = currentLanguage === 'en' ?
                             "Photosynthesis is how plants make food using sunlight, converting carbon dioxide and water into glucose and oxygen." :
                             "Fotosinteza este procesul prin care plantele produc hrană folosind lumina soarelui, transformând dioxidul de carbon și apa în glucoză și oxigen.";
-                    } else if (message.toLowerCase().includes('cell') || message.toLowerCase().includes('biology')) {
-                        response = currentLanguage === 'en' ?
-                            "Cells are the basic building blocks of all living things. They have components like nucleus, mitochondria, and cell membrane." :
-                            "Celulele sunt unitățile de bază ale tuturor organismelor vii. Ele au componente precum nucleu, mitocondrii și membrană celulară.";
                     } else {
                         response = getDefaultResponse();
                     }
@@ -3534,10 +3202,6 @@ const aiChat = document.getElementById('aiChat');
                         response = currentLanguage === 'en' ?
                             "The Roman Empire was one of the most powerful civilizations in history, lasting from 27 BC to 476 AD in the West." :
                             "Imperiul Roman a fost una dintre cele mai puternice civilizații din istorie, durând din 27 î.Hr. până în 476 d.Hr. în partea de vest.";
-                    } else if (message.toLowerCase().includes('world war') || message.toLowerCase().includes('ww')) {
-                        response = currentLanguage === 'en' ?
-                            "World War I (1914-1918) and World War II (1939-1945) were global conflicts that shaped the modern world." :
-                            "Primul Război Mondial (1914-1918) și Al Doilea Război Mondial (1939-1945) au fost conflicte globale care au modelat lumea modernă.";
                     } else {
                         response = getDefaultResponse();
                     }
@@ -3547,10 +3211,6 @@ const aiChat = document.getElementById('aiChat');
                         response = currentLanguage === 'en' ?
                             "Grammar is the set of structural rules governing the composition of clauses, phrases, and words in any language." :
                             "Gramatica este ansamblul de reguli structurale care guvernează alcătuirea propozițiilor, frazelor și cuvintelor în orice limbă.";
-                    } else if (message.toLowerCase().includes('translate') || message.toLowerCase().includes('translation')) {
-                        response = currentLanguage === 'en' ?
-                            "I can help with basic translations between English and Romanian. What would you like to translate?" :
-                            "Pot ajuta cu traduceri de bază între engleză și română. Ce doriți să traduceți?";
                     } else {
                         response = getDefaultResponse();
                     }
@@ -3561,20 +3221,12 @@ const aiChat = document.getElementById('aiChat');
                 }
                 
                 // Add AI response to chat
-                const botMessage = {
+                chatData[currentSubject].messages.push({
                     text: response,
-                    sender: 'bot',
-                    timestamp: new Date()
-                };
-                chatData[currentSubject].messages.push(botMessage);
-                addMessageToContent(response, 'bot', contentElement, botMessage.timestamp);
-                
-                // If chat is not active, increment unread count
-                if (!aiChat.classList.contains('active') {
-                    chatData[currentSubject].unread++;
-                    updateUnreadBadge();
-                }
-            }, 1500 + Math.random() * 1000); // Random delay between 1.5-2.5 seconds
+                    sender: 'bot'
+                });
+                addMessageToContent(response, 'bot', contentElement);
+            }, 1000);
         }
         
         function getDefaultResponse() {
@@ -3583,17 +3235,13 @@ const aiChat = document.getElementById('aiChat');
                     "I'm not sure I understand. Could you rephrase your question?",
                     "I'm still learning. Can you ask your question differently?",
                     "That's an interesting question. Let me think about how to best explain this.",
-                    "I'm designed to help with learning. Could you be more specific about what you need?",
-                    "I specialize in educational content. Could you ask me something related to learning?",
-                    "I'm happy to help with your studies! What exactly would you like to know?"
+                    "I'm designed to help with learning. Could you be more specific about what you need?"
                 ],
                 ro: [
                     "Nu sunt sigur că am înțeles. Poți reformula întrebarea?",
                     "Încă învăț. Poți pune întrebarea altfel?",
                     "Aceasta este o întrebare interesantă. Lasă-mă să mă gândesc cum să explic acest lucru cel mai bine.",
-                    "Sunt conceput să ajut la învățare. Poți fi mai specific în legătură cu ceea ce ai nevoie?",
-                    "Mă specializez în conținut educațional. Poți să mă întrebi ceva legat de învățare?",
-                    "Sunt bucuros să te ajut cu studiile! Ce anume ai dori să afli?"
+                    "Sunt conceput să ajut la învățare. Poți fi mai specific în legătură cu ceea ce ai nevoie?"
                 ]
             };
             
@@ -3601,43 +3249,14 @@ const aiChat = document.getElementById('aiChat');
             return langResponses[Math.floor(Math.random() * langResponses.length)];
         }
         
-        // Toggle chat interface with animation
+        // Toggle chat interface
         function toggleChat() {
-            if (aiChat.classList.contains('active')) {
-                aiChat.style.animation = 'slideDown 0.3s ease-out forwards';
-                setTimeout(() => {
-                    aiChat.classList.remove('active');
-                    aiChat.style.animation = '';
-                }, 300);
-            } else {
-                aiChat.classList.add('active');
-                aiChat.style.animation = 'slideUp 0.3s ease-out forwards';
-                
-                // Mark messages as read when opening chat
-                chatData[currentSubject].unread = 0;
-                updateUnreadBadge();
-                
-                // Update unread badges on tabs
-                const activeTab = document.querySelector(`.ai-chat-tab[data-subject="${currentSubject}"]`);
-                const badge = activeTab.querySelector('.unread-badge');
-                if (badge) badge.remove();
-            }
+            aiChat.classList.toggle('active');
         }
         
-        // Open chat with bounce animation
-        aiChatLauncher.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleChat();
-        });
-        
-        // Close chat when clicking outside
-        document.addEventListener('click', (e) => {
-            if (aiChat.classList.contains('active') && 
-                !aiChat.contains(e.target) && 
-                e.target !== aiChatLauncher) {
-                toggleChat();
-            }
-        });
+        // Open chat
+        aiChatLauncher.addEventListener('click', toggleChat);
+        aiChatHeader.addEventListener('click', toggleChat);
         
         // Close chat
         aiChatClose.addEventListener('click', (e) => {
@@ -3652,40 +3271,6 @@ const aiChat = document.getElementById('aiChat');
                 sendMessage();
             }
         });
-        
-        // Add slide animations to stylesheet
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideUp {
-                from { transform: translateY(120%); opacity: 0; }
-                to { transform: translateY(0); opacity: 1; }
-            }
-            @keyframes slideDown {
-                from { transform: translateY(0); opacity: 1; }
-                to { transform: translateY(120%); opacity: 0; }
-            }
-            .unread-badge {
-                position: absolute;
-                top: -5px;
-                right: -5px;
-                background: var(--secondary);
-                color: white;
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                font-size: 0.7rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .message-time {
-                font-size: 0.7rem;
-                opacity: 0.7;
-                text-align: right;
-                margin-top: 4px;
-            }
-        `;
-        document.head.appendChild(style);
         
         // Initialize chat when page loads
         initChat();
