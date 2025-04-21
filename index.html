@@ -4,7 +4,1595 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn with AI - Master Math</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #6c63ff;
+            --primary-light: #837dff;
+            --primary-dark: #564fcc;
+            --secondary: #ff9f43;
+            --secondary-light: #ffb572;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --success: #10b981;
+            --pink: #ec4899;
+            --purple: #8b5cf6;
+            --bg-gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --text-color: var(--dark);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode {
+            --primary: #837dff;
+            --primary-light: #a29cff;
+            --primary-dark: #6c63ff;
+            --secondary: #ffb572;
+            --secondary-light: #ffc795;
+            --dark: #f8fafc;
+            --light: #1e293b;
+            --gray: #64748b;
+            --card-bg: rgba(30, 41, 59, 0.9);
+            --text-color: var(--dark);
+            --header-bg: rgba(30, 41, 59, 0.95);
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s, color 0.2s;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Page container and switching */
+        .page-container {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .page-container.active {
+            display: block;
+        }
+
+        /* Header styles */
+        header {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-left: 1rem;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            margin-left: 1rem;
+        }
+
+        .language-selector select {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .language-selector select:hover {
+            border-color: var(--primary);
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(108, 99, 255, 0.2);
+        }
+
+        /* Auth button styles */
+        .auth-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-gradient);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-btn {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--primary);
+        }
+
+        .login-btn:hover::before {
+            opacity: 0.1;
+        }
+
+        .signup-btn {
+            background: var(--bg-gradient);
+            color: white;
+        }
+
+        .signup-btn:hover {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-light) 100%);
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 99, 255, 0.3);
+        }
+
+        .auth-btn .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .auth-btn:hover .icon {
+            transform: translateX(3px);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(108, 99, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(108, 99, 255, 0); }
+        }
+
+        .signup-btn {
+            animation: pulse 2s infinite;
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotate(30deg);
+        }
+
+        /* Main content styles */
+        .hero {
+            padding: 6rem 2rem;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .hero .auth-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Subjects section */
+        .subjects {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .subjects h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            position: relative;
+        }
+
+        .subjects h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .subject-card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .subject-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        .subject-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .subject-card p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        /* Math Subject Page */
+        .math-page {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .math-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .math-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .math-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .math-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .math-topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .topic-card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+            z-index: -1;
+            animation: rotate 15s linear infinite;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .topic-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .topic-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .topic-progress {
+            height: 8px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--bg-gradient);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        .start-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .math-features {
+            margin: 4rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* CTA section */
+        .cta-section {
+            background: var(--bg-gradient);
+            padding: 5rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.1)" d="M0,0 L100,0 L100,100 Q50,80 0,100 Z"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            opacity: 0.5;
+            z-index: 0;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .cta-section .auth-btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-section .login-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: white;
+        }
+
+        .cta-section .login-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Auth Pages with Colorful Background Animations */
+        .auth-page {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(255, 159, 67, 0.1) 100%);
+        }
+
+        .auth-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .auth-bg-shape {
+            position: absolute;
+            filter: blur(60px);
+            opacity: 0.7;
+            animation: float 25s infinite linear;
+            mix-blend-mode: multiply;
+        }
+
+        /* Colorful Shapes with Different Animations */
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary);
+            top: 10%;
+            left: 5%;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: 5%;
+            right: 5%;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation-delay: 3s;
+            animation-duration: 30s;
+        }
+
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: var(--success);
+            top: 40%;
+            right: 20%;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation-delay: 6s;
+            animation-duration: 20s;
+        }
+
+        .shape-4 {
+            width: 350px;
+            height: 350px;
+            background: var(--pink);
+            bottom: 15%;
+            left: 15%;
+            border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+            animation-delay: 9s;
+            animation-duration: 35s;
+        }
+
+        .shape-5 {
+            width: 200px;
+            height: 200px;
+            background: var(--purple);
+            top: 20%;
+            right: 10%;
+            border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+            animation-delay: 12s;
+            animation-duration: 28s;
+        }
+
+        /* Pulsing Glow Effect */
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+            50% { box-shadow: 0 0 40px 20px rgba(108, 99, 255, 0.5); }
+            100% { box-shadow: 0 0 20px 10px rgba(108, 99, 255, 0.3); }
+        }
+
+        .auth-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 3rem;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 30px rgba(108, 99, 255, 0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.5s ease-out forwards, pulse-glow 6s infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .auth-container h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .auth-container p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 8px;
+            font-size: 1rem;
+            background: var(--light);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            outline: none;
+        }
+
+        .auth-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-gradient);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .auth-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(108, 99, 255, 0.3);
+        }
+
+        .auth-switch {
+            margin-top: 1.5rem;
+            color: var(--gray);
+        }
+
+        .auth-switch a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Learning Interface Styles */
+        .learning-interface {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .learning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .back-to-topics {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-to-topics:hover {
+            text-decoration: underline;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+
+        .progress-circle {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--gray);
+        }
+
+        .progress-circle.active {
+            background-color: var(--success);
+        }
+
+        .progress-circle.completed {
+            background-color: var(--primary);
+        }
+
+        .lesson-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lesson-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .lesson-content {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-content img {
+            max-width: 100%;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .example {
+            background: rgba(108, 99, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            margin: 1.5rem 0;
+        }
+
+        .example-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            margin: 1.5rem 0;
+            border-radius: 0.8rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: #000;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .video-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-prompt {
+            font-size: 1.2rem;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .practice-container {
+            background: var(--card-bg);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .practice-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .problem-statement {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .answer-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-option {
+            background: var(--light);
+            border: 2px solid var(--gray);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .answer-option:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .answer-option.selected {
+            background: var(--primary-light);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .answer-option.correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .answer-option.incorrect {
+            background: var(--pink);
+            border-color: var(--pink);
+            color: white;
+        }
+
+        .math-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 0.8rem;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            background: var(--light);
+            color: var(--text-color);
+        }
+
+        .math-input:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        .submit-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 0.8rem;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .feedback.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-left: 4px solid var(--success);
+        }
+
+        .feedback.incorrect {
+            background: rgba(236, 72, 153, 0.2);
+            border-left: 4px solid var(--pink);
+        }
+
+        .feedback-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .next-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 0.8rem;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            margin-top: 1.5rem;
+        }
+
+        .next-btn:hover {
+            background: #0d9e6e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .step-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .completion-screen {
+            text-align: center;
+            padding: 3rem;
+            display: none;
+        }
+
+        .completion-icon {
+            font-size: 5rem;
+            color: var(--success);
+            margin-bottom: 1.5rem;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        .completion-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--success);
+        }
+
+        .completion-message {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Math expression styling */
+        .math-expression {
+            font-family: "Times New Roman", Times, serif;
+            font-style: italic;
+            font-size: 1.2em;
+        }
+
+        /* Gamification Elements */
+        .gamification-panel {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            width: 250px;
+            z-index: 90;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+        }
+
+        .gamification-panel.active {
+            transform: translateX(0);
+        }
+
+        .gamification-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .gamification-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .xp-bar {
+            height: 10px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 5px;
+            margin: 0.5rem 0;
+            overflow: hidden;
+        }
+
+        .xp-progress {
+            height: 100%;
+            background: var(--bg-gradient);
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .badge.locked {
+            filter: grayscale(100%);
+            opacity: 0.5;
+        }
+
+        .badge.unlocked {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(108, 99, 255, 0.5);
+        }
+
+        .badge-tooltip {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .badge:hover .badge-tooltip {
+            opacity: 1;
+        }
+
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.5rem;
+            background: rgba(255, 159, 67, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        .streak-icon {
+            color: var(--secondary);
+            font-size: 1.5rem;
+        }
+
+        .achievement-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 0.8rem;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 1000;
+            transform: translateX(300px);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+
+        .achievement-notification.active {
+            transform: translateX(0);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+        }
+
+        .achievement-text h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-color);
+        }
+
+        .achievement-text p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* AI Chat Interface */
+        .ai-chat {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            max-height: 500px;
+            background: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            z-index: 100;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ai-chat.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .ai-chat-header {
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 1rem 1rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .ai-chat-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .ai-chat-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Subject-specific AI Chat */
+        .ai-chat-subject-selector {
+            padding: 0.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 0.5rem 0.5rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-subject-selector select {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0.3rem;
+            font-size: 0.9rem;
+            width: 70%;
+        }
+
+        .ai-chat-subject-selector select option {
+            background: var(--primary);
+            color: white;
+        }
+
+        .ai-chat-subject-selector select:focus {
+            outline: none;
+        }
+
+        .ai-chat-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--gray);
+            padding: 0 0.5rem;
+            background: var(--primary-light);
+        }
+
+        .ai-chat-tab {
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-bottom: 2px solid transparent;
+            color: white;
+        }
+
+        .ai-chat-tab.active {
+            border-bottom: 2px solid white;
+            font-weight: 600;
+        }
+
+        .ai-chat-content {
+            display: none;
+        }
+
+        .ai-chat-content.active {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .ai-chat-add-subject {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ai-chat-body {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ai-message {
+            max-width: 80%;
+            padding: 0.8rem;
+            border-radius: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .ai-message.bot {
+            align-self: flex-start;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 0 1rem 1rem 1rem;
+        }
+
+        .ai-message.user {
+            align-self: flex-end;
+            background: var(--primary);
+            color: white;
+            border-radius: 1rem 0 1rem 1rem;
+        }
+
+        .ai-chat-input {
+            display: flex;
+            padding: 0.5rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid var(--gray);
+            border-radius: 0.5rem 0 0 0.5rem;
+            outline: none;
+            background: var(--light);
+            color: var(--text-color);
+        }
+
+        .ai-chat-input button {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .ai-chat-input button:hover {
+            background: var(--primary-dark);
+        }
+
+        .ai-chat-launcher {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 90;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .ai-chat-launcher:hover {
+            transform: scale(1.1);
+        }
+
+        .ai-chat-launcher-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            nav {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .hero h1, .math-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p, .math-header p {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons, .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .auth-buttons {
+                margin-left: 0;
+            }
+
+            .math-icon {
+                font-size: 4rem;
+            }
+            
+            .math-topics {
+                grid-template-columns: 1fr;
+            }
+            
+            .topic-card, .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .auth-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .auth-bg-shape {
+                filter: blur(40px);
+            }
+
+            .learning-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .answer-options {
+                grid-template-columns: 1fr;
+            }
+            
+            .lesson-container, .practice-container {
+                padding: 1.5rem;
+            }
+
+            /* Video responsive adjustments */
+            .video-prompt {
+                font-size: 1rem;
+            }
+            
+            .video-icon {
+                font-size: 3rem;
+            }
+
+            /* Gamification and chat adjustments */
+            .gamification-panel {
+                width: 250px;
+                right: 10px;
+            }
+
+            .ai-chat {
+                width: calc(100% - 40px);
+                right: 20px;
+                bottom: 80px;
+            }
+
+            .ai-chat-launcher {
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header (visible on all pages) -->
@@ -485,6 +2073,1234 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                // Header
+                logo: "Learn with AI",
+                home: "Home",
+                math: "Math",
+                login: "Login",
+                signup: "Sign Up",
+                
+                // Home Page
+                heroTitle: "Master Math with AI Assistance",
+                heroText: "Our intelligent tutor adapts to your learning style, providing personalized lessons and practice problems to help you excel in mathematics.",
+                startLearning: "Start Learning Free",
+                existingStudent: "Existing Student?",
+                featuredSubject: "Featured Subject",
+                mathDescription: "From basic arithmetic to advanced calculus, our AI tutor guides you through every mathematical concept with interactive lessons and real-time feedback.",
+                exploreMath: "Explore Math",
+                ctaTitle: "Ready to Transform Your Math Skills?",
+                ctaText: "Join thousands of students who are mastering mathematics with our AI-powered learning platform.",
+                getStarted: "Get Started Free",
+                continueLogin: "Login to Continue",
+                
+                // Math Page
+                mathTitle: "Mathematics",
+                mathText: "Master mathematical concepts with our AI-powered learning system. From basic arithmetic to advanced calculus, we've got you covered.",
+                arithmetic: "Arithmetic Basics",
+                arithmeticDesc: "Learn addition, subtraction, multiplication, and division with interactive exercises.",
+                algebra: "Algebra Fundamentals",
+                algebraDesc: "Master variables, equations, and functions with step-by-step guidance.",
+                geometry: "Geometry",
+                geometryDesc: "Explore shapes, angles, and spatial relationships with visual learning tools.",
+                calculus: "Calculus",
+                calculusDesc: "Understand derivatives, integrals, and limits with AI-powered explanations.",
+                statistics: "Statistics",
+                statisticsDesc: "Learn data analysis, probability, and statistical methods with real-world examples.",
+                problemSolving: "Problem Solving",
+                problemSolvingDesc: "Develop critical thinking skills with challenging math problems and puzzles.",
+                aiTutor: "AI Tutor",
+                aiTutorDesc: "Get personalized explanations and step-by-step solutions tailored to your learning style.",
+                interactiveExercises: "Interactive Exercises",
+                interactiveExercisesDesc: "Practice with engaging, interactive problems that adapt to your skill level.",
+                progressTracking: "Progress Tracking",
+                progressTrackingDesc: "Monitor your improvement with detailed analytics and personalized recommendations.",
+                gamification: "Gamification",
+                gamificationDesc: "Earn badges and rewards as you master new concepts and complete challenges.",
+                mathCtaTitle: "Ready to Master Math?",
+                mathCtaText: "Join thousands of students who are transforming their math skills with our AI-powered platform.",
+                
+                // Auth Pages
+                welcomeBack: "Welcome Back",
+                signInText: "Sign in to continue your learning journey",
+                email: "Email",
+                enterEmail: "Enter your email",
+                password: "Password",
+                enterPassword: "Enter your password",
+                dontHaveAccount: "Don't have an account?",
+                createAccount: "Create Your Account",
+                startExperience: "Start your personalized learning experience today",
+                fullName: "Full Name",
+                yourName: "Your full name",
+                confirmPassword: "Confirm Password",
+                minPassword: "Create a password (min 8 characters)",
+                alreadyHaveAccount: "Already have an account?",
+                
+                // Learning Interface
+                backToTopics: "Back to Topics",
+                step: "Step",
+                of: "of",
+                arithmeticLessonTitle: "Understanding Basic Addition",
+                arithmeticLesson1: "Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.",
+                arithmeticExample1: "If you have 3 apples and you get 2 more apples, how many apples do you have in total?",
+                arithmeticExample1Explanation: "This means when you combine 3 and 2, the total is 5.",
+                arithmeticLesson2: "The numbers being added are called \"addends\" and the result is called the \"sum\".",
+                example: "Example",
+                visualization: "Visualization",
+                arithmeticVisualExplanation: "Visual representation helps understand how quantities combine.",
+                practice: "Practice",
+                arithmeticProblem1: "What is the sum of 4 and 5?",
+                correct: "Correct! 🎉",
+                arithmeticFeedbackCorrect: "Great job! 4 + 5 equals 9. You're getting the hang of addition!",
+                incorrect: "Not Quite",
+                arithmeticFeedbackIncorrect: "Remember, addition combines quantities. Try counting up from the larger number: 5... 6, 7, 8, 9.",
+                submitAnswer: "Submit Answer",
+                nextQuestion: "Next Question",
+                previous: "Previous",
+                next: "Next",
+                lessonComplete: "Lesson Complete!",
+                completionMessage: "Congratulations! You've completed this lesson on basic addition. You're one step closer to mastering arithmetic!",
+                continueLearning: "Continue Learning",
+                watchVideo: "Watch explanatory video",
+                watchExample: "Watch worked example",
+                watchSummary: "Watch lesson summary",
+                
+                // Gamification
+                myProgress: "My Progress",
+                dayStreak: "3-day streak",
+                myBadges: "My Badges",
+                starterBadge: "Starter Badge: Completed first lesson",
+                streakBadge: "3-Day Streak: Learned for 3 consecutive days",
+                masterBadge: "Master: Complete all lessons in a topic",
+                championBadge: "Champion: Earn all badges",
+                achievementUnlocked: "Achievement Unlocked!",
+                starterAchievement: "Starter Badge: Completed your first lesson",
+                
+                // AI Chat
+                aiWelcome: "Hello! I'm your AI tutor. How can I help you with your learning today?",
+                askQuestion: "Ask me anything...",
+                science: "Science",
+                history: "History",
+                language: "Language"
+            },
+            ro: {
+                // Header
+                logo: "Învață cu AI",
+                home: "Acasă",
+                math: "Matematică",
+                login: "Autentificare",
+                signup: "Înregistrare",
+                
+                // Home Page
+                heroTitle: "Stăpânește Matematica cu Ajutorul AI",
+                heroText: "Tutorul nostru inteligent se adaptează stilului tău de învățare, oferind lecții personalizate și probleme de practică pentru a te ajuta să excelezi în matematică.",
+                startLearning: "Începe să Înveți Gratuit",
+                existingStudent: "Ești deja student?",
+                featuredSubject: "Materie Recomandată",
+                mathDescription: "De la aritmetica de bază la calcul avansat, tutorul nostru AI te ghidează prin fiecare concept matematic cu lecții interactive și feedback în timp real.",
+                exploreMath: "Explorează Matematica",
+                ctaTitle: "Ești Gata să-ți Îmbunătățești Abilitățile Matematice?",
+                ctaText: "Alătură-te miilor de studenți care stăpânesc matematica cu platforma noastră de învățare alimentată de AI.",
+                getStarted: "Începe Gratuit",
+                continueLogin: "Autentifică-te",
+                
+                // Math Page
+                mathTitle: "Matematică",
+                mathText: "Stăpânește concepte matematice cu sistemul nostru de învățare alimentat de AI. De la aritmetică de bază la calcul avansat, te avem acoperit.",
+                arithmetic: "Bazele Aritmeticii",
+                arithmeticDesc: "Învață adunarea, scăderea, înmulțirea și împărțirea cu exerciții interactive.",
+                algebra: "Fundamentele Algebrei",
+                algebraDesc: "Stăpânește variabilele, ecuațiile și funcțiile cu ghidare pas cu pas.",
+                geometry: "Geometrie",
+                geometryDesc: "Explorează forme, unghiuri și relații spațiale cu instrumente vizuale de învățare.",
+                calculus: "Calcul",
+                calculusDesc: "Înțelege derivatele, integralele și limitele cu explicații bazate pe AI.",
+                statistics: "Statistică",
+                statisticsDesc: "Învață analiza datelor, probabilitatea și metodele statistice cu exemple din lumea reală.",
+                problemSolving: "Rezolvare de Probleme",
+                problemSolvingDesc: "Dezvoltă abilități de gândire critică cu probleme și puzzle-uri matematice provocatoare.",
+                aiTutor: "Tutor AI",
+                aiTutorDesc: "Obține explicații personalizate și soluții pas cu pas adaptate stilului tău de învățare.",
+                interactiveExercises: "Exerciții Interactive",
+                interactiveExercisesDesc: "Exersează cu probleme interactive care se adaptează la nivelul tău de abilitate.",
+                progressTracking: "Urmărire Progres",
+                progressTrackingDesc: "Monitorizează îmbunătățirea ta cu analize detaliate și recomandări personalizate.",
+                gamification: "Gamificare",
+                gamificationDesc: "Câștigă insigne și recompense pe măsură ce stăpânești noi concepte și completezi provocări.",
+                mathCtaTitle: "Ești Gata să Stăpânești Matematica?",
+                mathCtaText: "Alătură-te miilor de studenți care își transformă abilitățile matematice cu platforma noastră alimentată de AI.",
+                
+                // Auth Pages
+                welcomeBack: "Bine ai revenit",
+                signInText: "Autentifică-te pentru a-ți continua călătoria de învățare",
+                email: "Email",
+                enterEmail: "Introdu adresa de email",
+                password: "Parolă",
+                enterPassword: "Introdu parola",
+                dontHaveAccount: "Nu ai un cont?",
+                createAccount: "Creează Cont",
+                startExperience: "Începe experiența ta personalizată de învățare astăzi",
+                fullName: "Nume complet",
+                yourName: "Numele tău complet",
+                confirmPassword: "Confirmă Parola",
+                minPassword: "Creează o parolă (minim 8 caractere)",
+                alreadyHaveAccount: "Ai deja un cont?",
+                
+                // Learning Interface
+                backToTopics: "Înapoi la Subiecte",
+                step: "Pasul",
+                of: "din",
+                arithmeticLessonTitle: "Înțelegerea Adunării de Bază",
+                arithmeticLesson1: "Adunarea este una dintre cele patru operații aritmetice de bază. Combină două sau mai multe numere pentru a forma o sumă.",
+                arithmeticExample1: "Dacă ai 3 mere și primești încă 2 mere, câte mere ai în total?",
+                arithmeticExample1Explanation: "Aceasta înseamnă că atunci când combini 3 și 2, totalul este 5.",
+                arithmeticLesson2: "Numerele care se adună se numesc \"termeni\" iar rezultatul se numește \"sumă\".",
+                example: "Exemplu",
+                visualization: "Vizualizare",
+                arithmeticVisualExplanation: "Reprezentarea vizuală ajută la înțelegerea modului în care se combină cantitățile.",
+                practice: "Exercițiu",
+                arithmeticProblem1: "Care este suma dintre 4 și 5?",
+                correct: "Corect! 🎉",
+                arithmeticFeedbackCorrect: "Foarte bine! 4 + 5 este egal cu 9. Începi să înțelegi adunarea!",
+                incorrect: "Nu chiar",
+                arithmeticFeedbackIncorrect: "Ține minte, adunarea combină cantități. Încearcă să numeri pornind de la numărul mai mare: 5... 6, 7, 8, 9.",
+                submitAnswer: "Trimite Răspunsul",
+                nextQuestion: "Următoarea Întrebare",
+                previous: "Anterior",
+                next: "Următorul",
+                lessonComplete: "Lecție Finalizată!",
+                completionMessage: "Felicitări! Ai finalizat această lecție despre adunarea de bază. Ești cu un pas mai aproape de a stăpâni aritmetica!",
+                continueLearning: "Continuă Învățarea",
+                watchVideo: "Urmărește videoclip explicativ",
+                watchExample: "Urmărește exemplu rezolvat",
+                watchSummary: "Urmărește rezumatul lecției",
+                
+                // Gamification
+                myProgress: "Progresul meu",
+                dayStreak: "Șir de 3 zile",
+                myBadges: "Insignele mele",
+                starterBadge: "Insigna Începător: Ai finalizat prima lecție",
+                streakBadge: "Șir de 3 Zile: Ai învățat timp de 3 zile consecutive",
+                masterBadge: "Maestru: Finalizează toate lecțiile dintr-un subiect",
+                championBadge: "Campion: Câștigă toate insignele",
+                achievementUnlocked: "Realizare Deblocată!",
+                starterAchievement: "Insigna Începător: Ai finalizat prima lecție",
+                
+                // AI Chat
+                aiWelcome: "Bună! Sunt tutorul tău AI. Cu ce te pot ajuta în învățarea ta astăzi?",
+                askQuestion: "Întreabă-mă orice...",
+                science: "Știință",
+                history: "Istorie",
+                language: "Limba"
+            }
+        };
+
+        // Video Resources - Replace with your actual YouTube video IDs
+        const videoResources = {
+            en: {
+                arithmetic: {
+                    lesson: "https://www.youtube.com/embed/Aq8l2cdjWtE", // Basic addition
+                    practice: "https://www.youtube.com/embed/Fe8u2I3vmHU", // Addition examples
+                    summary: "https://www.youtube.com/embed/Fe8u2I3vmHU"  // Addition summary
+                },
+                algebra: {
+                    lesson: "https://www.youtube.com/embed/NybHckSEQBI", // Basic algebra
+                    practice: "https://www.youtube.com/embed/WgESpw4_J5s", // Algebra examples
+                    summary: "https://www.youtube.com/embed/WgESpw4_J5s"  // Algebra summary
+                },
+                geometry: {
+                    lesson: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Basic geometry
+                    practice: "https://www.youtube.com/embed/3S1jZ4xWrN4", // Geometry examples
+                    summary: "https://www.youtube.com/embed/3S1jZ4xWrN4"  // Geometry summary
+                },
+                calculus: {
+                    lesson: "https://www.youtube.com/embed/5yfh5cf4-0w", // Basic calculus
+                    practice: "https://www.youtube.com/embed/5yfh5cf4-0w", // Calculus examples
+                    summary: "https://www.youtube.com/embed/5yfh5cf4-0w"  // Calculus summary
+                },
+                statistics: {
+                    lesson: "https://www.youtube.com/embed/xxpc-HPKN28", // Basic statistics
+                    practice: "https://www.youtube.com/embed/xxpc-HPKN28", // Statistics examples
+                    summary: "https://www.youtube.com/embed/xxpc-HPKN28"  // Statistics summary
+                },
+                problemSolving: {
+                    lesson: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem solving
+                    practice: "https://www.youtube.com/embed/6sBB-gRhfjE", // Problem examples
+                    summary: "https://www.youtube.com/embed/6sBB-gRhfjE"  // Problem solving summary
+                }
+            },
+            ro: {
+                arithmetic: {
+                    lesson: "https://www.youtube.com/embed/ABC123", // Romanian addition video
+                    practice: "https://www.youtube.com/embed/DEF456", // Romanian examples
+                    summary: "https://www.youtube.com/embed/GHI789"  // Romanian summary
+                },
+                algebra: {
+                    lesson: "https://www.youtube.com/embed/JKL012", // Romanian algebra video
+                    practice: "https://www.youtube.com/embed/MNO345", // Romanian examples
+                    summary: "https://www.youtube.com/embed/PQR678"  // Romanian summary
+                },
+                geometry: {
+                    lesson: "https://www.youtube.com/embed/STU901", // Romanian geometry video
+                    practice: "https://www.youtube.com/embed/VWX234", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA567"  // Romanian summary
+                },
+                calculus: {
+                    lesson: "https://www.youtube.com/embed/BCD890", // Romanian calculus video
+                    practice: "https://www.youtube.com/embed/EFG123", // Romanian examples
+                    summary: "https://www.youtube.com/embed/HIJ456"  // Romanian summary
+                },
+                statistics: {
+                    lesson: "https://www.youtube.com/embed/KLM789", // Romanian statistics video
+                    practice: "https://www.youtube.com/embed/NOP012", // Romanian examples
+                    summary: "https://www.youtube.com/embed/QRS345"  // Romanian summary
+                },
+                problemSolving: {
+                    lesson: "https://www.youtube.com/embed/TUV678", // Romanian problem solving video
+                    practice: "https://www.youtube.com/embed/WXY901", // Romanian examples
+                    summary: "https://www.youtube.com/embed/YZA234"  // Romanian summary
+                }
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'en';
+
+        // Function to translate the page
+        function translatePage(lang) {
+            currentLanguage = lang;
+            document.getElementById('languageSelect').value = lang;
+            
+            // Get all elements with data-i18n attribute
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            // Translate each element
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Translate placeholders
+            const inputs = document.querySelectorAll('[data-i18n-placeholder]');
+            inputs.forEach(input => {
+                const key = input.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    input.placeholder = translations[lang][key];
+                }
+            });
+            
+            // Update lesson content if on learning page
+            if (document.getElementById('learningPage').classList.contains('active')) {
+                updateLessonContent();
+            }
+        }
+
+        // Initialize language from localStorage or browser preference
+        function initLanguage() {
+            const savedLang = localStorage.getItem('language');
+            const browserLang = navigator.language.substring(0, 2);
+            
+            if (savedLang) {
+                currentLanguage = savedLang;
+            } else if (browserLang === 'ro') {
+                currentLanguage = 'ro';
+            }
+            
+            translatePage(currentLanguage);
+        }
+
+        // Page Management System
+        const pages = {
+            home: document.getElementById('homePage'),
+            math: document.getElementById('mathPage'),
+            login: document.getElementById('loginPage'),
+            signup: document.getElementById('signupPage'),
+            learning: document.getElementById('learningPage')
+        };
+
+        // Show a specific page and hide others
+        function showPage(pageId) {
+            Object.keys(pages).forEach(key => {
+                if (key === pageId) {
+                    pages[key].classList.add('active');
+                    
+                    // Animate progress bars when math page is shown
+                    if (key === 'math') {
+                        setTimeout(() => {
+                            document.querySelectorAll('.progress-bar').forEach(bar => {
+                                const targetWidth = bar.style.width;
+                                bar.style.width = '0';
+                                setTimeout(() => {
+                                    bar.style.width = targetWidth;
+                                }, 100);
+                            });
+                        }, 500);
+                    }
+                    
+                    // Reset learning interface when showing learning page
+                    if (key === 'learning') {
+                        resetPracticeInterface();
+                    }
+                } else {
+                    pages[key].classList.remove('active');
+                }
+            });
+            window.scrollTo(0, 0);
+        }
+
+        // Function to load video into placeholder
+        function loadVideo(containerId, placeholderId, videoUrl) {
+            const container = document.getElementById(containerId);
+            const placeholder = document.getElementById(placeholderId);
+            
+            // Clear any existing iframe
+            container.innerHTML = '';
+            container.appendChild(placeholder);
+            
+            placeholder.addEventListener('click', function() {
+                container.innerHTML = `
+                    <iframe class="video-iframe" src="${videoUrl}?autoplay=1&rel=0" 
+                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                `;
+            });
+        }
+
+        // Set home as default page
+        showPage('home');
+
+        // Navigation event listeners
+        document.getElementById('homeLink').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('home');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage(link.dataset.page);
+            });
+        });
+
+        // Auth navigation
+        document.getElementById('loginNavBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('signupNavBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('heroLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('heroSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('cardSignupBtn').addEventListener('click', () => showPage('math'));
+        document.getElementById('ctaLoginBtn').addEventListener('click', () => showPage('login'));
+        document.getElementById('ctaSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('switchToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('login');
+        });
+        document.getElementById('switchToSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('signup');
+        });
+
+        // Language selector event
+        document.getElementById('languageSelect').addEventListener('change', (e) => {
+            const lang = e.target.value;
+            localStorage.setItem('language', lang);
+            translatePage(lang);
+        });
+
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌓';
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert(currentLanguage === 'en' ? 'Login successful! Redirecting to dashboard...' : 'Autentificare reușită! Redirecționare către panoul de control...');
+            // In a real app, you would handle authentication here
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const password = document.getElementById('signup-password').value;
+            const confirm = document.getElementById('signup-confirm').value;
+            
+            if (password !== confirm) {
+                alert(currentLanguage === 'en' ? 'Passwords do not match!' : 'Parolele nu se potrivesc!');
+                return;
+            }
+            
+            alert(currentLanguage === 'en' ? 'Account created successfully! Redirecting to dashboard...' : 'Cont creat cu succes! Redirecționare către panoul de control...');
+            // In a real app, you would handle registration here
+        });
+
+        // Enhanced button animations
+        const authButtons = document.querySelectorAll('.auth-btn, .start-btn');
+        
+        authButtons.forEach(button => {
+            button.addEventListener('mouseenter', () => {
+                button.style.transform = 'translateY(-3px)';
+                button.style.boxShadow = '0 8px 25px rgba(108, 99, 255, 0.3)';
+            });
+            
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'translateY(0)';
+                if (button.classList.contains('signup-btn') || button.classList.contains('start-btn')) {
+                    button.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    button.style.boxShadow = 'none';
+                }
+            });
+            
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'translateY(1px)';
+            });
+            
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'translateY(-3px)';
+            });
+        });
+
+        // Learning Interface Functionality
+        let currentPracticeStep = 1;
+        const totalPracticeSteps = 4;
+        let selectedAnswer = null;
+        let answerSubmitted = false;
+        let currentTopic = 'arithmetic';
+
+        // Back to topics button
+        document.getElementById('backToTopics').addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('math');
+        });
+
+        // Start learning buttons functionality
+        document.querySelectorAll('.start-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                currentTopic = this.getAttribute('data-topic');
+                showPage('learning');
+            });
+        });
+
+        // Function to reset the practice interface
+        function resetPracticeInterface() {
+            currentPracticeStep = 1;
+            selectedAnswer = null;
+            answerSubmitted = false;
+            
+            // Update progress indicator
+            document.getElementById('currentStep').textContent = currentPracticeStep;
+            document.getElementById('totalSteps').textContent = totalPracticeSteps;
+            
+            // Reset progress circles
+            const progressCircles = document.querySelectorAll('.progress-circle');
+            progressCircles.forEach((circle, index) => {
+                circle.classList.remove('active', 'completed');
+                if (index < currentPracticeStep - 1) {
+                    circle.classList.add('completed');
+                } else if (index === currentPracticeStep - 1) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            // Reset practice UI
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.getElementById('correctFeedback').style.display = 'none';
+            document.getElementById('incorrectFeedback').style.display = 'none';
+            document.getElementById('submitAnswer').style.display = 'block';
+            document.getElementById('nextQuestion').style.display = 'none';
+            document.getElementById('prevStep').disabled = true;
+            
+            // Hide completion screen
+            document.getElementById('completionScreen').style.display = 'none';
+            document.querySelector('.learning-interface').style.display = 'block';
+            
+            // Update lesson content based on current topic and step
+            updateLessonContent();
+        }
+
+        // Function to update lesson content based on current topic and step
+        function updateLessonContent() {
+            // Topic-specific content (in a real app, this would come from a database)
+            const topics = {
+                arithmetic: {
+                    title: currentLanguage === 'en' ? 'Understanding Basic Addition' : 'Înțelegerea Adunării de Bază',
+                    steps: [
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is one of the four basic operations of arithmetic. It combines two or more numbers to form a sum.' : 
+                                'Adunarea este una dintre cele patru operații aritmetice de bază. Combină două sau mai multe numere pentru a forma o sumă.',
+                            example: currentLanguage === 'en' ? 
+                                'If you have 3 apples and you get 2 more apples, how many apples do you have in total?' : 
+                                'Dacă ai 3 mere și primești încă 2 mere, câte mere ai în total?',
+                            exampleExplanation: currentLanguage === 'en' ? 
+                                'This means when you combine 3 and 2, the total is 5.' : 
+                                'Aceasta înseamnă că atunci când combini 3 și 2, totalul este 5.'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'The numbers being added are called "addends" and the result is called the "sum".' : 
+                                'Numerele care se adună se numesc "termeni" iar rezultatul se numește "sumă".',
+                            example: currentLanguage === 'en' ? 
+                                'Visual representation helps understand how quantities combine.' : 
+                                'Reprezentarea vizuală ajută la înțelegerea modului în care se combină cantitățile.'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is commutative, meaning the order of the numbers doesn\'t change the result (a + b = b + a).' : 
+                                'Adunarea este comutativă, ceea ce înseamnă că ordinea numerelor nu schimbă rezultatul (a + b = b + a).',
+                            example: currentLanguage === 'en' ? 
+                                'For example: 4 + 5 = 5 + 4 = 9' : 
+                                'De exemplu: 4 + 5 = 5 + 4 = 9'
+                        },
+                        {
+                            lesson: currentLanguage === 'en' ? 
+                                'Addition is also associative, meaning when adding three or more numbers, the grouping doesn\'t matter ((a + b) + c = a + (b + c)).' : 
+                                'Adunarea este și asociativă, ceea ce înseamnă că atunci când aduni trei sau mai multe numere, gruparea nu contează ((a + b) + c = a + (b + c)).',
+                            example: currentLanguage === 'en' ? 
+                                'For example: (2 + 3) + 4 = 2 + (3 + 4) = 9' : 
+                                'De exemplu: (2 + 3) + 4 = 2 + (3 + 4) = 9'
+                        }
+                    ],
+                    problems: [
+                        {
+                            question: currentLanguage === 'en' ? 'What is the sum of 4 and 5?' : 'Care este suma dintre 4 și 5?',
+                            options: ['8', '9', '10', '11'],
+                            correctAnswer: '9',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Great job! 4 + 5 equals 9. You\'re getting the hang of addition!' : 'Foarte bine! 4 + 5 este egal cu 9. Începi să înțelegi adunarea!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Remember, addition combines quantities. Try counting up from the larger number: 5... 6, 7, 8, 9.' : 'Ține minte, adunarea combină cantități. Încearcă să numeri pornind de la numărul mai mare: 5... 6, 7, 8, 9.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'Calculate: 7 + 3 = ?' : 'Calculează: 7 + 3 = ?',
+                            options: ['9', '10', '11', '12'],
+                            correctAnswer: '10',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Excellent! 7 + 3 equals 10. You\'re doing great!' : 'Excelent! 7 + 3 este egal cu 10. Te descurci minunat!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Try counting up from the larger number: 7... 8, 9, 10.' : 'Încearcă să numeri pornind de la numărul mai mare: 7... 8, 9, 10.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'If you have 6 pencils and get 4 more, how many do you have?' : 'Dacă ai 6 creioane și primești încă 4, câte ai în total?',
+                            options: ['9', '10', '11', '12'],
+                            correctAnswer: '10',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Perfect! 6 + 4 equals 10. You\'ve mastered this concept!' : 'Perfect! 6 + 4 este egal cu 10. Ai stăpânit acest concept!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Remember to combine the quantities: start with 6 and count up 4 more.' : 'Nu uita să combini cantitățile: începe cu 6 și numără încă 4.'
+                        },
+                        {
+                            question: currentLanguage === 'en' ? 'Solve: 9 + 2 = ?' : 'Rezolvă: 9 + 2 = ?',
+                            options: ['10', '11', '12', '13'],
+                            correctAnswer: '11',
+                            feedbackCorrect: currentLanguage === 'en' ? 'Fantastic! 9 + 2 equals 11. You\'re ready for more challenging problems!' : 'Fantastic! 9 + 2 este egal cu 11. Ești pregătit pentru probleme mai provocatoare!',
+                            feedbackIncorrect: currentLanguage === 'en' ? 'Try counting up from 9: 10, 11.' : 'Încearcă să numeri pornind de la 9: 10, 11.'
+                        }
+                    ],
+                    completionMessage: currentLanguage === 'en' ? 
+                        'Congratulations! You\'ve completed this lesson on basic addition. You\'re one step closer to mastering arithmetic!' : 
+                        'Felicitări! Ai finalizat această lecție despre adunarea de bază. Ești cu un pas mai aproape de a stăpâni aritmetica!'
+                },
+                // Other topics would be defined similarly
+                algebra: {
+                    title: currentLanguage === 'en' ? 'Algebra Fundamentals' : 'Fundamentele Algebrei',
+                    // ... similar structure for algebra content
+                },
+                geometry: {
+                    title: currentLanguage === 'en' ? 'Geometry Basics' : 'Bazele Geometriei',
+                    // ... similar structure for geometry content
+                }
+            };
+
+            const topic = topics[currentTopic] || topics.arithmetic;
+            
+            // Update lesson title
+            document.getElementById('lessonTitle').textContent = topic.title;
+            
+            // Update lesson content
+            const lessonContent = document.getElementById('lessonContent');
+            const currentStepContent = topic.steps[currentPracticeStep - 1];
+            
+            lessonContent.innerHTML = `
+                <p>${currentStepContent.lesson}</p>
+                
+                <!-- Video Placeholder -->
+                <div class="video-container" id="lessonVideoContainer">
+                    <div class="video-placeholder" id="lessonVideoPlaceholder">
+                        <div class="video-icon">▶️</div>
+                        <div class="video-prompt" data-i18n="watchVideo">${translations[currentLanguage].watchVideo}</div>
+                    </div>
+                </div>
+                
+                <div class="example">
+                    <div class="example-title">${currentLanguage === 'en' ? 'Example' : 'Exemplu'}</div>
+                    <p>${currentStepContent.example}</p>
+                    ${currentStepContent.example.includes('+') ? `<p class="math-expression">${currentStepContent.example.split('?')[0]}</p>` : ''}
+                    <p>${currentStepContent.exampleExplanation}</p>
+                </div>
+            `;
+            
+            // Load video for lesson
+            const videos = videoResources[currentLanguage][currentTopic] || videoResources.en.arithmetic;
+            loadVideo('lessonVideoContainer', 'lessonVideoPlaceholder', videos.lesson);
+            
+            // Update problem statement and options
+            const problem = topic.problems[currentPracticeStep - 1];
+            document.getElementById('problemStatement').textContent = problem.question;
+            
+            const answerOptions = document.getElementById('answerOptions');
+            answerOptions.innerHTML = '';
+            problem.options.forEach(option => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'answer-option';
+                optionElement.dataset.value = option;
+                optionElement.textContent = option;
+                answerOptions.appendChild(optionElement);
+                
+                optionElement.addEventListener('click', function() {
+                    if (answerSubmitted) return;
+                    
+                    document.querySelectorAll('.answer-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    this.classList.add('selected');
+                    selectedAnswer = this.dataset.value;
+                });
+            });
+            
+            // Update feedback messages
+            document.getElementById('correctFeedbackText').textContent = problem.feedbackCorrect;
+            document.getElementById('incorrectFeedbackText').textContent = problem.feedbackIncorrect;
+            
+            // Update submit button with correct answer
+            document.getElementById('submitAnswer').dataset.correctAnswer = problem.correctAnswer;
+            
+            // Update completion message
+            document.getElementById('completionMessage').textContent = topic.completionMessage;
+            
+            // Load practice video
+            loadVideo('practiceVideoContainer', 'practiceVideoPlaceholder', videos.practice);
+            
+            // Load summary video
+            loadVideo('summaryVideoContainer', 'summaryVideoPlaceholder', videos.summary);
+        }
+
+        // Answer selection
+        document.querySelectorAll('.answer-option').forEach(option => {
+            option.addEventListener('click', function() {
+                if (answerSubmitted) return;
+                
+                document.querySelectorAll('.answer-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                this.classList.add('selected');
+                selectedAnswer = this.dataset.value;
+            });
+        });
+
+        // Submit answer
+        document.getElementById('submitAnswer').addEventListener('click', function() {
+            if (!selectedAnswer) {
+                alert(currentLanguage === 'en' ? 'Please select an answer' : 'Te rugăm să selectezi un răspuns');
+                return;
+            }
+            
+            answerSubmitted = true;
+            const correctAnswer = this.dataset.correctAnswer;
+            
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+                if (option.dataset.value === correctAnswer) {
+                    option.classList.add('correct');
+                } else if (option.classList.contains('selected')) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            if (selectedAnswer === correctAnswer) {
+                document.getElementById('correctFeedback').style.display = 'block';
+                document.getElementById('incorrectFeedback').style.display = 'none';
+                
+                // Award XP for correct answer
+                awardXP(10);
+            } else {
+                document.getElementById('correctFeedback').style.display = 'none';
+                document.getElementById('incorrectFeedback').style.display = 'block';
+                
+                // Award some XP even for incorrect answer (participation)
+                awardXP(5);
+            }
+            
+            this.style.display = 'none';
+            document.getElementById('nextQuestion').style.display = 'block';
+        });
+
+        // Next question
+        document.getElementById('nextQuestion').addEventListener('click', function() {
+            currentPracticeStep++;
+            
+            // Update progress indicator
+            document.getElementById('currentStep').textContent = currentPracticeStep;
+            
+            // Update progress circles
+            const progressCircles = document.querySelectorAll('.progress-circle');
+            progressCircles.forEach((circle, index) => {
+                circle.classList.remove('active');
+                if (index < currentPracticeStep - 1) {
+                    circle.classList.add('completed');
+                } else if (index === currentPracticeStep - 1) {
+                    circle.classList.add('active');
+                }
+            });
+            
+            if (currentPracticeStep > totalPracticeSteps) {
+                // Show completion screen
+                document.querySelector('.learning-interface').style.display = 'none';
+                document.getElementById('completionScreen').style.display = 'block';
+                
+                // Award XP and check for achievements
+                awardXP(50);
+                checkForAchievements();
+                return;
+            }
+            
+            // Reset for next question
+            selectedAnswer = null;
+            answerSubmitted = false;
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            document.getElementById('correctFeedback').style.display = 'none';
+            document.getElementById('incorrectFeedback').style.display = 'none';
+            document.getElementById('submitAnswer').style.display = 'block';
+            this.style.display = 'none';
+            
+            // Update navigation buttons
+            document.getElementById('prevStep').disabled = currentPracticeStep === 1;
+            
+            // Update lesson content
+            updateLessonContent();
+        });
+
+        // Navigation buttons
+        document.getElementById('prevStep').addEventListener('click', function() {
+            if (currentPracticeStep > 1) {
+                currentPracticeStep--;
+                
+                // Update progress indicator
+                document.getElementById('currentStep').textContent = currentPracticeStep;
+                
+                // Update progress circles
+                const progressCircles = document.querySelectorAll('.progress-circle');
+                progressCircles.forEach((circle, index) => {
+                    circle.classList.remove('active', 'completed');
+                    if (index < currentPracticeStep - 1) {
+                        circle.classList.add('completed');
+                    } else if (index === currentPracticeStep - 1) {
+                        circle.classList.add('active');
+                    }
+                });
+                
+                // Reset for previous question
+                selectedAnswer = null;
+                answerSubmitted = false;
+                document.querySelectorAll('.answer-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                document.getElementById('correctFeedback').style.display = 'none';
+                document.getElementById('incorrectFeedback').style.display = 'none';
+                document.getElementById('submitAnswer').style.display = 'block';
+                document.getElementById('nextQuestion').style.display = 'none';
+                
+                // Update navigation buttons
+                this.disabled = currentPracticeStep === 1;
+                
+                // Update lesson content
+                updateLessonContent();
+            }
+        });
+
+        document.getElementById('nextStep').addEventListener('click', function() {
+            document.getElementById('nextQuestion').click();
+        });
+
+        // Continue learning button
+        document.getElementById('continueLearning').addEventListener('click', function() {
+            showPage('math');
+        });
+
+        // Gamification System
+        let xp = 0;
+        let streak = 0;
+        const unlockedBadges = ['starter', 'streak'];
+        
+        // Toggle gamification panel
+        document.getElementById('gamificationToggle').addEventListener('click', function() {
+            document.getElementById('gamificationPanel').classList.toggle('active');
+        });
+        
+        // Award XP function
+        function awardXP(amount) {
+            xp += amount;
+            const xpBar = document.getElementById('xpProgress');
+            const newWidth = Math.min(100, (xp % 1000) / 10); // Show progress to next level (1000 XP per level)
+            xpBar.style.width = `${newWidth}%`;
+            
+            // Check for level up
+            if (xp % 1000 === 0) {
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Level Up!' : 'Nivel Crescut!',
+                    currentLanguage === 'en' ? `You've reached level ${Math.floor(xp / 1000) + 1}!` : `Ai atins nivelul ${Math.floor(xp / 1000) + 1}!`
+                );
+            }
+        }
+        
+        // Check for achievements
+        function checkForAchievements() {
+            // Check if this is the first completed lesson
+            if (!unlockedBadges.includes('starter')) {
+                unlockedBadges.push('starter');
+                document.querySelector('.badge[data-badge="starter"]').classList.add('unlocked');
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Starter Badge Unlocked!' : 'Insigna Începător Deblocată!',
+                    currentLanguage === 'en' ? 'Congratulations on completing your first lesson!' : 'Felicitări pentru finalizarea primei lecții!'
+                );
+            }
+            
+            // Check for streak achievements
+            streak++;
+            if (streak >= 3 && !unlockedBadges.includes('streak')) {
+                unlockedBadges.push('streak');
+                document.querySelector('.badge[data-badge="streak"]').classList.add('unlocked');
+                showAchievementNotification(
+                    currentLanguage === 'en' ? 'Streak Badge Unlocked!' : 'Insigna Serii Deblocată!',
+                    currentLanguage === 'en' ? 'You\'ve learned for 3 consecutive days!' : 'Ai învățat timp de 3 zile consecutive!'
+                );
+            }
+            
+            // Update streak counter
+            document.getElementById('streakCount').textContent = 
+                currentLanguage === 'en' ? `${streak}-day streak` : `Șir de ${streak} zile`;
+        }
+        
+        // Show achievement notification
+        function showAchievementNotification(title, description) {
+            const notification = document.getElementById('achievementNotification');
+            document.getElementById('achievementTitle').textContent = title;
+            document.getElementById('achievementDesc').textContent = description;
+            
+            notification.classList.add('active');
+            setTimeout(() => {
+                notification.classList.remove('active');
+            }, 5000);
+        }
+        
+        // AI Chat System with Subject-Specific Chats
+        const aiChat = document.getElementById('aiChat');
+        const aiChatLauncher = document.getElementById('aiChatLauncher');
+        const aiChatClose = document.getElementById('aiChatClose');
+        const aiChatHeader = document.getElementById('aiChatHeader');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const aiChatSend = document.getElementById('aiChatSend');
+        const aiChatSubjectSelect = document.getElementById('aiChatSubjectSelect');
+        const aiChatAddSubject = document.getElementById('aiChatAddSubject');
+        const aiChatTabs = document.getElementById('aiChatTabs');
+        
+        // Chat data structure
+        const chatData = {
+            math: {
+                name: 'Math',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: true
+            },
+            science: {
+                name: 'Science',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            },
+            history: {
+                name: 'History',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            },
+            language: {
+                name: 'Language',
+                messages: [
+                    { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                ],
+                active: false
+            }
+        };
+        
+        // Current active subject
+        let currentSubject = 'math';
+        
+        // Initialize chat interface
+        function initChat() {
+            // Create tabs for each subject
+            aiChatTabs.innerHTML = '';
+            Object.keys(chatData).forEach(subject => {
+                const tab = document.createElement('div');
+                tab.className = `ai-chat-tab ${chatData[subject].active ? 'active' : ''}`;
+                tab.textContent = chatData[subject].name;
+                tab.dataset.subject = subject;
+                aiChatTabs.appendChild(tab);
+                
+                tab.addEventListener('click', () => {
+                    switchSubject(subject);
+                });
+            });
+            
+            // Create chat content areas
+            document.querySelector('.ai-chat-body').innerHTML = '';
+            Object.keys(chatData).forEach(subject => {
+                const content = document.createElement('div');
+                content.className = `ai-chat-content ${chatData[subject].active ? 'active' : ''}`;
+                content.id = `${subject}ChatContent`;
+                document.querySelector('.ai-chat-body').appendChild(content);
+                
+                // Add existing messages
+                chatData[subject].messages.forEach(msg => {
+                    addMessageToContent(msg.text, msg.sender, content);
+                });
+            });
+            
+            // Set the current subject
+            switchSubject(currentSubject);
+        }
+        
+        // Switch between subjects
+        function switchSubject(subject) {
+            currentSubject = subject;
+            
+            // Update tabs
+            document.querySelectorAll('.ai-chat-tab').forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.dataset.subject === subject) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Update chat contents
+            document.querySelectorAll('.ai-chat-content').forEach(content => {
+                content.classList.remove('active');
+                if (content.id === `${subject}ChatContent`) {
+                    content.classList.add('active');
+                }
+            });
+            
+            // Update subject selector
+            aiChatSubjectSelect.value = subject;
+        }
+        
+        // Add a new subject
+        aiChatAddSubject.addEventListener('click', () => {
+            const newSubject = prompt(currentLanguage === 'en' ? 'Enter new subject name:' : 'Introduceți numele noului subiect:');
+            if (newSubject && newSubject.trim() !== '') {
+                const subjectKey = newSubject.toLowerCase().replace(/\s+/g, '-');
+                if (!chatData[subjectKey]) {
+                    chatData[subjectKey] = {
+                        name: newSubject,
+                        messages: [
+                            { text: translations[currentLanguage].aiWelcome, sender: 'bot' }
+                        ],
+                        active: false
+                    };
+                    
+                    // Add to subject selector
+                    const option = document.createElement('option');
+                    option.value = subjectKey;
+                    option.textContent = newSubject;
+                    aiChatSubjectSelect.appendChild(option);
+                    
+                    // Reinitialize chat to show new subject
+                    initChat();
+                    switchSubject(subjectKey);
+                }
+            }
+        });
+        
+        // Change subject from selector
+        aiChatSubjectSelect.addEventListener('change', () => {
+            switchSubject(aiChatSubjectSelect.value);
+        });
+        
+        // Add message to specific content area
+        function addMessageToContent(text, sender, contentElement) {
+            const messageElement = document.createElement('div');
+            messageElement.className = `ai-message ${sender}`;
+            messageElement.textContent = text;
+            contentElement.appendChild(messageElement);
+            contentElement.scrollTop = contentElement.scrollHeight;
+        }
+        
+        // Send message
+        function sendMessage() {
+            const message = aiChatInput.value.trim();
+            if (message === '') return;
+            
+            // Add user message to current subject chat
+            chatData[currentSubject].messages.push({
+                text: message,
+                sender: 'user'
+            });
+            
+            const contentElement = document.getElementById(`${currentSubject}ChatContent`);
+            addMessageToContent(message, 'user', contentElement);
+            aiChatInput.value = '';
+            
+            // Simulate AI response based on subject
+            setTimeout(() => {
+                let response;
+                const langResponses = translations[currentLanguage];
+                
+                if (currentSubject === 'math') {
+                    if (message.toLowerCase().includes('add') || message.toLowerCase().includes('addition')) {
+                        response = currentLanguage === 'en' ? 
+                            "Addition is combining numbers to find their total. For example, 2 + 3 = 5. Would you like more examples?" :
+                            "Adunarea înseamnă combinarea numerelor pentru a afla totalul. De exemplu, 2 + 3 = 5. Dorești mai multe exemple?";
+                    } else if (message.toLowerCase().includes('multiply') || message.toLowerCase().includes('multiplication')) {
+                        response = currentLanguage === 'en' ?
+                            "Multiplication is repeated addition. For example, 3 × 4 means adding 3 four times: 3 + 3 + 3 + 3 = 12." :
+                            "Înmulțirea este adunare repetată. De exemplu, 3 × 4 înseamnă să aduni 3 de patru ori: 3 + 3 + 3 + 3 = 12.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                } 
+                else if (currentSubject === 'science') {
+                    if (message.toLowerCase().includes('photosynthesis')) {
+                        response = currentLanguage === 'en' ?
+                            "Photosynthesis is how plants make food using sunlight, converting carbon dioxide and water into glucose and oxygen." :
+                            "Fotosinteza este procesul prin care plantele produc hrană folosind lumina soarelui, transformând dioxidul de carbon și apa în glucoză și oxigen.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else if (currentSubject === 'history') {
+                    if (message.toLowerCase().includes('rome') || message.toLowerCase().includes('roman')) {
+                        response = currentLanguage === 'en' ?
+                            "The Roman Empire was one of the most powerful civilizations in history, lasting from 27 BC to 476 AD in the West." :
+                            "Imperiul Roman a fost una dintre cele mai puternice civilizații din istorie, durând din 27 î.Hr. până în 476 d.Hr. în partea de vest.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else if (currentSubject === 'language') {
+                    if (message.toLowerCase().includes('grammar')) {
+                        response = currentLanguage === 'en' ?
+                            "Grammar is the set of structural rules governing the composition of clauses, phrases, and words in any language." :
+                            "Gramatica este ansamblul de reguli structurale care guvernează alcătuirea propozițiilor, frazelor și cuvintelor în orice limbă.";
+                    } else {
+                        response = getDefaultResponse();
+                    }
+                }
+                else {
+                    // For custom subjects
+                    response = getDefaultResponse();
+                }
+                
+                // Add AI response to chat
+                chatData[currentSubject].messages.push({
+                    text: response,
+                    sender: 'bot'
+                });
+                addMessageToContent(response, 'bot', contentElement);
+            }, 1000);
+        }
+        
+        function getDefaultResponse() {
+            const responses = {
+                en: [
+                    "I'm not sure I understand. Could you rephrase your question?",
+                    "I'm still learning. Can you ask your question differently?",
+                    "That's an interesting question. Let me think about how to best explain this.",
+                    "I'm designed to help with learning. Could you be more specific about what you need?"
+                ],
+                ro: [
+                    "Nu sunt sigur că am înțeles. Poți reformula întrebarea?",
+                    "Încă învăț. Poți pune întrebarea altfel?",
+                    "Aceasta este o întrebare interesantă. Lasă-mă să mă gândesc cum să explic acest lucru cel mai bine.",
+                    "Sunt conceput să ajut la învățare. Poți fi mai specific în legătură cu ceea ce ai nevoie?"
+                ]
+            };
+            
+            const langResponses = responses[currentLanguage] || responses.en;
+            return langResponses[Math.floor(Math.random() * langResponses.length)];
+        }
+        
+        // Toggle chat interface
+        function toggleChat() {
+            aiChat.classList.toggle('active');
+        }
+        
+        // Open chat
+        aiChatLauncher.addEventListener('click', toggleChat);
+        aiChatHeader.addEventListener('click', toggleChat);
+        
+        // Close chat
+        aiChatClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleChat();
+        });
+        
+        // Send message on button click or Enter key
+        aiChatSend.addEventListener('click', sendMessage);
+        aiChatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        
+        // Initialize chat when page loads
+        initChat();
+
+        // Initialize animations when page loads
+        window.addEventListener('load', () => {
+            // Initialize language
+            initLanguage();
+            
+            // Animate hero elements
+            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero-buttons');
+            heroElements.forEach((el, i) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${i * 0.2}s forwards`;
+                el.style.opacity = '0';
+            });
+
+            // Animate subject card
+            const subjectCard = document.querySelector('.subject-card');
+            if (subjectCard) {
+                subjectCard.style.animation = 'fadeInUp 0.8s ease-out 0.4s forwards';
+                subjectCard.style.opacity = '0';
+            }
+
+            // Animate CTA section
+            const ctaElements = document.querySelectorAll('.cta-section h2, .cta-section p, .cta-buttons');
+            ctaElements.forEach((el, i) => {
+                el.style.animation = `fadeInUp 0.8s ease-out ${0.4 + i * 0.1}s forwards`;
+                el.style.opacity = '0';
+            });
+        });
+    </script>
 </body>
 </html>
