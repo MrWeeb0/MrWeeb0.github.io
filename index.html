@@ -2522,7 +2522,7 @@ async function loadUserProgress() {
         }
 
         // Set home as default page
-        showPage('home');
+        showPage('homePage');
 
         // Navigation event listeners
         document.getElementById('homeLink').addEventListener('click', (e) => {
@@ -2538,20 +2538,20 @@ async function loadUserProgress() {
         });
 
         // Auth navigation
-        document.getElementById('loginNavBtn').addEventListener('click', () => showPage('login'));
-        document.getElementById('signupNavBtn').addEventListener('click', () => showPage('signup'));
-        document.getElementById('heroLoginBtn').addEventListener('click', () => showPage('login'));
-        document.getElementById('heroSignupBtn').addEventListener('click', () => showPage('signup'));
-        document.getElementById('cardSignupBtn').addEventListener('click', () => showPage('math'));
-        document.getElementById('ctaLoginBtn').addEventListener('click', () => showPage('login'));
-        document.getElementById('ctaSignupBtn').addEventListener('click', () => showPage('signup'));
+        document.getElementById('loginNavBtn').addEventListener('click', () => showPage('loginPage'));
+        document.getElementById('signupNavBtn').addEventListener('click', () => showPage('signupPage'));
+        document.getElementById('heroLoginBtn').addEventListener('click', () => showPage('loginPage'));
+        document.getElementById('heroSignupBtn').addEventListener('click', () => showPage('signupPage'));
+        document.getElementById('cardSignupBtn').addEventListener('click', () => showPage('mathPage'));
+        document.getElementById('ctaLoginBtn').addEventListener('click', () => showPage('loginPage'));
+        document.getElementById('ctaSignupBtn').addEventListener('click', () => showPage('signupPage'));
         document.getElementById('switchToLogin').addEventListener('click', (e) => {
             e.preventDefault();
-            showPage('login');
+            showPage('loginPage');
         });
         document.getElementById('switchToSignup').addEventListener('click', (e) => {
             e.preventDefault();
-            showPage('signup');
+            showPage('signupPage');
         });
 
         // Language selector event
@@ -2619,7 +2619,7 @@ async function loadUserProgress() {
 
 
 
-
+});
 
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -2696,7 +2696,7 @@ async function loadUserProgress() {
         // Back to topics button
         document.getElementById('backToTopics').addEventListener('click', (e) => {
             e.preventDefault();
-            showPage('math');
+            showPage('mathPage');
         });
 
         // Start learning buttons functionality
@@ -3053,7 +3053,7 @@ async function loadUserProgress() {
 
         // Continue learning button
         document.getElementById('continueLearning').addEventListener('click', function() {
-            showPage('math');
+            showPage('mathPage');
         });
 
         // Gamification System
