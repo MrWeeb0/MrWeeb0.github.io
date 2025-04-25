@@ -2699,7 +2699,7 @@ async function loadUserProgress() {
         document.querySelectorAll('.start-btn').forEach(button => {
             button.addEventListener('click', function() {
                 currentTopic = this.getAttribute('data-topic');
-                showPage('learning');
+                //showPage('learning');
             });
         });
 
@@ -3441,6 +3441,7 @@ async function sendAiMessage() {
         if (res.ok && data.reply) {
             appendAiMessage("bot", data.reply);
         } else {
+
             appendAiMessage("bot", "Hmm, I didn't understand that. Try again!");
         }
     } catch (err) {
