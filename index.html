@@ -3493,6 +3493,35 @@ function appendAiMessage(sender, text) {
 
     const heroSignup = document.getElementById("heroSignupBtn");
     if (heroSignup) heroSignup.addEventListener("click", () => showPage("signupPage"));
+// Handle nav-link buttons like "Home", "Math"
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const targetPage = link.dataset.page + "Page"; // "home" → "homePage"
+            showPage(targetPage);
+        });
+    });
+
+    // Logo click → go to homePage
+    const logo = document.getElementById("homelink");
+    if (logo) logo.addEventListener("click", (e) => {
+        e.preventDefault();
+        showPage("homePage");
+    });
+
+    // Login / Signup buttons
+    const loginBtn = document.getElementById("loginNavBtn");
+    if (loginBtn) loginBtn.addEventListener("click", () => showPage("loginPage"));
+
+    const signupBtn = document.getElementById("signupNavBtn");
+    if (signupBtn) signupBtn.addEventListener("click", () => showPage("signupPage"));
+
+
+
+
+
+
+
 });
      </script>
 </body>
