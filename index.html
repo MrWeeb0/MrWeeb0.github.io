@@ -3497,7 +3497,7 @@ function appendAiMessage(sender, text) {
     document.querySelectorAll(".nav-link").forEach(link => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
-            const targetPage = link.dataset.page + "Page"; // "home" → "homePage"
+            const targetPage = link.dataset.page ; // "home" → "homePage"
             showPage(targetPage);
         });
     });
