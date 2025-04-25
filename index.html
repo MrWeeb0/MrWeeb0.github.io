@@ -2619,7 +2619,7 @@ async function loadUserProgress() {
 
 
 
-
+});
 
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -3465,22 +3465,35 @@ function appendAiMessage(sender, text) {
 
 
            function showPage(pageId) {
-                            document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
-                            document.getElementById(pageId).classList.add("active");
-                         }
+    document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
+    const target = document.getElementById(pageId);
+    if (target) {
+        target.classList.add("active");
+    } else {
+        console.error(`No page found with id="${pageId}"`);
+    }
+} 
          document.addEventListener("DOMContentLoaded", () => {
-    // Initialize by showing the home page when the app loads
-    showPage("homePage");
+    showPage("homePage"); // Show home on load
 
-    // Example: Wire up navigation buttons (e.g., buttons that navigate to other pages)
-    document.getElementById("loginNavBtn").addEventListener("click", () => showPage("loginPage"));
-    document.getElementById("signupNavBtn").addEventListener("click", () => showPage("signupPage"));
-    
-    // You can also wire other buttons like:
-    document.getElementById("heroLoginBtn").addEventListener("click", () => showPage("loginPage"));
-    document.getElementById("heroSignupBtn").addEventListener("click", () => showPage("signupPage"));
+    const loginLink = document.getElementById("switchToLogin");
+    if (loginLink) loginLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showPage("loginPage");
+    });
+
+    const signupLink = document.getElementById("switchToSignup");
+    if (signupLink) signupLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        showPage("signupPage");
+    });
+
+    const heroLogin = document.getElementById("heroLoginBtn");
+    if (heroLogin) heroLogin.addEventListener("click", () => showPage("loginPage"));
+
+    const heroSignup = document.getElementById("heroSignupBtn");
+    if (heroSignup) heroSignup.addEventListener("click", () => showPage("signupPage"));
 });
-
      </script>
 </body>
 </html>
