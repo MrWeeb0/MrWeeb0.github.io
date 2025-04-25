@@ -16,3 +16,5 @@ A math learning platform with JWT authentication and SQLite database.
 1. Install dependencies:
    ```bash
    pip install -r requirements.txt
+###
+install index.html (frontend)
