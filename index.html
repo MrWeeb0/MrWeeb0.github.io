@@ -3459,16 +3459,17 @@ function appendAiMessage(sender, text) {
 }
 
 
-
-           function showPage(pageId) {
-    document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
+function showPage(pageId) {
     const target = document.getElementById(pageId);
-    if (target) {
-        target.classList.add("active");
-    } else {
-        console.error(`No page found with id="${pageId}"`);
+    console.log(`showPage() called with id: ${pageId}`);  // Log what ID we're trying
+    if (!target) {
+        console.warn(`No page found with id="${pageId}"`); // Will log if the page is not found
+        return;
     }
-} 
+    document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
+    target.classList.add("active");
+}
+           
          document.addEventListener("DOMContentLoaded", () => {
     showPage("homePage"); // Show home on load
  document.querySelectorAll(".nav-link").forEach(link => {
