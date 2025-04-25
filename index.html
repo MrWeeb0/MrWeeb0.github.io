@@ -2530,12 +2530,15 @@ async function loadUserProgress() {
             showPage('home');
         });
 
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                showPage(link.dataset.page);
-            });
-        });
+        document.querySelectorAll(".nav-link").forEach((link) => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetPage = link.dataset.page + "Page"; // "home" -> "homePage"
+        console.log("Target page ID:", targetPage); // Log the constructed ID
+        showPage(targetPage);
+    });
+});
+
 
         // Auth navigation
         document.getElementById('loginNavBtn').addEventListener('click', () => showPage('loginPage'));
