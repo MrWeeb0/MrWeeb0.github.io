@@ -3472,7 +3472,7 @@ function appendAiMessage(sender, text) {
          document.addEventListener("DOMContentLoaded", () => {
     showPage("homePage"); // Show home on load
  document.querySelectorAll(".nav-link").forEach(link => {
-        link.addEventListener("click", e => {
+        link.addEventListener("click", (e) => {
             e.preventDefault();
             const targetPage = link.dataset.page + "Page"; // "home" -> "homePage"
             console.log("Nav-link click → showPage('" + targetPage + "')"); // Log the page being clicked
