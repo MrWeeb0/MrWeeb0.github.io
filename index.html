@@ -2081,7 +2081,19 @@
                       currentLesson: null,
                       selectedAnswer: null
                               };
-        async function loadUserProgress() {
+        function showPage(pageId) {
+        const target = document.getElementById(pageId);
+        if (!target) {
+            console.error(`showPage: no element with id="${pageId}"`);
+            return;
+        }
+   // Hide all pages first
+    document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
+    // Show the selected page
+    target.classList.add("active");
+}
+
+async function loadUserProgress() {
     try {
         const res = await fetch("http://localhost:8000/progress", {
             headers: {
@@ -2607,7 +2619,7 @@
 
 
 
-
+});
 
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -3456,6 +3468,18 @@ function appendAiMessage(sender, text) {
                             document.querySelectorAll(".page-container").forEach(p => p.classList.remove("active"));
                             document.getElementById(pageId).classList.add("active");
                          }
+         document.addEventListener("DOMContentLoaded", () => {
+    // Initialize by showing the home page when the app loads
+    showPage("homePage");
+
+    // Example: Wire up navigation buttons (e.g., buttons that navigate to other pages)
+    document.getElementById("loginNavBtn").addEventListener("click", () => showPage("loginPage"));
+    document.getElementById("signupNavBtn").addEventListener("click", () => showPage("signupPage"));
+    
+    // You can also wire other buttons like:
+    document.getElementById("heroLoginBtn").addEventListener("click", () => showPage("loginPage"));
+    document.getElementById("heroSignupBtn").addEventListener("click", () => showPage("signupPage"));
+});
 
      </script>
 </body>
