@@ -1,26 +1,615 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnZy - AI Math Tutoring</title>
+  <!-- Load required libraries from CDN -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/react-router-dom@6/dist/react-router-dom.development.js"></script>
+  <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
-  <div id="root"></div>
   
+  <!-- Tailwind configuration with custom styles -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            gradient: {
+              start: '#6366f1',
+              end: '#8b5cf6'
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'bounce-slow': 'bounce 3s infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' }
+            }
+          }
+        }
+      },
+      plugins: [require('@tailwindcss/forms')]
+    }
+  </script>
+  
+  <!-- Custom CSS styles -->
+  <style>
+    .gradient-bg {
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    }
+    .card-glow {
+      box-shadow: 0 4px 30px rgba(99, 102, 241, 0.3);
+    }
+    .animate-enter {
+      animation: enter 0.5s ease-out forwards;
+    }
+    @keyframes enter {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    body {
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900">
+  <div id="root"></div>
+
+  <!-- Main application script -->
   <script type="text/babel">
-    function App() {
+    // Import React and other dependencies from CDN
+    const { useState, useEffect, createContext, useContext } = React;
+    const { BrowserRouter, Routes, Route, Link, useNavigate, useParams } = ReactRouterDOM;
+    const { motion, AnimatePresence } = FramerMotion;
+
+    // ========== App Context ==========
+    const AppContext = createContext();
+    
+    function AppProvider({ children }) {
+      const [user, setUser] = useState(null);
+      const [darkMode, setDarkMode] = useState(false);
+      const [language, setLanguage] = useState('en');
+      const [learningStyle, setLearningStyle] = useState(null);
+      const [progress, setProgress] = useState({ xp: 0, level: 1 });
+      const [animationsEnabled, setAnimationsEnabled] = useState(true);
+      
+      // Login function
+      const login = (email) => {
+        setUser({ email });
+        localStorage.setItem('user', JSON.stringify({ email }));
+      };
+      
+      // Logout function
+      const logout = () => {
+        setUser(null);
+        localStorage.removeItem('user');
+      };
+      
+      // Add XP function
+      const addXP = (amount) => {
+        setProgress(p => {
+          const newXP = p.xp + amount;
+          const newLevel = Math.floor(newXP / 100) + 1;
+          return { xp: newXP, level: newLevel };
+        });
+      };
+      
+      // Toggle animations
+      const toggleAnimations = () => {
+        setAnimationsEnabled(!animationsEnabled);
+        localStorage.setItem('animationsEnabled', !animationsEnabled);
+      };
+      
+      // Initialize from localStorage
+      useEffect(() => {
+        const savedUser = localStorage.getItem('user');
+        const savedAnimations = localStorage.getItem('animationsEnabled');
+        if (savedUser) setUser(JSON.parse(savedUser));
+        if (savedAnimations) setAnimationsEnabled(savedAnimations === 'true');
+        
+        // Check for preferred color scheme
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          setDarkMode(true);
+        }
+      }, []);
+
       return (
-        <div className="p-8">
-          <h1 className="text-4xl font-bold text-blue-600">
-            LearnZy Test
-          </h1>
-          <p>If you see this, React and Tailwind are working!</p>
+        <AppContext.Provider value={{
+          user, login, logout,
+          darkMode, setDarkMode,
+          language, setLanguage,
+          learningStyle, setLearningStyle,
+          progress, addXP,
+          animationsEnabled, toggleAnimations
+        }}>
+          {children}
+        </AppContext.Provider>
+      );
+    }
+
+    const useApp = () => useContext(AppContext);
+
+    // ========== Components ==========
+    
+    // Animated wrapper component
+    const MotionDiv = ({ children, ...props }) => {
+      const { animationsEnabled } = useApp();
+      return animationsEnabled ? (
+        <motion.div {...props}>{children}</motion.div>
+      ) : (
+        <div>{children}</div>
+      );
+    };
+
+    // Header component
+    function Header() {
+      const { user, logout, darkMode, setDarkMode, animationsEnabled, toggleAnimations } = useApp();
+      
+      return (
+        <header className="gradient-bg text-white p-4 shadow-lg">
+          <div className="container mx-auto flex justify-between items-center">
+            <Link to="/" className="text-2xl font-bold flex items-center">
+              <motion.div 
+                animate={animationsEnabled ? { rotate: [0, 10, -10, 0] } : {}}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="mr-2"
+              >
+                🧠
+              </motion.div>
+              LearnZy
+            </Link>
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => toggleAnimations()}
+                className="p-2 rounded-full hover:bg-primary-700 transition-colors"
+                title={animationsEnabled ? "Disable animations" : "Enable animations"}
+              >
+                {animationsEnabled ? '🎬' : '✖️'}
+              </button>
+              <button 
+                onClick={() => setDarkMode(!darkMode)}
+                className="p-2 rounded-full hover:bg-primary-700 transition-colors"
+              >
+                {darkMode ? '☀️' : '🌙'}
+              </button>
+              {user ? (
+                <motion.div
+                  initial={animationsEnabled ? { opacity: 0, x: 20 } : {}}
+                  animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
+                  className="flex items-center space-x-4"
+                >
+                  <span className="hidden md:inline">{user.email}</span>
+                  <motion.button 
+                    whileHover={animationsEnabled ? { scale: 1.05 } : {}}
+                    whileTap={animationsEnabled ? { scale: 0.95 } : {}}
+                    onClick={logout} 
+                    className="bg-white text-primary-600 px-4 py-1 rounded-lg shadow hover:shadow-md transition-all"
+                  >
+                    Logout
+                  </motion.button>
+                </motion.div>
+              ) : (
+                <motion.div
+                  initial={animationsEnabled ? { opacity: 0, x: 20 } : {}}
+                  animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
+                >
+                  <Link 
+                    to="/auth/login" 
+                    className="bg-white text-primary-600 px-4 py-1 rounded-lg shadow hover:shadow-md transition-all"
+                  >
+                    Login
+                  </Link>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    // Home page component
+    function Home() {
+      const { animationsEnabled } = useApp();
+      
+      return (
+        <div className="min-h-[80vh] flex flex-col items-center justify-center p-8">
+          <motion.div
+            initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+            animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="text-center max-w-3xl"
+          >
+            <motion.div 
+              animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="mb-8"
+            >
+              <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gradient-start to-gradient-end mb-6">
+                LearnZy
+              </h1>
+            </motion.div>
+            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
+              AI-powered math tutoring for Moldova
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <motion.div
+                whileHover={animationsEnabled ? { scale: 1.05 } : {}}
+                whileTap={animationsEnabled ? { scale: 0.95 } : {}}
+              >
+                <Link 
+                  to="/auth/login" 
+                  className="inline-block gradient-bg text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
+                >
+                  Get Started
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={animationsEnabled ? { scale: 1.05 } : {}}
+                whileTap={animationsEnabled ? { scale: 0.95 } : {}}
+              >
+                <a 
+                  href="mailto:goutcontact851@gmail.com" 
+                  className="inline-block border-2 border-primary-500 text-primary-600 dark:text-primary-300 px-8 py-3 rounded-full hover:bg-primary-50 dark:hover:bg-gray-800 transition-all"
+                >
+                  Contact Us
+                </a>
+              </motion.div>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+            initial={animationsEnabled ? { opacity: 0 } : {}}
+            animate={animationsEnabled ? { opacity: 1 } : {}}
+            transition={{ delay: 0.4 }}
+          >
+            {['Algebra', 'Geometry', 'Calculus', 'Trigonometry'].map((subject, i) => (
+              <motion.div
+                key={subject}
+                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.5 + i * 0.1 }}
+                whileHover={animationsEnabled ? { y: -5 } : {}}
+                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
+              >
+                <div className="text-4xl mb-4 text-primary-500">📐</div>
+                <h3 className="text-lg font-semibold">{subject}</h3>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       );
     }
-    
+
+    // Auth component (login/signup)
+    function Auth({ mode }) {
+      const { login, animationsEnabled } = useApp();
+      const navigate = useNavigate();
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        login(email);
+        navigate('/dashboard');
+      };
+
+      return (
+        <motion.div
+          initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+          animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+          className="min-h-[80vh] flex items-center justify-center p-4"
+        >
+          <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+            <div className="gradient-bg p-6 text-center">
+              <motion.h2 
+                animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-2xl font-bold text-white"
+              >
+                {mode === 'login' ? 'Welcome Back!' : 'Create Account'}
+              </motion.h2>
+            </div>
+            <motion.form 
+              onSubmit={handleSubmit} 
+              className="p-8 space-y-6"
+              initial={animationsEnabled ? { opacity: 0 } : {}}
+              animate={animationsEnabled ? { opacity: 1 } : {}}
+              transition={{ delay: 0.2 }}
+            >
+              <div>
+                <label className="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                <motion.input
+                  whileFocus={animationsEnabled ? { scale: 1.02 } : {}}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  placeholder="your@email.com"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-gray-700 dark:text-gray-300 mb-2">Password</label>
+                <motion.input
+                  whileFocus={animationsEnabled ? { scale: 1.02 } : {}}
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+              <motion.button
+                type="submit"
+                whileHover={animationsEnabled ? { scale: 1.03 } : {}}
+                whileTap={animationsEnabled ? { scale: 0.97 } : {}}
+                className="w-full gradient-bg text-white p-3 rounded-lg shadow hover:shadow-md transition-all"
+              >
+                {mode === 'login' ? 'Log In' : 'Sign Up'}
+              </motion.button>
+              <p className="text-center text-gray-600 dark:text-gray-400">
+                {mode === 'login' ? "Don't have an account? " : "Already have an account? "}
+                <Link 
+                  to={mode === 'login' ? "/auth/signup" : "/auth/login"} 
+                  className="text-primary-600 dark:text-primary-400 hover:underline"
+                >
+                  {mode === 'login' ? 'Sign up' : 'Log in'}
+                </Link>
+              </p>
+            </motion.form>
+          </div>
+        </motion.div>
+      );
+    }
+
+    // Dashboard component
+    function Dashboard() {
+      const { user, progress, addXP, animationsEnabled } = useApp();
+      const mathTopics = ['Algebra', 'Geometry', 'Calculus', 'Trigonometry'];
+
+      return (
+        <div className="container mx-auto p-4 md:p-8">
+          <motion.div
+            initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+            animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+            className="mb-8"
+          >
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+              Welcome back, <span className="text-primary-600">{user?.email.split('@')[0]}</span>!
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">Continue your learning journey</p>
+          </motion.div>
+
+          <motion.div
+            initial={animationsEnabled ? { opacity: 0 } : {}}
+            animate={animationsEnabled ? { opacity: 1 } : {}}
+            transition={{ delay: 0.2 }}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8 card-glow"
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold">Your Progress</h2>
+              <div className="text-primary-600 font-bold">Level {progress.level}</div>
+            </div>
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-2">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-gradient-start to-gradient-end rounded-full" 
+                initial={animationsEnabled ? { width: 0 } : {}}
+                animate={animationsEnabled ? { width: `${progress.xp % 100}%` } : {}}
+                transition={{ duration: 1 }}
+              />
+            </div>
+            <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
+              <span>{progress.xp % 100}/100 XP</span>
+              <span>{progress.xp} total XP</span>
+            </div>
+          </motion.div>
+
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Subjects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {mathTopics.map((topic, i) => (
+              <motion.div
+                key={topic}
+                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + i * 0.1 }}
+                whileHover={animationsEnabled ? { y: -5 } : {}}
+                className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all"
+              >
+                <div className="gradient-bg p-4 text-white">
+                  <h3 className="text-xl font-semibold">{topic}</h3>
+                </div>
+                <div className="p-6">
+                  <div className="text-5xl mb-4 text-center text-primary-500">
+                    {['🧮', '📐', '📊', '📈'][i]}
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
+                    Master {topic.toLowerCase()} concepts with interactive lessons
+                  </p>
+                  <Link 
+                    to={`/math/${topic.toLowerCase()}`}
+                    className="block text-center gradient-bg text-white py-2 px-4 rounded-lg hover:shadow transition-all"
+                  >
+                    Start Learning
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // Math Topic component
+    function MathTopic() {
+      const { params } = useParams();
+      const { learningStyle, addXP, animationsEnabled } = useApp();
+      const [activeTab, setActiveTab] = useState('lesson');
+
+      const renderContent = () => {
+        switch(learningStyle) {
+          case 'visual': 
+            return (
+              <motion.div 
+                className="overflow-hidden rounded-xl"
+                initial={animationsEnabled ? { opacity: 0 } : {}}
+                animate={animationsEnabled ? { opacity: 1 } : {}}
+              >
+                <img 
+                  src={`https://via.placeholder.com/800x400?text=${params}+Visual+Lesson`} 
+                  className="w-full rounded-xl shadow-md"
+                  alt="Visual lesson"
+                />
+              </motion.div>
+            );
+          case 'auditory': 
+            return (
+              <motion.div 
+                className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl"
+                initial={animationsEnabled ? { opacity: 0 } : {}}
+                animate={animationsEnabled ? { opacity: 1 } : {}}
+              >
+                <div className="text-center py-8">
+                  <div className="text-6xl mb-4">🎧</div>
+                  <p>Audio lesson about {params} would play here</p>
+                </div>
+              </motion.div>
+            );
+          default: 
+            return (
+              <motion.div 
+                className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl"
+                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
+                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+              >
+                <h3 className="font-bold text-xl mb-4">Text Lesson: {params}</h3>
+                <p className="mb-4">This is a detailed text explanation about {params} concepts.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
+              </motion.div>
+            );
+        }
+      };
+
+      return (
+        <div className="container mx-auto p-4 md:p-8">
+          <motion.div
+            initial={animationsEnabled ? { opacity: 0 } : {}}
+            animate={animationsEnabled ? { opacity: 1 } : {}}
+            className="mb-8"
+          >
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white capitalize">
+              {params.replace('-', ' ')}
+            </h1>
+            <div className="flex items-center mt-2">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end mr-2"></div>
+              <span className="text-gray-600 dark:text-gray-400">In Progress</span>
+            </div>
+          </motion.div>
+
+          <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
+            <motion.button 
+              onClick={() => setActiveTab('lesson')} 
+              className={`px-6 py-3 font-medium ${activeTab === 'lesson' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+              whileHover={animationsEnabled ? { backgroundColor: 'rgba(99, 102, 241, 0.1)' } : {}}
+            >
+              Lesson
+            </motion.button>
+            <motion.button 
+              onClick={() => setActiveTab('practice')} 
+              className={`px-6 py-3 font-medium ${activeTab === 'practice' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
+              whileHover={animationsEnabled ? { backgroundColor: 'rgba(99, 102, 241, 0.1)' } : {}}
+            >
+              Practice
+            </motion.button>
+          </div>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={animationsEnabled ? { opacity: 0, y: 10 } : {}}
+              animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
+              exit={animationsEnabled ? { opacity: 0, y: -10 } : {}}
+              transition={{ duration: 0.3 }}
+            >
+              {activeTab === 'lesson' ? renderContent() : (
+                <div className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl">
+                  <h3 className="font-bold text-xl mb-6">Practice Problems</h3>
+                  
+                  <div className="space-y-6">
+                    {[1, 2, 3].map((problem) => (
+                      <motion.div 
+                        key={problem}
+                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow"
+                        initial={animationsEnabled ? { opacity: 0, x: -20 } : {}}
+                        animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
+                        transition={{ delay: problem * 0.1 }}
+                      >
+                        <h4 className="font-semibold mb-3">Problem #{problem}</h4>
+                        <p className="mb-4">Solve this {params} problem: 2x + 5 = 15</p>
+                        <div className="flex justify-end">
+                          <motion.button
+                            whileHover={animationsEnabled ? { scale: 1.03 } : {}}
+                            whileTap={animationsEnabled ? { scale: 0.97 } : {}}
+                            onClick={() => addXP(10)}
+                            className="gradient-bg text-white px-4 py-2 rounded-lg"
+                          >
+                            Complete (+10 XP)
+                          </motion.button>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      );
+    }
+
+    // Main App component with routing
+    function App() {
+      return (
+        <AppProvider>
+          <BrowserRouter>
+            <Header />
+            <main className="min-h-[calc(100vh-72px)]">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/auth/login" element={<Auth mode="login" />} />
+                <Route path="/auth/signup" element={<Auth mode="signup" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/math/:params" element={<MathTopic />} />
+              </Routes>
+            </main>
+          </BrowserRouter>
+        </AppProvider>
+      );
+    }
+
+    // Render the app
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
   </script>
