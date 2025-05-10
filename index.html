@@ -1,617 +1,2191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LearnZy - AI Math Tutoring</title>
-  <!-- Load required libraries from CDN -->
-  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script src="https://unpkg.com/react-router-dom@6/dist/react-router-dom.development.js"></script>
-  <script src="https://unpkg.com/framer-motion@10/dist/framer-motion.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Tailwind configuration with custom styles -->
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            primary: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              200: '#bae6fd',
-              300: '#7dd3fc',
-              400: '#38bdf8',
-              500: '#0ea5e9',
-              600: '#0284c7',
-              700: '#0369a1',
-              800: '#075985',
-              900: '#0c4a6e',
-            },
-            gradient: {
-              start: '#6366f1',
-              end: '#8b5cf6'
-            }
-          },
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'bounce-slow': 'bounce 3s infinite'
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0)' },
-              '50%': { transform: 'translateY(-10px)' }
-            }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnZy - AI Math Tutoring for Moldova</title>
+    <script src="https://cdn.jsdelivr.net/npm/i18next@21.6.10/i18next.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-http-backend@1.4.1/i18nextHttpBackend.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/i18next-browser-languagedetector@6.1.1/i18nextBrowserLanguageDetector.min.js"></script>
+    <style>
+        /* Reset and Base Styles */
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #4338ca;
+            --primary-light: #6366f1;
+            --secondary: #10b981;
+            --secondary-dark: #0d9488;
+            --accent: #f59e0b;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #ffffff;
+            --bg-secondary: #f9fafb;
+            --border: #e5e7eb;
+            --error: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
-      },
-      plugins: [require('@tailwindcss/forms')]
-    }
-  </script>
-  
-  <!-- Custom CSS styles -->
-  <style>
-    .gradient-bg {
-      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    }
-    .card-glow {
-      box-shadow: 0 4px 30px rgba(99, 102, 241, 0.3);
-    }
-    .animate-enter {
-      animation: enter 0.5s ease-out forwards;
-    }
-    @keyframes enter {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    body {
-      transition: background-color 0.3s ease;
-    }
-  </style>
+
+        [data-theme="dark"] {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --secondary: #10b981;
+            --secondary-dark: #0d9488;
+            --accent: #f59e0b;
+            --text: #f3f4f6;
+            --text-light: #9ca3af;
+            --bg: #111827;
+            --bg-secondary: #1f2937;
+            --border: #374151;
+            --error: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.3s, color 0.3s;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Utility Classes */
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .mt-8 {
+            margin-top: 2rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+
+        .text-4xl {
+            font-size: 2.25rem;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .rounded {
+            border-radius: 0.25rem;
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .shadow {
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .max-w-md {
+            max-width: 28rem;
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        .bg-secondary {
+            background-color: var(--secondary);
+        }
+
+        .bg-accent {
+            background-color: var(--accent);
+        }
+
+        .bg-error {
+            background-color: var(--error);
+        }
+
+        .bg-success {
+            background-color: var(--success);
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-secondary {
+            color: var(--secondary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-error {
+            color: var(--error);
+        }
+
+        .text-success {
+            color: var(--success);
+        }
+
+        .hover\:bg-primary-dark:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .hover\:bg-secondary-dark:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+
+        /* Form Styles */
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-input {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .form-error {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .checkbox-input {
+            width: 1.25rem;
+            height: 1.25rem;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Card Styles */
+        .card {
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body {
+            color: var(--text-light);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--bg-secondary);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .navbar-logo {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        .navbar-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .navbar-link {
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .navbar-link:hover {
+            color: var(--primary);
+        }
+
+        .navbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-progress {
+            width: 100%;
+            height: 0.5rem;
+            background-color: var(--border);
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 0.25rem;
+            transition: width 0.3s;
+        }
+
+        .quiz-question {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .quiz-option {
+            padding: 1rem;
+            background-color: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Dashboard Styles */
+        .dashboard {
+            padding: 2rem 0;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .dashboard-subject-selector {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Progress Widget */
+        .progress-widget {
+            grid-column: 1 / -1;
+            padding: 1.5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .progress-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            height: 1.5rem;
+            background-color: var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 0.75rem;
+            transition: width 0.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(255, 255, 255, 0.3) 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            animation: shimmer 2s infinite linear;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-xp {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .progress-trophies {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .trophy {
+            width: 1.5rem;
+            height: 1.5rem;
+            color: var(--accent);
+        }
+
+        /* Subject Card */
+        .subject-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+            z-index: 0;
+        }
+
+        .subject-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .subject-icon {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        /* Math Section */
+        .math-section {
+            padding: 2rem 0;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .topic-card {
+            padding: 1.5rem;
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .topic-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-description {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .topic-progress {
+            height: 0.5rem;
+            background-color: var(--border);
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 0.25rem;
+        }
+
+        .topic-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        /* Lesson Page */
+        .lesson-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--bg-secondary);
+            border-radius: 1rem;
+        }
+
+        .lesson-header {
+            margin-bottom: 2rem;
+        }
+
+        .lesson-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .lesson-content {
+            margin-bottom: 2rem;
+        }
+
+        .lesson-visual {
+            margin: 2rem 0;
+            padding: 1rem;
+            background-color: var(--bg);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .lesson-text {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-exercise {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: var(--bg);
+            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+        }
+
+        .exercise-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .exercise-question {
+            margin-bottom: 1.5rem;
+        }
+
+        .exercise-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .exercise-option {
+            padding: 0.75rem 1rem;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .exercise-option:hover {
+            border-color: var(--primary);
+        }
+
+        .exercise-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(79, 70, 229, 0.1);
+        }
+
+        .exercise-feedback {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        .exercise-feedback.correct {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            display: block;
+        }
+
+        .exercise-feedback.incorrect {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            display: block;
+        }
+
+        .exercise-hint {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--accent);
+            border-radius: 0.5rem;
+            color: var(--accent);
+            display: none;
+        }
+
+        .exercise-hint.show {
+            display: block;
+        }
+
+        .exercise-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal-content {
+            background-color: var(--bg);
+            border-radius: 0.5rem;
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(20px);
+            transition: transform 0.3s;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+
+        /* Settings */
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-label {
+            font-weight: 500;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            .quiz-container {
+                padding: 1rem;
+            }
+
+            .lesson-container {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .quiz-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .quiz-navigation .btn {
+                width: 100%;
+            }
+
+            .exercise-actions {
+                flex-direction: column;
+            }
+
+            .exercise-actions .btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900">
-  <div id="root"></div>
-
-  <!-- Main application script -->
-  <script type="text/babel">
-    // Import React and other dependencies from CDN
-    const { useState, useEffect, createContext, useContext } = React;
-    const { BrowserRouter, Routes, Route, Link, useNavigate, useParams } = ReactRouterDOM;
-    const { motion, AnimatePresence } = FramerMotion;
-
-    // ========== App Context ==========
-    const AppContext = createContext();
-    
-    function AppProvider({ children }) {
-      const [user, setUser] = useState(null);
-      const [darkMode, setDarkMode] = useState(false);
-      const [language, setLanguage] = useState('en');
-      const [learningStyle, setLearningStyle] = useState(null);
-      const [progress, setProgress] = useState({ xp: 0, level: 1 });
-      const [animationsEnabled, setAnimationsEnabled] = useState(true);
-      
-      // Login function
-      const login = (email) => {
-        setUser({ email });
-        localStorage.setItem('user', JSON.stringify({ email }));
-      };
-      
-      // Logout function
-      const logout = () => {
-        setUser(null);
-        localStorage.removeItem('user');
-      };
-      
-      // Add XP function
-      const addXP = (amount) => {
-        setProgress(p => {
-          const newXP = p.xp + amount;
-          const newLevel = Math.floor(newXP / 100) + 1;
-          return { xp: newXP, level: newLevel };
-        });
-      };
-      
-      // Toggle animations
-      const toggleAnimations = () => {
-        setAnimationsEnabled(!animationsEnabled);
-        localStorage.setItem('animationsEnabled', !animationsEnabled);
-      };
-      
-      // Initialize from localStorage
-      useEffect(() => {
-        const savedUser = localStorage.getItem('user');
-        const savedAnimations = localStorage.getItem('animationsEnabled');
-        if (savedUser) setUser(JSON.parse(savedUser));
-        if (savedAnimations) setAnimationsEnabled(savedAnimations === 'true');
-        
-        // Check for preferred color scheme
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          setDarkMode(true);
-        }
-      }, []);
-
-      return (
-        <AppContext.Provider value={{
-          user, login, logout,
-          darkMode, setDarkMode,
-          language, setLanguage,
-          learningStyle, setLearningStyle,
-          progress, addXP,
-          animationsEnabled, toggleAnimations
-        }}>
-          {children}
-        </AppContext.Provider>
-      );
-    }
-
-    const useApp = () => useContext(AppContext);
-
-    // ========== Components ==========
-    
-    // Animated wrapper component
-    const MotionDiv = ({ children, ...props }) => {
-      const { animationsEnabled } = useApp();
-      return animationsEnabled ? (
-        <motion.div {...props}>{children}</motion.div>
-      ) : (
-        <div>{children}</div>
-      );
-    };
-
-    // Header component
-    function Header() {
-      const { user, logout, darkMode, setDarkMode, animationsEnabled, toggleAnimations } = useApp();
-      
-      return (
-        <header className="gradient-bg text-white p-4 shadow-lg">
-          <div className="container mx-auto flex justify-between items-center">
-            <Link to="/" className="text-2xl font-bold flex items-center">
-              <motion.div 
-                animate={animationsEnabled ? { rotate: [0, 10, -10, 0] } : {}}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="mr-2"
-              >
-                🧠
-              </motion.div>
-              LearnZy
-            </Link>
-            <div className="flex items-center space-x-4">
-              <button 
-                onClick={() => toggleAnimations()}
-                className="p-2 rounded-full hover:bg-primary-700 transition-colors"
-                title={animationsEnabled ? "Disable animations" : "Enable animations"}
-              >
-                {animationsEnabled ? '🎬' : '✖️'}
-              </button>
-              <button 
-                onClick={() => setDarkMode(!darkMode)}
-                className="p-2 rounded-full hover:bg-primary-700 transition-colors"
-              >
-                {darkMode ? '☀️' : '🌙'}
-              </button>
-              {user ? (
-                <motion.div
-                  initial={animationsEnabled ? { opacity: 0, x: 20 } : {}}
-                  animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
-                  className="flex items-center space-x-4"
-                >
-                  <span className="hidden md:inline">{user.email}</span>
-                  <motion.button 
-                    whileHover={animationsEnabled ? { scale: 1.05 } : {}}
-                    whileTap={animationsEnabled ? { scale: 0.95 } : {}}
-                    onClick={logout} 
-                    className="bg-white text-primary-600 px-4 py-1 rounded-lg shadow hover:shadow-md transition-all"
-                  >
-                    Logout
-                  </motion.button>
-                </motion.div>
-              ) : (
-                <motion.div
-                  initial={animationsEnabled ? { opacity: 0, x: 20 } : {}}
-                  animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
-                >
-                  <Link 
-                    to="/auth/login" 
-                    className="bg-white text-primary-600 px-4 py-1 rounded-lg shadow hover:shadow-md transition-all"
-                  >
-                    Login
-                  </Link>
-                </motion.div>
-              )}
-            </div>
-          </div>
-        </header>
-      );
-    }
-
-    // Home page component
-    function Home() {
-      const { animationsEnabled } = useApp();
-      
-      return (
-        <div className="min-h-[80vh] flex flex-col items-center justify-center p-8">
-          <motion.div
-            initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-            animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="text-center max-w-3xl"
-          >
-            <motion.div 
-              animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
-              transition={{ duration: 4, repeat: Infinity }}
-              className="mb-8"
-            >
-              <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gradient-start to-gradient-end mb-6">
-                LearnZy
-              </h1>
-            </motion.div>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-10">
-              AI-powered math tutoring for Moldova
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <motion.div
-                whileHover={animationsEnabled ? { scale: 1.05 } : {}}
-                whileTap={animationsEnabled ? { scale: 0.95 } : {}}
-              >
-                <Link 
-                  to="/auth/login" 
-                  className="inline-block gradient-bg text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all"
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={animationsEnabled ? { scale: 1.05 } : {}}
-                whileTap={animationsEnabled ? { scale: 0.95 } : {}}
-              >
-                <a 
-                  href="mailto:goutcontact851@gmail.com" 
-                  className="inline-block border-2 border-primary-500 text-primary-600 dark:text-primary-300 px-8 py-3 rounded-full hover:bg-primary-50 dark:hover:bg-gray-800 transition-all"
-                >
-                  Contact Us
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
-            initial={animationsEnabled ? { opacity: 0 } : {}}
-            animate={animationsEnabled ? { opacity: 1 } : {}}
-            transition={{ delay: 0.4 }}
-          >
-            {['Algebra', 'Geometry', 'Calculus', 'Trigonometry'].map((subject, i) => (
-              <motion.div
-                key={subject}
-                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 + i * 0.1 }}
-                whileHover={animationsEnabled ? { y: -5 } : {}}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-all cursor-pointer"
-              >
-                <div className="text-4xl mb-4 text-primary-500">📐</div>
-                <h3 className="text-lg font-semibold">{subject}</h3>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      );
-    }
-
-    // Auth component (login/signup)
-    function Auth({ mode }) {
-      const { login, animationsEnabled } = useApp();
-      const navigate = useNavigate();
-      const [email, setEmail] = useState('');
-      const [password, setPassword] = useState('');
-
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        login(email);
-        navigate('/dashboard');
-      };
-
-      return (
-        <motion.div
-          initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-          animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-          className="min-h-[80vh] flex items-center justify-center p-4"
-        >
-          <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
-            <div className="gradient-bg p-6 text-center">
-              <motion.h2 
-                animate={animationsEnabled ? { scale: [1, 1.05, 1] } : {}}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-2xl font-bold text-white"
-              >
-                {mode === 'login' ? 'Welcome Back!' : 'Create Account'}
-              </motion.h2>
-            </div>
-            <motion.form 
-              onSubmit={handleSubmit} 
-              className="p-8 space-y-6"
-              initial={animationsEnabled ? { opacity: 0 } : {}}
-              animate={animationsEnabled ? { opacity: 1 } : {}}
-              transition={{ delay: 0.2 }}
-            >
-              <div>
-                <label className="block text-gray-700 dark:text-gray-300 mb-2">Email</label>
-                <motion.input
-                  whileFocus={animationsEnabled ? { scale: 1.02 } : {}}
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-gray-700 dark:text-gray-300 mb-2">Password</label>
-                <motion.input
-                  whileFocus={animationsEnabled ? { scale: 1.02 } : {}}
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-              <motion.button
-                type="submit"
-                whileHover={animationsEnabled ? { scale: 1.03 } : {}}
-                whileTap={animationsEnabled ? { scale: 0.97 } : {}}
-                className="w-full gradient-bg text-white p-3 rounded-lg shadow hover:shadow-md transition-all"
-              >
-                {mode === 'login' ? 'Log In' : 'Sign Up'}
-              </motion.button>
-              <p className="text-center text-gray-600 dark:text-gray-400">
-                {mode === 'login' ? "Don't have an account? " : "Already have an account? "}
-                <Link 
-                  to={mode === 'login' ? "/auth/signup" : "/auth/login"} 
-                  className="text-primary-600 dark:text-primary-400 hover:underline"
-                >
-                  {mode === 'login' ? 'Sign up' : 'Log in'}
-                </Link>
-              </p>
-            </motion.form>
-          </div>
-        </motion.div>
-      );
-    }
-
-    // Dashboard component
-    function Dashboard() {
-      const { user, progress, addXP, animationsEnabled } = useApp();
-      const mathTopics = ['Algebra', 'Geometry', 'Calculus', 'Trigonometry'];
-
-      return (
-        <div className="container mx-auto p-4 md:p-8">
-          <motion.div
-            initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-            animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-            className="mb-8"
-          >
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-              Welcome back, <span className="text-primary-600">{user?.email.split('@')[0]}</span>!
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">Continue your learning journey</p>
-          </motion.div>
-
-          <motion.div
-            initial={animationsEnabled ? { opacity: 0 } : {}}
-            animate={animationsEnabled ? { opacity: 1 } : {}}
-            transition={{ delay: 0.2 }}
-            className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8 card-glow"
-          >
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Your Progress</h2>
-              <div className="text-primary-600 font-bold">Level {progress.level}</div>
-            </div>
-            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded-full mb-2">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-gradient-start to-gradient-end rounded-full" 
-                initial={animationsEnabled ? { width: 0 } : {}}
-                animate={animationsEnabled ? { width: `${progress.xp % 100}%` } : {}}
-                transition={{ duration: 1 }}
-              />
-            </div>
-            <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400">
-              <span>{progress.xp % 100}/100 XP</span>
-              <span>{progress.xp} total XP</span>
-            </div>
-          </motion.div>
-
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Subjects</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mathTopics.map((topic, i) => (
-              <motion.div
-                key={topic}
-                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                whileHover={animationsEnabled ? { y: -5 } : {}}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all"
-              >
-                <div className="gradient-bg p-4 text-white">
-                  <h3 className="text-xl font-semibold">{topic}</h3>
+<body>
+    <!-- App Container -->
+    <div id="app">
+        <!-- Home Page -->
+        <div id="home-page">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="container navbar-container">
+                    <a href="#" class="navbar-brand">
+                        <svg class="navbar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7L12 12L21 7L12 2Z" fill="var(--primary)"/>
+                            <path d="M3 12L12 17L21 12" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 17L12 22L21 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>LearnZy</span>
+                    </a>
+                    <div class="navbar-links">
+                        <a href="#features" class="navbar-link" data-i18n="nav.features">Features</a>
+                        <a href="mailto:goutcontact851@gmail.com" class="navbar-link" data-i18n="nav.contact">Contact</a>
+                    </div>
+                    <div class="navbar-actions">
+                        <button id="theme-toggle" class="btn-ghost">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 3V4M12 20V21M4 12H3M6.31412 6.31412L5.5 5.5M17.6859 17.6859L18.5 18.5M21 12H20M18.5 5.5L17.6859 6.31412M6.31412 17.6859L5.5 18.5M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button id="language-toggle" class="btn-ghost" data-i18n="nav.language">EN/RO</button>
+                        <button onclick="showPage('login-page')" class="btn-outline" data-i18n="nav.login">Log In</button>
+                        <button onclick="showPage('signup-page')" class="btn-primary" data-i18n="nav.signup">Sign Up</button>
+                    </div>
                 </div>
-                <div className="p-6">
-                  <div className="text-5xl mb-4 text-center text-primary-500">
-                    {['🧮', '📐', '📊', '📈'][i]}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    Master {topic.toLowerCase()} concepts with interactive lessons
-                  </p>
-                  <Link 
-                    to={`/math/${topic.toLowerCase()}`}
-                    className="block text-center gradient-bg text-white py-2 px-4 rounded-lg hover:shadow transition-all"
-                  >
-                    Start Learning
-                  </Link>
+            </nav>
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container hero-content">
+                    <h1 class="hero-title" data-i18n="home.heroTitle">AI-Powered Math Tutoring for Moldovan Students</h1>
+                    <p class="hero-subtitle" data-i18n="home.heroSubtitle">Personalized learning adapted to your style. Master math concepts with interactive lessons and AI guidance.</p>
+                    <div class="hero-actions">
+                        <button onclick="showPage('signup-page')" class="btn-primary" data-i18n="home.getStarted">Get Started</button>
+                        <button onclick="showPage('login-page')" class="btn-outline" data-i18n="home.learnMore">Learn More</button>
+                    </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      );
-    }
+            </section>
 
-    // Math Topic component
-    function MathTopic() {
-      const { params } = useParams();
-      const { learningStyle, addXP, animationsEnabled } = useApp();
-      const [activeTab, setActiveTab] = useState('lesson');
-
-      const renderContent = () => {
-        switch(learningStyle) {
-          case 'visual': 
-            return (
-              <motion.div 
-                className="overflow-hidden rounded-xl"
-                initial={animationsEnabled ? { opacity: 0 } : {}}
-                animate={animationsEnabled ? { opacity: 1 } : {}}
-              >
-                <img 
-                  src={`https://via.placeholder.com/800x400?text=${params}+Visual+Lesson`} 
-                  className="w-full rounded-xl shadow-md"
-                  alt="Visual lesson"
-                />
-              </motion.div>
-            );
-          case 'auditory': 
-            return (
-              <motion.div 
-                className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl"
-                initial={animationsEnabled ? { opacity: 0 } : {}}
-                animate={animationsEnabled ? { opacity: 1 } : {}}
-              >
-                <div className="text-center py-8">
-                  <div className="text-6xl mb-4">🎧</div>
-                  <p>Audio lesson about {params} would play here</p>
-                </div>
-              </motion.div>
-            );
-          default: 
-            return (
-              <motion.div 
-                className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl"
-                initial={animationsEnabled ? { opacity: 0, y: 20 } : {}}
-                animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-              >
-                <h3 className="font-bold text-xl mb-4">Text Lesson: {params}</h3>
-                <p className="mb-4">This is a detailed text explanation about {params} concepts.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula.</p>
-              </motion.div>
-            );
-        }
-      };
-
-      return (
-        <div className="container mx-auto p-4 md:p-8">
-          <motion.div
-            initial={animationsEnabled ? { opacity: 0 } : {}}
-            animate={animationsEnabled ? { opacity: 1 } : {}}
-            className="mb-8"
-          >
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white capitalize">
-              {params.replace('-', ' ')}
-            </h1>
-            <div className="flex items-center mt-2">
-              <div className="w-4 h-4 rounded-full bg-gradient-to-r from-gradient-start to-gradient-end mr-2"></div>
-              <span className="text-gray-600 dark:text-gray-400">In Progress</span>
-            </div>
-          </motion.div>
-
-          <div className="flex border-b border-gray-200 dark:border-gray-700 mb-6">
-            <motion.button 
-              onClick={() => setActiveTab('lesson')} 
-              className={`px-6 py-3 font-medium ${activeTab === 'lesson' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
-              whileHover={animationsEnabled ? { backgroundColor: 'rgba(99, 102, 241, 0.1)' } : {}}
-            >
-              Lesson
-            </motion.button>
-            <motion.button 
-              onClick={() => setActiveTab('practice')} 
-              className={`px-6 py-3 font-medium ${activeTab === 'practice' ? 'text-primary-600 border-b-2 border-primary-600' : 'text-gray-500 hover:text-gray-700 dark:hover:text-gray-300'}`}
-              whileHover={animationsEnabled ? { backgroundColor: 'rgba(99, 102, 241, 0.1)' } : {}}
-            >
-              Practice
-            </motion.button>
-          </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={animationsEnabled ? { opacity: 0, y: 10 } : {}}
-              animate={animationsEnabled ? { opacity: 1, y: 0 } : {}}
-              exit={animationsEnabled ? { opacity: 0, y: -10 } : {}}
-              transition={{ duration: 0.3 }}
-            >
-              {activeTab === 'lesson' ? renderContent() : (
-                <div className="p-6 bg-gray-100 dark:bg-gray-700 rounded-xl">
-                  <h3 className="font-bold text-xl mb-6">Practice Problems</h3>
-                  
-                  <div className="space-y-6">
-                    {[1, 2, 3].map((problem) => (
-                      <motion.div 
-                        key={problem}
-                        className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow"
-                        initial={animationsEnabled ? { opacity: 0, x: -20 } : {}}
-                        animate={animationsEnabled ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: problem * 0.1 }}
-                      >
-                        <h4 className="font-semibold mb-3">Problem #{problem}</h4>
-                        <p className="mb-4">Solve this {params} problem: 2x + 5 = 15</p>
-                        <div className="flex justify-end">
-                          <motion.button
-                            whileHover={animationsEnabled ? { scale: 1.03 } : {}}
-                            whileTap={animationsEnabled ? { scale: 0.97 } : {}}
-                            onClick={() => addXP(10)}
-                            className="gradient-bg text-white px-4 py-2 rounded-lg"
-                          >
-                            Complete (+10 XP)
-                          </motion.button>
+            <!-- Features Section -->
+            <section class="features" id="features">
+                <div class="container">
+                    <h2 class="section-title" data-i18n="home.featuresTitle">Why Choose LearnZy?</h2>
+                    <div class="features-grid">
+                        <div class="card">
+                            <h3 class="card-title" data-i18n="home.feature1Title">Personalized Learning</h3>
+                            <p class="card-body" data-i18n="home.feature1Desc">Our AI adapts to your learning style, whether you're visual, auditory, or kinesthetic.</p>
                         </div>
-                      </motion.div>
-                    ))}
-                  </div>
+                        <div class="card">
+                            <h3 class="card-title" data-i18n="home.feature2Title">Curriculum-Aligned</h3>
+                            <p class="card-body" data-i18n="home.feature2Desc">Content matches Moldovan high school math curriculum standards.</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-title" data-i18n="home.feature3Title">Instant Feedback</h3>
+                            <p class="card-body" data-i18n="home.feature3Desc">Get AI-powered hints and explanations when you're stuck on a problem.</p>
+                        </div>
+                    </div>
                 </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
+            </section>
         </div>
-      );
-    }
 
-    // Main App component with routing
-    function App() {
-      return (
-        <AppProvider>
-          <BrowserRouter>
-            <Header />
-            <main className="min-h-[calc(100vh-72px)]">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/auth/login" element={<Auth mode="login" />} />
-                <Route path="/auth/signup" element={<Auth mode="signup" />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/math/:params" element={<MathTopic />} />
-              </Routes>
-            </main>
-          </BrowserRouter>
-        </AppProvider>
-      );
-    }
+        <!-- Login Page -->
+        <div id="login-page" class="hidden">
+            <div class="container flex items-center justify-center" style="min-height: 80vh;">
+                <div class="card w-full max-w-md">
+                    <h2 class="text-2xl font-bold mb-6 text-center" data-i18n="login.title">Log In to LearnZy</h2>
+                    <form id="login-form">
+                        <div class="form-control mb-4">
+                            <label for="login-email" class="form-label" data-i18n="login.email">Email</label>
+                            <input type="email" id="login-email" class="form-input" required>
+                            <div id="login-email-error" class="form-error hidden"></div>
+                        </div>
+                        <div class="form-control mb-6">
+                            <label for="login-password" class="form-label" data-i18n="login.password">Password</label>
+                            <input type="password" id="login-password" class="form-input" required>
+                            <div id="login-password-error" class="form-error hidden"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full" data-i18n="login.submit">Log In</button>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <span class="text-sm" data-i18n="login.noAccount">Don't have an account?</span>
+                        <button onclick="showPage('signup-page')" class="btn-ghost text-sm" data-i18n="login.signUp">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    // Render the app
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
+        <!-- Signup Page -->
+        <div id="signup-page" class="hidden">
+            <div class="container flex items-center justify-center" style="min-height: 80vh;">
+                <div class="card w-full max-w-md">
+                    <h2 class="text-2xl font-bold mb-6 text-center" data-i18n="signup.title">Create Your LearnZy Account</h2>
+                    <form id="signup-form">
+                        <div class="form-control mb-4">
+                            <label for="signup-email" class="form-label" data-i18n="signup.email">Email</label>
+                            <input type="email" id="signup-email" class="form-input" required>
+                            <div id="signup-email-error" class="form-error hidden"></div>
+                        </div>
+                        <div class="form-control mb-4">
+                            <label for="signup-password" class="form-label" data-i18n="signup.password">Password</label>
+                            <input type="password" id="signup-password" class="form-input" required>
+                            <div id="signup-password-error" class="form-error hidden"></div>
+                        </div>
+                        <div class="form-control mb-6">
+                            <label for="signup-confirm-password" class="form-label" data-i18n="signup.confirmPassword">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" class="form-input" required>
+                            <div id="signup-confirm-password-error" class="form-error hidden"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full" data-i18n="signup.submit">Create Account</button>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <span class="text-sm" data-i18n="signup.haveAccount">Already have an account?</span>
+                        <button onclick="showPage('login-page')" class="btn-ghost text-sm" data-i18n="signup.logIn">Log in</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Style Quiz Page -->
+        <div id="quiz-page" class="hidden">
+            <div class="container">
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <h2 class="text-2xl font-bold mb-2" data-i18n="quiz.title">Learning Style Quiz</h2>
+                        <p class="text-sm text-light mb-4" data-i18n="quiz.subtitle">Help us personalize your learning experience by answering a few questions</p>
+                        <div class="quiz-progress">
+                            <div id="quiz-progress-bar" class="quiz-progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-step-1" class="quiz-step">
+                        <h3 class="quiz-question" data-i18n="quiz.question1">1. When learning something new, I prefer to:</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectQuizOption(1, 1)">
+                                <input type="checkbox" id="q1-option1" class="hidden">
+                                <label for="q1-option1" data-i18n="quiz.q1option1">See diagrams, charts, or videos</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(1, 2)">
+                                <input type="checkbox" id="q1-option2" class="hidden">
+                                <label for="q1-option2" data-i18n="quiz.q1option2">Read explanations or listen to someone explain</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(1, 3)">
+                                <input type="checkbox" id="q1-option3" class="hidden">
+                                <label for="q1-option3" data-i18n="quiz.q1option3">Try it out myself with examples</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-step-2" class="quiz-step hidden">
+                        <h3 class="quiz-question" data-i18n="quiz.question2">2. When solving math problems, I usually:</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectQuizOption(2, 1)">
+                                <input type="checkbox" id="q2-option1" class="hidden">
+                                <label for="q2-option1" data-i18n="quiz.q2option1">Draw pictures or diagrams to understand</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(2, 2)">
+                                <input type="checkbox" id="q2-option2" class="hidden">
+                                <label for="q2-option2" data-i18n="quiz.q2option2">Talk through the problem step by step</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(2, 3)">
+                                <input type="checkbox" id="q2-option3" class="hidden">
+                                <label for="q2-option3" data-i18n="quiz.q2option3">Write out examples and try different approaches</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-step-3" class="quiz-step hidden">
+                        <h3 class="quiz-question" data-i18n="quiz.question3">3. I remember math concepts best when I:</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectQuizOption(3, 1)">
+                                <input type="checkbox" id="q3-option1" class="hidden">
+                                <label for="q3-option1" data-i18n="quiz.q3option1">See them represented visually</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(3, 2)">
+                                <input type="checkbox" id="q3-option2" class="hidden">
+                                <label for="q3-option2" data-i18n="quiz.q3option2">Hear them explained clearly</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(3, 3)">
+                                <input type="checkbox" id="q3-option3" class="hidden">
+                                <label for="q3-option3" data-i18n="quiz.q3option3">Work through problems myself</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-step-4" class="quiz-step hidden">
+                        <h3 class="quiz-question" data-i18n="quiz.question4">4. When studying, I find it most helpful to:</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectQuizOption(4, 1)">
+                                <input type="checkbox" id="q4-option1" class="hidden">
+                                <label for="q4-option1" data-i18n="quiz.q4option1">Use color coding and highlighters</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(4, 2)">
+                                <input type="checkbox" id="q4-option2" class="hidden">
+                                <label for="q4-option2" data-i18n="quiz.q4option2">Discuss concepts with others</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(4, 3)">
+                                <input type="checkbox" id="q4-option3" class="hidden">
+                                <label for="q4-option3" data-i18n="quiz.q4option3">Create practice problems and solve them</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="quiz-step-5" class="quiz-step hidden">
+                        <h3 class="quiz-question" data-i18n="quiz.question5">5. My ideal math lesson would include:</h3>
+                        <div class="quiz-options">
+                            <div class="quiz-option" onclick="selectQuizOption(5, 1)">
+                                <input type="checkbox" id="q5-option1" class="hidden">
+                                <label for="q5-option1" data-i18n="quiz.q5option1">Lots of graphs, diagrams, and visual aids</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(5, 2)">
+                                <input type="checkbox" id="q5-option2" class="hidden">
+                                <label for="q5-option2" data-i18n="quiz.q5option2">Clear verbal explanations and discussions</label>
+                            </div>
+                            <div class="quiz-option" onclick="selectQuizOption(5, 3)">
+                                <input type="checkbox" id="q5-option3" class="hidden">
+                                <label for="q5-option3" data-i18n="quiz.q5option3">Hands-on activities and real-world applications</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-navigation">
+                        <button id="quiz-prev" class="btn btn-outline" disabled onclick="prevQuizStep()" data-i18n="quiz.previous">Previous</button>
+                        <button id="quiz-next" class="btn btn-primary" onclick="nextQuizStep()" data-i18n="quiz.next">Next</button>
+                        <button id="quiz-submit" class="btn btn-primary hidden" onclick="submitQuiz()" data-i18n="quiz.submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="hidden">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="container navbar-container">
+                    <a href="#" class="navbar-brand" onclick="showPage('dashboard-page')">
+                        <svg class="navbar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7L12 12L21 7L12 2Z" fill="var(--primary)"/>
+                            <path d="M3 12L12 17L21 12" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 17L12 22L21 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>LearnZy</span>
+                    </a>
+                    <div class="navbar-actions">
+                        <select id="subject-selector" class="dashboard-subject-selector">
+                            <option value="math" data-i18n="nav.math">Math</option>
+                        </select>
+                        <button id="settings-toggle" class="btn-ghost">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 15C19.2669 15.3016 19.227 15.6363 19.2856 15.9606C19.3442 16.2849 19.4986 16.5835 19.726 16.8149C19.9533 17.0464 20.242 17.1988 20.5486 17.2499C20.8552 17.301 21.1633 17.2483 21.434 17.0999L21.542 17.0429C21.6735 16.9651 21.7845 16.8565 21.865 16.7266C21.9455 16.5967 21.9928 16.4496 22.0026 16.2979C22.0124 16.1462 21.9844 15.9947 21.9213 15.8576C21.8581 15.7205 21.7619 15.6023 21.642 15.5139L19.734 14.1199C19.6126 14.0372 19.5473 13.8965 19.564 13.7539C19.576 13.6569 19.576 13.5569 19.576 13.4569C19.576 13.3569 19.576 13.2609 19.564 13.1639C19.5473 13.0213 19.6126 12.8806 19.734 12.7979L21.642 11.4039C21.7619 11.3155 21.8581 11.1973 21.9213 11.0602C21.9844 10.9231 22.0124 10.7716 22.0026 10.6199C21.9928 10.4682 21.9455 10.3211 21.865 10.1912C21.7845 10.0613 21.6735 9.9527 21.542 9.87494L21.434 9.81794C21.1633 9.66954 20.8552 9.61684 20.5486 9.66794C20.242 9.71904 19.9533 9.87144 19.726 10.1029C19.4986 10.3343 19.3442 10.6329 19.2856 10.9572C19.227 11.2815 19.2669 11.6162 19.4 11.9179" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 17C2.32652 17.0778 2.21548 17.1864 2.13502 17.3163C2.05456 17.4462 2.00726 17.5933 1.99745 17.745C1.98764 17.8967 2.0156 18.0482 2.07875 18.1853C2.1419 18.3224 2.23808 18.4406 2.358 18.529L4.266 19.923C4.38737 20.0057 4.45272 20.1464 4.436 20.289C4.424 20.386 4.424 20.486 4.424 20.586C4.424 20.686 4.424 20.782 4.436 20.879C4.45272 21.0216 4.38737 21.1623 4.266 21.245L2.358 22.639C2.23808 22.7274 2.1419 22.8456 2.07875 22.9827C2.0156 23.1198 1.98764 23.2713 1.99745 23.423C2.00726 23.5747 2.05456 23.7218 2.13502 23.8517C2.21548 23.9816 2.32652 24.0902 2.458 24.168L2.566 24.225C2.8367 24.3734 3.1448 24.4261 3.45137 24.375C3.75794 24.3239 4.04666 24.1715 4.274 23.9401C4.50135 23.7086 4.65576 23.41 4.71436 23.0857C4.77296 22.7614 4.73308 22.4267 4.6 22.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.6 15C4.73308 14.6984 4.77296 14.3637 4.71436 14.0394C4.65576 13.7151 4.50135 13.4165 4.274 13.1851C4.04666 12.9536 3.75794 12.8012 3.45137 12.7501C3.1448 12.699 2.8367 12.7517 2.566 12.9001L2.458 12.9571C2.32652 13.0349 2.21548 13.1435 2.13502 13.2734C2.05456 13.4033 2.00726 13.5504 1.99745 13.7021C1.98764 13.8538 2.0156 14.0053 2.07875 14.1424C2.1419 14.2795 2.23808 14.3977 2.358 14.4861L4.266 15.8801C4.38737 15.9628 4.45272 16.1035 4.436 16.2461C4.424 16.3431 4.424 16.4431 4.424 16.5431C4.424 16.6431 4.424 16.7391 4.436 16.8361C4.45272 16.9787 4.38737 17.1194 4.266 17.2021L2.358 18.5961C2.23808 18.6845 2.1419 18.8027 2.07875 18.9398C2.0156 19.0769 1.98764 19.2284 1.99745 19.3801C2.00726 19.5318 2.05456 19.6789 2.13502 19.8088C2.21548 19.9387 2.32652 20.0473 2.458 20.1251L2.566 20.1821C2.8367 20.3305 3.1448 20.3832 3.45137 20.3321C3.75794 20.281 4.04666 20.1286 4.274 19.8971C4.50135 19.6657 4.65576 19.3671 4.71436 19.0428C4.77296 18.7185 4.73308 18.3838 4.6 18.0821" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 6.99999C2.32652 7.07776 2.21548 7.18636 2.13502 7.31627C2.05456 7.44618 2.00726 7.59329 1.99745 7.745C1.98764 7.89671 2.0156 8.04818 2.07875 8.1853C2.1419 8.32242 2.23808 8.44056 2.358 8.52899L4.266 9.92299C4.38737 10.0057 4.45272 10.1464 4.436 10.289C4.424 10.386 4.424 10.486 4.424 10.586C4.424 10.686 4.424 10.782 4.436 10.879C4.45272 11.0216 4.38737 11.1623 4.266 11.245L2.358 12.639C2.23808 12.7274 2.1419 12.8456 2.07875 12.9827C2.0156 13.1198 1.98764 13.2713 1.99745 13.423C2.00726 13.5747 2.05456 13.7218 2.13502 13.8517C2.21548 13.9816 2.32652 14.0902 2.458 14.168L2.566 14.225C2.8367 14.3734 3.1448 14.4261 3.45137 14.375C3.75794 14.3239 4.04666 14.1715 4.274 13.9401C4.50135 13.7086 4.65576 13.41 4.71436 13.0857C4.77296 12.7614 4.73308 12.4267 4.6 12.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 8.08203C19.2669 7.78044 19.227 7.44572 19.2856 7.12142C19.3442 6.79712 19.4986 6.49853 19.726 6.26707C19.9533 6.03562 20.242 5.88322 20.5486 5.83212C20.8552 5.78102 21.1633 5.83372 21.434 5.98212L21.542 6.03912C21.6735 6.11689 21.7845 6.22549 21.865 6.3554C21.9455 6.48531 21.9928 6.63242 22.0026 6.78413C22.0124 6.93584 21.9844 7.08731 21.9213 7.22443C21.8581 7.36154 21.7619 7.47968 21.642 7.56812L19.734 8.96212C19.6126 9.04482 19.5473 9.18551 19.564 9.32812C19.576 9.42512 19.576 9.52512 19.576 9.62512C19.576 9.72512 19.576 9.82112 19.564 9.91812C19.5473 10.0607 19.6126 10.2014 19.734 10.2841L21.642 11.6781C21.7619 11.7665 21.8581 11.8847 21.9213 12.0218C21.9844 12.1589 22.0124 12.3104 22.0026 12.4621C21.9928 12.6138 21.9455 12.7609 21.865 12.8908C21.7845 13.0207 21.6735 13.1293 21.542 13.2071L21.434 13.2641C21.1633 13.4125 20.8552 13.4652 20.5486 13.4141C20.242 13.363 19.9533 13.2106 19.726 12.9791C19.4986 12.7477 19.3442 12.4491 19.2856 12.1248C19.227 11.8005 19.2669 11.4658 19.4 11.1641" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Dashboard Content -->
+            <div class="container dashboard">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title" data-i18n="dashboard.welcome">Welcome back, Student!</h1>
+                </div>
+
+                <!-- Progress Widget -->
+                <div class="progress-widget">
+                    <div class="progress-header">
+                        <h3 class="progress-title" data-i18n="dashboard.progress">Your Learning Progress</h3>
+                        <span class="progress-xp">250 XP</span>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div id="progress-bar" class="progress-bar" style="width: 45%"></div>
+                    </div>
+                    <div class="progress-details">
+                        <span data-i18n="dashboard.level">Level 2</span>
+                        <div class="progress-trophies">
+                            <svg class="trophy" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 5H17V3H7V5H5C3.9 5 3 5.9 3 7V8C3 10.55 4.92 12.63 7.39 12.94C8.02 14.44 9.37 15.57 11 15.9V19H7V21H17V19H13V15.9C14.63 15.57 15.98 14.44 16.61 12.94C19.08 12.63 21 10.55 21 8V7C21 5.9 20.1 5 19 5ZM5 8V7H7V10.82C5.84 10.4 5 9.3 5 8ZM19 8C19 9.3 18.16 10.4 17 10.82V7H19V8Z" fill="currentColor"/>
+                            </svg>
+                            <span>3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Math Card -->
+                    <div class="card subject-card" onclick="showPage('math-page')">
+                        <div class="subject-card-content">
+                            <svg class="subject-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13 2V3H14V5H13V7H11V5H10V3H11V2H13Z" fill="currentColor"/>
+                                <path d="M5 8V16H7V14H9V12H7V10H9V8H5Z" fill="currentColor"/>
+                                <path d="M17 8V10H19V12H17V14H19V16H21V8H17Z" fill="currentColor"/>
+                                <path d="M13 16V18H11V21H13V22H11V21H9V18H11V16H13Z" fill="currentColor"/>
+                                <path d="M3 20V22H21V20H3Z" fill="currentColor"/>
+                            </svg>
+                            <h3 class="card-title" data-i18n="dashboard.math">Mathematics</h3>
+                            <p class="card-body" data-i18n="dashboard.mathDesc">Algebra, Geometry, Calculus and more</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Math Section Page -->
+        <div id="math-page" class="hidden">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="container navbar-container">
+                    <a href="#" class="navbar-brand" onclick="showPage('dashboard-page')">
+                        <svg class="navbar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7L12 12L21 7L12 2Z" fill="var(--primary)"/>
+                            <path d="M3 12L12 17L21 12" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 17L12 22L21 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>LearnZy</span>
+                    </a>
+                    <div class="navbar-actions">
+                        <button onclick="showPage('dashboard-page')" class="btn-ghost" data-i18n="nav.back">Back to Dashboard</button>
+                        <button id="math-settings-toggle" class="btn-ghost">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 15C19.2669 15.3016 19.227 15.6363 19.2856 15.9606C19.3442 16.2849 19.4986 16.5835 19.726 16.8149C19.9533 17.0464 20.242 17.1988 20.5486 17.2499C20.8552 17.301 21.1633 17.2483 21.434 17.0999L21.542 17.0429C21.6735 16.9651 21.7845 16.8565 21.865 16.7266C21.9455 16.5967 21.9928 16.4496 22.0026 16.2979C22.0124 16.1462 21.9844 15.9947 21.9213 15.8576C21.8581 15.7205 21.7619 15.6023 21.642 15.5139L19.734 14.1199C19.6126 14.0372 19.5473 13.8965 19.564 13.7539C19.576 13.6569 19.576 13.5569 19.576 13.4569C19.576 13.3569 19.576 13.2609 19.564 13.1639C19.5473 13.0213 19.6126 12.8806 19.734 12.7979L21.642 11.4039C21.7619 11.3155 21.8581 11.1973 21.9213 11.0602C21.9844 10.9231 22.0124 10.7716 22.0026 10.6199C21.9928 10.4682 21.9455 10.3211 21.865 10.1912C21.7845 10.0613 21.6735 9.9527 21.542 9.87494L21.434 9.81794C21.1633 9.66954 20.8552 9.61684 20.5486 9.66794C20.242 9.71904 19.9533 9.87144 19.726 10.1029C19.4986 10.3343 19.3442 10.6329 19.2856 10.9572C19.227 11.2815 19.2669 11.6162 19.4 11.9179" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 17C2.32652 17.0778 2.21548 17.1864 2.13502 17.3163C2.05456 17.4462 2.00726 17.5933 1.99745 17.745C1.98764 17.8967 2.0156 18.0482 2.07875 18.1853C2.1419 18.3224 2.23808 18.4406 2.358 18.529L4.266 19.923C4.38737 20.0057 4.45272 20.1464 4.436 20.289C4.424 20.386 4.424 20.486 4.424 20.586C4.424 20.686 4.424 20.782 4.436 20.879C4.45272 21.0216 4.38737 21.1623 4.266 21.245L2.358 22.639C2.23808 22.7274 2.1419 22.8456 2.07875 22.9827C2.0156 23.1198 1.98764 23.2713 1.99745 23.423C2.00726 23.5747 2.05456 23.7218 2.13502 23.8517C2.21548 23.9816 2.32652 24.0902 2.458 24.168L2.566 24.225C2.8367 24.3734 3.1448 24.4261 3.45137 24.375C3.75794 24.3239 4.04666 24.1715 4.274 23.9401C4.50135 23.7086 4.65576 23.41 4.71436 23.0857C4.77296 22.7614 4.73308 22.4267 4.6 22.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.6 15C4.73308 14.6984 4.77296 14.3637 4.71436 14.0394C4.65576 13.7151 4.50135 13.4165 4.274 13.1851C4.04666 12.9536 3.75794 12.8012 3.45137 12.7501C3.1448 12.699 2.8367 12.7517 2.566 12.9001L2.458 12.9571C2.32652 13.0349 2.21548 13.1435 2.13502 13.2734C2.05456 13.4033 2.00726 13.5504 1.99745 13.7021C1.98764 13.8538 2.0156 14.0053 2.07875 14.1424C2.1419 14.2795 2.23808 14.3977 2.358 14.4861L4.266 15.8801C4.38737 15.9628 4.45272 16.1035 4.436 16.2461C4.424 16.3431 4.424 16.4431 4.424 16.5431C4.424 16.6431 4.424 16.7391 4.436 16.8361C4.45272 16.9787 4.38737 17.1194 4.266 17.2021L2.358 18.5961C2.23808 18.6845 2.1419 18.8027 2.07875 18.9398C2.0156 19.0769 1.98764 19.2284 1.99745 19.3801C2.00726 19.5318 2.05456 19.6789 2.13502 19.8088C2.21548 19.9387 2.32652 20.0473 2.458 20.1251L2.566 20.1821C2.8367 20.3305 3.1448 20.3832 3.45137 20.3321C3.75794 20.281 4.04666 20.1286 4.274 19.8971C4.50135 19.6657 4.65576 19.3671 4.71436 19.0428C4.77296 18.7185 4.73308 18.3838 4.6 18.0821" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 6.99999C2.32652 7.07776 2.21548 7.18636 2.13502 7.31627C2.05456 7.44618 2.00726 7.59329 1.99745 7.745C1.98764 7.89671 2.0156 8.04818 2.07875 8.1853C2.1419 8.32242 2.23808 8.44056 2.358 8.52899L4.266 9.92299C4.38737 10.0057 4.45272 10.1464 4.436 10.289C4.424 10.386 4.424 10.486 4.424 10.586C4.424 10.686 4.424 10.782 4.436 10.879C4.45272 11.0216 4.38737 11.1623 4.266 11.245L2.358 12.639C2.23808 12.7274 2.1419 12.8456 2.07875 12.9827C2.0156 13.1198 1.98764 13.2713 1.99745 13.423C2.00726 13.5747 2.05456 13.7218 2.13502 13.8517C2.21548 13.9816 2.32652 14.0902 2.458 14.168L2.566 14.225C2.8367 14.3734 3.1448 14.4261 3.45137 14.375C3.75794 14.3239 4.04666 14.1715 4.274 13.9401C4.50135 13.7086 4.65576 13.41 4.71436 13.0857C4.77296 12.7614 4.73308 12.4267 4.6 12.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 8.08203C19.2669 7.78044 19.227 7.44572 19.2856 7.12142C19.3442 6.79712 19.4986 6.49853 19.726 6.26707C19.9533 6.03562 20.242 5.88322 20.5486 5.83212C20.8552 5.78102 21.1633 5.83372 21.434 5.98212L21.542 6.03912C21.6735 6.11689 21.7845 6.22549 21.865 6.3554C21.9455 6.48531 21.9928 6.63242 22.0026 6.78413C22.0124 6.93584 21.9844 7.08731 21.9213 7.22443C21.8581 7.36154 21.7619 7.47968 21.642 7.56812L19.734 8.96212C19.6126 9.04482 19.5473 9.18551 19.564 9.32812C19.576 9.42512 19.576 9.52512 19.576 9.62512C19.576 9.72512 19.576 9.82112 19.564 9.91812C19.5473 10.0607 19.6126 10.2014 19.734 10.2841L21.642 11.6781C21.7619 11.7665 21.8581 11.8847 21.9213 12.0218C21.9844 12.1589 22.0124 12.3104 22.0026 12.4621C21.9928 12.6138 21.9455 12.7609 21.865 12.8908C21.7845 13.0207 21.6735 13.1293 21.542 13.2071L21.434 13.2641C21.1633 13.4125 20.8552 13.4652 20.5486 13.4141C20.242 13.363 19.9533 13.2106 19.726 12.9791C19.4986 12.7477 19.3442 12.4491 19.2856 12.1248C19.227 11.8005 19.2669 11.4658 19.4 11.1641" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Math Content -->
+            <div class="container math-section">
+                <h1 class="text-3xl font-bold" data-i18n="math.title">Mathematics</h1>
+                <p class="text-light mt-2" data-i18n="math.subtitle">Select a topic to start learning</p>
+
+                <div class="topics-grid">
+                    <!-- Algebra -->
+                    <div class="topic-card" onclick="loadLesson('algebra')">
+                        <h3 class="topic-title" data-i18n="math.algebra">Algebra</h3>
+                        <p class="topic-description" data-i18n="math.algebraDesc">Equations, functions, polynomials, and more</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 30%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">30% complete</span>
+                            <span>5/15 lessons</span>
+                        </div>
+                    </div>
+
+                    <!-- Geometry -->
+                    <div class="topic-card" onclick="loadLesson('geometry')">
+                        <h3 class="topic-title" data-i18n="math.geometry">Geometry</h3>
+                        <p class="topic-description" data-i18n="math.geometryDesc">Shapes, angles, theorems, and proofs</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 15%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">15% complete</span>
+                            <span>2/12 lessons</span>
+                        </div>
+                    </div>
+
+                    <!-- Calculus -->
+                    <div class="topic-card" onclick="loadLesson('calculus')">
+                        <h3 class="topic-title" data-i18n="math.calculus">Calculus</h3>
+                        <p class="topic-description" data-i18n="math.calculusDesc">Limits, derivatives, integrals, and series</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 5%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">5% complete</span>
+                            <span>1/20 lessons</span>
+                        </div>
+                    </div>
+
+                    <!-- Trigonometry -->
+                    <div class="topic-card" onclick="loadLesson('trigonometry')">
+                        <h3 class="topic-title" data-i18n="math.trigonometry">Trigonometry</h3>
+                        <p class="topic-description" data-i18n="math.trigonometryDesc">Triangles, circles, and trigonometric functions</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 45%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">45% complete</span>
+                            <span>6/13 lessons</span>
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="topic-card" onclick="loadLesson('statistics')">
+                        <h3 class="topic-title" data-i18n="math.statistics">Statistics</h3>
+                        <p class="topic-description" data-i18n="math.statisticsDesc">Data analysis, probability, and distributions</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 60%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">60% complete</span>
+                            <span>9/15 lessons</span>
+                        </div>
+                    </div>
+
+                    <!-- Probability -->
+                    <div class="topic-card" onclick="loadLesson('probability')">
+                        <h3 class="topic-title" data-i18n="math.probability">Probability</h3>
+                        <p class="topic-description" data-i18n="math.probabilityDesc">Events, combinations, and distributions</p>
+                        <div class="topic-progress">
+                            <div class="topic-progress-bar" style="width: 25%"></div>
+                        </div>
+                        <div class="topic-stats">
+                            <span data-i18n="math.progress">25% complete</span>
+                            <span>3/12 lessons</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lesson Page -->
+        <div id="lesson-page" class="hidden">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="container navbar-container">
+                    <a href="#" class="navbar-brand" onclick="showPage('math-page')">
+                        <svg class="navbar-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L3 7L12 12L21 7L12 2Z" fill="var(--primary)"/>
+                            <path d="M3 12L12 17L21 12" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M3 17L12 22L21 17" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        <span>LearnZy</span>
+                    </a>
+                    <div class="navbar-actions">
+                        <button onclick="showPage('math-page')" class="btn-ghost" data-i18n="nav.back">Back to Math</button>
+                        <button id="lesson-settings-toggle" class="btn-ghost">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 15C19.2669 15.3016 19.227 15.6363 19.2856 15.9606C19.3442 16.2849 19.4986 16.5835 19.726 16.8149C19.9533 17.0464 20.242 17.1988 20.5486 17.2499C20.8552 17.301 21.1633 17.2483 21.434 17.0999L21.542 17.0429C21.6735 16.9651 21.7845 16.8565 21.865 16.7266C21.9455 16.5967 21.9928 16.4496 22.0026 16.2979C22.0124 16.1462 21.9844 15.9947 21.9213 15.8576C21.8581 15.7205 21.7619 15.6023 21.642 15.5139L19.734 14.1199C19.6126 14.0372 19.5473 13.8965 19.564 13.7539C19.576 13.6569 19.576 13.5569 19.576 13.4569C19.576 13.3569 19.576 13.2609 19.564 13.1639C19.5473 13.0213 19.6126 12.8806 19.734 12.7979L21.642 11.4039C21.7619 11.3155 21.8581 11.1973 21.9213 11.0602C21.9844 10.9231 22.0124 10.7716 22.0026 10.6199C21.9928 10.4682 21.9455 10.3211 21.865 10.1912C21.7845 10.0613 21.6735 9.9527 21.542 9.87494L21.434 9.81794C21.1633 9.66954 20.8552 9.61684 20.5486 9.66794C20.242 9.71904 19.9533 9.87144 19.726 10.1029C19.4986 10.3343 19.3442 10.6329 19.2856 10.9572C19.227 11.2815 19.2669 11.6162 19.4 11.9179" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 17C2.32652 17.0778 2.21548 17.1864 2.13502 17.3163C2.05456 17.4462 2.00726 17.5933 1.99745 17.745C1.98764 17.8967 2.0156 18.0482 2.07875 18.1853C2.1419 18.3224 2.23808 18.4406 2.358 18.529L4.266 19.923C4.38737 20.0057 4.45272 20.1464 4.436 20.289C4.424 20.386 4.424 20.486 4.424 20.586C4.424 20.686 4.424 20.782 4.436 20.879C4.45272 21.0216 4.38737 21.1623 4.266 21.245L2.358 22.639C2.23808 22.7274 2.1419 22.8456 2.07875 22.9827C2.0156 23.1198 1.98764 23.2713 1.99745 23.423C2.00726 23.5747 2.05456 23.7218 2.13502 23.8517C2.21548 23.9816 2.32652 24.0902 2.458 24.168L2.566 24.225C2.8367 24.3734 3.1448 24.4261 3.45137 24.375C3.75794 24.3239 4.04666 24.1715 4.274 23.9401C4.50135 23.7086 4.65576 23.41 4.71436 23.0857C4.77296 22.7614 4.73308 22.4267 4.6 22.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M4.6 15C4.73308 14.6984 4.77296 14.3637 4.71436 14.0394C4.65576 13.7151 4.50135 13.4165 4.274 13.1851C4.04666 12.9536 3.75794 12.8012 3.45137 12.7501C3.1448 12.699 2.8367 12.7517 2.566 12.9001L2.458 12.9571C2.32652 13.0349 2.21548 13.1435 2.13502 13.2734C2.05456 13.4033 2.00726 13.5504 1.99745 13.7021C1.98764 13.8538 2.0156 14.0053 2.07875 14.1424C2.1419 14.2795 2.23808 14.3977 2.358 14.4861L4.266 15.8801C4.38737 15.9628 4.45272 16.1035 4.436 16.2461C4.424 16.3431 4.424 16.4431 4.424 16.5431C4.424 16.6431 4.424 16.7391 4.436 16.8361C4.45272 16.9787 4.38737 17.1194 4.266 17.2021L2.358 18.5961C2.23808 18.6845 2.1419 18.8027 2.07875 18.9398C2.0156 19.0769 1.98764 19.2284 1.99745 19.3801C2.00726 19.5318 2.05456 19.6789 2.13502 19.8088C2.21548 19.9387 2.32652 20.0473 2.458 20.1251L2.566 20.1821C2.8367 20.3305 3.1448 20.3832 3.45137 20.3321C3.75794 20.281 4.04666 20.1286 4.274 19.8971C4.50135 19.6657 4.65576 19.3671 4.71436 19.0428C4.77296 18.7185 4.73308 18.3838 4.6 18.0821" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2.458 6.99999C2.32652 7.07776 2.21548 7.18636 2.13502 7.31627C2.05456 7.44618 2.00726 7.59329 1.99745 7.745C1.98764 7.89671 2.0156 8.04818 2.07875 8.1853C2.1419 8.32242 2.23808 8.44056 2.358 8.52899L4.266 9.92299C4.38737 10.0057 4.45272 10.1464 4.436 10.289C4.424 10.386 4.424 10.486 4.424 10.586C4.424 10.686 4.424 10.782 4.436 10.879C4.45272 11.0216 4.38737 11.1623 4.266 11.245L2.358 12.639C2.23808 12.7274 2.1419 12.8456 2.07875 12.9827C2.0156 13.1198 1.98764 13.2713 1.99745 13.423C2.00726 13.5747 2.05456 13.7218 2.13502 13.8517C2.21548 13.9816 2.32652 14.0902 2.458 14.168L2.566 14.225C2.8367 14.3734 3.1448 14.4261 3.45137 14.375C3.75794 14.3239 4.04666 14.1715 4.274 13.9401C4.50135 13.7086 4.65576 13.41 4.71436 13.0857C4.77296 12.7614 4.73308 12.4267 4.6 12.125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4 8.08203C19.2669 7.78044 19.227 7.44572 19.2856 7.12142C19.3442 6.79712 19.4986 6.49853 19.726 6.26707C19.9533 6.03562 20.242 5.88322 20.5486 5.83212C20.8552 5.78102 21.1633 5.83372 21.434 5.98212L21.542 6.03912C21.6735 6.11689 21.7845 6.22549 21.865 6.3554C21.9455 6.48531 21.9928 6.63242 22.0026 6.78413C22.0124 6.93584 21.9844 7.08731 21.9213 7.22443C21.8581 7.36154 21.7619 7.47968 21.642 7.56812L19.734 8.96212C19.6126 9.04482 19.5473 9.18551 19.564 9.32812C19.576 9.42512 19.576 9.52512 19.576 9.62512C19.576 9.72512 19.576 9.82112 19.564 9.91812C19.5473 10.0607 19.6126 10.2014 19.734 10.2841L21.642 11.6781C21.7619 11.7665 21.8581 11.8847 21.9213 12.0218C21.9844 12.1589 22.0124 12.3104 22.0026 12.4621C21.9928 12.6138 21.9455 12.7609 21.865 12.8908C21.7845 13.0207 21.6735 13.1293 21.542 13.2071L21.434 13.2641C21.1633 13.4125 20.8552 13.4652 20.5486 13.4141C20.242 13.363 19.9533 13.2106 19.726 12.9791C19.4986 12.7477 19.3442 12.4491 19.2856 12.1248C19.227 11.8005 19.2669 11.4658 19.4 11.1641" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Lesson Content -->
+            <div class="container">
+                <div class="lesson-container">
+                    <div class="lesson-header">
+                        <h1 id="lesson-title" class="lesson-title">Linear Equations</h1>
+                        <p id="lesson-subtitle" class="lesson-subtitle">Algebra • Lesson 3 of 15</p>
+                    </div>
+
+                    <div id="lesson-content-visual" class="lesson-content">
+                        <div class="lesson-visual">
+                            <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                                <!-- X-axis -->
+                                <line x1="50" y1="150" x2="350" y2="150" stroke="var(--primary)" stroke-width="2" />
+                                <!-- Y-axis -->
+                                <line x1="200" y1="20" x2="200" y2="180" stroke="var(--primary)" stroke-width="2" />
+                                <!-- Graph line y = 2x + 1 -->
+                                <path d="M 50 250 L 100 150 L 150 50 L 200 -50 L 250 50 L 300 150 L 350 250" 
+                                      stroke="var(--secondary)" stroke-width="3" fill="none" 
+                                      transform="translate(0 100) scale(1 -0.5)" />
+                                <!-- Equation -->
+                                <text x="300" y="30" fill="var(--text)" font-size="16" font-weight="bold">y = 2x + 1</text>
+                                <!-- Points -->
+                                <circle cx="150" cy="100" r="5" fill="var(--accent)" />
+                                <circle cx="200" cy="50" r="5" fill="var(--accent)" />
+                                <circle cx="250" cy="100" r="5" fill="var(--accent)" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div id="lesson-content-text" class="lesson-content">
+                        <div class="lesson-text">
+                            <p data-i18n="lesson.text1">A linear equation is an equation that describes a straight line on a graph. The general form of a linear equation is:</p>
+                            <p class="text-center font-bold my-4">y = mx + b</p>
+                            <p data-i18n="lesson.text2">Where:</p>
+                            <ul class="list-disc pl-6 my-2">
+                                <li data-i18n="lesson.m"><strong>m</strong> is the slope of the line (how steep it is)</li>
+                                <li data-i18n="lesson.b"><strong>b</strong> is the y-intercept (where the line crosses the y-axis)</li>
+                            </ul>
+                            <p data-i18n="lesson.text3">In the example shown (y = 2x + 1):</p>
+                            <ul class="list-disc pl-6 my-2">
+                                <li data-i18n="lesson.example1">The slope (m) is 2, meaning for every 1 unit increase in x, y increases by 2 units</li>
+                                <li data-i18n="lesson.example2">The y-intercept (b) is 1, meaning the line crosses the y-axis at the point (0,1)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="lesson-exercise">
+                        <h3 class="exercise-title" data-i18n="exercise.title">Practice Exercise</h3>
+                        <div class="exercise-question">
+                            <p data-i18n="exercise.question">Given the linear equation y = -3x + 4, what is the slope and y-intercept?</p>
+                        </div>
+                        <div class="exercise-options">
+                            <div class="exercise-option" onclick="selectExerciseOption(1)">
+                                <input type="radio" id="option1" name="exercise" class="hidden">
+                                <label for="option1" data-i18n="exercise.option1">Slope: -3, Y-intercept: 4</label>
+                            </div>
+                            <div class="exercise-option" onclick="selectExerciseOption(2)">
+                                <input type="radio" id="option2" name="exercise" class="hidden">
+                                <label for="option2" data-i18n="exercise.option2">Slope: 3, Y-intercept: -4</label>
+                            </div>
+                            <div class="exercise-option" onclick="selectExerciseOption(3)">
+                                <input type="radio" id="option3" name="exercise" class="hidden">
+                                <label for="option3" data-i18n="exercise.option3">Slope: 4, Y-intercept: -3</label>
+                            </div>
+                            <div class="exercise-option" onclick="selectExerciseOption(4)">
+                                <input type="radio" id="option4" name="exercise" class="hidden">
+                                <label for="option4" data-i18n="exercise.option4">Slope: -4, Y-intercept: 3</label>
+                            </div>
+                        </div>
+                        <div id="exercise-feedback" class="exercise-feedback"></div>
+                        <div id="exercise-hint" class="exercise-hint" data-i18n="exercise.hint">
+                            Remember the general form: y = mx + b. The coefficient of x is the slope (m), and the constant term is the y-intercept (b).
+                        </div>
+                        <div class="exercise-actions">
+                            <button id="check-answer" class="btn btn-primary" onclick="checkAnswer()" data-i18n="exercise.check">Check Answer</button>
+                            <button id="show-hint" class="btn btn-outline" onclick="showHint()" data-i18n="exercise.hintButton">Show Hint</button>
+                            <button id="next-lesson" class="btn btn-secondary hidden" onclick="nextLesson()" data-i18n="exercise.next">Next Lesson</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" data-i18n="settings.title">Settings</h3>
+                    <button class="modal-close" onclick="closeModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-item">
+                        <span class="settings-label" data-i18n="settings.theme">Theme</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="theme-switch">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-item">
+                        <span class="settings-label" data-i18n="settings.language">Language</span>
+                        <button id="language-switch" class="btn btn-outline" onclick="toggleLanguage()">English / Română</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-ghost" onclick="closeModal()" data-i18n="settings.cancel">Cancel</button>
+                    <button class="btn btn-primary" onclick="logout()" data-i18n="settings.logout">Log Out</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // App State
+        const state = {
+            currentPage: 'home-page',
+            user: null,
+            learningStyle: null,
+            quizAnswers: {},
+            currentQuizStep: 1,
+            totalQuizSteps: 5,
+            darkMode: false,
+            language: 'en',
+            currentLesson: null,
+            exerciseSelectedOption: null,
+            exerciseCorrectOption: 1
+        };
+
+        // Translations
+        const resources = {
+            en: {
+                translation: {
+                    "nav.features": "Features",
+                    "nav.contact": "Contact",
+                    "nav.login": "Log In",
+                    "nav.signup": "Sign Up",
+                    "nav.language": "EN/RO",
+                    "nav.back": "Back to Dashboard",
+                    "nav.math": "Math",
+                    "home.heroTitle": "AI-Powered Math Tutoring for Moldovan Students",
+                    "home.heroSubtitle": "Personalized learning adapted to your style. Master math concepts with interactive lessons and AI guidance.",
+                    "home.getStarted": "Get Started",
+                    "home.learnMore": "Learn More",
+                    "home.featuresTitle": "Why Choose LearnZy?",
+                    "home.feature1Title": "Personalized Learning",
+                    "home.feature1Desc": "Our AI adapts to your learning style, whether you're visual, auditory, or kinesthetic.",
+                    "home.feature2Title": "Curriculum-Aligned",
+                    "home.feature2Desc": "Content matches Moldovan high school math curriculum standards.",
+                    "home.feature3Title": "Instant Feedback",
+                    "home.feature3Desc": "Get AI-powered hints and explanations when you're stuck on a problem.",
+                    "login.title": "Log In to LearnZy",
+                    "login.email": "Email",
+                    "login.password": "Password",
+                    "login.submit": "Log In",
+                    "login.noAccount": "Don't have an account?",
+                    "login.signUp": "Sign up",
+                    "signup.title": "Create Your LearnZy Account",
+                    "signup.email": "Email",
+                    "signup.password": "Password",
+                    "signup.confirmPassword": "Confirm Password",
+                    "signup.submit": "Create Account",
+                    "signup.haveAccount": "Already have an account?",
+                    "signup.logIn": "Log in",
+                    "quiz.title": "Learning Style Quiz",
+                    "quiz.subtitle": "Help us personalize your learning experience by answering a few questions",
+                    "quiz.question1": "1. When learning something new, I prefer to:",
+                    "quiz.q1option1": "See diagrams, charts, or videos",
+                    "quiz.q1option2": "Read explanations or listen to someone explain",
+                    "quiz.q1option3": "Try it out myself with examples",
+                    "quiz.question2": "2. When solving math problems, I usually:",
+                    "quiz.q2option1": "Draw pictures or diagrams to understand",
+                    "quiz.q2option2": "Talk through the problem step by step",
+                    "quiz.q2option3": "Write out examples and try different approaches",
+                    "quiz.question3": "3. I remember math concepts best when I:",
+                    "quiz.q3option1": "See them represented visually",
+                    "quiz.q3option2": "Hear them explained clearly",
+                    "quiz.q3option3": "Work through problems myself",
+                    "quiz.question4": "4. When studying, I find it most helpful to:",
+                    "quiz.q4option1": "Use color coding and highlighters",
+                    "quiz.q4option2": "Discuss concepts with others",
+                    "quiz.q4option3": "Create practice problems and solve them",
+                    "quiz.question5": "5. My ideal math lesson would include:",
+                    "quiz.q5option1": "Lots of graphs, diagrams, and visual aids",
+                    "quiz.q5option2": "Clear verbal explanations and discussions",
+                    "quiz.q5option3": "Hands-on activities and real-world applications",
+                    "quiz.previous": "Previous",
+                    "quiz.next": "Next",
+                    "quiz.submit": "Submit",
+                    "dashboard.welcome": "Welcome back, Student!",
+                    "dashboard.progress": "Your Learning Progress",
+                    "dashboard.level": "Level 2",
+                    "dashboard.math": "Mathematics",
+                    "dashboard.mathDesc": "Algebra, Geometry, Calculus and more",
+                    "math.title": "Mathematics",
+                    "math.subtitle": "Select a topic to start learning",
+                    "math.algebra": "Algebra",
+                    "math.algebraDesc": "Equations, functions, polynomials, and more",
+                    "math.geometry": "Geometry",
+                    "math.geometryDesc": "Shapes, angles, theorems, and proofs",
+                    "math.calculus": "Calculus",
+                    "math.calculusDesc": "Limits, derivatives, integrals, and series",
+                    "math.trigonometry": "Trigonometry",
+                    "math.trigonometryDesc": "Triangles, circles, and trigonometric functions",
+                    "math.statistics": "Statistics",
+                    "math.statisticsDesc": "Data analysis, probability, and distributions",
+                    "math.probability": "Probability",
+                    "math.probabilityDesc": "Events, combinations, and distributions",
+                    "math.progress": "progress complete",
+                    "lesson.text1": "A linear equation is an equation that describes a straight line on a graph. The general form of a linear equation is:",
+                    "lesson.text2": "Where:",
+                    "lesson.m": "m is the slope of the line (how steep it is)",
+                    "lesson.b": "b is the y-intercept (where the line crosses the y-axis)",
+                    "lesson.text3": "In the example shown (y = 2x + 1):",
+                    "lesson.example1": "The slope (m) is 2, meaning for every 1 unit increase in x, y increases by 2 units",
+                    "lesson.example2": "The y-intercept (b) is 1, meaning the line crosses the y-axis at the point (0,1)",
+                    "exercise.title": "Practice Exercise",
+                    "exercise.question": "Given the linear equation y = -3x + 4, what is the slope and y-intercept?",
+                    "exercise.option1": "Slope: -3, Y-intercept: 4",
+                    "exercise.option2": "Slope: 3, Y-intercept: -4",
+                    "exercise.option3": "Slope: 4, Y-intercept: -3",
+                    "exercise.option4": "Slope: -4, Y-intercept: 3",
+                    "exercise.hint": "Remember the general form: y = mx + b. The coefficient of x is the slope (m), and the constant term is the y-intercept (b).",
+                    "exercise.check": "Check Answer",
+                    "exercise.hintButton": "Show Hint",
+                    "exercise.next": "Next Lesson",
+                    "exercise.correct": "Correct! Well done!",
+                    "exercise.incorrect": "Incorrect. Try again or check the hint.",
+                    "settings.title": "Settings",
+                    "settings.theme": "Dark Mode",
+                    "settings.language": "Language",
+                    "settings.cancel": "Cancel",
+                    "settings.logout": "Log Out"
+                }
+            },
+            ro: {
+                translation: {
+                    "nav.features": "Caracteristici",
+                    "nav.contact": "Contact",
+                    "nav.login": "Autentificare",
+                    "nav.signup": "Înregistrare",
+                    "nav.language": "RO/EN",
+                    "nav.back": "Înapoi la Panoul de control",
+                    "nav.math": "Matematică",
+                    "home.heroTitle": "Învățare de Matematică cu AI pentru Elevii din Moldova",
+                    "home.heroSubtitle": "Învățare personalizată adaptată stilului tău. Stăpânește conceptele de matematică cu lecții interactive și ghidaj AI.",
+                    "home.getStarted": "Începe acum",
+                    "home.learnMore": "Află mai multe",
+                    "home.featuresTitle": "De ce să alegi LearnZy?",
+                    "home.feature1Title": "Învățare Personalizată",
+                    "home.feature1Desc": "AI-ul nostru se adaptează stilului tău de învățare, fie că ești vizual, auditiv sau kinestetic.",
+                    "home.feature2Title": "Conform Curriculumului",
+                    "home.feature2Desc": "Conținutul corespunde standardelor curriculumului de matematică pentru licee din Moldova.",
+                    "home.feature3Title": "Feedback Instant",
+                    "home.feature3Desc": "Primești indicii și explicații generate de AI când ești blocat la o problemă.",
+                    "login.title": "Autentificare în LearnZy",
+                    "login.email": "Email",
+                    "login.password": "Parolă",
+                    "login.submit": "Autentificare",
+                    "login.noAccount": "Nu ai un cont?",
+                    "login.signUp": "Înregistrare",
+                    "signup.title": "Creează-ți contul LearnZy",
+                    "signup.email": "Email",
+                    "signup.password": "Parolă",
+                    "signup.confirmPassword": "Confirmă Parola",
+                    "signup.submit": "Creează Cont",
+                    "signup.haveAccount": "Ai deja un cont?",
+                    "signup.logIn": "Autentificare",
+                    "quiz.title": "Test de Stil de Învățare",
+                    "quiz.subtitle": "Ajută-ne să personalizăm experiența ta de învățare răspunzând la câteva întrebări",
+                    "quiz.question1": "1. Când învăț ceva nou, prefer să:",
+                    "quiz.q1option1": "Văd diagrame, grafice sau videoclipuri",
+                    "quiz.q1option2": "Citesc explicații sau ascult pe cineva explicând",
+                    "quiz.q1option3": "Încerc eu însumi cu exemple",
+                    "quiz.question2": "2. Când rezolv probleme de matematică, de obicei:",
+                    "quiz.q2option1": "Desenez imagini sau diagrame pentru a înțelege",
+                    "quiz.q2option2": "Vorbesc prin problemă pas cu pas",
+                    "quiz.q2option3": "Scriu exemple și încerc diferite abordări",
+                    "quiz.question3": "3. Îmi amintesc cel mai bine conceptele de matematică când:",
+                    "quiz.q3option1": "Le văd reprezentate vizual",
+                    "quiz.q3option2": "Le aud explicate clar",
+                    "quiz.q3option3": "Lucrez prin probleme eu însumi",
+                    "quiz.question4": "4. Când studiez, consider cel mai util să:",
+                    "quiz.q4option1": "Folosesc coduri de culoare și markeri",
+                    "quiz.q4option2": "Discut conceptele cu alții",
+                    "quiz.q4option3": "Creez probleme practice și le rezolv",
+                    "quiz.question5": "5. Lecția mea ideală de matematică ar include:",
+                    "quiz.q5option1": "Multe grafice, diagrame și ajutoare vizuale",
+                    "quiz.q5option2": "Explicații verbale clare și discuții",
+                    "quiz.q5option3": "Activități practice și aplicații din lumea reală",
+                    "quiz.previous": "Anterior",
+                    "quiz.next": "Următorul",
+                    "quiz.submit": "Trimite",
+                    "dashboard.welcome": "Bine ai revenit, Student!",
+                    "dashboard.progress": "Progresul tău de Învățare",
+                    "dashboard.level": "Nivelul 2",
+                    "dashboard.math": "Matematică",
+                    "dashboard.mathDesc": "Algebră, Geometrie, Calcul și nu numai",
+                    "math.title": "Matematică",
+                    "math.subtitle": "Selectează un subiect pentru a începe să înveți",
+                    "math.algebra": "Algebră",
+                    "math.algebraDesc": "Ecuații, funcții, polinoame și nu numai",
+                    "math.geometry": "Geometrie",
+                    "math.geometryDesc": "Forme, unghiuri, teoreme și demonstrații",
+                    "math.calculus": "Calcul",
+                    "math.calculusDesc": "Limite, derivate, integrale și serii",
+                    "math.trigonometry": "Trigonometrie",
+                    "math.trigonometryDesc": "Triunghiuri, cercuri și funcții trigonometrice",
+                    "math.statistics": "Statistică",
+                    "math.statisticsDesc": "Analiza datelor, probabilitate și distribuții",
+                    "math.probability": "Probabilitate",
+                    "math.probabilityDesc": "Evenimente, combinații și distribuții",
+                    "math.progress": "procent complet",
+                    "lesson.text1": "O ecuație liniară este o ecuație care descrie o linie dreaptă pe un grafic. Forma generală a unei ecuații liniare este:",
+                    "lesson.text2": "Unde:",
+                    "lesson.m": "m este panta dreptei (cât de înclinată este)",
+                    "lesson.b": "b este intersecția cu axa y (unde linia traversează axa y)",
+                    "lesson.text3": "În exemplul afișat (y = 2x + 1):",
+                    "lesson.example1": "Panta (m) este 2, ceea ce înseamnă că pentru fiecare creștere de 1 unitate a lui x, y crește cu 2 unități",
+                    "lesson.example2": "Intersecția cu axa y (b) este 1, ceea ce înseamnă că linia traversează axa y în punctul (0,1)",
+                    "exercise.title": "Exercițiu Practic",
+                    "exercise.question": "Dată fiind ecuația liniară y = -3x + 4, care este panta și intersecția cu axa y?",
+                    "exercise.option1": "Panta: -3, Intersecția cu axa y: 4",
+                    "exercise.option2": "Panta: 3, Intersecția cu axa y: -4",
+                    "exercise.option3": "Panta: 4, Intersecția cu axa y: -3",
+                    "exercise.option4": "Panta: -4, Intersecția cu axa y: 3",
+                    "exercise.hint": "Amintește-ți forma generală: y = mx + b. Coeficientul lui x este panta (m), iar termenul constant este intersecția cu axa y (b).",
+                    "exercise.check": "Verifică Răspunsul",
+                    "exercise.hintButton": "Arată Indicii",
+                    "exercise.next": "Lecția Următoare",
+                    "exercise.correct": "Corect! Foarte bine!",
+                    "exercise.incorrect": "Incorect. Încearcă din nou sau verifică indiciile.",
+                    "settings.title": "Setări",
+                    "settings.theme": "Mod Întunecat",
+                    "settings.language": "Limba",
+                    "settings.cancel": "Anulează",
+                    "settings.logout": "Deconectare"
+                }
+            }
+        };
+
+        // Initialize i18next
+        i18next
+            .use(i18nextBrowserLanguageDetector)
+            .init({
+                resources,
+                fallbackLng: 'en',
+                interpolation: {
+                    escapeValue: false
+                }
+            })
+            .then(() => {
+                updateTranslations();
+            });
+
+        // Update translations on language change
+        function updateTranslations() {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.innerHTML = i18next.t(key);
+            });
+        }
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('#app > div').forEach(page => {
+                page.classList.add('hidden');
+            });
+            
+            // Show requested page
+            document.getElementById(pageId).classList.remove('hidden');
+            state.currentPage = pageId;
+            
+            // Special cases
+            if (pageId === 'dashboard-page') {
+                updateProgressBar();
+            }
+        }
+
+        // Authentication
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                alert(i18next.t('login.email') + ' and ' + i18next.t('login.password') + ' are required');
+                return;
+            }
+            
+            // Mock login - in a real app, this would be an API call
+            state.user = { email };
+            showPage('quiz-page');
+        });
+
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            
+            // Validation
+            if (!email || !password || !confirmPassword) {
+                alert('All fields are required');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            // Mock signup - in a real app, this would be an API call
+            state.user = { email };
+            showPage('quiz-page');
+        });
+
+        // Quiz Logic
+        function selectQuizOption(question, option) {
+            state.quizAnswers[question] = option;
+            
+            // Update UI
+            const options = document.querySelectorAll(`#quiz-step-${question} .quiz-option`);
+            options.forEach((opt, idx) => {
+                if (idx + 1 === option) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        function nextQuizStep() {
+            if (state.currentQuizStep < state.totalQuizSteps) {
+                document.getElementById(`quiz-step-${state.currentQuizStep}`).classList.add('hidden');
+                state.currentQuizStep++;
+                document.getElementById(`quiz-step-${state.currentQuizStep}`).classList.remove('hidden');
+                
+                // Update progress bar
+                const progress = (state.currentQuizStep / state.totalQuizSteps) * 100;
+                document.getElementById('quiz-progress-bar').style.width = `${progress}%`;
+                
+                // Update buttons
+                document.getElementById('quiz-prev').disabled = false;
+                
+                if (state.currentQuizStep === state.totalQuizSteps) {
+                    document.getElementById('quiz-next').classList.add('hidden');
+                    document.getElementById('quiz-submit').classList.remove('hidden');
+                }
+            }
+        }
+
+        function prevQuizStep() {
+            if (state.currentQuizStep > 1) {
+                document.getElementById(`quiz-step-${state.currentQuizStep}`).classList.add('hidden');
+                state.currentQuizStep--;
+                document.getElementById(`quiz-step-${state.currentQuizStep}`).classList.remove('hidden');
+                
+                // Update progress bar
+                const progress = (state.currentQuizStep / state.totalQuizSteps) * 100;
+                document.getElementById('quiz-progress-bar').style.width = `${progress}%`;
+                
+                // Update buttons
+                if (state.currentQuizStep === 1) {
+                    document.getElementById('quiz-prev').disabled = true;
+                }
+                
+                document.getElementById('quiz-next').classList.remove('hidden');
+                document.getElementById('quiz-submit').classList.add('hidden');
+            }
+        }
+
+        function submitQuiz() {
+            // Determine learning style based on answers
+            const visualAnswers = [1, 1, 1, 1, 1];
+            const auditoryAnswers = [2, 2, 2, 2, 2];
+            const kinestheticAnswers = [3, 3, 3, 3, 3];
+            
+            let visualScore = 0;
+            let auditoryScore = 0;
+            let kinestheticScore = 0;
+            
+            for (let i = 1; i <= 5; i++) {
+                if (state.quizAnswers[i] === visualAnswers[i-1]) visualScore++;
+                if (state.quizAnswers[i] === auditoryAnswers[i-1]) auditoryScore++;
+                if (state.quizAnswers[i] === kinestheticAnswers[i-1]) kinestheticScore++;
+            }
+            
+            // Determine dominant style
+            const maxScore = Math.max(visualScore, auditoryScore, kinestheticScore);
+            
+            if (maxScore === visualScore) {
+                state.learningStyle = 'visual';
+            } else if (maxScore === auditoryScore) {
+                state.learningStyle = 'auditory';
+            } else {
+                state.learningStyle = 'kinesthetic';
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('learningStyle', state.learningStyle);
+            
+            // Redirect to dashboard
+            showPage('dashboard-page');
+        }
+
+        // Dashboard
+        function updateProgressBar() {
+            const progressBar = document.getElementById('progress-bar');
+            let width = 0;
+            const interval = setInterval(() => {
+                if (width >= 45) {
+                    clearInterval(interval);
+                } else {
+                    width++;
+                    progressBar.style.width = `${width}%`;
+                }
+            }, 20);
+        }
+
+        // Math Section
+        function loadLesson(topic) {
+            state.currentLesson = topic;
+            
+            // Adapt lesson based on learning style
+            if (state.learningStyle === 'visual') {
+                document.getElementById('lesson-content-visual').style.display = 'block';
+                document.getElementById('lesson-content-text').style.display = 'none';
+            } else {
+                document.getElementById('lesson-content-visual').style.display = 'none';
+                document.getElementById('lesson-content-text').style.display = 'block';
+            }
+            
+            // Update lesson title based on topic
+            let title, subtitle;
+            switch(topic) {
+                case 'algebra':
+                    title = i18next.t('math.algebra');
+                    subtitle = i18next.t('math.algebraDesc');
+                    break;
+                case 'geometry':
+                    title = i18next.t('math.geometry');
+                    subtitle = i18next.t('math.geometryDesc');
+                    break;
+                case 'calculus':
+                    title = i18next.t('math.calculus');
+                    subtitle = i18next.t('math.calculusDesc');
+                    break;
+                case 'trigonometry':
+                    title = i18next.t('math.trigonometry');
+                    subtitle = i18next.t('math.trigonometryDesc');
+                    break;
+                case 'statistics':
+                    title = i18next.t('math.statistics');
+                    subtitle = i18next.t('math.statisticsDesc');
+                    break;
+                case 'probability':
+                    title = i18next.t('math.probability');
+                    subtitle = i18next.t('math.probabilityDesc');
+                    break;
+                default:
+                    title = 'Linear Equations';
+                    subtitle = 'Algebra • Lesson 3 of 15';
+            }
+            
+            document.getElementById('lesson-title').textContent = title;
+            document.getElementById('lesson-subtitle').textContent = subtitle;
+            
+            showPage('lesson-page');
+        }
+
+        // Exercise Logic
+        function selectExerciseOption(option) {
+            state.exerciseSelectedOption = option;
+            
+            // Update UI
+            const options = document.querySelectorAll('.exercise-option');
+            options.forEach((opt, idx) => {
+                if (idx + 1 === option) {
+                    opt.classList.add('selected');
+                } else {
+                    opt.classList.remove('selected');
+                }
+            });
+        }
+
+        function checkAnswer() {
+            if (!state.exerciseSelectedOption) {
+                alert(i18next.t('exercise.selectOption'));
+                return;
+            }
+            
+            const feedback = document.getElementById('exercise-feedback');
+            
+            if (state.exerciseSelectedOption === state.exerciseCorrectOption) {
+                feedback.textContent = i18next.t('exercise.correct');
+                feedback.classList.add('correct');
+                document.getElementById('next-lesson').classList.remove('hidden');
+            } else {
+                feedback.textContent = i18next.t('exercise.incorrect');
+                feedback.classList.add('incorrect');
+            }
+        }
+
+        function showHint() {
+            document.getElementById('exercise-hint').classList.add('show');
+        }
+
+        function nextLesson() {
+            // In a real app, this would load the next lesson
+            alert(i18next.t('exercise.nextLesson'));
+        }
+
+        // Settings Modal
+        function openSettingsModal() {
+            document.getElementById('settings-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('settings-modal').classList.remove('active');
+        }
+
+        function logout() {
+            state.user = null;
+            closeModal();
+            showPage('home-page');
+        }
+
+        // Theme Toggle
+        function toggleTheme() {
+            state.darkMode = !state.darkMode;
+            document.body.setAttribute('data-theme', state.darkMode ? 'dark' : 'light');
+            localStorage.setItem('darkMode', state.darkMode);
+            
+            // Update toggle switch
+            document.getElementById('theme-switch').checked = state.darkMode;
+        }
+
+        // Language Toggle
+        function toggleLanguage() {
+            state.language = state.language === 'en' ? 'ro' : 'en';
+            i18next.changeLanguage(state.language).then(() => {
+                updateTranslations();
+            });
+            localStorage.setItem('language', state.language);
+        }
+
+        // Initialize
+        function init() {
+            // Load theme preference
+            const savedTheme = localStorage.getItem('darkMode');
+            if (savedTheme) {
+                state.darkMode = savedTheme === 'true';
+                document.body.setAttribute('data-theme', state.darkMode ? 'dark' : 'light');
+                document.getElementById('theme-switch').checked = state.darkMode;
+            }
+            
+            // Load language preference
+            const savedLanguage = localStorage.getItem('language');
+            if (savedLanguage) {
+                state.language = savedLanguage;
+                i18next.changeLanguage(state.language).then(() => {
+                    updateTranslations();
+                });
+            }
+            
+            // Load learning style if available
+            const savedLearningStyle = localStorage.getItem('learningStyle');
+            if (savedLearningStyle) {
+                state.learningStyle = savedLearningStyle;
+            }
+            
+            // Set up event listeners
+            document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+            document.getElementById('theme-switch').addEventListener('change', toggleTheme);
+            document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+            document.getElementById('language-switch').addEventListener('click', toggleLanguage);
+            document.getElementById('settings-toggle').addEventListener('click', openSettingsModal);
+            document.getElementById('math-settings-toggle').addEventListener('click', openSettingsModal);
+            document.getElementById('lesson-settings-toggle').addEventListener('click', openSettingsModal);
+            
+            // Show home page by default
+            showPage('home-page');
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
