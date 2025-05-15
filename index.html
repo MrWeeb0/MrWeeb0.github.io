@@ -1496,6 +1496,24 @@
                         resolve({ success: true, response });
                     }, 800);
                 });
+            },
+
+            signup: (userData) => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const userExists = mockUsers.some(u => u.email === userData.email);
+                        if (userExists) {
+                            reject({ success: false, message: 'Email already registered' });
+                        } else {
+                            const newUser = {
+                                id: mockUsers.length + 1,
+                                ...userData
+                            };
+                            mockUsers.push(newUser);
+                            resolve({ success: true, user: newUser });
+                        }
+                    }, 1000);
+                });
             }
         };
 
@@ -1626,282 +1644,28 @@
                 form.appendChild(passwordGroup);
                 form.appendChild(submitButton);
                 
+                // Add signup link
+                const signupLink = Utils.createElement('div', 'text-center mt-4');
+                const signupText = Utils.createElement('span', 'text-sm', 'Don\'t have an account? ');
+                const signupAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign Up');
+                signupAnchor.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'signup' });
+                });
+                
+                signupLink.appendChild(signupText);
+                signupLink.appendChild(signupAnchor);
+                card.appendChild(signupLink);
+                
                 card.appendChild(header);
                 card.appendChild(form);
                 container.appendChild(card);
                 
                 form.addEventListener('submit', handleSubmit);
-                // Add this before returning the container
-        const signupLink = Utils.createElement('div', 'text-center mt-4');
-        const signupText = Utils.createElement('span', 'text-sm', 'Don\'t have an account? ');
-        const signupAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign Up');
-        signupAnchor.addEventListener('click', () => {
-            AppState.setState({ currentPage: 'signup' });
-               });
- 
- signupLink.appendChild(signupText);
-        signupLink.appendChild(signupAnchor);
-        card.appendChild(signupLink);
-
-
-return container;
+                
+                return container;
             };
-            <!-- Add this right after the SignInPage component in the script section -->
-const SignUpPage = (() => {
-    const render = () => {
-        const container = Utils.createElement('div', 'auth-container animate-fade');
-        
-        const card = Utils.createElement('div', 'auth-card');
-        
-        const header = Utils.createElement('div', 'auth-header');
-        const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
-        const title = Utils.createElement('h1', 'auth-title', 'Create Account');
-        const subtitle = Utils.createElement('p', 'auth-subtitle', 'Join LearnZy to start your personalized math journey');
-        
-        header.appendChild(logo);
-        header.appendChild(title);
-        header.appendChild(subtitle);
-        
-        const form = Utils.createElement('form', 'flex flex-col gap-3');
-        form.id = 'signup-form';
-        
-        // Name field
-        const nameGroup = Utils.createElement('div', 'input-group');
-        const nameLabel = Utils.createElement('label', 'input-label', 'Full Name');
-        nameLabel.htmlFor = 'name';
-        const nameInput = Utils.createElement('input', 'input-field');
-        nameInput.type = 'text';
-        nameInput.id = 'name';
-        nameInput.placeholder = 'Alexandru Popescu';
-        nameInput.required = true;
-        
-        nameGroup.appendChild(nameLabel);
-        nameGroup.appendChild(nameInput);
-        
-        // Email field
-        const emailGroup = Utils.createElement('div', 'input-group');
-        const emailLabel = Utils.createElement('label', 'input-label', 'Email');
-        emailLabel.htmlFor = 'email';
-        const emailInput = Utils.createElement('input', 'input-field');
-        emailInput.type = 'email';
-        emailInput.id = 'email';
-        emailInput.placeholder = 'your@email.com';
-        emailInput.required = true;
-        
-        emailGroup.appendChild(emailLabel);
-        emailGroup.appendChild(emailInput);
-        
-        // Password field
-        const passwordGroup = Utils.createElement('div', 'input-group');
-        const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
-        passwordLabel.htmlFor = 'password';
-        const passwordInput = Utils.createElement('input', 'input-field');
-        passwordInput.type = 'password';
-        passwordInput.id = 'password';
-        passwordInput.placeholder = '••••••••';
-        passwordInput.required = true;
-        passwordInput.minLength = 8;
-        
-        passwordGroup.appendChild(passwordLabel);
-        passwordGroup.appendChild(passwordInput);
-        
-        // Confirm Password field
-        const confirmGroup = Utils.createElement('div', 'input-group');
-        const confirmLabel = Utils.createElement('label', 'input-label', 'Confirm Password');
-        confirmLabel.htmlFor = 'confirm';
-        const confirmInput = Utils.createElement('input', 'input-field');
-        confirmInput.type = 'password';
-        confirmInput.id = 'confirm';
-        confirmInput.placeholder = '••••••••';
-        confirmInput.required = true;
-        
-        confirmGroup.appendChild(confirmLabel);
-        confirmGroup.appendChild(confirmInput);
-        
-        // Grade level selection
-        const gradeGroup = Utils.createElement('div', 'input-group');
-        const gradeLabel = Utils.createElement('label', 'input-label', 'Grade Level');
-        gradeLabel.htmlFor = 'grade';
-        const gradeSelect = Utils.createElement('select', 'input-field');
-        gradeSelect.id = 'grade';
-        
-        const grades = [
-            '9th Grade',
-            '10th Grade',
-            '11th Grade',
-            '12th Grade'
-        ];
-        
-        grades.forEach(grade => {
-            const option = Utils.createElement('option', null, grade);
-            option.value = grade;
-            gradeSelect.appendChild(option);
-        });
-        
-        gradeGroup.appendChild(gradeLabel);
-        gradeGroup.appendChild(gradeSelect);
-        
-        // Terms checkbox
-        const termsGroup = Utils.createElement('div', 'flex items-center gap-2');
-        const termsCheck = Utils.createElement('input');
-        termsCheck.type = 'checkbox';
-        termsCheck.id = 'terms';
-        termsCheck.required = true;
-        const termsLabel = Utils.createElement('label', null, 'I agree to the Terms and Privacy Policy');
-        termsLabel.htmlFor = 'terms';
-        termsLabel.style.fontSize = '0.875rem';
-        
-        termsGroup.appendChild(termsCheck);
-        termsGroup.appendChild(termsLabel);
-        
-        const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
-        errorAlert.id = 'error-alert';
-        
-        const submitButton = Utils.createElement('button', 'btn btn-primary', 'Create Account');
-        submitButton.type = 'submit';
-        
-        form.appendChild(errorAlert);
-        form.appendChild(nameGroup);
-        form.appendChild(emailGroup);
-        form.appendChild(passwordGroup);
-        form.appendChild(confirmGroup);
-        form.appendChild(gradeGroup);
-        form.appendChild(termsGroup);
-        form.appendChild(submitButton);
-        
-        // Login link
-        const loginLink = Utils.createElement('div', 'text-center mt-4');
-        const loginText = Utils.createElement('span', 'text-sm', 'Already have an account? ');
-        const loginAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign In');
-        loginAnchor.addEventListener('click', () => {
-            AppState.setState({ currentPage: 'signin' });
-        });
-        
-        loginLink.appendChild(loginText);
-        loginLink.appendChild(loginAnchor);
-        
-        card.appendChild(header);
-        card.appendChild(form);
-        card.appendChild(loginLink);
-        container.appendChild(card);
-        
-        form.addEventListener('submit', handleSubmit);
-        
-        return container;
-    };
-    
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        
-        const form = e.target;
-        const name = form.querySelector('#name').value;
-        const email = form.querySelector('#email').value;
-        const password = form.querySelector('#password').value;
-        const confirm = form.querySelector('#confirm').value;
-        const grade = form.querySelector('#grade').value;
-        const errorAlert = form.querySelector('#error-alert');
-        
-        // Validation
-        if (password !== confirm) {
-            errorAlert.textContent = 'Passwords do not match';
-            Utils.removeClass(errorAlert, 'hidden');
-            return;
-        }
-        
-        if (password.length < 8) {
-            errorAlert.textContent = 'Password must be at least 8 characters';
-            Utils.removeClass(errorAlert, 'hidden');
-            return;
-        }
-        
-        // Check if user already exists
-        const userExists = mockUsers.some(u => u.email === email);
-        if (userExists) {
-            errorAlert.textContent = 'Email already registered';
-            Utils.removeClass(errorAlert, 'hidden');
-            return;
-        }
-        
-        // Create new user
-        const newUser = {
-            id: mockUsers.length + 1,
-            name,
-            email,
-            password,
-            grade
-        };
-        
-        // In a real app, this would be an API call
-        mockUsers.push(newUser);
-        
-        // Log the user in
-        AppState.setState({ 
-            user: newUser,
-            currentPage: 'learning-style'
-        });
-    };
-    
-    return { render };
-})();
-
-// Update the mockAPI object to include signup
-const mockAPI = {
-    // ... existing methods ...
-    signup: (userData) => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                const userExists = mockUsers.some(u => u.email === userData.email);
-                if (userExists) {
-                    reject({ success: false, message: 'Email already registered' });
-                } else {
-                    const newUser = {
-                        id: mockUsers.length + 1,
-                        ...userData
-                    };
-                    mockUsers.push(newUser);
-                    resolve({ success: true, user: newUser });
-                }
-            }, 1000);
-        });
-    }
-};
-
-// Update the App router to include the signup page
-const App = (() => {
-    const init = () => {
-        // ... existing code ...
-        
-        const render = (state) => {
-            appContainer.innerHTML = '';
             
-            // Render navbar if not on auth pages
-            if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
-                appContainer.appendChild(Navbar.render());
-                appContainer.appendChild(Sidebar.render());
-            }
-            
-            // Render current page
-            let page;
-            switch (state.currentPage) {
-                case 'signin':
-                    page = SignInPage.render();
-                    break;
-                case 'signup':
-                    page = SignUpPage.render();
-                    break;
-                // ... other cases ...
-            }
-            
-            appContainer.appendChild(page);
-            
-            // Render AI assistant if not on auth pages
-            if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
-                appContainer.appendChild(AIAssistant.render());
-            }
-        };
-        
-           
-               const handleSubmit = async (e) => {
+            const handleSubmit = async (e) => {
                 e.preventDefault();
                 
                 const form = e.target;
@@ -1925,6 +1689,204 @@ const App = (() => {
                     setTimeout(() => {
                         Utils.addClass(errorAlert, 'hidden');
                     }, 3000);
+                }
+            };
+            
+            return { render };
+        })();
+
+        const SignUpPage = (() => {
+            const render = () => {
+                const container = Utils.createElement('div', 'auth-container animate-fade');
+                
+                const card = Utils.createElement('div', 'auth-card');
+                
+                const header = Utils.createElement('div', 'auth-header');
+                const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
+                const title = Utils.createElement('h1', 'auth-title', 'Create Account');
+                const subtitle = Utils.createElement('p', 'auth-subtitle', 'Join LearnZy to start your personalized math journey');
+                
+                header.appendChild(logo);
+                header.appendChild(title);
+                header.appendChild(subtitle);
+                
+                const form = Utils.createElement('form', 'flex flex-col gap-3');
+                form.id = 'signup-form';
+                
+                // Name field
+                const nameGroup = Utils.createElement('div', 'input-group');
+                const nameLabel = Utils.createElement('label', 'input-label', 'Full Name');
+                nameLabel.htmlFor = 'name';
+                const nameInput = Utils.createElement('input', 'input-field');
+                nameInput.type = 'text';
+                nameInput.id = 'name';
+                nameInput.placeholder = 'Alexandru Popescu';
+                nameInput.required = true;
+                
+                nameGroup.appendChild(nameLabel);
+                nameGroup.appendChild(nameInput);
+                
+                // Email field
+                const emailGroup = Utils.createElement('div', 'input-group');
+                const emailLabel = Utils.createElement('label', 'input-label', 'Email');
+                emailLabel.htmlFor = 'email';
+                const emailInput = Utils.createElement('input', 'input-field');
+                emailInput.type = 'email';
+                emailInput.id = 'email';
+                emailInput.placeholder = 'your@email.com';
+                emailInput.required = true;
+                
+                emailGroup.appendChild(emailLabel);
+                emailGroup.appendChild(emailInput);
+                
+                // Password field
+                const passwordGroup = Utils.createElement('div', 'input-group');
+                const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
+                passwordLabel.htmlFor = 'password';
+                const passwordInput = Utils.createElement('input', 'input-field');
+                passwordInput.type = 'password';
+                passwordInput.id = 'password';
+                passwordInput.placeholder = '••••••••';
+                passwordInput.required = true;
+                passwordInput.minLength = 8;
+                
+                passwordGroup.appendChild(passwordLabel);
+                passwordGroup.appendChild(passwordInput);
+                
+                // Confirm Password field
+                const confirmGroup = Utils.createElement('div', 'input-group');
+                const confirmLabel = Utils.createElement('label', 'input-label', 'Confirm Password');
+                confirmLabel.htmlFor = 'confirm';
+                const confirmInput = Utils.createElement('input', 'input-field');
+                confirmInput.type = 'password';
+                confirmInput.id = 'confirm';
+                confirmInput.placeholder = '••••••••';
+                confirmInput.required = true;
+                
+                confirmGroup.appendChild(confirmLabel);
+                confirmGroup.appendChild(confirmInput);
+                
+                // Grade level selection
+                const gradeGroup = Utils.createElement('div', 'input-group');
+                const gradeLabel = Utils.createElement('label', 'input-label', 'Grade Level');
+                gradeLabel.htmlFor = 'grade';
+                const gradeSelect = Utils.createElement('select', 'input-field');
+                gradeSelect.id = 'grade';
+                
+                const grades = [
+                    '9th Grade',
+                    '10th Grade',
+                    '11th Grade',
+                    '12th Grade'
+                ];
+                
+                grades.forEach(grade => {
+                    const option = Utils.createElement('option', null, grade);
+                    option.value = grade;
+                    gradeSelect.appendChild(option);
+                });
+                
+                gradeGroup.appendChild(gradeLabel);
+                gradeGroup.appendChild(gradeSelect);
+                
+                // Terms checkbox
+                const termsGroup = Utils.createElement('div', 'flex items-center gap-2');
+                const termsCheck = Utils.createElement('input');
+                termsCheck.type = 'checkbox';
+                termsCheck.id = 'terms';
+                termsCheck.required = true;
+                const termsLabel = Utils.createElement('label', null, 'I agree to the Terms and Privacy Policy');
+                termsLabel.htmlFor = 'terms';
+                termsLabel.style.fontSize = '0.875rem';
+                
+                termsGroup.appendChild(termsCheck);
+                termsGroup.appendChild(termsLabel);
+                
+                const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
+                errorAlert.id = 'error-alert';
+                
+                const submitButton = Utils.createElement('button', 'btn btn-primary', 'Create Account');
+                submitButton.type = 'submit';
+                
+                form.appendChild(errorAlert);
+                form.appendChild(nameGroup);
+                form.appendChild(emailGroup);
+                form.appendChild(passwordGroup);
+                form.appendChild(confirmGroup);
+                form.appendChild(gradeGroup);
+                form.appendChild(termsGroup);
+                form.appendChild(submitButton);
+                
+                // Login link
+                const loginLink = Utils.createElement('div', 'text-center mt-4');
+                const loginText = Utils.createElement('span', 'text-sm', 'Already have an account? ');
+                const loginAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign In');
+                loginAnchor.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'signin' });
+                });
+                
+                loginLink.appendChild(loginText);
+                loginLink.appendChild(loginAnchor);
+                
+                card.appendChild(header);
+                card.appendChild(form);
+                card.appendChild(loginLink);
+                container.appendChild(card);
+                
+                form.addEventListener('submit', handleSubmit);
+                
+                return container;
+            };
+            
+            const handleSubmit = async (e) => {
+                e.preventDefault();
+                
+                const form = e.target;
+                const name = form.querySelector('#name').value;
+                const email = form.querySelector('#email').value;
+                const password = form.querySelector('#password').value;
+                const confirm = form.querySelector('#confirm').value;
+                const grade = form.querySelector('#grade').value;
+                const errorAlert = form.querySelector('#error-alert');
+                
+                // Validation
+                if (password !== confirm) {
+                    errorAlert.textContent = 'Passwords do not match';
+                    Utils.removeClass(errorAlert, 'hidden');
+                    return;
+                }
+                
+                if (password.length < 8) {
+                    errorAlert.textContent = 'Password must be at least 8 characters';
+                    Utils.removeClass(errorAlert, 'hidden');
+                    return;
+                }
+                
+                // Check if user already exists
+                const userExists = mockUsers.some(u => u.email === email);
+                if (userExists) {
+                    errorAlert.textContent = 'Email already registered';
+                    Utils.removeClass(errorAlert, 'hidden');
+                    return;
+                }
+                
+                try {
+                    const response = await mockAPI.signup({
+                        name,
+                        email,
+                        password,
+                        grade
+                    });
+                    
+                    if (response.success) {
+                        AppState.setState({ 
+                            user: response.user,
+                            currentPage: 'learning-style'
+                        });
+                    }
+                } catch (error) {
+                    errorAlert.textContent = error.message;
+                    Utils.removeClass(errorAlert, 'hidden');
                 }
             };
             
@@ -2870,7 +2832,7 @@ const App = (() => {
                     appContainer.innerHTML = '';
                     
                     // Render navbar if not on auth pages
-                    if (!['signin', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                    if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
                         appContainer.appendChild(Navbar.render());
                         appContainer.appendChild(Sidebar.render());
                     }
@@ -2880,6 +2842,9 @@ const App = (() => {
                     switch (state.currentPage) {
                         case 'signin':
                             page = SignInPage.render();
+                            break;
+                        case 'signup':
+                            page = SignUpPage.render();
                             break;
                         case 'learning-style':
                             page = LearningStylePage.render();
@@ -2906,7 +2871,7 @@ const App = (() => {
                     appContainer.appendChild(page);
                     
                     // Render AI assistant if not on auth pages
-                    if (!['signin', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                    if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
                         appContainer.appendChild(AIAssistant.render());
                     }
                 };
