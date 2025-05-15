@@ -4,103 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnZy - Personalized Math Learning</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-light: #6366f1;
-            --primary-dark: #4338ca;
-            --secondary: #10b981;
-            --secondary-light: #34d399;
-            --secondary-dark: #059669;
-            --danger: #ef4444;
-            --danger-light: #f87171;
-            --danger-dark: #dc2626;
-            --warning: #f59e0b;
-            --warning-light: #fbbf24;
-            --warning-dark: #d97706;
-            --success: #10b981;
-            --success-light: #34d399;
-            --success-dark: #059669;
-            --info: #3b82f6;
-            --info-light: #60a5fa;
-            --info-dark: #2563eb;
-            --light: #f3f4f6;
-            --dark: #1f2937;
-            --gray-100: #f3f4f6;
-            --gray-200: #e5e7eb;
-            --gray-300: #d1d5db;
-            --gray-400: #9ca3af;
-            --gray-500: #6b7280;
-            --gray-600: #4b5563;
-            --gray-700: #374151;
-            --gray-800: #1f2937;
-            --gray-900: #111827;
-            --text-primary: var(--gray-900);
-            --text-secondary: var(--gray-600);
-            --bg-primary: white;
-            --bg-secondary: var(--gray-100);
-            --border-radius: 0.5rem;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --transition: all 0.2s ease-in-out;
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --secondary: #3f37c9;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #f72585;
+            --gray: #adb5bd;
+            --gray-dark: #495057;
+            
+            --bg: #ffffff;
+            --text: #212529;
+            --card-bg: #f8f9fa;
+            --border: #dee2e6;
         }
 
         [data-theme="dark"] {
-            --primary: #6366f1;
-            --primary-light: #818cf8;
-            --primary-dark: #4f46e5;
-            --secondary: #10b981;
-            --secondary-light: #34d399;
-            --secondary-dark: #059669;
-            --danger: #ef4444;
-            --danger-light: #f87171;
-            --danger-dark: #dc2626;
-            --warning: #f59e0b;
-            --warning-light: #fbbf24;
-            --warning-dark: #d97706;
-            --success: #10b981;
-            --success-light: #34d399;
-            --success-dark: #059669;
-            --info: #3b82f6;
-            --info-light: #60a5fa;
-            --info-dark: #2563eb;
-            --light: #1f2937;
-            --dark: #f3f4f6;
-            --gray-100: #111827;
-            --gray-200: #1f2937;
-            --gray-300: #374151;
-            --gray-400: #4b5563;
-            --gray-500: #6b7280;
-            --gray-600: #9ca3af;
-            --gray-700: #d1d5db;
-            --gray-800: #e5e7eb;
-            --gray-900: #f3f4f6;
-            --text-primary: var(--gray-100);
-            --text-secondary: var(--gray-400);
-            --bg-primary: var(--gray-900);
-            --bg-secondary: var(--gray-800);
+            --bg: #1a1a2e;
+            --text: #f8f9fa;
+            --card-bg: #16213e;
+            --border: #495057;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: var(--transition);
-            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        button, input, textarea {
+        button {
+            cursor: pointer;
             font-family: inherit;
         }
 
@@ -109,75 +56,8 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 20px;
         }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            outline: none;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .btn-secondary {
-            background-color: var(--secondary);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--secondary-dark);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-danger {
-            background-color: var(--danger);
-            color: white;
-        }
-
-        .btn-danger:hover {
-            background-color: var(--danger-dark);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mt-1 { margin-top: 0.25rem; }
-        .mt-2 { margin-top: 0.5rem; }
-        .mt-3 { margin-top: 1rem; }
-        .mt-4 { margin-top: 1.5rem; }
-        .mt-5 { margin-top: 2rem; }
-
-        .mb-1 { margin-bottom: 0.25rem; }
-        .mb-2 { margin-bottom: 0.5rem; }
-        .mb-3 { margin-bottom: 1rem; }
-        .mb-4 { margin-bottom: 1.5rem; }
-        .mb-5 { margin-bottom: 2rem; }
 
         .flex {
             display: flex;
@@ -199,22 +79,126 @@
             justify-content: space-between;
         }
 
-        .gap-1 { gap: 0.25rem; }
-        .gap-2 { gap: 0.5rem; }
-        .gap-3 { gap: 1rem; }
-        .gap-4 { gap: 1.5rem; }
-        .gap-5 { gap: 2rem; }
+        .gap-1 {
+            gap: 0.5rem;
+        }
+
+        .gap-2 {
+            gap: 1rem;
+        }
+
+        .gap-3 {
+            gap: 1.5rem;
+        }
+
+        .gap-4 {
+            gap: 2rem;
+        }
+
+        .p-2 {
+            padding: 1rem;
+        }
+
+        .p-4 {
+            padding: 2rem;
+        }
+
+        .py-2 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .py-4 {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        .px-4 {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .my-2 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .my-4 {
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-success {
+            color: var(--success);
+        }
+
+        .text-warning {
+            color: var(--warning);
+        }
+
+        .text-danger {
+            color: var(--danger);
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        .bg-success {
+            background-color: var(--success);
+        }
+
+        .bg-warning {
+            background-color: var(--warning);
+        }
+
+        .bg-danger {
+            background-color: var(--danger);
+        }
+
+        .rounded {
+            border-radius: 0.5rem;
+        }
+
+        .rounded-full {
+            border-radius: 9999px;
+        }
+
+        .shadow {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .shadow-lg {
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
 
         .w-full {
             width: 100%;
         }
 
-        .h-full {
-            height: 100%;
+        .max-w-md {
+            max-width: 28rem;
         }
 
-        .hidden {
-            display: none;
+        .h-screen {
+            height: 100vh;
         }
 
         /* Animations */
@@ -223,460 +207,308 @@
             to { opacity: 1; }
         }
 
-        @keyframes slideInFromRight {
-            from { transform: translateX(100%); }
-            to { transform: translateX(0); }
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes slideInFromLeft {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(0); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .animate-fade {
-            animation: fadeIn 0.3s ease-in-out;
+            animation: fadeIn 0.5s ease-out;
         }
 
-        .animate-slide-right {
-            animation: slideInFromRight 0.3s ease-in-out;
+        .animate-slide {
+            animation: slideIn 0.5s ease-out;
         }
 
-        .animate-slide-left {
-            animation: slideInFromLeft 0.3s ease-in-out;
+        .animate-pulse {
+            animation: pulse 2s infinite;
         }
 
-        .animate-bounce {
-            animation: bounce 0.5s infinite;
+        /* Components */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
         }
 
-        /* App Layout */
-        #app {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Auth Pages */
-        .auth-container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .auth-left {
-            flex: 1;
+        .btn-primary {
             background-color: var(--primary);
             color: white;
-            padding: 2rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-ghost {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-ghost:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .input-group {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            gap: 0.5rem;
         }
 
-        .auth-left h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .auth-left p {
-            font-size: 1.1rem;
-            max-width: 500px;
-        }
-
-        .auth-right {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 2rem;
-            background-color: var(--bg-primary);
-        }
-
-        .auth-form {
-            max-width: 400px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .auth-form h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
+        .input-label {
             font-weight: 500;
-            color: var(--text-primary);
+            color: var(--text);
         }
 
-        .form-control {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--border-radius);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            transition: var(--transition);
+        .input-field {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: inherit;
         }
 
-        .form-control:focus {
+        .input-field:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
         }
 
-        .error-message {
-            color: var(--danger);
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        }
-
-        .auth-footer {
-            margin-top: 1.5rem;
-            text-align: center;
-            color: var(--text-secondary);
-        }
-
-        .auth-footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Logo */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 2rem;
-        }
-
-        .logo-icon {
-            font-size: 2rem;
-            color: white;
-        }
-
-        /* Main Layout */
-        .main-layout {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background-color: var(--bg-secondary);
-            border-right: 1px solid var(--gray-200);
-            padding: 1.5rem;
-            transition: var(--transition);
-            position: fixed;
-            height: 100vh;
-            z-index: 100;
-        }
-
-        .sidebar-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-        }
-
-        .sidebar-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .sidebar-logo-icon {
-            font-size: 1.5rem;
-            color: var(--primary);
-        }
-
-        .sidebar-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            border-radius: var(--border-radius);
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-        }
-
-        .nav-item:hover {
-            background-color: var(--primary-light);
-            color: white;
-        }
-
-        .nav-item.active {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .nav-item-icon {
-            font-size: 1.1rem;
-        }
-
-        .sidebar-footer {
-            margin-top: auto;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--gray-200);
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin-left: 250px;
-            transition: var(--transition);
-        }
-
-        /* Topbar */
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            background-color: var(--bg-primary);
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-        }
-
-        .topbar-left {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .topbar-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-
-        .user-menu {
-            position: relative;
-        }
-
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--primary);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .user-dropdown {
-            position: absolute;
-            right: 0;
-            top: 50px;
-            background-color: var(--bg-primary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            width: 200px;
-            padding: 0.5rem 0;
-            z-index: 100;
-            display: none;
-        }
-
-        .user-dropdown.show {
-            display: block;
-        }
-
-        .dropdown-item {
-            padding: 0.75rem 1rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transition: var(--transition);
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--bg-secondary);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background-color: var(--gray-200);
-            margin: 0.25rem 0;
-        }
-
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Content Area */
-        .content-area {
-            padding: 2rem;
-        }
-
-        /* Learning Style Assessment */
-        .assessment-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: var(--bg-primary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .assessment-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .assessment-header h1 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .assessment-header p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .question-container {
-            margin-bottom: 2rem;
-        }
-
-        .question-text {
-            font-size: 1.25rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .options-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .option-item {
+        .alert {
             padding: 1rem;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
         }
 
-        .option-item:hover {
-            border-color: var(--primary);
-            background-color: var(--primary-light);
-            color: white;
-        }
-
-        .option-item.selected {
-            border-color: var(--primary);
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .assessment-footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
+        .alert-error {
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--danger);
+            color: var(--danger);
         }
 
         .progress-bar {
-            width: 100%;
-            height: 8px;
-            background-color: var(--gray-200);
-            border-radius: 4px;
-            margin-bottom: 1rem;
+            height: 0.5rem;
+            background-color: var(--border);
+            border-radius: 0.25rem;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
             background-color: var(--primary);
-            border-radius: 4px;
             transition: width 0.3s ease;
         }
 
-        /* Result Screen */
-        .result-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            background-color: var(--bg-primary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
         }
 
-        .result-icon {
-            font-size: 4rem;
+        .badge-primary {
+            background-color: rgba(67, 97, 238, 0.1);
             color: var(--primary);
-            margin-bottom: 1.5rem;
         }
 
-        .result-title {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+        .badge-success {
+            background-color: rgba(76, 201, 240, 0.1);
+            color: var(--success);
         }
 
-        .result-description {
-            color: var(--text-secondary);
+        .badge-warning {
+            background-color: rgba(248, 150, 30, 0.1);
+            color: var(--warning);
+        }
+
+        /* Layout */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--bg);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: calc(100vh - 70px);
+            position: fixed;
+            top: 70px;
+            left: 0;
+            background-color: var(--bg);
+            border-right: 1px solid var(--border);
+            padding: 1.5rem;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+
+        .sidebar-item.active {
+            background-color: rgba(67, 97, 238, 0.2);
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+            min-height: calc(100vh - 70px);
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .grid-cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        /* Auth Pages */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--bg);
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-header {
+            text-align: center;
             margin-bottom: 2rem;
         }
 
-        /* Dashboard */
+        .auth-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .auth-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-subtitle {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Quiz Styles */
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-question-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-option {
+            display: block;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+        }
+
+        .quiz-option.selected {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-color: var(--primary);
+        }
+
+        .quiz-progress {
+            margin-bottom: 2rem;
+        }
+
+        .quiz-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        /* Dashboard Styles */
         .dashboard-header {
             display: flex;
             justify-content: space-between;
@@ -684,218 +516,157 @@
             margin-bottom: 2rem;
         }
 
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+        .dashboard-title {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
-        .stat-card {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
+        .stats-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             padding: 1.5rem;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
         }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
+        .stats-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
         }
 
-        .stat-title {
+        .stats-content {
+            flex: 1;
+        }
+
+        .stats-label {
             font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
+            color: var(--gray);
         }
 
-        .stat-value {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .categories-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+        .stats-value {
+            font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .category-card {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
+            position: relative;
             overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            cursor: pointer;
         }
 
         .category-card:hover {
             transform: translateY(-5px);
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .category-header {
-            padding: 1.5rem;
-            background-color: var(--primary);
+        .category-bg {
+            height: 120px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .category-overlay {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
             color: white;
         }
 
         .category-title {
             font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
         }
 
         .category-progress {
-            width: 100%;
-            height: 6px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
             margin-top: 0.5rem;
-            overflow: hidden;
         }
 
         .category-progress-fill {
             height: 100%;
             background-color: white;
-            border-radius: 3px;
+            border-radius: 2px;
         }
 
-        .category-body {
-            padding: 1.5rem;
-        }
-
-        .topic-list {
-            list-style: none;
-        }
-
-        .topic-item {
+        /* Topic Styles */
+        .topic-card {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .topic-header {
+            display: flex;
             justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--gray-200);
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
-        .topic-item:last-child {
-            border-bottom: none;
-        }
-
-        .topic-name {
-            font-weight: 500;
-            color: var(--text-primary);
+        .topic-title {
+            font-size: 1.125rem;
+            font-weight: 600;
         }
 
         .topic-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-size: 0.875rem;
         }
 
-        .status-icon {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--gray-300);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.625rem;
-            color: white;
+        .topic-status.completed {
+            color: var(--success);
         }
 
-        .status-icon.completed {
-            background-color: var(--success);
+        .topic-status.in-progress {
+            color: var(--warning);
         }
 
-        .status-icon.in-progress {
-            background-color: var(--warning);
+        .topic-status.not-started {
+            color: var(--gray);
         }
 
-        /* Lesson Page */
-        .lesson-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 1024px) {
-            .lesson-container {
-                grid-template-columns: 2fr 1fr;
-            }
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--border-radius);
-            background-color: var(--gray-200);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .lesson-content {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-        }
-
-        .lesson-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+        .topic-description {
+            color: var(--gray);
             margin-bottom: 1rem;
-            color: var(--text-primary);
+            flex: 1;
         }
 
-        .lesson-description {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
+        .topic-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
+        /* Exercise Styles */
         .exercise-container {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .exercise-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .exercise-question {
+            font-size: 1.25rem;
             margin-bottom: 1.5rem;
-            color: var(--text-primary);
         }
 
         .exercise-options {
             display: grid;
-            grid-template-columns: 1fr;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .exercise-option {
             padding: 1rem;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--border-radius);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
             cursor: pointer;
-            transition: var(--transition);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            transition: all 0.2s;
         }
 
         .exercise-option:hover {
@@ -903,49 +674,42 @@
         }
 
         .exercise-option.selected {
+            background-color: rgba(67, 97, 238, 0.1);
             border-color: var(--primary);
-            background-color: var(--primary-light);
-            color: white;
         }
 
         .exercise-option.correct {
+            background-color: rgba(76, 201, 240, 0.1);
             border-color: var(--success);
-            background-color: var(--success-light);
-            color: white;
         }
 
         .exercise-option.incorrect {
+            background-color: rgba(247, 37, 133, 0.1);
             border-color: var(--danger);
-            background-color: var(--danger-light);
-            color: white;
         }
 
         .exercise-feedback {
             padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-top: 1rem;
-            display: none;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .exercise-feedback.correct {
-            background-color: var(--success-light);
-            color: var(--success-dark);
-            display: block;
+            background-color: rgba(76, 201, 240, 0.1);
+            border-left: 4px solid var(--success);
         }
 
         .exercise-feedback.incorrect {
-            background-color: var(--danger-light);
-            color: var(--danger-dark);
-            display: block;
+            background-color: rgba(247, 37, 133, 0.1);
+            border-left: 4px solid var(--danger);
         }
 
-        .exercise-actions {
+        .exercise-navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 1.5rem;
         }
 
-        /* AI Assistant */
+        /* AI Assistant Styles */
         .assistant-container {
             position: fixed;
             bottom: 2rem;
@@ -963,20 +727,8 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border: none;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .assistant-button:hover {
-            transform: scale(1.1);
-            background-color: var(--primary-dark);
-        }
-
-        .assistant-button.active {
-            background-color: var(--danger);
         }
 
         .assistant-chat {
@@ -985,33 +737,28 @@
             right: 0;
             width: 350px;
             max-height: 500px;
-            background-color: var(--bg-primary);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-xl);
+            background-color: var(--card-bg);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            display: none;
-            flex-direction: column;
-            border: 1px solid var(--gray-200);
-        }
-
-        .assistant-chat.active {
             display: flex;
+            flex-direction: column;
         }
 
-        .chat-header {
+        .assistant-header {
             padding: 1rem;
             background-color: var(--primary);
             color: white;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .chat-title {
+        .assistant-title {
             font-weight: 600;
         }
 
-        .chat-close {
+        .assistant-close {
             background: none;
             border: none;
             color: white;
@@ -1019,205 +766,74 @@
             cursor: pointer;
         }
 
-        .chat-messages {
+        .assistant-messages {
             flex: 1;
             padding: 1rem;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
         }
 
-        .message {
-            max-width: 80%;
+        .assistant-message {
+            margin-bottom: 1rem;
             padding: 0.75rem 1rem;
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
+            border-radius: 0.75rem;
+            max-width: 80%;
         }
 
-        .message.user {
-            align-self: flex-end;
+        .assistant-message.user {
             background-color: var(--primary);
             color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0.25rem;
         }
 
-        .message.assistant {
-            align-self: flex-start;
-            background-color: var(--bg-secondary);
-            color: var(--text-primary);
+        .assistant-message.bot {
+            background-color: var(--border);
+            margin-right: auto;
+            border-bottom-left-radius: 0.25rem;
         }
 
-        .chat-input {
-            padding: 1rem;
-            border-top: 1px solid var(--gray-200);
+        .assistant-input {
             display: flex;
-            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid var(--border);
         }
 
-        .chat-input-field {
+        .assistant-input-field {
             flex: 1;
-            padding: 0.75rem;
-            border: 1px solid var(--gray-300);
-            border-radius: var(--border-radius);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
-            outline: none;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            margin-right: 0.5rem;
         }
 
-        .chat-send {
+        .assistant-send {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: var(--border-radius);
-            padding: 0 1rem;
-            cursor: pointer;
-        }
-
-        /* Badges */
-        .badges-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .badge-card {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 1rem;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-        }
-
-        .badge-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-
-        .badge-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 0.5rem;
-            font-size: 1.5rem;
-            color: white;
         }
 
-        .badge-name {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            color: var(--text-primary);
-        }
-
-        .badge-description {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .badge-card.locked .badge-icon {
-            background-color: var(--gray-300);
-        }
-
-        .badge-card.locked .badge-name {
-            color: var(--gray-400);
-        }
-
-        /* Settings */
-        .settings-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .settings-card {
-            background-color: var(--bg-secondary);
-            border-radius: var(--border-radius);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .settings-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .settings-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .settings-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .settings-description {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: var(--gray-300);
-            transition: var(--transition);
-            border-radius: 24px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: var(--transition);
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background-color: var(--primary);
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Responsive */
+        /* Responsive Styles */
         @media (max-width: 1024px) {
+            .grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
                 position: fixed;
                 top: 0;
                 left: 0;
                 height: 100vh;
-                z-index: 1000;
+                z-index: 90;
+                background-color: var(--bg);
             }
 
             .sidebar.open {
@@ -1228,30 +844,18 @@
                 margin-left: 0;
             }
 
-            .mobile-menu-btn {
+            .navbar-menu {
                 display: block;
+            }
+
+            .grid-cols-2, .grid-cols-3, .grid-cols-4 {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 768px) {
-            .auth-container {
-                flex-direction: column;
-            }
-
-            .auth-left, .auth-right {
+        @media (max-width: 480px) {
+            .auth-card {
                 padding: 1.5rem;
-            }
-
-            .auth-left {
-                padding-bottom: 2rem;
-            }
-
-            .auth-right {
-                padding-top: 2rem;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr 1fr;
             }
 
             .assistant-chat {
@@ -1259,23 +863,202 @@
             }
         }
 
-        @media (max-width: 480px) {
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
+        /* Dark mode toggle */
+        .theme-toggle {
+            position: relative;
+            width: 50px;
+            height: 24px;
+        }
 
-            .categories-container {
-                grid-template-columns: 1fr;
-            }
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-            .assessment-container, .result-container {
-                padding: 1rem;
-            }
+        .theme-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray);
+            transition: .4s;
+            border-radius: 24px;
+        }
 
-            .assistant-chat {
-                width: 280px;
-                right: -20px;
-            }
+        .theme-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .theme-slider {
+            background-color: var(--primary);
+        }
+
+        input:checked + .theme-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Animations toggle */
+        .animations-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .animations-toggle input {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Settings dropdown */
+        .settings-dropdown {
+            position: relative;
+        }
+
+        .settings-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem;
+            min-width: 200px;
+            z-index: 10;
+        }
+
+        .settings-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .settings-item:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+
+        /* Loading spinner */
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(67, 97, 238, 0.2);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Streak tracker */
+        .streak-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .streak-count {
+            font-weight: 600;
+            color: var(--warning);
+        }
+
+        .streak-icon {
+            color: var(--warning);
+        }
+
+        /* XP level indicator */
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .level-badge {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        /* Confetti effect */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: var(--primary);
+            top: -10px;
+            z-index: 999;
+        }
+
+        /* Video player */
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: var(--dark);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            background-color: var(--gray-dark);
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 0.5rem;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>
@@ -1286,108 +1069,21 @@
         // App State Management
         const AppState = (() => {
             let state = {
-                currentUser: null,
-                isAuthenticated: false,
                 currentPage: 'signin',
+                user: null,
                 learningStyle: null,
-                theme: 'light',
-                animationsEnabled: true,
-                sidebarOpen: false,
-                assistantOpen: false,
-                chatMessages: [],
-                currentQuestion: 0,
-                answers: [],
-                mathCategories: [
-                    {
-                        id: 1,
-                        name: 'Algebra',
-                        progress: 35,
-                        topics: [
-                            { id: 1, name: 'Linear Equations', completed: true },
-                            { id: 2, name: 'Quadratic Equations', completed: true },
-                            { id: 3, name: 'Polynomials', completed: false },
-                            { id: 4, name: 'Functions', completed: false },
-                            { id: 5, name: 'Inequalities', completed: false }
-                        ]
-                    },
-                    {
-                        id: 2,
-                        name: 'Geometry',
-                        progress: 20,
-                        topics: [
-                            { id: 6, name: 'Triangles', completed: true },
-                            { id: 7, name: 'Circles', completed: false },
-                            { id: 8, name: 'Polygons', completed: false },
-                            { id: 9, name: '3D Shapes', completed: false },
-                            { id: 10, name: 'Trigonometry Basics', completed: false }
-                        ]
-                    },
-                    {
-                        id: 3,
-                        name: 'Trigonometry',
-                        progress: 10,
-                        topics: [
-                            { id: 11, name: 'Trigonometric Ratios', completed: false },
-                            { id: 12, name: 'Unit Circle', completed: false },
-                            { id: 13, name: 'Trig Identities', completed: false },
-                            { id: 14, name: 'Graphs of Trig Functions', completed: false },
-                            { id: 15, name: 'Trig Equations', completed: false }
-                        ]
-                    },
-                    {
-                        id: 4,
-                        name: 'Calculus',
-                        progress: 5,
-                        topics: [
-                            { id: 16, name: 'Limits', completed: false },
-                            { id: 17, name: 'Derivatives', completed: false },
-                            { id: 18, name: 'Integrals', completed: false },
-                            { id: 19, name: 'Applications of Derivatives', completed: false },
-                            { id: 20, name: 'Applications of Integrals', completed: false }
-                        ]
-                    }
-                ],
-                currentLesson: null,
-                exercises: [
-                    {
-                        id: 1,
-                        question: "What is the solution to the equation 2x + 5 = 15?",
-                        options: [
-                            { id: 1, text: "x = 5", correct: true },
-                            { id: 2, text: "x = 10", correct: false },
-                            { id: 3, text: "x = 7.5", correct: false },
-                            { id: 4, text: "x = 3", correct: false }
-                        ],
-                        explanation: "To solve 2x + 5 = 15, subtract 5 from both sides to get 2x = 10, then divide both sides by 2 to get x = 5."
-                    },
-                    {
-                        id: 2,
-                        question: "Which of these is a quadratic equation?",
-                        options: [
-                            { id: 1, text: "3x + 2 = 0", correct: false },
-                            { id: 2, text: "x² - 4x + 4 = 0", correct: true },
-                            { id: 3, text: "2x³ - x + 1 = 0", correct: false },
-                            { id: 4, text: "5x - 7 = 2x + 3", correct: false }
-                        ],
-                        explanation: "A quadratic equation has the form ax² + bx + c = 0, where a ≠ 0. Only option 2 fits this form."
-                    }
-                ],
+                currentCategory: null,
+                currentTopic: null,
                 currentExercise: 0,
-                selectedOption: null,
-                showFeedback: false,
-                badges: [
-                    { id: 1, name: "Fast Learner", description: "Complete 5 lessons in one day", earned: true },
-                    { id: 2, name: "Algebra Master", description: "Complete all Algebra topics", earned: false },
-                    { id: 3, name: "Geometry Pro", description: "Complete all Geometry topics", earned: false },
-                    { id: 4, name: "Trigonometry Expert", description: "Complete all Trigonometry topics", earned: false },
-                    { id: 5, name: "Calculus Wizard", description: "Complete all Calculus topics", earned: false },
-                    { id: 6, name: "Perfect Score", description: "Get 100% on an exercise", earned: true },
-                    { id: 7, name: "Streak Builder", description: "7-day learning streak", earned: false },
-                    { id: 8, name: "Early Bird", description: "Complete a lesson before 8 AM", earned: false }
-                ],
+                darkMode: false,
+                animationsEnabled: true,
+                assistantOpen: false,
+                sidebarOpen: false,
                 streak: 3,
                 xp: 1250,
-                level: 3
+                level: 5,
+                language: 'en',
+                messages: []
             };
 
             const subscribers = [];
@@ -1396,7 +1092,8 @@
 
             const setState = (newState) => {
                 state = { ...state, ...newState };
-                notifySubscribers();
+                subscribers.forEach(subscriber => subscriber(state));
+                saveToLocalStorage();
             };
 
             const subscribe = (callback) => {
@@ -1409,1049 +1106,1823 @@
                 };
             };
 
-            const notifySubscribers = () => {
-                subscribers.forEach(callback => callback(state));
+            const loadFromLocalStorage = () => {
+                const savedState = localStorage.getItem('learnzyState');
+                if (savedState) {
+                    state = JSON.parse(savedState);
+                }
             };
 
-            // Mock API functions
-            const mockLogin = (email, password) => {
-                return new Promise((resolve, reject) => {
-                    setTimeout(() => {
-                        if (email === 'student@example.com' && password === 'password') {
-                            resolve({
-                                id: 1,
-                                name: 'John Doe',
-                                email: 'student@example.com',
-                                avatar: 'JD'
-                            });
-                        } else {
-                            reject(new Error('Invalid email or password'));
-                        }
-                    }, 1000);
-                });
+            const saveToLocalStorage = () => {
+                localStorage.setItem('learnzyState', JSON.stringify(state));
             };
 
-            const determineLearningStyle = (answers) => {
-                const counts = {
-                    visual: 0,
-                    auditory: 0,
-                    kinesthetic: 0,
-                    logical: 0
-                };
-
-                answers.forEach(answer => {
-                    if (answer === 1) counts.visual++;
-                    else if (answer === 2) counts.auditory++;
-                    else if (answer === 3) counts.kinesthetic++;
-                    else if (answer === 4) counts.logical++;
-                });
-
-                const max = Math.max(...Object.values(counts));
-                const style = Object.keys(counts).find(key => counts[key] === max);
-
-                return {
-                    visual: 'Visual Learner',
-                    auditory: 'Auditory Learner',
-                    kinesthetic: 'Kinesthetic Learner',
-                    logical: 'Logical/Mathematical Learner'
-                }[style];
-            };
+            // Initialize
+            loadFromLocalStorage();
 
             return {
                 getState,
                 setState,
-                subscribe,
-                mockLogin,
-                determineLearningStyle
+                subscribe
             };
         })();
 
-        // React-like components
-        const Component = {
-            create: (tagName, props = {}, ...children) => {
-                const element = document.createElement(tagName);
+        // Mock Data
+        const mockUsers = [
+            { id: 1, email: 'student@example.com', password: 'password123', name: 'Alexandru Popescu' }
+        ];
 
-                // Set attributes
-                for (const [key, value] of Object.entries(props)) {
-                    if (key === 'className') {
-                        element.className = value;
-                    } else if (key === 'style') {
-                        Object.assign(element.style, value);
-                    } else if (key.startsWith('on') && typeof value === 'function') {
-                        const eventName = key.substring(2).toLowerCase();
-                        element.addEventListener(eventName, value);
-                    } else if (value !== undefined && value !== null) {
-                        element.setAttribute(key, value);
-                    }
-                }
-
-                // Append children
-                children.forEach(child => {
-                    if (typeof child === 'string') {
-                        element.appendChild(document.createTextNode(child));
-                    } else if (Array.isArray(child)) {
-                        child.forEach(c => element.appendChild(c));
-                    } else if (child) {
-                        element.appendChild(child);
-                    }
-                });
-
-                return element;
+        const learningStyles = {
+            visual: {
+                name: 'Visual Learner',
+                description: 'You learn best through visual aids like diagrams, charts, and colors. LearnZy will provide more visual explanations and graphical representations of mathematical concepts.',
+                icon: 'far fa-eye'
+            },
+            auditory: {
+                name: 'Auditory Learner',
+                description: 'You learn best through listening and verbal explanations. LearnZy will focus on audio explanations and verbal descriptions of mathematical concepts.',
+                icon: 'far fa-comment-dots'
+            },
+            kinesthetic: {
+                name: 'Kinesthetic Learner',
+                description: 'You learn best through hands-on activities and movement. LearnZy will provide interactive exercises and real-world applications of mathematical concepts.',
+                icon: 'far fa-hand-paper'
+            },
+            logical: {
+                name: 'Logical/Mathematical Learner',
+                description: 'You learn best through logical reasoning and systematic thinking. LearnZy will emphasize problem-solving strategies and step-by-step logical explanations.',
+                icon: 'far fa-brain'
             }
         };
 
-        // Auth Components
-        const SignInPage = () => {
-            const [email, setEmail] = useState('');
-            const [password, setPassword] = useState('');
-            const [error, setError] = useState('');
-            const [loading, setLoading] = useState(false);
-
-            const handleSubmit = async (e) => {
-                e.preventDefault();
-                setLoading(true);
-                setError('');
-
-                try {
-                    const user = await AppState.mockLogin(email, password);
-                    AppState.setState({
-                        currentUser: user,
-                        isAuthenticated: true,
-                        currentPage: 'assessment'
-                    });
-                } catch (err) {
-                    setError(err.message);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            return Component.create('div', { className: 'auth-container' },
-                Component.create('div', { className: 'auth-left' },
-                    Component.create('div', { className: 'logo' },
-                        Component.create('i', { className: 'fas fa-square-root-alt logo-icon' }),
-                        'LearnZy'
-                    ),
-                    Component.create('h1', {}, 'Personalized Math Learning'),
-                    Component.create('p', {}, 'Discover your learning style and master math with customized lessons and exercises designed just for you.')
-                ),
-                Component.create('div', { className: 'auth-right' },
-                    Component.create('form', { className: 'auth-form', onSubmit: handleSubmit },
-                        Component.create('h2', {}, 'Sign In'),
-                        Component.create('div', { className: 'form-group' },
-                            Component.create('label', { className: 'form-label', htmlFor: 'email' }, 'Email'),
-                            Component.create('input', {
-                                className: 'form-control',
-                                type: 'email',
-                                id: 'email',
-                                value: email,
-                                onChange: (e) => setEmail(e.target.value),
-                                required: true
-                            })
-                        ),
-                        Component.create('div', { className: 'form-group' },
-                            Component.create('label', { className: 'form-label', htmlFor: 'password' }, 'Password'),
-                            Component.create('input', {
-                                className: 'form-control',
-                                type: 'password',
-                                id: 'password',
-                                value: password,
-                                onChange: (e) => setPassword(e.target.value),
-                                required: true
-                            })
-                        ),
-                        error && Component.create('div', { className: 'error-message' }, error),
-                        Component.create('button', {
-                            className: `btn btn-primary w-full ${loading ? 'opacity-75' : ''}`,
-                            type: 'submit',
-                            disabled: loading
-                        }, loading ? 'Signing In...' : 'Sign In'),
-                        Component.create('div', { className: 'auth-footer' },
-                            'Don\'t have an account? ',
-                            Component.create('a', { href: '#', onClick: (e) => {
-                                e.preventDefault();
-                                alert('Sign up functionality would be implemented here');
-                            }}, 'Sign up')
-                        )
-                    )
-                )
-            );
-        };
-
-        const LearningStyleAssessment = () => {
-            const state = AppState.getState();
-            const [currentQuestion, setCurrentQuestion] = useState(state.currentQuestion || 0);
-            const [answers, setAnswers] = useState(state.answers || []);
-            const [showResult, setShowResult] = useState(false);
-
-            const questions = [
-                {
-                    id: 1,
-                    text: "When learning something new, I prefer:",
-                    options: [
-                        { id: 1, text: "Seeing diagrams or images" },
-                        { id: 2, text: "Listening to an explanation" },
-                        { id: 3, text: "Doing it with my hands" },
-                        { id: 4, text: "Breaking it into steps" }
-                    ]
-                },
-                {
-                    id: 2,
-                    text: "I remember best when I:",
-                    options: [
-                        { id: 1, text: "See information visually" },
-                        { id: 2, text: "Hear it explained" },
-                        { id: 3, text: "Try it myself" },
-                        { id: 4, text: "Analyze it logically" }
-                    ]
-                },
-                {
-                    id: 3,
-                    text: "I enjoy lessons that:",
-                    options: [
-                        { id: 1, text: "Use animations or drawings" },
-                        { id: 2, text: "Include verbal explanations" },
-                        { id: 3, text: "Allow hands-on experiments" },
-                        { id: 4, text: "Focus on problem solving" }
-                    ]
-                },
-                {
-                    id: 4,
-                    text: "In class, I prefer:",
-                    options: [
-                        { id: 1, text: "Watching a demo or slides" },
-                        { id: 2, text: "Listening to the teacher" },
-                        { id: 3, text: "Group exercises or projects" },
-                        { id: 4, text: "Logical explanations" }
-                    ]
-                },
-                {
-                    id: 5,
-                    text: "For homework, I usually:",
-                    options: [
-                        { id: 1, text: "Make notes or sketches" },
-                        { id: 2, text: "Read aloud or use audiobooks" },
-                        { id: 3, text: "Use flashcards or build models" },
-                        { id: 4, text: "Solve extra problems or puzzles" }
-                    ]
-                },
-                {
-                    id: 6,
-                    text: "My favorite school subjects are:",
-                    options: [
-                        { id: 1, text: "Art / Geography" },
-                        { id: 2, text: "Music / Literature" },
-                        { id: 3, text: "PE / Lab Science" },
-                        { id: 4, text: "Math / Physics" }
-                    ]
-                },
-                {
-                    id: 7,
-                    text: "I find it easiest to learn when:",
-                    options: [
-                        { id: 1, text: "I can visualize the content" },
-                        { id: 2, text: "I hear someone explain it" },
-                        { id: 3, text: "I can interact with it" },
-                        { id: 4, text: "I can find patterns or logic" }
-                    ]
-                }
-            ];
-
-            const handleOptionSelect = (optionId) => {
-                const newAnswers = [...answers];
-                newAnswers[currentQuestion] = optionId;
-                setAnswers(newAnswers);
-                AppState.setState({ answers: newAnswers });
-            };
-
-            const handleNext = () => {
-                if (currentQuestion < questions.length - 1) {
-                    setCurrentQuestion(currentQuestion + 1);
-                    AppState.setState({ currentQuestion: currentQuestion + 1 });
-                } else {
-                    const learningStyle = AppState.determineLearningStyle(answers);
-                    AppState.setState({ 
-                        learningStyle,
-                        currentPage: 'dashboard',
-                        currentQuestion: 0,
-                        answers: []
-                    });
-                    setShowResult(true);
-                }
-            };
-
-            const handleBack = () => {
-                if (currentQuestion > 0) {
-                    setCurrentQuestion(currentQuestion - 1);
-                    AppState.setState({ currentQuestion: currentQuestion - 1 });
-                }
-            };
-
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-
-            if (showResult) {
-                return Component.create('div', { className: 'result-container animate-fade' },
-                    Component.create('i', { className: 'fas fa-award result-icon' }),
-                    Component.create('h1', { className: 'result-title' }, `You are a ${state.learningStyle}!`),
-                    Component.create('p', { className: 'result-description' }, 'LearnZy will adapt your learning experience accordingly.'),
-                    Component.create('button', {
-                        className: 'btn btn-primary',
-                        onClick: () => AppState.setState({ currentPage: 'dashboard' })
-                    }, 'Continue to Dashboard')
-                );
+        const quizQuestions = [
+            {
+                id: 1,
+                question: 'When learning something new, I prefer:',
+                options: [
+                    { text: 'Seeing diagrams or images', style: 'visual' },
+                    { text: 'Listening to an explanation', style: 'auditory' },
+                    { text: 'Doing it with my hands', style: 'kinesthetic' },
+                    { text: 'Breaking it into steps', style: 'logical' }
+                ]
+            },
+            {
+                id: 2,
+                question: 'I remember best when I:',
+                options: [
+                    { text: 'See information visually', style: 'visual' },
+                    { text: 'Hear it explained', style: 'auditory' },
+                    { text: 'Try it myself', style: 'kinesthetic' },
+                    { text: 'Analyze it logically', style: 'logical' }
+                ]
+            },
+            {
+                id: 3,
+                question: 'I enjoy lessons that:',
+                options: [
+                    { text: 'Use animations or drawings', style: 'visual' },
+                    { text: 'Include verbal explanations', style: 'auditory' },
+                    { text: 'Allow hands-on experiments', style: 'kinesthetic' },
+                    { text: 'Focus on problem solving', style: 'logical' }
+                ]
+            },
+            {
+                id: 4,
+                question: 'In class, I prefer:',
+                options: [
+                    { text: 'Watching a demo or slides', style: 'visual' },
+                    { text: 'Listening to the teacher', style: 'auditory' },
+                    { text: 'Group exercises or projects', style: 'kinesthetic' },
+                    { text: 'Logical explanations', style: 'logical' }
+                ]
+            },
+            {
+                id: 5,
+                question: 'For homework, I usually:',
+                options: [
+                    { text: 'Make notes or sketches', style: 'visual' },
+                    { text: 'Read aloud or use audiobooks', style: 'auditory' },
+                    { text: 'Use flashcards or build models', style: 'kinesthetic' },
+                    { text: 'Solve extra problems or puzzles', style: 'logical' }
+                ]
+            },
+            {
+                id: 6,
+                question: 'My favorite school subjects are:',
+                options: [
+                    { text: 'Art / Geography', style: 'visual' },
+                    { text: 'Music / Literature', style: 'auditory' },
+                    { text: 'PE / Lab Science', style: 'kinesthetic' },
+                    { text: 'Math / Physics', style: 'logical' }
+                ]
+            },
+            {
+                id: 7,
+                question: 'I find it easiest to learn when:',
+                options: [
+                    { text: 'I can visualize the content', style: 'visual' },
+                    { text: 'I hear someone explain it', style: 'auditory' },
+                    { text: 'I can interact with it', style: 'kinesthetic' },
+                    { text: 'I can find patterns or logic', style: 'logical' }
+                ]
             }
+        ];
 
-            return Component.create('div', { className: 'assessment-container animate-fade' },
-                Component.create('div', { className: 'assessment-header' },
-                    Component.create('h1', {}, 'Learning Style Assessment'),
-                    Component.create('p', {}, 'Answer these questions to help us understand how you learn best.')
-                ),
-                Component.create('div', { className: 'progress-bar' },
-                    Component.create('div', { 
-                        className: 'progress-fill',
-                        style: { width: `${progress}%` }
-                    })
-                ),
-                Component.create('div', { className: 'question-container' },
-                    Component.create('div', { className: 'question-text' }, questions[currentQuestion].text),
-                    Component.create('div', { className: 'options-container' },
-                        questions[currentQuestion].options.map(option => 
-                            Component.create('div', {
-                                className: `option-item ${answers[currentQuestion] === option.id ? 'selected' : ''}`,
-                                onClick: () => handleOptionSelect(option.id)
-                            }, option.text)
-                        )
-                    )
-                ),
-                Component.create('div', { className: 'assessment-footer' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: handleBack,
-                        disabled: currentQuestion === 0
-                    }, 'Back'),
-                    Component.create('button', {
-                        className: 'btn btn-primary',
-                        onClick: handleNext,
-                        disabled: answers[currentQuestion] === undefined
-                    }, currentQuestion === questions.length - 1 ? 'Submit' : 'Next')
-                )
-            );
-        };
-
-        // Main App Components
-        const Sidebar = () => {
-            const state = AppState.getState();
-
-            const handleNavClick = (page) => {
-                AppState.setState({ currentPage: page, sidebarOpen: false });
-            };
-
-            return Component.create('div', { className: `sidebar ${state.sidebarOpen ? 'open' : ''}` },
-                Component.create('div', { className: 'sidebar-header' },
-                    Component.create('a', { 
-                        className: 'sidebar-logo',
-                        href: '#',
-                        onClick: (e) => {
-                            e.preventDefault();
-                            handleNavClick('dashboard');
-                        }
-                    },
-                        Component.create('i', { className: 'fas fa-square-root-alt sidebar-logo-icon' }),
-                        'LearnZy'
-                    ),
-                    Component.create('button', {
-                        className: 'text-gray-500 hover:text-gray-700',
-                        onClick: () => AppState.setState({ sidebarOpen: false })
-                    },
-                        Component.create('i', { className: 'fas fa-times' })
-                    )
-                ),
-                Component.create('nav', { className: 'sidebar-nav' },
-                    Component.create('a', {
-                        className: `nav-item ${state.currentPage === 'dashboard' ? 'active' : ''}`,
-                        href: '#',
-                        onClick: (e) => {
-                            e.preventDefault();
-                            handleNavClick('dashboard');
-                        }
-                    },
-                        Component.create('i', { className: 'fas fa-home nav-item-icon' }),
-                        'Dashboard'
-                    ),
-                    Component.create('a', {
-                        className: `nav-item ${state.currentPage === 'lessons' ? 'active' : ''}`,
-                        href: '#',
-                        onClick: (e) => {
-                            e.preventDefault();
-                            handleNavClick('lessons');
-                        }
-                    },
-                        Component.create('i', { className: 'fas fa-book nav-item-icon' }),
-                        'My Lessons'
-                    ),
-                    Component.create('a', {
-                        className: `nav-item ${state.currentPage === 'badges' ? 'active' : ''}`,
-                        href: '#',
-                        onClick: (e) => {
-                            e.preventDefault();
-                            handleNavClick('badges');
-                        }
-                    },
-                        Component.create('i', { className: 'fas fa-trophy nav-item-icon' }),
-                        'Badges'
-                    ),
-                    Component.create('a', {
-                        className: `nav-item ${state.currentPage === 'settings' ? 'active' : ''}`,
-                        href: '#',
-                        onClick: (e) => {
-                            e.preventDefault();
-                            handleNavClick('settings');
-                        }
-                    },
-                        Component.create('i', { className: 'fas fa-cog nav-item-icon' }),
-                        'Settings'
-                    )
-                ),
-                Component.create('div', { className: 'sidebar-footer' },
-                    Component.create('button', {
-                        className: 'btn btn-outline w-full',
-                        onClick: () => {
-                            AppState.setState({
-                                isAuthenticated: false,
-                                currentUser: null,
-                                currentPage: 'signin'
-                            });
-                        }
-                    },
-                        'Sign Out'
-                    )
-                )
-            );
-        };
-
-        const Topbar = () => {
-            const state = AppState.getState();
-            const [userMenuOpen, setUserMenuOpen] = useState(false);
-
-            return Component.create('div', { className: 'topbar' },
-                Component.create('div', { className: 'topbar-left' },
-                    Component.create('button', {
-                        className: 'mobile-menu-btn',
-                        onClick: () => AppState.setState({ sidebarOpen: !state.sidebarOpen })
-                    },
-                        Component.create('i', { className: 'fas fa-bars' })
-                    ),
-                    Component.create('h1', { className: 'topbar-title' }, 
-                        state.currentPage === 'dashboard' ? 'Dashboard' :
-                        state.currentPage === 'lessons' ? 'My Lessons' :
-                        state.currentPage === 'badges' ? 'Badges' :
-                        state.currentPage === 'settings' ? 'Settings' : ''
-                    )
-                ),
-                Component.create('div', { className: 'topbar-right' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: () => AppState.setState({ theme: state.theme === 'light' ? 'dark' : 'light' })
-                    },
-                        state.theme === 'light' ? 
-                            Component.create('i', { className: 'fas fa-moon' }) :
-                            Component.create('i', { className: 'fas fa-sun' })
-                    ),
-                    Component.create('div', { className: 'user-menu' },
-                        Component.create('div', {
-                            className: 'user-avatar',
-                            onClick: () => setUserMenuOpen(!userMenuOpen)
-                        }, state.currentUser?.avatar || 'U'),
-                        Component.create('div', { className: `user-dropdown ${userMenuOpen ? 'show' : ''}` },
-                            Component.create('div', { className: 'dropdown-item' },
-                                Component.create('i', { className: 'fas fa-user' }),
-                                'Profile'
-                            ),
-                            Component.create('div', { className: 'dropdown-item' },
-                                Component.create('i', { className: 'fas fa-cog' }),
-                                'Settings'
-                            ),
-                            Component.create('div', { className: 'dropdown-divider' }),
-                            Component.create('div', {
-                                className: 'dropdown-item',
-                                onClick: () => {
-                                    AppState.setState({
-                                        isAuthenticated: false,
-                                        currentUser: null,
-                                        currentPage: 'signin'
-                                    });
-                                }
+        const categories = [
+            {
+                id: 1,
+                name: 'Algebra',
+                description: 'Master the fundamentals of algebraic expressions, equations, and functions.',
+                progress: 65,
+                topics: [
+                    {
+                        id: 1,
+                        name: 'Linear Equations',
+                        description: 'Solve equations of the first degree with one variable.',
+                        completed: true,
+                        exercises: [
+                            {
+                                id: 1,
+                                question: 'Solve for x: 2x + 5 = 15',
+                                options: ['x = 5', 'x = 7', 'x = 10', 'x = 12'],
+                                answer: 0,
+                                explanation: 'Subtract 5 from both sides: 2x = 10. Then divide both sides by 2: x = 5.'
                             },
-                                Component.create('i', { className: 'fas fa-sign-out-alt' }),
-                                'Sign Out'
-                            )
-                        )
-                    )
-                )
-            );
-        };
-
-        const DashboardPage = () => {
-            const state = AppState.getState();
-
-            const handleCategoryClick = (category) => {
-                AppState.setState({ 
-                    currentPage: 'lessons',
-                    currentLesson: category
-                });
-            };
-
-            return Component.create('div', { className: 'content-area' },
-                Component.create('div', { className: 'dashboard-header' },
-                    Component.create('h1', { className: 'text-2xl font-bold' }, 'Welcome back, ' + (state.currentUser?.name || 'Student')),
-                    Component.create('div', { className: 'flex items-center gap-2' },
-                        Component.create('span', { className: 'text-sm text-gray-500' }, 'Your learning style:'),
-                        Component.create('span', { className: 'font-medium' }, state.learningStyle)
-                    )
-                ),
-                Component.create('div', { className: 'stats-container' },
-                    Component.create('div', { className: 'stat-card' },
-                        Component.create('div', { className: 'stat-title' }, 'Current Level'),
-                        Component.create('div', { className: 'stat-value' }, state.level)
-                    ),
-                    Component.create('div', { className: 'stat-card' },
-                        Component.create('div', { className: 'stat-title' }, 'Total XP'),
-                        Component.create('div', { className: 'stat-value' }, state.xp)
-                    ),
-                    Component.create('div', { className: 'stat-card' },
-                        Component.create('div', { className: 'stat-title' }, 'Current Streak'),
-                        Component.create('div', { className: 'stat-value' }, state.streak + ' days')
-                    ),
-                    Component.create('div', { className: 'stat-card' },
-                        Component.create('div', { className: 'stat-title' }, 'Badges Earned'),
-                        Component.create('div', { className: 'stat-value' }, state.badges.filter(b => b.earned).length + '/' + state.badges.length)
-                    )
-                ),
-                Component.create('h2', { className: 'text-xl font-bold mb-4' }, 'Math Categories'),
-                Component.create('div', { className: 'categories-container' },
-                    state.mathCategories.map(category => 
-                        Component.create('div', {
-                            className: 'category-card',
-                            key: category.id,
-                            onClick: () => handleCategoryClick(category)
-                        },
-                            Component.create('div', { className: 'category-header' },
-                                Component.create('div', { className: 'category-title' }, category.name),
-                                Component.create('div', { className: 'category-progress' },
-                                    Component.create('div', {
-                                        className: 'category-progress-fill',
-                                        style: { width: `${category.progress}%` }
-                                    })
-                                )
-                            ),
-                            Component.create('div', { className: 'category-body' },
-                                Component.create('ul', { className: 'topic-list' },
-                                    category.topics.map(topic => 
-                                        Component.create('li', { className: 'topic-item', key: topic.id },
-                                            Component.create('span', { className: 'topic-name' }, topic.name),
-                                            Component.create('span', { className: 'topic-status' },
-                                                topic.completed ?
-                                                    Component.create('span', { className: 'status-icon completed' },
-                                                        Component.create('i', { className: 'fas fa-check' })
-                                                    ) :
-                                                    Component.create('span', { className: 'status-icon in-progress' },
-                                                        Component.create('i', { className: 'fas fa-spinner' })
-                                                    ),
-                                                topic.completed ? 'Completed' : 'In Progress'
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        };
-
-        const LessonsPage = () => {
-            const state = AppState.getState();
-            const category = state.currentLesson || state.mathCategories[0];
-
-            const handleTopicClick = (topic) => {
-                AppState.setState({ 
-                    currentPage: 'lesson-detail',
-                    currentExercise: 0,
-                    selectedOption: null,
-                    showFeedback: false
-                });
-            };
-
-            return Component.create('div', { className: 'content-area' },
-                Component.create('div', { className: 'flex items-center mb-6' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: () => AppState.setState({ currentPage: 'dashboard' })
+                            {
+                                id: 2,
+                                question: 'Which of these is a linear equation?',
+                                options: ['x² + 2x + 1 = 0', '3x - 7 = 2', 'y = √x', 'x³ = 8'],
+                                answer: 1,
+                                explanation: 'A linear equation has variables with exponent 1. 3x - 7 = 2 is the only option that fits.'
+                            }
+                        ]
                     },
-                        Component.create('i', { className: 'fas fa-arrow-left mr-2' }),
-                        'Back to Dashboard'
-                    ),
-                    Component.create('h1', { className: 'text-xl font-bold ml-4' }, category.name)
-                ),
-                Component.create('div', { className: 'category-card' },
-                    Component.create('div', { className: 'category-header' },
-                        Component.create('div', { className: 'category-title' }, category.name),
-                        Component.create('div', { className: 'category-progress' },
-                            Component.create('div', {
-                                className: 'category-progress-fill',
-                                style: { width: `${category.progress}%` }
-                            })
-                        )
-                    ),
-                    Component.create('div', { className: 'category-body' },
-                        Component.create('ul', { className: 'topic-list' },
-                            category.topics.map(topic => 
-                                Component.create('li', { 
-                                    className: 'topic-item', 
-                                    key: topic.id,
-                                    onClick: () => handleTopicClick(topic)
-                                },
-                                    Component.create('span', { className: 'topic-name' }, topic.name),
-                                    Component.create('span', { className: 'topic-status' },
-                                        topic.completed ?
-                                            Component.create('span', { className: 'status-icon completed' },
-                                                Component.create('i', { className: 'fas fa-check' })
-                                            ) :
-                                            Component.create('span', { className: 'status-icon in-progress' },
-                                                Component.create('i', { className: 'fas fa-spinner' })
-                                            ),
-                                        topic.completed ? 'Completed' : 'Start Learning'
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        };
+                    {
+                        id: 2,
+                        name: 'Quadratic Equations',
+                        description: 'Solve second-degree polynomial equations using various methods.',
+                        completed: true,
+                        exercises: [
+                            {
+                                id: 1,
+                                question: 'What are the solutions to x² - 5x + 6 = 0?',
+                                options: ['x = 2 and x = 3', 'x = 1 and x = 6', 'x = -2 and x = -3', 'x = 0.5 and x = 6'],
+                                answer: 0,
+                                explanation: 'Factor the equation: (x-2)(x-3) = 0. Solutions are x=2 and x=3.'
+                            }
+                        ]
+                    },
+                    {
+                        id: 3,
+                        name: 'Polynomials',
+                        description: 'Understand and manipulate polynomial expressions.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 4,
+                        name: 'Functions',
+                        description: 'Explore different types of functions and their properties.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 5,
+                        name: 'Systems of Equations',
+                        description: 'Solve multiple equations with multiple variables.',
+                        completed: false,
+                        exercises: []
+                    }
+                ]
+            },
+            {
+                id: 2,
+                name: 'Geometry',
+                description: 'Explore shapes, sizes, and properties of figures in space.',
+                progress: 30,
+                topics: [
+                    {
+                        id: 1,
+                        name: 'Basic Geometry',
+                        description: 'Learn about points, lines, angles, and planes.',
+                        completed: true,
+                        exercises: []
+                    },
+                    {
+                        id: 2,
+                        name: 'Triangles',
+                        description: 'Study properties and theorems related to triangles.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 3,
+                        name: 'Circles',
+                        description: 'Understand circle theorems and properties.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 4,
+                        name: 'Polygons',
+                        description: 'Explore properties of multi-sided shapes.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 5,
+                        name: 'Solid Geometry',
+                        description: 'Study three-dimensional shapes and their properties.',
+                        completed: false,
+                        exercises: []
+                    }
+                ]
+            },
+            {
+                id: 3,
+                name: 'Trigonometry',
+                description: 'Discover relationships between angles and sides of triangles.',
+                progress: 10,
+                topics: [
+                    {
+                        id: 1,
+                        name: 'Trigonometric Ratios',
+                        description: 'Learn about sine, cosine, and tangent functions.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 2,
+                        name: 'Unit Circle',
+                        description: 'Understand the relationship between angles and coordinates.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 3,
+                        name: 'Trigonometric Identities',
+                        description: 'Master fundamental trigonometric identities.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 4,
+                        name: 'Graphs of Trig Functions',
+                        description: 'Visualize and analyze trigonometric functions.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 5,
+                        name: 'Trigonometric Equations',
+                        description: 'Solve equations involving trigonometric functions.',
+                        completed: false,
+                        exercises: []
+                    }
+                ]
+            },
+            {
+                id: 4,
+                name: 'Calculus',
+                description: 'Dive into the mathematics of change and motion.',
+                progress: 5,
+                topics: [
+                    {
+                        id: 1,
+                        name: 'Limits',
+                        description: 'Understand the fundamental concept of limits.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 2,
+                        name: 'Derivatives',
+                        description: 'Learn about rates of change and slopes of curves.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 3,
+                        name: 'Integrals',
+                        description: 'Discover the mathematics of accumulation and area.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 4,
+                        name: 'Applications of Derivatives',
+                        description: 'Apply derivatives to real-world problems.',
+                        completed: false,
+                        exercises: []
+                    },
+                    {
+                        id: 5,
+                        name: 'Applications of Integrals',
+                        description: 'Apply integrals to solve practical problems.',
+                        completed: false,
+                        exercises: []
+                    }
+                ]
+            }
+        ];
 
-        const LessonDetailPage = () => {
-            const state = AppState.getState();
-            const exercise = state.exercises[state.currentExercise];
+        const badges = [
+            { id: 1, name: 'Fast Learner', description: 'Complete 5 exercises in one day', earned: true },
+            { id: 2, name: 'Algebra Master', description: 'Complete all Algebra topics', earned: false },
+            { id: 3, name: 'Week Streak', description: 'Practice for 7 days in a row', earned: false },
+            { id: 4, name: 'Quick Thinker', description: 'Solve 10 exercises correctly in a row', earned: true }
+        ];
 
-            const handleOptionSelect = (optionId) => {
-                AppState.setState({ selectedOption: optionId });
-            };
-
-            const handleSubmit = () => {
-                AppState.setState({ showFeedback: true });
-                
-                // If answer is correct, update progress
-                const selectedOption = exercise.options.find(o => o.id === state.selectedOption);
-                if (selectedOption?.correct) {
+        // Mock API Functions
+        const mockAPI = {
+            login: (email, password) => {
+                return new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        AppState.setState({ 
-                            currentExercise: state.currentExercise + 1,
-                            selectedOption: null,
-                            showFeedback: false,
-                            xp: state.xp + 50
-                        });
-                    }, 2000);
+                        const user = mockUsers.find(u => u.email === email && u.password === password);
+                        if (user) {
+                            resolve({ success: true, user });
+                        } else {
+                            reject({ success: false, message: 'Invalid email or password' });
+                        }
+                    }, 1000);
+                });
+            },
+            
+            submitLearningStyle: (style) => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({ success: true, style });
+                    }, 500);
+                });
+            },
+            
+            getMathContent: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({ success: true, categories });
+                    }, 500);
+                });
+            },
+            
+            getBadges: () => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({ success: true, badges });
+                    }, 500);
+                });
+            },
+            
+            aiAssistant: (message) => {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        const responses = {
+                            'hello': 'Hello! How can I help you with math today?',
+                            'help': 'I can explain math concepts, help with exercises, or provide examples. What do you need?',
+                            'explain quadratic equations': 'A quadratic equation is any equation that can be rearranged in standard form as ax² + bx + c = 0. You can solve it by factoring, completing the square, or using the quadratic formula.',
+                            'default': 'I\'m here to help with your math questions. Could you be more specific about what you need help with?'
+                        };
+                        
+                        const lowerMessage = message.toLowerCase();
+                        let response = responses.default;
+                        
+                        if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+                            response = responses.hello;
+                        } else if (lowerMessage.includes('help')) {
+                            response = responses.help;
+                        } else if (lowerMessage.includes('quadratic')) {
+                            response = responses['explain quadratic equations'];
+                        }
+                        
+                        resolve({ success: true, response });
+                    }, 800);
+                });
+            }
+        };
+
+        // Utility Functions
+        const Utils = {
+            createElement: (tag, className, text) => {
+                const element = document.createElement(tag);
+                if (className) element.className = className;
+                if (text) element.textContent = text;
+                return element;
+            },
+            
+            createElementWithHTML: (html) => {
+                const template = document.createElement('template');
+                template.innerHTML = html.trim();
+                return template.content.firstChild;
+            },
+            
+            addClass: (element, className) => {
+                element.classList.add(className);
+            },
+            
+            removeClass: (element, className) => {
+                element.classList.remove(className);
+            },
+            
+            toggleClass: (element, className) => {
+                element.classList.toggle(className);
+            },
+            
+            createConfetti: () => {
+                const colors = ['#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585'];
+                const confettiContainer = document.createElement('div');
+                confettiContainer.style.position = 'fixed';
+                confettiContainer.style.top = '0';
+                confettiContainer.style.left = '0';
+                confettiContainer.style.width = '100%';
+                confettiContainer.style.height = '100%';
+                confettiContainer.style.pointerEvents = 'none';
+                confettiContainer.style.zIndex = '1000';
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = `${Math.random() * 100}%`;
+                    confetti.style.width = `${Math.random() * 10 + 5}px`;
+                    confetti.style.height = `${Math.random() * 10 + 5}px`;
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    
+                    const animationDuration = Math.random() * 3 + 2;
+                    confetti.style.animation = `fall ${animationDuration}s linear forwards`;
+                    
+                    const keyframes = `
+                        @keyframes fall {
+                            to {
+                                transform: translateY(100vh) rotate(${Math.random() * 360}deg);
+                            }
+                        }
+                    `;
+                    
+                    const style = document.createElement('style');
+                    style.innerHTML = keyframes;
+                    document.head.appendChild(style);
+                    
+                    confettiContainer.appendChild(confetti);
                 }
-            };
-
-            const handleNext = () => {
-                AppState.setState({ 
-                    currentExercise: state.currentExercise + 1,
-                    selectedOption: null,
-                    showFeedback: false
-                });
-            };
-
-            return Component.create('div', { className: 'content-area' },
-                Component.create('div', { className: 'flex items-center mb-6' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: () => AppState.setState({ currentPage: 'lessons' })
-                    },
-                        Component.create('i', { className: 'fas fa-arrow-left mr-2' }),
-                        'Back to Topics'
-                    ),
-                    Component.create('h1', { className: 'text-xl font-bold ml-4' }, 'Linear Equations')
-                ),
-                Component.create('div', { className: 'lesson-container' },
-                    Component.create('div', {},
-                        Component.create('div', { className: 'video-container' },
-                            Component.create('iframe', {
-                                src: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-                                frameborder: '0',
-                                allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
-                                allowfullscreen: true
-                            })
-                        ),
-                        Component.create('div', { className: 'lesson-content mt-4' },
-                            Component.create('h2', { className: 'lesson-title' }, 'Introduction to Linear Equations'),
-                            Component.create('p', { className: 'lesson-description' }, 
-                                'A linear equation is an equation for a straight line. These are all linear equations: y = 2x + 1, 5x = 6 + 3y, y/2 = 3 - x. Learn how to solve them in this lesson.'
-                            )
-                        )
-                    ),
-                    Component.create('div', { className: 'exercise-container' },
-                        Component.create('h2', { className: 'exercise-title' }, 'Exercise ' + (state.currentExercise + 1)),
-                        Component.create('p', { className: 'exercise-question' }, exercise.question),
-                        Component.create('div', { className: 'exercise-options' },
-                            exercise.options.map(option => 
-                                Component.create('div', {
-                                    className: `exercise-option ${
-                                        state.selectedOption === option.id ? 'selected' : ''
-                                    } ${
-                                        state.showFeedback ? (
-                                            option.correct ? 'correct' : 
-                                            state.selectedOption === option.id ? 'incorrect' : ''
-                                        ) : ''
-                                    }`,
-                                    onClick: () => !state.showFeedback && handleOptionSelect(option.id)
-                                }, option.text)
-                            )
-                        ),
-                        state.showFeedback && 
-                            Component.create('div', {
-                                className: `exercise-feedback ${
-                                    exercise.options.find(o => o.id === state.selectedOption)?.correct ? 
-                                    'correct' : 'incorrect'
-                                }`
-                            },
-                                exercise.options.find(o => o.id === state.selectedOption)?.correct ?
-                                    Component.create('div', { className: 'flex items-center gap-2' },
-                                        Component.create('i', { className: 'fas fa-check-circle' }),
-                                        'Correct! Great job!'
-                                    ) :
-                                    Component.create('div', {},
-                                        Component.create('div', { className: 'flex items-center gap-2 mb-2' },
-                                            Component.create('i', { className: 'fas fa-times-circle' }),
-                                            'Incorrect. Try again!'
-                                        ),
-                                        Component.create('p', {}, exercise.explanation)
-                                    )
-                            ),
-                        Component.create('div', { className: 'exercise-actions' },
-                            Component.create('button', {
-                                className: 'btn btn-outline',
-                                onClick: () => AppState.setState({ currentPage: 'lessons' })
-                            }, 'Exit'),
-                            !state.showFeedback ?
-                                Component.create('button', {
-                                    className: 'btn btn-primary',
-                                    onClick: handleSubmit,
-                                    disabled: state.selectedOption === null
-                                }, 'Submit') :
-                                exercise.options.find(o => o.id === state.selectedOption)?.correct ?
-                                    Component.create('button', {
-                                        className: 'btn btn-primary',
-                                        onClick: handleNext,
-                                        disabled: state.currentExercise >= state.exercises.length - 1
-                                    }, 'Next Exercise') :
-                                    Component.create('button', {
-                                        className: 'btn btn-primary',
-                                        onClick: () => AppState.setState({ showFeedback: false })
-                                    }, 'Try Again')
-                        )
-                    )
-                )
-            );
-        };
-
-        const BadgesPage = () => {
-            const state = AppState.getState();
-
-            return Component.create('div', { className: 'content-area' },
-                Component.create('div', { className: 'flex items-center mb-6' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: () => AppState.setState({ currentPage: 'dashboard' })
-                    },
-                        Component.create('i', { className: 'fas fa-arrow-left mr-2' }),
-                        'Back to Dashboard'
-                    ),
-                    Component.create('h1', { className: 'text-xl font-bold ml-4' }, 'Your Badges')
-                ),
-                Component.create('div', { className: 'badges-container' },
-                    state.badges.map(badge => 
-                        Component.create('div', {
-                            className: `badge-card ${badge.earned ? '' : 'locked'}`,
-                            key: badge.id
-                        },
-                            Component.create('div', { className: 'badge-icon' },
-                                badge.earned ? 
-                                    Component.create('i', { className: 'fas fa-trophy' }) :
-                                    Component.create('i', { className: 'fas fa-lock' })
-                            ),
-                            Component.create('h3', { className: 'badge-name' }, badge.name),
-                            Component.create('p', { className: 'badge-description' }, badge.description)
-                        )
-                    )
-                )
-            );
-        };
-
-        const SettingsPage = () => {
-            const state = AppState.getState();
-
-            const handleThemeToggle = () => {
-                AppState.setState({ theme: state.theme === 'light' ? 'dark' : 'light' });
-            };
-
-            const handleAnimationsToggle = () => {
-                AppState.setState({ animationsEnabled: !state.animationsEnabled });
-            };
-
-            return Component.create('div', { className: 'content-area' },
-                Component.create('div', { className: 'flex items-center mb-6' },
-                    Component.create('button', {
-                        className: 'btn btn-outline',
-                        onClick: () => AppState.setState({ currentPage: 'dashboard' })
-                    },
-                        Component.create('i', { className: 'fas fa-arrow-left mr-2' }),
-                        'Back to Dashboard'
-                    ),
-                    Component.create('h1', { className: 'text-xl font-bold ml-4' }, 'Settings')
-                ),
-                Component.create('div', { className: 'settings-container' },
-                    Component.create('div', { className: 'settings-card' },
-                        Component.create('h2', { className: 'settings-title' }, 'Appearance'),
-                        Component.create('div', { className: 'settings-group' },
-                            Component.create('label', { className: 'settings-label' }, 'Theme'),
-                            Component.create('div', { className: 'flex items-center justify-between' },
-                                Component.create('span', {}, state.theme === 'light' ? 'Light' : 'Dark'),
-                                Component.create('label', { className: 'toggle-switch' },
-                                    Component.create('input', {
-                                        type: 'checkbox',
-                                        checked: state.theme === 'dark',
-                                        onChange: handleThemeToggle
-                                    }),
-                                    Component.create('span', { className: 'toggle-slider' })
-                                )
-                            )
-                        ),
-                        Component.create('div', { className: 'settings-group' },
-                            Component.create('label', { className: 'settings-label' }, 'Animations'),
-                            Component.create('p', { className: 'settings-description' }, 'Enable or disable animations throughout the app'),
-                            Component.create('div', { className: 'flex items-center justify-between' },
-                                Component.create('span', {}, state.animationsEnabled ? 'Enabled' : 'Disabled'),
-                                Component.create('label', { className: 'toggle-switch' },
-                                    Component.create('input', {
-                                        type: 'checkbox',
-                                        checked: state.animationsEnabled,
-                                        onChange: handleAnimationsToggle
-                                    }),
-                                    Component.create('span', { className: 'toggle-slider' })
-                                )
-                            )
-                        )
-                    ),
-                    Component.create('div', { className: 'settings-card' },
-                        Component.create('h2', { className: 'settings-title' }, 'Account'),
-                        Component.create('div', { className: 'settings-group' },
-                            Component.create('label', { className: 'settings-label' }, 'Learning Style'),
-                            Component.create('p', { className: 'settings-description' }, 'Your current learning style based on the assessment'),
-                            Component.create('div', { className: 'flex items-center gap-2' },
-                                Component.create('span', {}, state.learningStyle),
-                                Component.create('button', {
-                                    className: 'btn btn-outline',
-                                    onClick: () => AppState.setState({ currentPage: 'assessment' })
-                                }, 'Retake Assessment')
-                            )
-                        )
-                    )
-                )
-            );
-        };
-
-        const AIAssistant = () => {
-            const state = AppState.getState();
-            const [message, setMessage] = useState('');
-
-            const handleSendMessage = () => {
-                if (message.trim() === '') return;
-
-                const userMessage = {
-                    id: Date.now(),
-                    text: message,
-                    sender: 'user'
-                };
-
-                AppState.setState({
-                    chatMessages: [...state.chatMessages, userMessage]
-                });
-
-                setMessage('');
-
-                // Simulate AI response
+                
+                document.body.appendChild(confettiContainer);
+                
                 setTimeout(() => {
-                    const responses = [
-                        "To solve linear equations, you need to isolate the variable on one side of the equation.",
-                        "A quadratic equation is any equation that can be written in the form ax² + bx + c = 0.",
-                        "The Pythagorean theorem states that in a right triangle, a² + b² = c².",
-                        "The derivative of a function represents the rate of change at any given point.",
-                        "Trigonometric functions relate the angles of a triangle to the lengths of its sides."
-                    ];
-
-                    const aiMessage = {
-                        id: Date.now() + 1,
-                        text: responses[Math.floor(Math.random() * responses.length)],
-                        sender: 'assistant'
-                    };
-
-                    AppState.setState({
-                        chatMessages: [...state.chatMessages, userMessage, aiMessage]
-                    });
-                }, 1000);
-            };
-
-            return Component.create('div', { className: 'assistant-container' },
-                Component.create('button', {
-                    className: `assistant-button ${state.assistantOpen ? 'active' : ''}`,
-                    onClick: () => AppState.setState({ assistantOpen: !state.assistantOpen })
-                },
-                    Component.create('i', { className: 'fas fa-robot' })
-                ),
-                Component.create('div', { className: `assistant-chat ${state.assistantOpen ? 'active' : ''}` },
-                    Component.create('div', { className: 'chat-header' },
-                        Component.create('div', { className: 'chat-title' }, 'LearnZy Assistant'),
-                        Component.create('button', {
-                            className: 'chat-close',
-                            onClick: () => AppState.setState({ assistantOpen: false })
-                        },
-                            Component.create('i', { className: 'fas fa-times' })
-                        )
-                    ),
-                    Component.create('div', { className: 'chat-messages' },
-                        state.chatMessages.map(msg => 
-                            Component.create('div', {
-                                className: `message ${msg.sender === 'user' ? 'user' : 'assistant'}`,
-                                key: msg.id
-                            }, msg.text)
-                        )
-                    ),
-                    Component.create('div', { className: 'chat-input' },
-                        Component.create('input', {
-                            className: 'chat-input-field',
-                            type: 'text',
-                            placeholder: 'Ask a math question...',
-                            value: message,
-                            onChange: (e) => setMessage(e.target.value),
-                            onKeyPress: (e) => e.key === 'Enter' && handleSendMessage()
-                        }),
-                        Component.create('button', {
-                            className: 'chat-send',
-                            onClick: handleSendMessage
-                        },
-                            Component.create('i', { className: 'fas fa-paper-plane' })
-                        )
-                    )
-                )
-            );
+                    document.body.removeChild(confettiContainer);
+                }, 3000);
+            }
         };
 
-        // Main App
-        const App = () => {
-            const state = AppState.getState();
+        // Components
+        const SignInPage = (() => {
+            const render = () => {
+                const container = Utils.createElement('div', 'auth-container animate-fade');
+                
+                const card = Utils.createElement('div', 'auth-card');
+                
+                const header = Utils.createElement('div', 'auth-header');
+                const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
+                const title = Utils.createElement('h1', 'auth-title', 'Welcome Back');
+                const subtitle = Utils.createElement('p', 'auth-subtitle', 'Sign in to continue your math learning journey');
+                
+                header.appendChild(logo);
+                header.appendChild(title);
+                header.appendChild(subtitle);
+                
+                const form = Utils.createElement('form', 'flex flex-col gap-3');
+                form.id = 'signin-form';
+                
+                const emailGroup = Utils.createElement('div', 'input-group');
+                const emailLabel = Utils.createElement('label', 'input-label', 'Email');
+                emailLabel.htmlFor = 'email';
+                const emailInput = Utils.createElement('input', 'input-field');
+                emailInput.type = 'email';
+                emailInput.id = 'email';
+                emailInput.placeholder = 'your@email.com';
+                emailInput.required = true;
+                
+                emailGroup.appendChild(emailLabel);
+                emailGroup.appendChild(emailInput);
+                
+                const passwordGroup = Utils.createElement('div', 'input-group');
+                const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
+                passwordLabel.htmlFor = 'password';
+                const passwordInput = Utils.createElement('input', 'input-field');
+                passwordInput.type = 'password';
+                passwordInput.id = 'password';
+                passwordInput.placeholder = '••••••••';
+                passwordInput.required = true;
+                
+                passwordGroup.appendChild(passwordLabel);
+                passwordGroup.appendChild(passwordInput);
+                
+                const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
+                errorAlert.id = 'error-alert';
+                
+                const submitButton = Utils.createElement('button', 'btn btn-primary', 'Sign In');
+                submitButton.type = 'submit';
+                
+                form.appendChild(errorAlert);
+                form.appendChild(emailGroup);
+                form.appendChild(passwordGroup);
+                form.appendChild(submitButton);
+                
+                card.appendChild(header);
+                card.appendChild(form);
+                container.appendChild(card);
+                
+                form.addEventListener('submit', handleSubmit);
+                // Add this before returning the container
+        const signupLink = Utils.createElement('div', 'text-center mt-4');
+        const signupText = Utils.createElement('span', 'text-sm', 'Don\'t have an account? ');
+        const signupAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign Up');
+        signupAnchor.addEventListener('click', () => {
+            AppState.setState({ currentPage: 'signup' });
+               });
+ 
+ signupLink.appendChild(signupText);
+        signupLink.appendChild(signupAnchor);
+        card.appendChild(signupLink);
 
-            // Set theme on initial load
-            useEffect(() => {
-                document.documentElement.setAttribute('data-theme', state.theme);
-            }, []);
 
-            // Update theme when it changes
-            useEffect(() => {
-                document.documentElement.setAttribute('data-theme', state.theme);
-            }, [state.theme]);
+return container;
+            };
+            <!-- Add this right after the SignInPage component in the script section -->
+const SignUpPage = (() => {
+    const render = () => {
+        const container = Utils.createElement('div', 'auth-container animate-fade');
+        
+        const card = Utils.createElement('div', 'auth-card');
+        
+        const header = Utils.createElement('div', 'auth-header');
+        const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
+        const title = Utils.createElement('h1', 'auth-title', 'Create Account');
+        const subtitle = Utils.createElement('p', 'auth-subtitle', 'Join LearnZy to start your personalized math journey');
+        
+        header.appendChild(logo);
+        header.appendChild(title);
+        header.appendChild(subtitle);
+        
+        const form = Utils.createElement('form', 'flex flex-col gap-3');
+        form.id = 'signup-form';
+        
+        // Name field
+        const nameGroup = Utils.createElement('div', 'input-group');
+        const nameLabel = Utils.createElement('label', 'input-label', 'Full Name');
+        nameLabel.htmlFor = 'name';
+        const nameInput = Utils.createElement('input', 'input-field');
+        nameInput.type = 'text';
+        nameInput.id = 'name';
+        nameInput.placeholder = 'Alexandru Popescu';
+        nameInput.required = true;
+        
+        nameGroup.appendChild(nameLabel);
+        nameGroup.appendChild(nameInput);
+        
+        // Email field
+        const emailGroup = Utils.createElement('div', 'input-group');
+        const emailLabel = Utils.createElement('label', 'input-label', 'Email');
+        emailLabel.htmlFor = 'email';
+        const emailInput = Utils.createElement('input', 'input-field');
+        emailInput.type = 'email';
+        emailInput.id = 'email';
+        emailInput.placeholder = 'your@email.com';
+        emailInput.required = true;
+        
+        emailGroup.appendChild(emailLabel);
+        emailGroup.appendChild(emailInput);
+        
+        // Password field
+        const passwordGroup = Utils.createElement('div', 'input-group');
+        const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
+        passwordLabel.htmlFor = 'password';
+        const passwordInput = Utils.createElement('input', 'input-field');
+        passwordInput.type = 'password';
+        passwordInput.id = 'password';
+        passwordInput.placeholder = '••••••••';
+        passwordInput.required = true;
+        passwordInput.minLength = 8;
+        
+        passwordGroup.appendChild(passwordLabel);
+        passwordGroup.appendChild(passwordInput);
+        
+        // Confirm Password field
+        const confirmGroup = Utils.createElement('div', 'input-group');
+        const confirmLabel = Utils.createElement('label', 'input-label', 'Confirm Password');
+        confirmLabel.htmlFor = 'confirm';
+        const confirmInput = Utils.createElement('input', 'input-field');
+        confirmInput.type = 'password';
+        confirmInput.id = 'confirm';
+        confirmInput.placeholder = '••••••••';
+        confirmInput.required = true;
+        
+        confirmGroup.appendChild(confirmLabel);
+        confirmGroup.appendChild(confirmInput);
+        
+        // Grade level selection
+        const gradeGroup = Utils.createElement('div', 'input-group');
+        const gradeLabel = Utils.createElement('label', 'input-label', 'Grade Level');
+        gradeLabel.htmlFor = 'grade';
+        const gradeSelect = Utils.createElement('select', 'input-field');
+        gradeSelect.id = 'grade';
+        
+        const grades = [
+            '9th Grade',
+            '10th Grade',
+            '11th Grade',
+            '12th Grade'
+        ];
+        
+        grades.forEach(grade => {
+            const option = Utils.createElement('option', null, grade);
+            option.value = grade;
+            gradeSelect.appendChild(option);
+        });
+        
+        gradeGroup.appendChild(gradeLabel);
+        gradeGroup.appendChild(gradeSelect);
+        
+        // Terms checkbox
+        const termsGroup = Utils.createElement('div', 'flex items-center gap-2');
+        const termsCheck = Utils.createElement('input');
+        termsCheck.type = 'checkbox';
+        termsCheck.id = 'terms';
+        termsCheck.required = true;
+        const termsLabel = Utils.createElement('label', null, 'I agree to the Terms and Privacy Policy');
+        termsLabel.htmlFor = 'terms';
+        termsLabel.style.fontSize = '0.875rem';
+        
+        termsGroup.appendChild(termsCheck);
+        termsGroup.appendChild(termsLabel);
+        
+        const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
+        errorAlert.id = 'error-alert';
+        
+        const submitButton = Utils.createElement('button', 'btn btn-primary', 'Create Account');
+        submitButton.type = 'submit';
+        
+        form.appendChild(errorAlert);
+        form.appendChild(nameGroup);
+        form.appendChild(emailGroup);
+        form.appendChild(passwordGroup);
+        form.appendChild(confirmGroup);
+        form.appendChild(gradeGroup);
+        form.appendChild(termsGroup);
+        form.appendChild(submitButton);
+        
+        // Login link
+        const loginLink = Utils.createElement('div', 'text-center mt-4');
+        const loginText = Utils.createElement('span', 'text-sm', 'Already have an account? ');
+        const loginAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign In');
+        loginAnchor.addEventListener('click', () => {
+            AppState.setState({ currentPage: 'signin' });
+        });
+        
+        loginLink.appendChild(loginText);
+        loginLink.appendChild(loginAnchor);
+        
+        card.appendChild(header);
+        card.appendChild(form);
+        card.appendChild(loginLink);
+        container.appendChild(card);
+        
+        form.addEventListener('submit', handleSubmit);
+        
+        return container;
+    };
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const name = form.querySelector('#name').value;
+        const email = form.querySelector('#email').value;
+        const password = form.querySelector('#password').value;
+        const confirm = form.querySelector('#confirm').value;
+        const grade = form.querySelector('#grade').value;
+        const errorAlert = form.querySelector('#error-alert');
+        
+        // Validation
+        if (password !== confirm) {
+            errorAlert.textContent = 'Passwords do not match';
+            Utils.removeClass(errorAlert, 'hidden');
+            return;
+        }
+        
+        if (password.length < 8) {
+            errorAlert.textContent = 'Password must be at least 8 characters';
+            Utils.removeClass(errorAlert, 'hidden');
+            return;
+        }
+        
+        // Check if user already exists
+        const userExists = mockUsers.some(u => u.email === email);
+        if (userExists) {
+            errorAlert.textContent = 'Email already registered';
+            Utils.removeClass(errorAlert, 'hidden');
+            return;
+        }
+        
+        // Create new user
+        const newUser = {
+            id: mockUsers.length + 1,
+            name,
+            email,
+            password,
+            grade
+        };
+        
+        // In a real app, this would be an API call
+        mockUsers.push(newUser);
+        
+        // Log the user in
+        AppState.setState({ 
+            user: newUser,
+            currentPage: 'learning-style'
+        });
+    };
+    
+    return { render };
+})();
 
-            let currentPage;
+// Update the mockAPI object to include signup
+const mockAPI = {
+    // ... existing methods ...
+    signup: (userData) => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const userExists = mockUsers.some(u => u.email === userData.email);
+                if (userExists) {
+                    reject({ success: false, message: 'Email already registered' });
+                } else {
+                    const newUser = {
+                        id: mockUsers.length + 1,
+                        ...userData
+                    };
+                    mockUsers.push(newUser);
+                    resolve({ success: true, user: newUser });
+                }
+            }, 1000);
+        });
+    }
+};
+
+// Update the App router to include the signup page
+const App = (() => {
+    const init = () => {
+        // ... existing code ...
+        
+        const render = (state) => {
+            appContainer.innerHTML = '';
+            
+            // Render navbar if not on auth pages
+            if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                appContainer.appendChild(Navbar.render());
+                appContainer.appendChild(Sidebar.render());
+            }
+            
+            // Render current page
+            let page;
             switch (state.currentPage) {
                 case 'signin':
-                    currentPage = SignInPage();
+                    page = SignInPage.render();
                     break;
-                case 'assessment':
-                    currentPage = LearningStyleAssessment();
+                case 'signup':
+                    page = SignUpPage.render();
                     break;
-                case 'dashboard':
-                    currentPage = DashboardPage();
-                    break;
-                case 'lessons':
-                    currentPage = LessonsPage();
-                    break;
-                case 'lesson-detail':
-                    currentPage = LessonDetailPage();
-                    break;
-                case 'badges':
-                    currentPage = BadgesPage();
-                    break;
-                case 'settings':
-                    currentPage = SettingsPage();
-                    break;
-                default:
-                    currentPage = SignInPage();
+                // ... other cases ...
             }
-
-            return Component.create('div', { className: 'app' },
-                !state.isAuthenticated ? currentPage : 
-                Component.create('div', { className: 'main-layout' },
-                    Sidebar(),
-                    Component.create('div', { className: 'main-content' },
-                        Topbar(),
-                        currentPage,
-                        state.isAuthenticated && AIAssistant()
-                    )
-                )
-            );
+            
+            appContainer.appendChild(page);
+            
+            // Render AI assistant if not on auth pages
+            if (!['signin', 'signup', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                appContainer.appendChild(AIAssistant.render());
+            }
         };
-
-        // React-like hooks implementation
-        let currentComponent;
-        let hookIndex = 0;
-        const hooks = [];
-
-        function useState(initialValue) {
-            const index = hookIndex;
-            if (hooks.length <= index) {
-                hooks.push(initialValue);
-            }
-
-            const state = hooks[index];
-            const setState = (newValue) => {
-                hooks[index] = newValue;
-                render();
+        
+           
+               const handleSubmit = async (e) => {
+                e.preventDefault();
+                
+                const form = e.target;
+                const email = form.querySelector('#email').value;
+                const password = form.querySelector('#password').value;
+                const errorAlert = form.querySelector('#error-alert');
+                
+                try {
+                    const response = await mockAPI.login(email, password);
+                    
+                    if (response.success) {
+                        AppState.setState({ 
+                            user: response.user,
+                            currentPage: 'learning-style'
+                        });
+                    }
+                } catch (error) {
+                    errorAlert.textContent = error.message;
+                    Utils.removeClass(errorAlert, 'hidden');
+                    
+                    setTimeout(() => {
+                        Utils.addClass(errorAlert, 'hidden');
+                    }, 3000);
+                }
             };
+            
+            return { render };
+        })();
 
-            hookIndex++;
-            return [state, setState];
-        }
+        const LearningStylePage = (() => {
+            let currentQuestion = 0;
+            const answers = [];
+            
+            const render = () => {
+                const container = Utils.createElement('div', 'quiz-container animate-fade');
+                
+                const progress = Utils.createElement('div', 'quiz-progress');
+                const progressText = Utils.createElement('p', 'text-center', `Question ${currentQuestion + 1} of ${quizQuestions.length}`);
+                const progressBar = Utils.createElement('div', 'progress-bar');
+                const progressFill = Utils.createElement('div', 'progress-fill');
+                progressFill.style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+                
+                progressBar.appendChild(progressFill);
+                progress.appendChild(progressText);
+                progress.appendChild(progressBar);
+                
+                const questionContainer = Utils.createElement('div', 'quiz-question');
+                const questionText = Utils.createElement('h2', 'quiz-question-text', quizQuestions[currentQuestion].question);
+                
+                const optionsContainer = Utils.createElement('div', 'flex flex-col gap-2');
+                quizQuestions[currentQuestion].options.forEach((option, index) => {
+                    const optionElement = Utils.createElement('div', 'quiz-option');
+                    optionElement.textContent = option.text;
+                    optionElement.dataset.index = index;
+                    
+                    if (answers[currentQuestion] === index) {
+                        Utils.addClass(optionElement, 'selected');
+                    }
+                    
+                    optionElement.addEventListener('click', () => selectOption(optionElement, index));
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                questionContainer.appendChild(questionText);
+                questionContainer.appendChild(optionsContainer);
+                
+                const navigation = Utils.createElement('div', 'quiz-navigation');
+                
+                const prevButton = Utils.createElement('button', 'btn btn-outline', 'Previous');
+                prevButton.type = 'button';
+                if (currentQuestion === 0) {
+                    prevButton.disabled = true;
+                }
+                prevButton.addEventListener('click', goToPreviousQuestion);
+                
+                const nextButton = Utils.createElement('button', 'btn btn-primary', currentQuestion === quizQuestions.length - 1 ? 'Submit' : 'Next');
+                nextButton.type = 'button';
+                if (answers[currentQuestion] === undefined) {
+                    nextButton.disabled = true;
+                }
+                nextButton.addEventListener('click', goToNextQuestion);
+                
+                navigation.appendChild(prevButton);
+                navigation.appendChild(nextButton);
+                
+                container.appendChild(progress);
+                container.appendChild(questionContainer);
+                container.appendChild(navigation);
+                
+                return container;
+            };
+            
+            const selectOption = (element, index) => {
+                const options = element.parentElement.querySelectorAll('.quiz-option');
+                options.forEach(opt => Utils.removeClass(opt, 'selected'));
+                Utils.addClass(element, 'selected');
+                
+                answers[currentQuestion] = index;
+                
+                const nextButton = document.querySelector('.quiz-navigation .btn-primary');
+                if (nextButton) {
+                    nextButton.disabled = false;
+                }
+            };
+            
+            const goToPreviousQuestion = () => {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    AppState.setState({ currentPage: 'learning-style' });
+                }
+            };
+            
+            const goToNextQuestion = async () => {
+                if (currentQuestion < quizQuestions.length - 1) {
+                    currentQuestion++;
+                    AppState.setState({ currentPage: 'learning-style' });
+                } else {
+                    // Calculate learning style
+                    const styleCounts = {
+                        visual: 0,
+                        auditory: 0,
+                        kinesthetic: 0,
+                        logical: 0
+                    };
+                    
+                    answers.forEach((answerIndex, questionIndex) => {
+                        const selectedOption = quizQuestions[questionIndex].options[answerIndex];
+                        styleCounts[selectedOption.style]++;
+                    });
+                    
+                    let maxStyle = 'visual';
+                    let maxCount = 0;
+                    
+                    for (const [style, count] of Object.entries(styleCounts)) {
+                        if (count > maxCount) {
+                            maxCount = count;
+                            maxStyle = style;
+                        }
+                    }
+                    
+                    try {
+                        await mockAPI.submitLearningStyle(maxStyle);
+                        AppState.setState({ 
+                            learningStyle: maxStyle,
+                            currentPage: 'learning-style-result'
+                        });
+                    } catch (error) {
+                        console.error('Error submitting learning style:', error);
+                    }
+                }
+            };
+            
+            return { render };
+        })();
 
-        function useEffect(callback, dependencies) {
-            const index = hookIndex;
-            const hasNoDependencies = !dependencies;
-            const oldDependencies = hooks[index];
-            const hasChangedDependencies = oldDependencies 
-                ? dependencies.some((dep, i) => !Object.is(dep, oldDependencies[i]))
-                : true;
+        const LearningStyleResultPage = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const style = learningStyles[state.learningStyle];
+                
+                const container = Utils.createElement('div', 'flex flex-col items-center justify-center h-screen animate-fade');
+                
+                const card = Utils.createElement('div', 'card text-center p-8 max-w-md');
+                
+                const icon = Utils.createElement('i', `${style.icon} text-6xl text-primary mb-4`);
+                
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', `You are a ${style.name}!`);
+                
+                const description = Utils.createElement('p', 'text-gray-600 mb-6', style.description);
+                
+                const continueButton = Utils.createElement('button', 'btn btn-primary', 'Continue to Dashboard');
+                continueButton.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'dashboard' });
+                });
+                
+                card.appendChild(icon);
+                card.appendChild(title);
+                card.appendChild(description);
+                card.appendChild(continueButton);
+                
+                container.appendChild(card);
+                
+                return container;
+            };
+            
+            return { render };
+        })();
 
-            if (hasNoDependencies || hasChangedDependencies) {
-                callback();
-                hooks[index] = dependencies;
-            }
+        const Navbar = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const navbar = Utils.createElement('nav', 'navbar shadow');
+                
+                const leftSection = Utils.createElement('div', 'flex items-center gap-4');
+                
+                const menuButton = Utils.createElement('button', 'btn btn-ghost navbar-menu');
+                const menuIcon = Utils.createElement('i', 'fas fa-bars');
+                menuButton.appendChild(menuIcon);
+                menuButton.addEventListener('click', () => {
+                    AppState.setState({ sidebarOpen: !state.sidebarOpen });
+                });
+                
+                const logo = Utils.createElement('div', 'text-xl font-bold text-primary', 'LearnZy');
+                logo.style.cursor = 'pointer';
+                logo.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'dashboard' });
+                });
+                
+                leftSection.appendChild(menuButton);
+                leftSection.appendChild(logo);
+                
+                const rightSection = Utils.createElement('div', 'flex items-center gap-4');
+                
+                // Streak display
+                const streakContainer = Utils.createElement('div', 'streak-container tooltip');
+                const streakIcon = Utils.createElement('i', 'fas fa-fire streak-icon');
+                const streakCount = Utils.createElement('span', 'streak-count', `${state.streak}d`);
+                
+                const streakTooltip = Utils.createElement('span', 'tooltip-text', `Current streak: ${state.streak} days`);
+                streakTooltip.style.whiteSpace = 'nowrap';
+                
+                streakContainer.appendChild(streakIcon);
+                streakContainer.appendChild(streakCount);
+                streakContainer.appendChild(streakTooltip);
+                
+                // XP and level display
+                const levelContainer = Utils.createElement('div', 'level-indicator tooltip');
+                const levelBadge = Utils.createElement('div', 'level-badge', state.level);
+                const xpText = Utils.createElement('span', null, `${state.xp} XP`);
+                
+                const levelTooltip = Utils.createElement('span', 'tooltip-text', `Level ${state.level} - ${state.xp} XP`);
+                levelTooltip.style.whiteSpace = 'nowrap';
+                
+                levelContainer.appendChild(levelBadge);
+                levelContainer.appendChild(xpText);
+                levelContainer.appendChild(levelTooltip);
+                
+                // Settings dropdown
+                const settingsDropdown = Utils.createElement('div', 'settings-dropdown');
+                const settingsButton = Utils.createElement('button', 'btn btn-ghost');
+                const settingsIcon = Utils.createElement('i', 'fas fa-cog');
+                settingsButton.appendChild(settingsIcon);
+                
+                const settingsMenu = Utils.createElement('div', 'settings-menu shadow hidden');
+                
+                // Dark mode toggle
+                const darkModeItem = Utils.createElement('div', 'settings-item');
+                const darkModeLabel = Utils.createElement('span', null, 'Dark Mode');
+                const darkModeToggle = Utils.createElement('label', 'theme-toggle');
+                const darkModeInput = Utils.createElement('input');
+                darkModeInput.type = 'checkbox';
+                darkModeInput.checked = state.darkMode;
+                darkModeInput.addEventListener('change', (e) => {
+                    AppState.setState({ darkMode: e.target.checked });
+                    document.body.setAttribute('data-theme', e.target.checked ? 'dark' : 'light');
+                });
+                
+                const darkModeSlider = Utils.createElement('span', 'theme-slider');
+                darkModeToggle.appendChild(darkModeInput);
+                darkModeToggle.appendChild(darkModeSlider);
+                
+                darkModeItem.appendChild(darkModeLabel);
+                darkModeItem.appendChild(darkModeToggle);
+                
+                // Animations toggle
+                const animationsItem = Utils.createElement('div', 'settings-item');
+                const animationsLabel = Utils.createElement('span', null, 'Animations');
+                const animationsToggle = Utils.createElement('input');
+                animationsToggle.type = 'checkbox';
+                animationsToggle.checked = state.animationsEnabled;
+                animationsToggle.addEventListener('change', (e) => {
+                    AppState.setState({ animationsEnabled: e.target.checked });
+                });
+                
+                animationsItem.appendChild(animationsLabel);
+                animationsItem.appendChild(animationsToggle);
+                
+                // Language selector
+                const languageItem = Utils.createElement('div', 'settings-item');
+                const languageLabel = Utils.createElement('span', null, 'Language');
+                const languageSelect = Utils.createElement('select');
+                const englishOption = Utils.createElement('option', null, 'English');
+                englishOption.value = 'en';
+                const romanianOption = Utils.createElement('option', null, 'Română');
+                romanianOption.value = 'ro';
+                
+                languageSelect.appendChild(englishOption);
+                languageSelect.appendChild(romanianOption);
+                languageSelect.value = state.language;
+                languageSelect.addEventListener('change', (e) => {
+                    AppState.setState({ language: e.target.value });
+                });
+                
+                languageItem.appendChild(languageLabel);
+                languageItem.appendChild(languageSelect);
+                
+                settingsMenu.appendChild(darkModeItem);
+                settingsMenu.appendChild(animationsItem);
+                settingsMenu.appendChild(languageItem);
+                
+                settingsButton.addEventListener('click', () => {
+                    settingsMenu.classList.toggle('hidden');
+                });
+                
+                document.addEventListener('click', (e) => {
+                    if (!settingsDropdown.contains(e.target)) {
+                        settingsMenu.classList.add('hidden');
+                    }
+                });
+                
+                settingsDropdown.appendChild(settingsButton);
+                settingsDropdown.appendChild(settingsMenu);
+                
+                rightSection.appendChild(streakContainer);
+                rightSection.appendChild(levelContainer);
+                rightSection.appendChild(settingsDropdown);
+                
+                navbar.appendChild(leftSection);
+                navbar.appendChild(rightSection);
+                
+                return navbar;
+            };
+            
+            return { render };
+        })();
 
-            hookIndex++;
-        }
+        const Sidebar = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const sidebar = Utils.createElement('div', `sidebar ${state.sidebarOpen ? 'open' : ''}`);
+                
+                const navItems = [
+                    { icon: 'fas fa-home', text: 'Dashboard', page: 'dashboard' },
+                    { icon: 'fas fa-book', text: 'My Courses', page: 'courses' },
+                    { icon: 'fas fa-trophy', text: 'Achievements', page: 'achievements' },
+                    { icon: 'fas fa-chart-line', text: 'Progress', page: 'progress' },
+                    { icon: 'fas fa-cog', text: 'Settings', page: 'settings' }
+                ];
+                
+                navItems.forEach(item => {
+                    const navItem = Utils.createElement('a', `sidebar-item ${state.currentPage === item.page ? 'active' : ''}`);
+                    const icon = Utils.createElement('i', item.icon);
+                    const text = Utils.createElement('span', null, item.text);
+                    
+                    navItem.appendChild(icon);
+                    navItem.appendChild(text);
+                    
+                    navItem.addEventListener('click', () => {
+                        AppState.setState({ 
+                            currentPage: item.page,
+                            sidebarOpen: false
+                        });
+                    });
+                    
+                    sidebar.appendChild(navItem);
+                });
+                
+                return sidebar;
+            };
+            
+            return { render };
+        })();
 
-        function render() {
-            hookIndex = 0;
-            const app = document.getElementById('app');
-            if (app) {
-                const newApp = App();
-                app.replaceWith(newApp);
-                document.body.appendChild(newApp);
-                currentComponent = newApp;
-            }
-        }
+        const DashboardPage = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const container = Utils.createElement('div', 'main-content');
+                
+                const header = Utils.createElement('div', 'dashboard-header');
+                const title = Utils.createElement('h1', 'dashboard-title', 'Math Learning Dashboard');
+                
+                header.appendChild(title);
+                container.appendChild(header);
+                
+                // Welcome message with learning style
+                const welcomeCard = Utils.createElement('div', 'card mb-6');
+                const welcomeText = Utils.createElement('p', null, `Welcome back, ${state.user?.name || 'Student'}!`);
+                const learningStyleText = Utils.createElement('p', null);
+                
+                if (state.learningStyle) {
+                    const style = learningStyles[state.learningStyle];
+                    const styleIcon = Utils.createElement('i', `${style.icon} mr-2`);
+                    learningStyleText.appendChild(styleIcon);
+                    learningStyleText.appendChild(document.createTextNode(`Your learning style: ${style.name}`));
+                } else {
+                    learningStyleText.textContent = 'Complete the learning style assessment to personalize your experience';
+                }
+                
+                welcomeCard.appendChild(welcomeText);
+                welcomeCard.appendChild(learningStyleText);
+                container.appendChild(welcomeCard);
+                
+                // Stats cards
+                const statsContainer = Utils.createElement('div', 'grid grid-cols-2 md:grid-cols-4 gap-4 mb-6');
+                
+                const stats = [
+                    { icon: 'fas fa-book', color: 'bg-primary', label: 'Topics Started', value: 4 },
+                    { icon: 'fas fa-check-circle', color: 'bg-success', label: 'Topics Completed', value: 2 },
+                    { icon: 'fas fa-star', color: 'bg-warning', label: 'Current Streak', value: `${state.streak} days` },
+                    { icon: 'fas fa-trophy', color: 'bg-danger', label: 'Badges Earned', value: 2 }
+                ];
+                
+                stats.forEach(stat => {
+                    const statCard = Utils.createElement('div', 'stats-card card');
+                    
+                    const icon = Utils.createElement('div', `stats-icon ${stat.color} text-white`);
+                    const iconElement = Utils.createElement('i', stat.icon);
+                    icon.appendChild(iconElement);
+                    
+                    const content = Utils.createElement('div', 'stats-content');
+                    const label = Utils.createElement('div', 'stats-label', stat.label);
+                    const value = Utils.createElement('div', 'stats-value', stat.value);
+                    
+                    content.appendChild(label);
+                    content.appendChild(value);
+                    
+                    statCard.appendChild(icon);
+                    statCard.appendChild(content);
+                    
+                    statsContainer.appendChild(statCard);
+                });
+                
+                container.appendChild(statsContainer);
+                
+                // Categories
+                const categoriesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Math Categories');
+                container.appendChild(categoriesTitle);
+                
+                const categoriesGrid = Utils.createElement('div', 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6');
+                
+                categories.forEach(category => {
+                    const categoryCard = Utils.createElement('div', 'category-card card');
+                    categoryCard.addEventListener('click', () => {
+                        AppState.setState({ 
+                            currentPage: 'category',
+                            currentCategory: category.id
+                        });
+                    });
+                    
+                    const bg = Utils.createElement('div', 'category-bg rounded-t-lg');
+                    bg.style.backgroundColor = getRandomColor();
+                    
+                    const overlay = Utils.createElement('div', 'category-overlay');
+                    const categoryName = Utils.createElement('h3', 'category-title', category.name);
+                    const categoryDesc = Utils.createElement('p', 'text-sm', category.description);
+                    
+                    const progress = Utils.createElement('div', 'category-progress');
+                    const progressFill = Utils.createElement('div', 'category-progress-fill');
+                    progressFill.style.width = `${category.progress}%`;
+                    
+                    progress.appendChild(progressFill);
+                    
+                    overlay.appendChild(categoryName);
+                    overlay.appendChild(categoryDesc);
+                    overlay.appendChild(progress);
+                    
+                    bg.appendChild(overlay);
+                    categoryCard.appendChild(bg);
+                    
+                    categoriesGrid.appendChild(categoryCard);
+                });
+                
+                container.appendChild(categoriesGrid);
+                
+                // Badges section
+                const badgesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', 'Recent Badges');
+                container.appendChild(badgesTitle);
+                
+                const badgesGrid = Utils.createElement('div', 'grid grid-cols-2 md:grid-cols-4 gap-4');
+                
+                badges.filter(b => b.earned).slice(0, 4).forEach(badge => {
+                    const badgeCard = Utils.createElement('div', 'card p-4 flex flex-col items-center text-center');
+                    
+                    const badgeIcon = Utils.createElement('i', 'fas fa-trophy text-3xl text-warning mb-2');
+                    const badgeName = Utils.createElement('h3', 'font-bold mb-1', badge.name);
+                    const badgeDesc = Utils.createElement('p', 'text-sm text-gray-600', badge.description);
+                    
+                    badgeCard.appendChild(badgeIcon);
+                    badgeCard.appendChild(badgeName);
+                    badgeCard.appendChild(badgeDesc);
+                    
+                    badgesGrid.appendChild(badgeCard);
+                });
+                
+                container.appendChild(badgesGrid);
+                
+                return container;
+            };
+            
+            const getRandomColor = () => {
+                const colors = [
+                    '#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585',
+                    '#7209b7', '#560bad', '#480ca8', '#3a0ca3', '#3f37c9'
+                ];
+                return colors[Math.floor(Math.random() * colors.length)];
+            };
+            
+            return { render };
+        })();
 
-        // Initial render
-        render();
+        const CategoryPage = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const category = categories.find(c => c.id === state.currentCategory);
+                
+                if (!category) {
+                    AppState.setState({ currentPage: 'dashboard' });
+                    return Utils.createElement('div');
+                }
+                
+                const container = Utils.createElement('div', 'main-content');
+                
+                // Back button
+                const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
+                const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
+                const backText = Utils.createElement('span', null, 'Back to Dashboard');
+                
+                backButton.appendChild(backIcon);
+                backButton.appendChild(backText);
+                backButton.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'dashboard' });
+                });
+                
+                container.appendChild(backButton);
+                
+                // Category header
+                const header = Utils.createElement('div', 'flex items-start justify-between mb-6');
+                const titleGroup = Utils.createElement('div');
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', category.name);
+                const description = Utils.createElement('p', 'text-gray-600', category.description);
+                
+                titleGroup.appendChild(title);
+                titleGroup.appendChild(description);
+                
+                const progressGroup = Utils.createElement('div', 'flex flex-col items-end');
+                const progressText = Utils.createElement('span', 'font-bold', `${category.progress}% Complete`);
+                const progressBar = Utils.createElement('div', 'progress-bar w-40');
+                const progressFill = Utils.createElement('div', 'progress-fill');
+                progressFill.style.width = `${category.progress}%`;
+                
+                progressBar.appendChild(progressFill);
+                progressGroup.appendChild(progressText);
+                progressGroup.appendChild(progressBar);
+                
+                header.appendChild(titleGroup);
+                header.appendChild(progressGroup);
+                
+                container.appendChild(header);
+                
+                // Topics list
+                const topicsTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Topics');
+                container.appendChild(topicsTitle);
+                
+                const topicsGrid = Utils.createElement('div', 'grid grid-cols-1 md:grid-cols-2 gap-4');
+                
+                category.topics.forEach(topic => {
+                    const topicCard = Utils.createElement('div', 'topic-card card');
+                    topicCard.addEventListener('click', () => {
+                        AppState.setState({ 
+                            currentPage: 'topic',
+                            currentTopic: topic.id
+                        });
+                    });
+                    
+                    const header = Utils.createElement('div', 'topic-header');
+                    const title = Utils.createElement('h3', 'topic-title', topic.name);
+                    const status = Utils.createElement('span', `topic-status ${topic.completed ? 'completed' : topic.completed === false ? 'in-progress' : 'not-started'}`);
+                    status.textContent = topic.completed ? 'Completed' : topic.completed === false ? 'In Progress' : 'Not Started';
+                    
+                    header.appendChild(title);
+                    header.appendChild(status);
+                    
+                    const description = Utils.createElement('p', 'topic-description', topic.description);
+                    
+                    const footer = Utils.createElement('div', 'topic-footer');
+                    const exercisesCount = Utils.createElement('span', 'text-sm text-gray-600', `${topic.exercises.length} exercises`);
+                    const startButton = Utils.createElement('button', 'btn btn-primary btn-sm', topic.completed ? 'Review' : 'Start');
+                    
+                    footer.appendChild(exercisesCount);
+                    footer.appendChild(startButton);
+                    
+                    topicCard.appendChild(header);
+                    topicCard.appendChild(description);
+                    topicCard.appendChild(footer);
+                    
+                    topicsGrid.appendChild(topicCard);
+                });
+                
+                container.appendChild(topicsGrid);
+                
+                return container;
+            };
+            
+            return { render };
+        })();
+
+        const TopicPage = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const category = categories.find(c => c.id === state.currentCategory);
+                const topic = category?.topics.find(t => t.id === state.currentTopic);
+                
+                if (!topic) {
+                    AppState.setState({ currentPage: 'dashboard' });
+                    return Utils.createElement('div');
+                }
+                
+                const container = Utils.createElement('div', 'main-content');
+                
+                // Back button
+                const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
+                const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
+                const backText = Utils.createElement('span', null, `Back to ${category.name}`);
+                
+                backButton.appendChild(backIcon);
+                backButton.appendChild(backText);
+                backButton.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'category' });
+                });
+                
+                container.appendChild(backButton);
+                
+                // Topic header
+                const header = Utils.createElement('div', 'mb-6');
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', topic.name);
+                const description = Utils.createElement('p', 'text-gray-600 mb-4', topic.description);
+                
+                header.appendChild(title);
+                header.appendChild(description);
+                
+                // Progress bar
+                const progressBar = Utils.createElement('div', 'progress-bar mb-4');
+                const progressFill = Utils.createElement('div', 'progress-fill');
+                progressFill.style.width = `${topic.completed ? 100 : topic.completed === false ? 50 : 0}%`;
+                
+                progressBar.appendChild(progressFill);
+                header.appendChild(progressBar);
+                
+                container.appendChild(header);
+                
+                // Video lesson
+                const videoTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Video Lesson');
+                container.appendChild(videoTitle);
+                
+                const videoPlayer = Utils.createElement('div', 'video-player');
+                const videoPlaceholder = Utils.createElement('div', 'video-placeholder');
+                const videoIcon = Utils.createElement('i', 'fas fa-play');
+                videoPlaceholder.appendChild(videoIcon);
+                videoPlayer.appendChild(videoPlaceholder);
+                
+                container.appendChild(videoPlayer);
+                
+                // Exercises
+                const exercisesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', 'Practice Exercises');
+                container.appendChild(exercisesTitle);
+                
+                if (topic.exercises.length === 0) {
+                    const emptyState = Utils.createElement('div', 'card p-8 text-center');
+                    const emptyIcon = Utils.createElement('i', 'fas fa-book-open text-3xl text-gray-400 mb-4');
+                    const emptyText = Utils.createElement('p', 'text-gray-600', 'No exercises available for this topic yet. Check back soon!');
+                    
+                    emptyState.appendChild(emptyIcon);
+                    emptyState.appendChild(emptyText);
+                    container.appendChild(emptyState);
+                } else {
+                    const startButton = Utils.createElement('button', 'btn btn-primary', 'Start Exercises');
+                    startButton.addEventListener('click', () => {
+                        AppState.setState({ 
+                            currentPage: 'exercise',
+                            currentExercise: 0
+                        });
+                    });
+                    
+                    container.appendChild(startButton);
+                }
+                
+                return container;
+            };
+            
+            return { render };
+        })();
+
+        const ExercisePage = (() => {
+            let selectedOption = null;
+            let showFeedback = false;
+            let isCorrect = false;
+            
+            const render = () => {
+                const state = AppState.getState();
+                const category = categories.find(c => c.id === state.currentCategory);
+                const topic = category?.topics.find(t => t.id === state.currentTopic);
+                const exercise = topic?.exercises[state.currentExercise];
+                
+                if (!exercise) {
+                    AppState.setState({ currentPage: 'dashboard' });
+                    return Utils.createElement('div');
+                }
+                
+                const container = Utils.createElement('div', 'exercise-container main-content');
+                
+                // Back button
+                const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
+                const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
+                const backText = Utils.createElement('span', null, `Back to ${topic.name}`);
+                
+                backButton.appendChild(backIcon);
+                backButton.appendChild(backText);
+                backButton.addEventListener('click', () => {
+                    AppState.setState({ currentPage: 'topic' });
+                });
+                
+                container.appendChild(backButton);
+                
+                // Progress indicator
+                const progressText = Utils.createElement('p', 'text-center mb-4', `Exercise ${state.currentExercise + 1} of ${topic.exercises.length}`);
+                container.appendChild(progressText);
+                
+                // Question
+                const question = Utils.createElement('div', 'exercise-question', exercise.question);
+                container.appendChild(question);
+                
+                // Options
+                const optionsContainer = Utils.createElement('div', 'exercise-options');
+                
+                exercise.options.forEach((option, index) => {
+                    const optionElement = Utils.createElement('div', 'exercise-option');
+                    optionElement.textContent = option;
+                    optionElement.dataset.index = index;
+                    
+                    if (showFeedback) {
+                        if (index === exercise.answer) {
+                            Utils.addClass(optionElement, 'correct');
+                        } else if (index === selectedOption && !isCorrect) {
+                            Utils.addClass(optionElement, 'incorrect');
+                        }
+                    } else if (selectedOption === index) {
+                        Utils.addClass(optionElement, 'selected');
+                    }
+                    
+                    if (!showFeedback) {
+                        optionElement.addEventListener('click', () => selectOption(optionElement, index));
+                    }
+                    
+                    optionsContainer.appendChild(optionElement);
+                });
+                
+                container.appendChild(optionsContainer);
+                
+                // Feedback
+                if (showFeedback) {
+                    const feedback = Utils.createElement('div', `exercise-feedback ${isCorrect ? 'correct' : 'incorrect'}`);
+                    const feedbackTitle = Utils.createElement('h3', 'font-bold mb-2', isCorrect ? 'Correct! 🎉' : 'Incorrect 😕');
+                    const feedbackText = Utils.createElement('p', null, exercise.explanation);
+                    
+                    feedback.appendChild(feedbackTitle);
+                    feedback.appendChild(feedbackText);
+                    container.appendChild(feedback);
+                    
+                    if (isCorrect && state.animationsEnabled) {
+                        Utils.createConfetti();
+                    }
+                }
+                
+                // Navigation
+                const navigation = Utils.createElement('div', 'exercise-navigation');
+                
+                if (state.currentExercise > 0) {
+                    const prevButton = Utils.createElement('button', 'btn btn-outline', 'Previous');
+                    prevButton.addEventListener('click', () => {
+                        AppState.setState({ 
+                            currentExercise: state.currentExercise - 1,
+                            currentPage: 'exercise'
+                        });
+                        resetExerciseState();
+                    });
+                    navigation.appendChild(prevButton);
+                } else {
+                    navigation.appendChild(Utils.createElement('div')); // Empty div for spacing
+                }
+                
+                if (!showFeedback) {
+                    const checkButton = Utils.createElement('button', 'btn btn-primary', 'Check Answer');
+                    checkButton.disabled = selectedOption === null;
+                    checkButton.addEventListener('click', checkAnswer);
+                    navigation.appendChild(checkButton);
+                } else {
+                    const nextButtonText = state.currentExercise < topic.exercises.length - 1 ? 'Next Exercise' : 'Finish Topic';
+                    const nextButton = Utils.createElement('button', 'btn btn-primary', nextButtonText);
+                    nextButton.addEventListener('click', () => {
+                        if (state.currentExercise < topic.exercises.length - 1) {
+                            AppState.setState({ 
+                                currentExercise: state.currentExercise + 1,
+                                currentPage: 'exercise'
+                            });
+                        } else {
+                            // Mark topic as completed
+                            const updatedCategories = categories.map(c => {
+                                if (c.id === state.currentCategory) {
+                                    const updatedTopics = c.topics.map(t => {
+                                        if (t.id === state.currentTopic) {
+                                            return { ...t, completed: true };
+                                        }
+                                        return t;
+                                    });
+                                    return { ...c, topics: updatedTopics };
+                                }
+                                return c;
+                            });
+                            
+                            // Update XP and level
+                            const newXp = state.xp + 100;
+                            const newLevel = Math.floor(newXp / 250) + 1;
+                            
+                            AppState.setState({ 
+                                currentPage: 'topic',
+                                xp: newXp,
+                                level: newLevel
+                            });
+                        }
+                        resetExerciseState();
+                    });
+                    navigation.appendChild(nextButton);
+                }
+                
+                container.appendChild(navigation);
+                
+                return container;
+            };
+            
+            const selectOption = (element, index) => {
+                const options = document.querySelectorAll('.exercise-option');
+                options.forEach(opt => Utils.removeClass(opt, 'selected'));
+                Utils.addClass(element, 'selected');
+                selectedOption = index;
+                
+                const checkButton = document.querySelector('.exercise-navigation .btn-primary');
+                if (checkButton) {
+                    checkButton.disabled = false;
+                }
+            };
+            
+            const checkAnswer = () => {
+                const state = AppState.getState();
+                const topic = categories.find(c => c.id === state.currentCategory)?.topics.find(t => t.id === state.currentTopic);
+                const exercise = topic?.exercises[state.currentExercise];
+                
+                isCorrect = selectedOption === exercise.answer;
+                showFeedback = true;
+                
+                // Update state to trigger re-render
+                AppState.setState({ currentPage: 'exercise' });
+            };
+            
+            const resetExerciseState = () => {
+                selectedOption = null;
+                showFeedback = false;
+                isCorrect = false;
+            };
+            
+            return { render };
+        })();
+
+        const AIAssistant = (() => {
+            const render = () => {
+                const state = AppState.getState();
+                const container = Utils.createElement('div', 'assistant-container');
+                
+                const button = Utils.createElement('button', 'assistant-button animate-pulse');
+                const icon = Utils.createElement('i', 'fas fa-robot');
+                button.appendChild(icon);
+                button.addEventListener('click', () => {
+                    AppState.setState({ assistantOpen: !state.assistantOpen });
+                });
+                
+                if (state.assistantOpen) {
+                    const chat = Utils.createElement('div', 'assistant-chat shadow-lg');
+                    
+                    const header = Utils.createElement('div', 'assistant-header');
+                    const title = Utils.createElement('div', 'assistant-title', 'LearnZy AI Assistant');
+                    const closeButton = Utils.createElement('button', 'assistant-close');
+                    const closeIcon = Utils.createElement('i', 'fas fa-times');
+                    closeButton.appendChild(closeIcon);
+                    closeButton.addEventListener('click', () => {
+                        AppState.setState({ assistantOpen: false });
+                    });
+                    
+                    header.appendChild(title);
+                    header.appendChild(closeButton);
+                    
+                    const messages = Utils.createElement('div', 'assistant-messages');
+                    state.messages.forEach(msg => {
+                        const message = Utils.createElement('div', `assistant-message ${msg.sender}`);
+                        message.textContent = msg.text;
+                        messages.appendChild(message);
+                    });
+                    
+                    const inputContainer = Utils.createElement('div', 'assistant-input');
+                    const input = Utils.createElement('input', 'assistant-input-field');
+                    input.placeholder = 'Ask a math question...';
+                    const sendButton = Utils.createElement('button', 'assistant-send');
+                    const sendIcon = Utils.createElement('i', 'fas fa-paper-plane');
+                    sendButton.appendChild(sendIcon);
+                    
+                    input.addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            sendMessage(input);
+                        }
+                    });
+                    
+                    sendButton.addEventListener('click', () => {
+                        sendMessage(input);
+                    });
+                    
+                    inputContainer.appendChild(input);
+                    inputContainer.appendChild(sendButton);
+                    
+                    chat.appendChild(header);
+                    chat.appendChild(messages);
+                    chat.appendChild(inputContainer);
+                    
+                    container.appendChild(chat);
+                }
+                
+                container.appendChild(button);
+                
+                return container;
+            };
+            
+            const sendMessage = async (input) => {
+                const message = input.value.trim();
+                if (!message) return;
+                
+                // Add user message to state
+                const newMessages = [...AppState.getState().messages, { sender: 'user', text: message }];
+                AppState.setState({ messages: newMessages });
+                
+                // Clear input
+                input.value = '';
+                
+                // Get AI response
+                try {
+                    const response = await mockAPI.aiAssistant(message);
+                    if (response.success) {
+                        const updatedMessages = [...newMessages, { sender: 'bot', text: response.response }];
+                        AppState.setState({ messages: updatedMessages });
+                    }
+                } catch (error) {
+                    console.error('Error getting AI response:', error);
+                }
+            };
+            
+            return { render };
+        })();
+
+        // App Router
+        const App = (() => {
+            const init = () => {
+                const appContainer = document.getElementById('app');
+                const state = AppState.getState();
+                
+                // Set initial theme
+                document.body.setAttribute('data-theme', state.darkMode ? 'dark' : 'light');
+                
+                // Render function
+                const render = (state) => {
+                    appContainer.innerHTML = '';
+                    
+                    // Render navbar if not on auth pages
+                    if (!['signin', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                        appContainer.appendChild(Navbar.render());
+                        appContainer.appendChild(Sidebar.render());
+                    }
+                    
+                    // Render current page
+                    let page;
+                    switch (state.currentPage) {
+                        case 'signin':
+                            page = SignInPage.render();
+                            break;
+                        case 'learning-style':
+                            page = LearningStylePage.render();
+                            break;
+                        case 'learning-style-result':
+                            page = LearningStyleResultPage.render();
+                            break;
+                        case 'dashboard':
+                            page = DashboardPage.render();
+                            break;
+                        case 'category':
+                            page = CategoryPage.render();
+                            break;
+                        case 'topic':
+                            page = TopicPage.render();
+                            break;
+                        case 'exercise':
+                            page = ExercisePage.render();
+                            break;
+                        default:
+                            page = DashboardPage.render();
+                    }
+                    
+                    appContainer.appendChild(page);
+                    
+                    // Render AI assistant if not on auth pages
+                    if (!['signin', 'learning-style', 'learning-style-result'].includes(state.currentPage)) {
+                        appContainer.appendChild(AIAssistant.render());
+                    }
+                };
+                
+                // Initial render
+                render(state);
+                
+                // Subscribe to state changes
+                AppState.subscribe(render);
+            };
+            
+            return { init };
+        })();
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', App.init);
     </script>
 </body>
 </html>
