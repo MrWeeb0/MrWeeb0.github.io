@@ -3357,7 +3357,7 @@
                     }
                     
                     // Render current page
-                    let page;
+                    
                     switch (state.currentPage) {
                         case 'signin':
                             page = SignInPage.render();
@@ -3386,7 +3386,7 @@
                         default:
                             page = DashboardPage.render();
                     }
-                    
+                    appContainer.innerHTML = '';
                     appContainer.appendChild(page);
                     
                     // Render AI assistant if not on auth pages
@@ -3397,7 +3397,7 @@
                 
                 // Initial render
                 render(state);
-                
+                let page;
                 // Subscribe to state changes
                 AppState.subscribe(render);
             };
