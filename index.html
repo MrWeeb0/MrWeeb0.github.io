@@ -1162,8 +1162,7 @@
                     title: "Learning Style Quiz",
                     next: "Next",
                     previous: "Previous",
-                    submit: "Submit",
-                    question: "Question {current} of {total}"
+                    submit: "Submit"
                 },
                 dashboard: {
                     title: "Math Learning Dashboard",
@@ -1177,9 +1176,7 @@
                         badgesEarned: "Badges Earned"
                     },
                     categories: "Math Categories",
-                    badges: "Recent Badges",
-                    days: "days",
-                    student: "Student"
+                    badges: "Recent Badges"
                 },
                 category: {
                     back: "Back to Dashboard",
@@ -1198,8 +1195,7 @@
                     back: "Back to {category}",
                     videoLesson: "Video Lesson",
                     exercises: "Practice Exercises",
-                    noExercises: "No exercises available for this topic yet. Check back soon!",
-                    startExercises: "Start Exercises"
+                    noExercises: "No exercises available for this topic yet. Check back soon!"
                 },
                 exercise: {
                     back: "Back to {topic}",
@@ -1207,7 +1203,6 @@
                     check: "Check Answer",
                     next: "Next Exercise",
                     finish: "Finish Topic",
-                    previous: "Previous",
                     feedback: {
                         correct: "Correct! 🎉",
                         incorrect: "Incorrect 😕"
@@ -1215,11 +1210,11 @@
                 },
                 navbar: {
                     menu: [
-                        { text: "Dashboard", page: "dashboard", icon: "fas fa-home" },
-                        { text: "My Courses", page: "courses", icon: "fas fa-book" },
-                        { text: "Achievements", page: "achievements", icon: "fas fa-trophy" },
-                        { text: "Progress", page: "progress", icon: "fas fa-chart-line" },
-                        { text: "Settings", page: "settings", icon: "fas fa-cog" }
+                        { text: "Dashboard", page: "dashboard" },
+                        { text: "My Courses", page: "courses" },
+                        { text: "Achievements", page: "achievements" },
+                        { text: "Progress", page: "progress" },
+                        { text: "Settings", page: "settings" }
                     ],
                     streak: "Current streak: {days} days",
                     level: "Level {level} - {xp} XP",
@@ -1232,9 +1227,7 @@
                 assistant: {
                     title: "LearnZy AI Assistant",
                     placeholder: "Ask a math question..."
-                },
-                continueToDashboard: "Continue to Dashboard",
-                yourStyle: "Your learning style is: {style}"
+                }
             },
             ro: {
                 signin: {
@@ -1269,8 +1262,7 @@
                     title: "Test de stil de învățare",
                     next: "Următorul",
                     previous: "Anterior",
-                    submit: "Trimite",
-                    question: "Întrebarea {current} din {total}"
+                    submit: "Trimite"
                 },
                 dashboard: {
                     title: "Panou de învățare matematică",
@@ -1284,9 +1276,7 @@
                         badgesEarned: "Insigne obținute"
                     },
                     categories: "Categorii de matematică",
-                    badges: "Insigne recente",
-                    days: "zile",
-                    student: "Student"
+                    badges: "Insigne recente"
                 },
                 category: {
                     back: "Înapoi la panou",
@@ -1305,8 +1295,7 @@
                     back: "Înapoi la {category}",
                     videoLesson: "Lecție video",
                     exercises: "Exerciții practice",
-                    noExercises: "Nu există exerciții disponibile pentru acest subiect încă. Revino mai târziu!",
-                    startExercises: "Începe Exercițiile"
+                    noExercises: "Nu există exerciții disponibile pentru acest subiect încă. Revino mai târziu!"
                 },
                 exercise: {
                     back: "Înapoi la {topic}",
@@ -1314,7 +1303,6 @@
                     check: "Verifică răspunsul",
                     next: "Următorul exercițiu",
                     finish: "Finalizează subiectul",
-                    previous: "Anterior",
                     feedback: {
                         correct: "Corect! 🎉",
                         incorrect: "Incorect 😕"
@@ -1322,11 +1310,11 @@
                 },
                 navbar: {
                     menu: [
-                        { text: "Panou", page: "dashboard", icon: "fas fa-home" },
-                        { text: "Cursurile mele", page: "courses", icon: "fas fa-book" },
-                        { text: "Realizări", page: "achievements", icon: "fas fa-trophy" },
-                        { text: "Progres", page: "progress", icon: "fas fa-chart-line" },
-                        { text: "Setări", page: "settings", icon: "fas fa-cog" }
+                        { text: "Panou", page: "dashboard" },
+                        { text: "Cursurile mele", page: "courses" },
+                        { text: "Realizări", page: "achievements" },
+                        { text: "Progres", page: "progress" },
+                        { text: "Setări", page: "settings" }
                     ],
                     streak: "Șir curent: {days} zile",
                     level: "Nivel {level} - {xp} XP",
@@ -1339,9 +1327,7 @@
                 assistant: {
                     title: "Asistent AI LearnZy",
                     placeholder: "Pune o întrebare de matematică..."
-                },
-                continueToDashboard: "Continuă la Panou",
-                yourStyle: "Stilul tău de învățare este: {style}"
+                }
             }
         };
 
@@ -2457,7 +2443,7 @@
                 const icon = Utils.createElement('i', `${style.icon} text-6xl text-primary mb-4`);
                 
                 const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', 
-                    Utils.translate('yourStyle', { style: style.name[lang] || style.name['en'] })
+                    Utils.translate('learningStyle.yourStyle', { style: style.name[lang] || style.name['en'] })
                 );
                 
                 const description = Utils.createElement('p', 'text-gray-600 mb-6', 
@@ -2631,11 +2617,7 @@
                 const state = AppState.getState();
                 const sidebar = Utils.createElement('div', `sidebar ${state.sidebarOpen ? 'open' : ''}`);
                 
-                const navbar = Utils.translate('navbar');
-                const navItems = navbar && Array.isArray(navbar.menu) ? navbar.menu : [];
-                if (!navItems.length) {
-                console.warn("⚠️ navItems e gol sau undefined. Verifică cheia 'navbar.menu' în fișierul de traducere.");
-                 }
+                const navItems = Utils.translate('navbar.menu');
                 
                 navItems.forEach(item => {
                     const navItem = Utils.createElement('a', `sidebar-item ${state.currentPage === item.page ? 'active' : ''}`);
@@ -2663,7 +2645,6 @@
 
         const DashboardPage = (() => {
             const render = () => {
-                console.log("Traducere completă dashboard:", Utils.translate('dashboard'));
                 const state = AppState.getState();
                 const lang = state.language || 'en';
                 const container = Utils.createElement('div', 'main-content');
@@ -3029,7 +3010,7 @@
                     emptyState.appendChild(emptyText);
                     container.appendChild(emptyState);
                 } else {
-                    const startButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('topic.startExercises'));
+                    const startButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('startExercises'));
                     startButton.addEventListener('click', () => {
                         AppState.setState({ 
                             currentPage: 'exercise',
@@ -3145,7 +3126,7 @@
                 const navigation = Utils.createElement('div', 'exercise-navigation');
                 
                 if (state.currentExercise > 0) {
-                    const prevButton = Utils.createElement('button', 'btn btn-outline', Utils.translate('exercise.previous'));
+                    const prevButton = Utils.createElement('button', 'btn btn-outline', Utils.translate('previous'));
                     prevButton.addEventListener('click', () => {
                         AppState.setState({ 
                             currentExercise: state.currentExercise - 1,
@@ -3341,7 +3322,6 @@
         const App = (() => {
             const init = () => {
                 const appContainer = document.getElementById('app');
-                console.log('appContainer:', appContainer);
                 const state = AppState.getState();
                 
                 // Set initial theme
@@ -3359,8 +3339,6 @@
                     
                     // Render current page
                     let page;
-                    
-                    
                     switch (state.currentPage) {
                         case 'signin':
                             page = SignInPage.render();
@@ -3389,7 +3367,7 @@
                         default:
                             page = DashboardPage.render();
                     }
-                    appContainer.innerHTML = '';
+                    
                     appContainer.appendChild(page);
                     
                     // Render AI assistant if not on auth pages
@@ -3400,7 +3378,7 @@
                 
                 // Initial render
                 render(state);
-                let page;
+                
                 // Subscribe to state changes
                 AppState.subscribe(render);
             };
@@ -3413,3 +3391,4 @@
     </script>
 </body>
 </html>
+
