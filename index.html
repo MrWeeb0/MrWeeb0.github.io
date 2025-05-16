@@ -2663,6 +2663,7 @@
 
         const DashboardPage = (() => {
             const render = () => {
+                console.log("Traducere completă dashboard:", Utils.translate('dashboard'));
                 const state = AppState.getState();
                 const lang = state.language || 'en';
                 const container = Utils.createElement('div', 'main-content');
