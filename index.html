@@ -2631,7 +2631,8 @@
                 const state = AppState.getState();
                 const sidebar = Utils.createElement('div', `sidebar ${state.sidebarOpen ? 'open' : ''}`);
                 
-                const navItems = Utils.translate('navbar.menu');
+                const navItems = Utils.translate('navbar.menu') || [];
+
                 
                 navItems.forEach(item => {
                     const navItem = Utils.createElement('a', `sidebar-item ${state.currentPage === item.page ? 'active' : ''}`);
