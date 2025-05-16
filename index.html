@@ -2631,8 +2631,11 @@
                 const state = AppState.getState();
                 const sidebar = Utils.createElement('div', `sidebar ${state.sidebarOpen ? 'open' : ''}`);
                 
-                const navItems = Utils.translate('navbar.menu') || [];
-
+                const navbar = Utils.translate('navbar');
+                const navItems = navbar && Array.isArray(navbar.menu) ? navbar.menu : [];
+                if (!navItems.length) {
+                console.warn("⚠️ navItems e gol sau undefined. Verifică cheia 'navbar.menu' în fișierul de traducere.");
+                 }
                 
                 navItems.forEach(item => {
                     const navItem = Utils.createElement('a', `sidebar-item ${state.currentPage === item.page ? 'active' : ''}`);
