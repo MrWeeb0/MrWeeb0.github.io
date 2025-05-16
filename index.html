@@ -1127,210 +1127,6 @@
             };
         })();
 
-        // Translations
-        const translations = {
-            en: {
-                signin: {
-                    title: "Welcome Back",
-                    subtitle: "Sign in to continue your math learning journey",
-                    email: "Email",
-                    password: "Password",
-                    submit: "Sign In",
-                    noAccount: "Don't have an account?",
-                    signup: "Sign Up",
-                    error: "Invalid email or password"
-                },
-                signup: {
-                    title: "Create Account",
-                    subtitle: "Join LearnZy to start your personalized math journey",
-                    name: "Full Name",
-                    email: "Email",
-                    password: "Password",
-                    confirm: "Confirm Password",
-                    grade: "Grade Level",
-                    terms: "I agree to the Terms and Privacy Policy",
-                    submit: "Create Account",
-                    haveAccount: "Already have an account?",
-                    signin: "Sign In",
-                    errors: {
-                        passwordMatch: "Passwords do not match",
-                        passwordLength: "Password must be at least 8 characters",
-                        emailExists: "Email already registered"
-                    }
-                },
-                learningStyle: {
-                    title: "Learning Style Quiz",
-                    next: "Next",
-                    previous: "Previous",
-                    submit: "Submit"
-                },
-                dashboard: {
-                    title: "Math Learning Dashboard",
-                    welcome: "Welcome back, {name}!",
-                    learningStyle: "Your learning style: {style}",
-                    completeAssessment: "Complete the learning style assessment to personalize your experience",
-                    stats: {
-                        topicsStarted: "Topics Started",
-                        topicsCompleted: "Topics Completed",
-                        currentStreak: "Current Streak",
-                        badgesEarned: "Badges Earned"
-                    },
-                    categories: "Math Categories",
-                    badges: "Recent Badges"
-                },
-                category: {
-                    back: "Back to Dashboard",
-                    topics: "Topics",
-                    complete: "{percent}% Complete",
-                    status: {
-                        completed: "Completed",
-                        inProgress: "In Progress",
-                        notStarted: "Not Started"
-                    },
-                    start: "Start",
-                    review: "Review",
-                    exercises: "{count} exercises"
-                },
-                topic: {
-                    back: "Back to {category}",
-                    videoLesson: "Video Lesson",
-                    exercises: "Practice Exercises",
-                    noExercises: "No exercises available for this topic yet. Check back soon!"
-                },
-                exercise: {
-                    back: "Back to {topic}",
-                    progress: "Exercise {current} of {total}",
-                    check: "Check Answer",
-                    next: "Next Exercise",
-                    finish: "Finish Topic",
-                    feedback: {
-                        correct: "Correct! 🎉",
-                        incorrect: "Incorrect 😕"
-                    }
-                },
-                navbar: {
-                    menu: [
-                        { text: "Dashboard", page: "dashboard" },
-                        { text: "My Courses", page: "courses" },
-                        { text: "Achievements", page: "achievements" },
-                        { text: "Progress", page: "progress" },
-                        { text: "Settings", page: "settings" }
-                    ],
-                    streak: "Current streak: {days} days",
-                    level: "Level {level} - {xp} XP",
-                    settings: {
-                        darkMode: "Dark Mode",
-                        animations: "Animations",
-                        language: "Language"
-                    }
-                },
-                assistant: {
-                    title: "LearnZy AI Assistant",
-                    placeholder: "Ask a math question..."
-                }
-            },
-            ro: {
-                signin: {
-                    title: "Bine ai revenit",
-                    subtitle: "Conectează-te pentru a-ți continua călătoria în învățarea matematicii",
-                    email: "Email",
-                    password: "Parolă",
-                    submit: "Conectează-te",
-                    noAccount: "Nu ai un cont?",
-                    signup: "Înregistrează-te",
-                    error: "Email sau parolă invalidă"
-                },
-                signup: {
-                    title: "Creează cont",
-                    subtitle: "Alătură-te LearnZy pentru a începe călătoria ta personalizată în matematică",
-                    name: "Nume complet",
-                    email: "Email",
-                    password: "Parolă",
-                    confirm: "Confirmă parola",
-                    grade: "Clasă",
-                    terms: "Sunt de acord cu Termenii și Politica de Confidențialitate",
-                    submit: "Creează cont",
-                    haveAccount: "Ai deja un cont?",
-                    signin: "Conectează-te",
-                    errors: {
-                        passwordMatch: "Parolele nu coincid",
-                        passwordLength: "Parola trebuie să aibă cel puțin 8 caractere",
-                        emailExists: "Email deja înregistrat"
-                    }
-                },
-                learningStyle: {
-                    title: "Test de stil de învățare",
-                    next: "Următorul",
-                    previous: "Anterior",
-                    submit: "Trimite"
-                },
-                dashboard: {
-                    title: "Panou de învățare matematică",
-                    welcome: "Bine ai revenit, {name}!",
-                    learningStyle: "Stilul tău de învățare: {style}",
-                    completeAssessment: "Completează evaluarea stilului de învățare pentru a personaliza experiența",
-                    stats: {
-                        topicsStarted: "Subiecte începute",
-                        topicsCompleted: "Subiecte finalizate",
-                        currentStreak: "Șir curent",
-                        badgesEarned: "Insigne obținute"
-                    },
-                    categories: "Categorii de matematică",
-                    badges: "Insigne recente"
-                },
-                category: {
-                    back: "Înapoi la panou",
-                    topics: "Subiecte",
-                    complete: "{percent}% Complet",
-                    status: {
-                        completed: "Finalizat",
-                        inProgress: "În desfășurare",
-                        notStarted: "Neînceput"
-                    },
-                    start: "Începe",
-                    review: "Revizuiește",
-                    exercises: "{count} exerciții"
-                },
-                topic: {
-                    back: "Înapoi la {category}",
-                    videoLesson: "Lecție video",
-                    exercises: "Exerciții practice",
-                    noExercises: "Nu există exerciții disponibile pentru acest subiect încă. Revino mai târziu!"
-                },
-                exercise: {
-                    back: "Înapoi la {topic}",
-                    progress: "Exercițiul {current} din {total}",
-                    check: "Verifică răspunsul",
-                    next: "Următorul exercițiu",
-                    finish: "Finalizează subiectul",
-                    feedback: {
-                        correct: "Corect! 🎉",
-                        incorrect: "Incorect 😕"
-                    }
-                },
-                navbar: {
-                    menu: [
-                        { text: "Panou", page: "dashboard" },
-                        { text: "Cursurile mele", page: "courses" },
-                        { text: "Realizări", page: "achievements" },
-                        { text: "Progres", page: "progress" },
-                        { text: "Setări", page: "settings" }
-                    ],
-                    streak: "Șir curent: {days} zile",
-                    level: "Nivel {level} - {xp} XP",
-                    settings: {
-                        darkMode: "Mod întunecat",
-                        animations: "Animații",
-                        language: "Limba"
-                    }
-                },
-                assistant: {
-                    title: "Asistent AI LearnZy",
-                    placeholder: "Pune o întrebare de matematică..."
-                }
-            }
-        };
-
         // Mock Data
         const mockUsers = [
             { id: 1, email: 'student@example.com', password: 'password123', name: 'Alexandru Popescu' }
@@ -1338,35 +1134,23 @@
 
         const learningStyles = {
             visual: {
-                name: { en: 'Visual Learner', ro: 'Învățare vizuală' },
-                description: { 
-                    en: 'You learn best through visual aids like diagrams, charts, and colors. LearnZy will provide more visual explanations and graphical representations of mathematical concepts.',
-                    ro: 'Înveți cel mai bine prin ajutoare vizuale cum ar fi diagrame, grafice și culori. LearnZy va oferi mai multe explicații vizuale și reprezentări grafice ale conceptelor matematice.'
-                },
+                name: 'Visual Learner',
+                description: 'You learn best through visual aids like diagrams, charts, and colors. LearnZy will provide more visual explanations and graphical representations of mathematical concepts.',
                 icon: 'far fa-eye'
             },
             auditory: {
-                name: { en: 'Auditory Learner', ro: 'Învățare auditivă' },
-                description: { 
-                    en: 'You learn best through listening and verbal explanations. LearnZy will focus on audio explanations and verbal descriptions of mathematical concepts.',
-                    ro: 'Înveți cel mai bine prin ascultare și explicații verbale. LearnZy se va concentra pe explicații audio și descrieri verbale ale conceptelor matematice.'
-                },
+                name: 'Auditory Learner',
+                description: 'You learn best through listening and verbal explanations. LearnZy will focus on audio explanations and verbal descriptions of mathematical concepts.',
                 icon: 'far fa-comment-dots'
             },
             kinesthetic: {
-                name: { en: 'Kinesthetic Learner', ro: 'Învățare kinestetică' },
-                description: { 
-                    en: 'You learn best through hands-on activities and movement. LearnZy will provide interactive exercises and real-world applications of mathematical concepts.',
-                    ro: 'Înveți cel mai bine prin activități practice și mișcare. LearnZy va oferi exerciții interactive și aplicații practice ale conceptelor matematice.'
-                },
+                name: 'Kinesthetic Learner',
+                description: 'You learn best through hands-on activities and movement. LearnZy will provide interactive exercises and real-world applications of mathematical concepts.',
                 icon: 'far fa-hand-paper'
             },
             logical: {
-                name: { en: 'Logical/Mathematical Learner', ro: 'Învățare logică/matematică' },
-                description: { 
-                    en: 'You learn best through logical reasoning and systematic thinking. LearnZy will emphasize problem-solving strategies and step-by-step logical explanations.',
-                    ro: 'Înveți cel mai bine prin raționament logic și gândire sistematică. LearnZy va sublinia strategii de rezolvare a problemelor și explicații logice pas cu pas.'
-                },
+                name: 'Logical/Mathematical Learner',
+                description: 'You learn best through logical reasoning and systematic thinking. LearnZy will emphasize problem-solving strategies and step-by-step logical explanations.',
                 icon: 'far fa-brain'
             }
         };
@@ -1374,93 +1158,72 @@
         const quizQuestions = [
             {
                 id: 1,
-                question: {
-                    en: 'When learning something new, I prefer:',
-                    ro: 'Când învăț ceva nou, prefer:'
-                },
+                question: 'When learning something new, I prefer:',
                 options: [
-                    { text: { en: 'Seeing diagrams or images', ro: 'Să văd diagrame sau imagini' }, style: 'visual' },
-                    { text: { en: 'Listening to an explanation', ro: 'Să ascult o explicație' }, style: 'auditory' },
-                    { text: { en: 'Doing it with my hands', ro: 'Să fac cu mâinile mele' }, style: 'kinesthetic' },
-                    { text: { en: 'Breaking it into steps', ro: 'Să o împart în pași' }, style: 'logical' }
+                    { text: 'Seeing diagrams or images', style: 'visual' },
+                    { text: 'Listening to an explanation', style: 'auditory' },
+                    { text: 'Doing it with my hands', style: 'kinesthetic' },
+                    { text: 'Breaking it into steps', style: 'logical' }
                 ]
             },
             {
                 id: 2,
-                question: {
-                    en: 'I remember best when I:',
-                    ro: 'Îmi amintesc cel mai bine când:'
-                },
+                question: 'I remember best when I:',
                 options: [
-                    { text: { en: 'See information visually', ro: 'Văd informația vizual' }, style: 'visual' },
-                    { text: { en: 'Hear it explained', ro: 'O aud explicată' }, style: 'auditory' },
-                    { text: { en: 'Try it myself', ro: 'Încerc eu însumi' }, style: 'kinesthetic' },
-                    { text: { en: 'Analyze it logically', ro: 'O analizez logic' }, style: 'logical' }
+                    { text: 'See information visually', style: 'visual' },
+                    { text: 'Hear it explained', style: 'auditory' },
+                    { text: 'Try it myself', style: 'kinesthetic' },
+                    { text: 'Analyze it logically', style: 'logical' }
                 ]
             },
             {
                 id: 3,
-                question: {
-                    en: 'I enjoy lessons that:',
-                    ro: 'Îmi plac lecțiile care:'
-                },
+                question: 'I enjoy lessons that:',
                 options: [
-                    { text: { en: 'Use animations or drawings', ro: 'Folosesc animații sau desene' }, style: 'visual' },
-                    { text: { en: 'Include verbal explanations', ro: 'Includ explicații verbale' }, style: 'auditory' },
-                    { text: { en: 'Allow hands-on experiments', ro: 'Permit experimente practice' }, style: 'kinesthetic' },
-                    { text: { en: 'Focus on problem solving', ro: 'Se concentrează pe rezolvarea problemelor' }, style: 'logical' }
+                    { text: 'Use animations or drawings', style: 'visual' },
+                    { text: 'Include verbal explanations', style: 'auditory' },
+                    { text: 'Allow hands-on experiments', style: 'kinesthetic' },
+                    { text: 'Focus on problem solving', style: 'logical' }
                 ]
             },
             {
                 id: 4,
-                question: {
-                    en: 'In class, I prefer:',
-                    ro: 'În clasă, prefer:'
-                },
+                question: 'In class, I prefer:',
                 options: [
-                    { text: { en: 'Watching a demo or slides', ro: 'Să urmăresc o demonstrație sau slide-uri' }, style: 'visual' },
-                    { text: { en: 'Listening to the teacher', ro: 'Să ascult profesorul' }, style: 'auditory' },
-                    { text: { en: 'Group exercises or projects', ro: 'Exerciții sau proiecte în grup' }, style: 'kinesthetic' },
-                    { text: { en: 'Logical explanations', ro: 'Explicații logice' }, style: 'logical' }
+                    { text: 'Watching a demo or slides', style: 'visual' },
+                    { text: 'Listening to the teacher', style: 'auditory' },
+                    { text: 'Group exercises or projects', style: 'kinesthetic' },
+                    { text: 'Logical explanations', style: 'logical' }
                 ]
             },
             {
                 id: 5,
-                question: {
-                    en: 'For homework, I usually:',
-                    ro: 'Pentru teme, de obicei:'
-                },
+                question: 'For homework, I usually:',
                 options: [
-                    { text: { en: 'Make notes or sketches', ro: 'Fac notițe sau schițe' }, style: 'visual' },
-                    { text: { en: 'Read aloud or use audiobooks', ro: 'Citesc cu voce tare sau folosesc cărți audio' }, style: 'auditory' },
-                    { text: { en: 'Use flashcards or build models', ro: 'Folosesc flashcard-uri sau construiesc modele' }, style: 'kinesthetic' },
-                    { text: { en: 'Solve extra problems or puzzles', ro: 'Rezolv probleme suplimentare sau puzzle-uri' }, style: 'logical' }
+                    { text: 'Make notes or sketches', style: 'visual' },
+                    { text: 'Read aloud or use audiobooks', style: 'auditory' },
+                    { text: 'Use flashcards or build models', style: 'kinesthetic' },
+                    { text: 'Solve extra problems or puzzles', style: 'logical' }
                 ]
             },
             {
                 id: 6,
-                question: {
-                    en: 'My favorite school subjects are:',
-                    ro: 'Materiile mele preferate sunt:'
-                },
+                question: 'My favorite school subjects are:',
                 options: [
-                    { text: { en: 'Art / Geography', ro: 'Arte / Geografie' }, style: 'visual' },
-                    { text: { en: 'Music / Literature', ro: 'Muzică / Literatură' }, style: 'auditory' },
-                    { text: { en: 'PE / Lab Science', ro: 'Educație fizică / Științe experimentale' }, style: 'kinesthetic' },
-                    { text: { en: 'Math / Physics', ro: 'Matematică / Fizică' }, style: 'logical' }
+                    { text: 'Art / Geography', style: 'visual' },
+                    { text: 'Music / Literature', style: 'auditory' },
+                    { text: 'PE / Lab Science', style: 'kinesthetic' },
+                    { text: 'Math / Physics', style: 'logical' }
                 ]
             },
             {
                 id: 7,
-                question: {
-                    en: 'I find it easiest to learn when:',
-                    ro: 'Consider că învăț cel mai ușor când:'
-                },
+                question: 'I find it easiest to learn when:',
                 options: [
-                    { text: { en: 'I can visualize the content', ro: 'Pot vizualiza conținutul' }, style: 'visual' },
-                    { text: { en: 'I hear someone explain it', ro: 'Aud pe cineva explicând' }, style: 'auditory' },
-                    { text: { en: 'I can interact with it', ro: 'Pot interacționa cu el' }, style: 'kinesthetic' },
-                    { text: { en: 'I can find patterns or logic', ro: 'Pot găsi modele sau logică' }, style: 'logical' }
+                    { text: 'I can visualize the content', style: 'visual' },
+                    { text: 'I hear someone explain it', style: 'auditory' },
+                    { text: 'I can interact with it', style: 'kinesthetic' },
+                    { text: 'I can find patterns or logic', style: 'logical' }
                 ]
             }
         ];
@@ -1468,116 +1231,65 @@
         const categories = [
             {
                 id: 1,
-                name: { en: 'Algebra', ro: 'Algebră' },
-                description: { 
-                    en: 'Master the fundamentals of algebraic expressions, equations, and functions.',
-                    ro: 'Stăpânește elementele fundamentale ale expresiilor algebrice, ecuațiilor și funcțiilor.'
-                },
+                name: 'Algebra',
+                description: 'Master the fundamentals of algebraic expressions, equations, and functions.',
                 progress: 65,
                 topics: [
                     {
                         id: 1,
-                        name: { en: 'Linear Equations', ro: 'Ecuații liniare' },
-                        description: { 
-                            en: 'Solve equations of the first degree with one variable.',
-                            ro: 'Rezolvă ecuații de gradul întâi cu o variabilă.'
-                        },
+                        name: 'Linear Equations',
+                        description: 'Solve equations of the first degree with one variable.',
                         completed: true,
                         exercises: [
                             {
                                 id: 1,
-                                question: { 
-                                    en: 'Solve for x: 2x + 5 = 15',
-                                    ro: 'Rezolvă pentru x: 2x + 5 = 15'
-                                },
-                                options: [
-                                    { en: 'x = 5', ro: 'x = 5' },
-                                    { en: 'x = 7', ro: 'x = 7' },
-                                    { en: 'x = 10', ro: 'x = 10' },
-                                    { en: 'x = 12', ro: 'x = 12' }
-                                ],
+                                question: 'Solve for x: 2x + 5 = 15',
+                                options: ['x = 5', 'x = 7', 'x = 10', 'x = 12'],
                                 answer: 0,
-                                explanation: { 
-                                    en: 'Subtract 5 from both sides: 2x = 10. Then divide both sides by 2: x = 5.',
-                                    ro: 'Scădem 5 din ambele părți: 2x = 10. Apoi împărțim ambele părți la 2: x = 5.'
-                                }
+                                explanation: 'Subtract 5 from both sides: 2x = 10. Then divide both sides by 2: x = 5.'
                             },
                             {
                                 id: 2,
-                                question: { 
-                                    en: 'Which of these is a linear equation?',
-                                    ro: 'Care dintre acestea este o ecuație liniară?'
-                                },
-                                options: [
-                                    { en: 'x² + 2x + 1 = 0', ro: 'x² + 2x + 1 = 0' },
-                                    { en: '3x - 7 = 2', ro: '3x - 7 = 2' },
-                                    { en: 'y = √x', ro: 'y = √x' },
-                                    { en: 'x³ = 8', ro: 'x³ = 8' }
-                                ],
+                                question: 'Which of these is a linear equation?',
+                                options: ['x² + 2x + 1 = 0', '3x - 7 = 2', 'y = √x', 'x³ = 8'],
                                 answer: 1,
-                                explanation: { 
-                                    en: 'A linear equation has variables with exponent 1. 3x - 7 = 2 is the only option that fits.',
-                                    ro: 'O ecuație liniară are variabile cu exponentul 1. 3x - 7 = 2 este singura opțiune care se potrivește.'
-                                }
+                                explanation: 'A linear equation has variables with exponent 1. 3x - 7 = 2 is the only option that fits.'
                             }
                         ]
                     },
                     {
                         id: 2,
-                        name: { en: 'Quadratic Equations', ro: 'Ecuații pătratice' },
-                        description: { 
-                            en: 'Solve second-degree polynomial equations using various methods.',
-                            ro: 'Rezolvă ecuații polinomiale de gradul doi folosind diverse metode.'
-                        },
+                        name: 'Quadratic Equations',
+                        description: 'Solve second-degree polynomial equations using various methods.',
                         completed: true,
                         exercises: [
                             {
                                 id: 1,
-                                question: { 
-                                    en: 'What are the solutions to x² - 5x + 6 = 0?',
-                                    ro: 'Care sunt soluțiile ecuației x² - 5x + 6 = 0?'
-                                },
-                                options: [
-                                    { en: 'x = 2 and x = 3', ro: 'x = 2 și x = 3' },
-                                    { en: 'x = 1 and x = 6', ro: 'x = 1 și x = 6' },
-                                    { en: 'x = -2 and x = -3', ro: 'x = -2 și x = -3' },
-                                    { en: 'x = 0.5 and x = 6', ro: 'x = 0.5 și x = 6' }
-                                ],
+                                question: 'What are the solutions to x² - 5x + 6 = 0?',
+                                options: ['x = 2 and x = 3', 'x = 1 and x = 6', 'x = -2 and x = -3', 'x = 0.5 and x = 6'],
                                 answer: 0,
-                                explanation: { 
-                                    en: 'Factor the equation: (x-2)(x-3) = 0. Solutions are x=2 and x=3.',
-                                    ro: 'Factorizăm ecuația: (x-2)(x-3) = 0. Soluțiile sunt x=2 și x=3.'
-                                }
+                                explanation: 'Factor the equation: (x-2)(x-3) = 0. Solutions are x=2 and x=3.'
                             }
                         ]
                     },
                     {
                         id: 3,
-                        name: { en: 'Polynomials', ro: 'Polinoame' },
-                        description: { 
-                            en: 'Understand and manipulate polynomial expressions.',
-                            ro: 'Înțelege și manipulează expresii polinomiale.'
-                        },
+                        name: 'Polynomials',
+                        description: 'Understand and manipulate polynomial expressions.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 4,
-                        name: { en: 'Functions', ro: 'Funcții' },
-                        description: { 
-                            en: 'Explore different types of functions and their properties.',
-                            ro: 'Explorează diferite tipuri de funcții și proprietățile lor.'
-                        },
+                        name: 'Functions',
+                        description: 'Explore different types of functions and their properties.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 5,
-                        name: { en: 'Systems of Equations', ro: 'Sisteme de ecuații' },
-                        description: { 
-                            en: 'Solve multiple equations with multiple variables.',
-                            ro: 'Rezolvă sisteme de ecuații cu multiple variabile.'
-                        },
+                        name: 'Systems of Equations',
+                        description: 'Solve multiple equations with multiple variables.',
                         completed: false,
                         exercises: []
                     }
@@ -1585,60 +1297,42 @@
             },
             {
                 id: 2,
-                name: { en: 'Geometry', ro: 'Geometrie' },
-                description: { 
-                    en: 'Explore shapes, sizes, and properties of figures in space.',
-                    ro: 'Explorează forme, dimensiuni și proprietăți ale figurilor în spațiu.'
-                },
+                name: 'Geometry',
+                description: 'Explore shapes, sizes, and properties of figures in space.',
                 progress: 30,
                 topics: [
                     {
                         id: 1,
-                        name: { en: 'Basic Geometry', ro: 'Geometrie de bază' },
-                        description: { 
-                            en: 'Learn about points, lines, angles, and planes.',
-                            ro: 'Învață despre puncte, drepte, unghiuri și plane.'
-                        },
+                        name: 'Basic Geometry',
+                        description: 'Learn about points, lines, angles, and planes.',
                         completed: true,
                         exercises: []
                     },
                     {
                         id: 2,
-                        name: { en: 'Triangles', ro: 'Triunghiuri' },
-                        description: { 
-                            en: 'Study properties and theorems related to triangles.',
-                            ro: 'Studiază proprietăți și teoreme legate de triunghiuri.'
-                        },
+                        name: 'Triangles',
+                        description: 'Study properties and theorems related to triangles.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 3,
-                        name: { en: 'Circles', ro: 'Cercuri' },
-                        description: { 
-                            en: 'Understand circle theorems and properties.',
-                            ro: 'Înțelege teoremele și proprietățile cercurilor.'
-                        },
+                        name: 'Circles',
+                        description: 'Understand circle theorems and properties.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 4,
-                        name: { en: 'Polygons', ro: 'Poligoane' },
-                        description: { 
-                            en: 'Explore properties of multi-sided shapes.',
-                            ro: 'Explorează proprietățile formelor cu multiple laturi.'
-                        },
+                        name: 'Polygons',
+                        description: 'Explore properties of multi-sided shapes.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 5,
-                        name: { en: 'Solid Geometry', ro: 'Geometrie solidă' },
-                        description: { 
-                            en: 'Study three-dimensional shapes and their properties.',
-                            ro: 'Studiază forme tridimensionale și proprietățile lor.'
-                        },
+                        name: 'Solid Geometry',
+                        description: 'Study three-dimensional shapes and their properties.',
                         completed: false,
                         exercises: []
                     }
@@ -1646,60 +1340,42 @@
             },
             {
                 id: 3,
-                name: { en: 'Trigonometry', ro: 'Trigonometrie' },
-                description: { 
-                    en: 'Discover relationships between angles and sides of triangles.',
-                    ro: 'Descoperă relațiile dintre unghiuri și laturile triunghiurilor.'
-                },
+                name: 'Trigonometry',
+                description: 'Discover relationships between angles and sides of triangles.',
                 progress: 10,
                 topics: [
                     {
                         id: 1,
-                        name: { en: 'Trigonometric Ratios', ro: 'Rapoarte trigonometrice' },
-                        description: { 
-                            en: 'Learn about sine, cosine, and tangent functions.',
-                            ro: 'Învață despre funcțiile sinus, cosinus și tangentă.'
-                        },
+                        name: 'Trigonometric Ratios',
+                        description: 'Learn about sine, cosine, and tangent functions.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 2,
-                        name: { en: 'Unit Circle', ro: 'Cercul unitate' },
-                        description: { 
-                            en: 'Understand the relationship between angles and coordinates.',
-                            ro: 'Înțelege relația dintre unghiuri și coordonate.'
-                        },
+                        name: 'Unit Circle',
+                        description: 'Understand the relationship between angles and coordinates.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 3,
-                        name: { en: 'Trigonometric Identities', ro: 'Identități trigonometrice' },
-                        description: { 
-                            en: 'Master fundamental trigonometric identities.',
-                            ro: 'Stăpânește identitățile trigonometrice fundamentale.'
-                        },
+                        name: 'Trigonometric Identities',
+                        description: 'Master fundamental trigonometric identities.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 4,
-                        name: { en: 'Graphs of Trig Functions', ro: 'Grafice ale funcțiilor trigonometrice' },
-                        description: { 
-                            en: 'Visualize and analyze trigonometric functions.',
-                            ro: 'Vizualizează și analizează funcții trigonometrice.'
-                        },
+                        name: 'Graphs of Trig Functions',
+                        description: 'Visualize and analyze trigonometric functions.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 5,
-                        name: { en: 'Trigonometric Equations', ro: 'Ecuații trigonometrice' },
-                        description: { 
-                            en: 'Solve equations involving trigonometric functions.',
-                            ro: 'Rezolvă ecuații care implică funcții trigonometrice.'
-                        },
+                        name: 'Trigonometric Equations',
+                        description: 'Solve equations involving trigonometric functions.',
                         completed: false,
                         exercises: []
                     }
@@ -1707,60 +1383,42 @@
             },
             {
                 id: 4,
-                name: { en: 'Calculus', ro: 'Calcul' },
-                description: { 
-                    en: 'Dive into the mathematics of change and motion.',
-                    ro: 'Aprofundează-te în matematica schimbării și mișcării.'
-                },
+                name: 'Calculus',
+                description: 'Dive into the mathematics of change and motion.',
                 progress: 5,
                 topics: [
                     {
                         id: 1,
-                        name: { en: 'Limits', ro: 'Limite' },
-                        description: { 
-                            en: 'Understand the fundamental concept of limits.',
-                            ro: 'Înțelege conceptul fundamental al limitelor.'
-                        },
+                        name: 'Limits',
+                        description: 'Understand the fundamental concept of limits.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 2,
-                        name: { en: 'Derivatives', ro: 'Derivate' },
-                        description: { 
-                            en: 'Learn about rates of change and slopes of curves.',
-                            ro: 'Învață despre rate de schimbare și pante ale curbelor.'
-                        },
+                        name: 'Derivatives',
+                        description: 'Learn about rates of change and slopes of curves.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 3,
-                        name: { en: 'Integrals', ro: 'Integrale' },
-                        description: { 
-                            en: 'Discover the mathematics of accumulation and area.',
-                            ro: 'Descoperă matematica acumulării și ariei.'
-                        },
+                        name: 'Integrals',
+                        description: 'Discover the mathematics of accumulation and area.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 4,
-                        name: { en: 'Applications of Derivatives', ro: 'Aplicații ale derivatelor' },
-                        description: { 
-                            en: 'Apply derivatives to real-world problems.',
-                            ro: 'Aplică derivate în probleme din lumea reală.'
-                        },
+                        name: 'Applications of Derivatives',
+                        description: 'Apply derivatives to real-world problems.',
                         completed: false,
                         exercises: []
                     },
                     {
                         id: 5,
-                        name: { en: 'Applications of Integrals', ro: 'Aplicații ale integralelor' },
-                        description: { 
-                            en: 'Apply integrals to solve practical problems.',
-                            ro: 'Aplică integrale pentru a rezolva probleme practice.'
-                        },
+                        name: 'Applications of Integrals',
+                        description: 'Apply integrals to solve practical problems.',
                         completed: false,
                         exercises: []
                     }
@@ -1769,42 +1427,10 @@
         ];
 
         const badges = [
-            { 
-                id: 1, 
-                name: { en: 'Fast Learner', ro: 'Învățare rapidă' }, 
-                description: { 
-                    en: 'Complete 5 exercises in one day',
-                    ro: 'Completează 5 exerciții într-o singură zi'
-                }, 
-                earned: true 
-            },
-            { 
-                id: 2, 
-                name: { en: 'Algebra Master', ro: 'Maestru al algebrei' }, 
-                description: { 
-                    en: 'Complete all Algebra topics',
-                    ro: 'Completează toate subiectele de algebră'
-                }, 
-                earned: false 
-            },
-            { 
-                id: 3, 
-                name: { en: 'Week Streak', ro: 'Șir săptămânal' }, 
-                description: { 
-                    en: 'Practice for 7 days in a row',
-                    ro: 'Exersează timp de 7 zile consecutive'
-                }, 
-                earned: false 
-            },
-            { 
-                id: 4, 
-                name: { en: 'Quick Thinker', ro: 'Gândire rapidă' }, 
-                description: { 
-                    en: 'Solve 10 exercises correctly in a row',
-                    ro: 'Rezolvă corect 10 exerciții la rând'
-                }, 
-                earned: true 
-            }
+            { id: 1, name: 'Fast Learner', description: 'Complete 5 exercises in one day', earned: true },
+            { id: 2, name: 'Algebra Master', description: 'Complete all Algebra topics', earned: false },
+            { id: 3, name: 'Week Streak', description: 'Practice for 7 days in a row', earned: false },
+            { id: 4, name: 'Quick Thinker', description: 'Solve 10 exercises correctly in a row', earned: true }
         ];
 
         // Mock API Functions
@@ -1850,27 +1476,20 @@
                 return new Promise((resolve) => {
                     setTimeout(() => {
                         const responses = {
-                            'hello': { en: 'Hello! How can I help you with math today?', ro: 'Bună! Cu ce te pot ajuta la matematică astăzi?' },
-                            'help': { en: 'I can explain math concepts, help with exercises, or provide examples. What do you need?', ro: 'Pot explica concepte matematice, ajuta cu exerciții sau oferi exemple. De ce ai nevoie?' },
-                            'explain quadratic equations': { 
-                                en: 'A quadratic equation is any equation that can be rearranged in standard form as ax² + bx + c = 0. You can solve it by factoring, completing the square, or using the quadratic formula.',
-                                ro: 'O ecuație pătratică este orice ecuație care poate fi rearanjată în forma standard ax² + bx + c = 0. Poți să o rezolvi prin factorizare, completarea pătratului sau folosind formula pătratică.'
-                            },
-                            'default': { 
-                                en: 'I\'m here to help with your math questions. Could you be more specific about what you need help with?',
-                                ro: 'Sunt aici să te ajut cu întrebările tale de matematică. Poți fi mai specific cu ce anume ai nevoie de ajutor?'
-                            }
+                            'hello': 'Hello! How can I help you with math today?',
+                            'help': 'I can explain math concepts, help with exercises, or provide examples. What do you need?',
+                            'explain quadratic equations': 'A quadratic equation is any equation that can be rearranged in standard form as ax² + bx + c = 0. You can solve it by factoring, completing the square, or using the quadratic formula.',
+                            'default': 'I\'m here to help with your math questions. Could you be more specific about what you need help with?'
                         };
                         
                         const lowerMessage = message.toLowerCase();
                         let response = responses.default;
                         
-                        if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || 
-                            lowerMessage.includes('bună') || lowerMessage.includes('salut')) {
+                        if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
                             response = responses.hello;
-                        } else if (lowerMessage.includes('help') || lowerMessage.includes('ajutor')) {
+                        } else if (lowerMessage.includes('help')) {
                             response = responses.help;
-                        } else if (lowerMessage.includes('quadratic') || lowerMessage.includes('pătratic')) {
+                        } else if (lowerMessage.includes('quadratic')) {
                             response = responses['explain quadratic equations'];
                         }
                         
@@ -1968,24 +1587,6 @@
                 setTimeout(() => {
                     document.body.removeChild(confettiContainer);
                 }, 3000);
-            },
-            
-            translate: (key, params = {}) => {
-                const state = AppState.getState();
-                const lang = state.language || 'en';
-                const translation = translations[lang][key] || translations['en'][key];
-                
-                if (typeof translation === 'string') {
-                    return translation.replace(/{(\w+)}/g, (match, param) => params[param] || match);
-                }
-                
-                return translation;
-            },
-            
-            getTranslatedText: (textObj) => {
-                const state = AppState.getState();
-                const lang = state.language || 'en';
-                return textObj[lang] || textObj['en'] || '';
             }
         };
 
@@ -1998,8 +1599,8 @@
                 
                 const header = Utils.createElement('div', 'auth-header');
                 const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
-                const title = Utils.createElement('h1', 'auth-title', Utils.translate('signin.title'));
-                const subtitle = Utils.createElement('p', 'auth-subtitle', Utils.translate('signin.subtitle'));
+                const title = Utils.createElement('h1', 'auth-title', 'Welcome Back');
+                const subtitle = Utils.createElement('p', 'auth-subtitle', 'Sign in to continue your math learning journey');
                 
                 header.appendChild(logo);
                 header.appendChild(title);
@@ -2009,7 +1610,7 @@
                 form.id = 'signin-form';
                 
                 const emailGroup = Utils.createElement('div', 'input-group');
-                const emailLabel = Utils.createElement('label', 'input-label', Utils.translate('signin.email'));
+                const emailLabel = Utils.createElement('label', 'input-label', 'Email');
                 emailLabel.htmlFor = 'email';
                 const emailInput = Utils.createElement('input', 'input-field');
                 emailInput.type = 'email';
@@ -2021,7 +1622,7 @@
                 emailGroup.appendChild(emailInput);
                 
                 const passwordGroup = Utils.createElement('div', 'input-group');
-                const passwordLabel = Utils.createElement('label', 'input-label', Utils.translate('signin.password'));
+                const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
                 passwordLabel.htmlFor = 'password';
                 const passwordInput = Utils.createElement('input', 'input-field');
                 passwordInput.type = 'password';
@@ -2035,7 +1636,7 @@
                 const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
                 errorAlert.id = 'error-alert';
                 
-                const submitButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('signin.submit'));
+                const submitButton = Utils.createElement('button', 'btn btn-primary', 'Sign In');
                 submitButton.type = 'submit';
                 
                 form.appendChild(errorAlert);
@@ -2045,8 +1646,8 @@
                 
                 // Add signup link
                 const signupLink = Utils.createElement('div', 'text-center mt-4');
-                const signupText = Utils.createElement('span', 'text-sm', Utils.translate('signin.noAccount') + ' ');
-                const signupAnchor = Utils.createElement('a', 'text-primary cursor-pointer', Utils.translate('signin.signup'));
+                const signupText = Utils.createElement('span', 'text-sm', 'Don\'t have an account? ');
+                const signupAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign Up');
                 signupAnchor.addEventListener('click', () => {
                     AppState.setState({ currentPage: 'signup' });
                 });
@@ -2082,7 +1683,7 @@
                         });
                     }
                 } catch (error) {
-                    errorAlert.textContent = Utils.translate('signin.error');
+                    errorAlert.textContent = error.message;
                     Utils.removeClass(errorAlert, 'hidden');
                     
                     setTimeout(() => {
@@ -2102,8 +1703,8 @@
                 
                 const header = Utils.createElement('div', 'auth-header');
                 const logo = Utils.createElement('div', 'auth-logo', 'LearnZy');
-                const title = Utils.createElement('h1', 'auth-title', Utils.translate('signup.title'));
-                const subtitle = Utils.createElement('p', 'auth-subtitle', Utils.translate('signup.subtitle'));
+                const title = Utils.createElement('h1', 'auth-title', 'Create Account');
+                const subtitle = Utils.createElement('p', 'auth-subtitle', 'Join LearnZy to start your personalized math journey');
                 
                 header.appendChild(logo);
                 header.appendChild(title);
@@ -2114,12 +1715,12 @@
                 
                 // Name field
                 const nameGroup = Utils.createElement('div', 'input-group');
-                const nameLabel = Utils.createElement('label', 'input-label', Utils.translate('signup.name'));
+                const nameLabel = Utils.createElement('label', 'input-label', 'Full Name');
                 nameLabel.htmlFor = 'name';
                 const nameInput = Utils.createElement('input', 'input-field');
                 nameInput.type = 'text';
                 nameInput.id = 'name';
-                nameInput.placeholder = Utils.translate('signup.name');
+                nameInput.placeholder = 'Alexandru Popescu';
                 nameInput.required = true;
                 
                 nameGroup.appendChild(nameLabel);
@@ -2127,7 +1728,7 @@
                 
                 // Email field
                 const emailGroup = Utils.createElement('div', 'input-group');
-                const emailLabel = Utils.createElement('label', 'input-label', Utils.translate('signup.email'));
+                const emailLabel = Utils.createElement('label', 'input-label', 'Email');
                 emailLabel.htmlFor = 'email';
                 const emailInput = Utils.createElement('input', 'input-field');
                 emailInput.type = 'email';
@@ -2140,7 +1741,7 @@
                 
                 // Password field
                 const passwordGroup = Utils.createElement('div', 'input-group');
-                const passwordLabel = Utils.createElement('label', 'input-label', Utils.translate('signup.password'));
+                const passwordLabel = Utils.createElement('label', 'input-label', 'Password');
                 passwordLabel.htmlFor = 'password';
                 const passwordInput = Utils.createElement('input', 'input-field');
                 passwordInput.type = 'password';
@@ -2154,7 +1755,7 @@
                 
                 // Confirm Password field
                 const confirmGroup = Utils.createElement('div', 'input-group');
-                const confirmLabel = Utils.createElement('label', 'input-label', Utils.translate('signup.confirm'));
+                const confirmLabel = Utils.createElement('label', 'input-label', 'Confirm Password');
                 confirmLabel.htmlFor = 'confirm';
                 const confirmInput = Utils.createElement('input', 'input-field');
                 confirmInput.type = 'password';
@@ -2167,21 +1768,21 @@
                 
                 // Grade level selection
                 const gradeGroup = Utils.createElement('div', 'input-group');
-                const gradeLabel = Utils.createElement('label', 'input-label', Utils.translate('signup.grade'));
+                const gradeLabel = Utils.createElement('label', 'input-label', 'Grade Level');
                 gradeLabel.htmlFor = 'grade';
                 const gradeSelect = Utils.createElement('select', 'input-field');
                 gradeSelect.id = 'grade';
                 
                 const grades = [
-                    { en: '9th Grade', ro: 'Clasa a 9-a' },
-                    { en: '10th Grade', ro: 'Clasa a 10-a' },
-                    { en: '11th Grade', ro: 'Clasa a 11-a' },
-                    { en: '12th Grade', ro: 'Clasa a 12-a' }
+                    '9th Grade',
+                    '10th Grade',
+                    '11th Grade',
+                    '12th Grade'
                 ];
                 
                 grades.forEach(grade => {
-                    const option = Utils.createElement('option', null, Utils.getTranslatedText(grade));
-                    option.value = Utils.getTranslatedText(grade);
+                    const option = Utils.createElement('option', null, grade);
+                    option.value = grade;
                     gradeSelect.appendChild(option);
                 });
                 
@@ -2194,7 +1795,7 @@
                 termsCheck.type = 'checkbox';
                 termsCheck.id = 'terms';
                 termsCheck.required = true;
-                const termsLabel = Utils.createElement('label', null, Utils.translate('signup.terms'));
+                const termsLabel = Utils.createElement('label', null, 'I agree to the Terms and Privacy Policy');
                 termsLabel.htmlFor = 'terms';
                 termsLabel.style.fontSize = '0.875rem';
                 
@@ -2204,7 +1805,7 @@
                 const errorAlert = Utils.createElement('div', 'alert alert-error hidden');
                 errorAlert.id = 'error-alert';
                 
-                const submitButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('signup.submit'));
+                const submitButton = Utils.createElement('button', 'btn btn-primary', 'Create Account');
                 submitButton.type = 'submit';
                 
                 form.appendChild(errorAlert);
@@ -2218,8 +1819,8 @@
                 
                 // Login link
                 const loginLink = Utils.createElement('div', 'text-center mt-4');
-                const loginText = Utils.createElement('span', 'text-sm', Utils.translate('signup.haveAccount') + ' ');
-                const loginAnchor = Utils.createElement('a', 'text-primary cursor-pointer', Utils.translate('signup.signin'));
+                const loginText = Utils.createElement('span', 'text-sm', 'Already have an account? ');
+                const loginAnchor = Utils.createElement('a', 'text-primary cursor-pointer', 'Sign In');
                 loginAnchor.addEventListener('click', () => {
                     AppState.setState({ currentPage: 'signin' });
                 });
@@ -2250,13 +1851,13 @@
                 
                 // Validation
                 if (password !== confirm) {
-                    errorAlert.textContent = Utils.translate('signup.errors.passwordMatch');
+                    errorAlert.textContent = 'Passwords do not match';
                     Utils.removeClass(errorAlert, 'hidden');
                     return;
                 }
                 
                 if (password.length < 8) {
-                    errorAlert.textContent = Utils.translate('signup.errors.passwordLength');
+                    errorAlert.textContent = 'Password must be at least 8 characters';
                     Utils.removeClass(errorAlert, 'hidden');
                     return;
                 }
@@ -2264,7 +1865,7 @@
                 // Check if user already exists
                 const userExists = mockUsers.some(u => u.email === email);
                 if (userExists) {
-                    errorAlert.textContent = Utils.translate('signup.errors.emailExists');
+                    errorAlert.textContent = 'Email already registered';
                     Utils.removeClass(errorAlert, 'hidden');
                     return;
                 }
@@ -2297,19 +1898,10 @@
             const answers = [];
             
             const render = () => {
-                const state = AppState.getState();
-                const lang = state.language || 'en';
-                const question = quizQuestions[currentQuestion];
-                
                 const container = Utils.createElement('div', 'quiz-container animate-fade');
                 
                 const progress = Utils.createElement('div', 'quiz-progress');
-                const progressText = Utils.createElement('p', 'text-center', 
-                    Utils.translate('learningStyle.question', {
-                        current: currentQuestion + 1,
-                        total: quizQuestions.length
-                    })
-                );
+                const progressText = Utils.createElement('p', 'text-center', `Question ${currentQuestion + 1} of ${quizQuestions.length}`);
                 const progressBar = Utils.createElement('div', 'progress-bar');
                 const progressFill = Utils.createElement('div', 'progress-fill');
                 progressFill.style.width = `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
@@ -2319,12 +1911,12 @@
                 progress.appendChild(progressBar);
                 
                 const questionContainer = Utils.createElement('div', 'quiz-question');
-                const questionText = Utils.createElement('h2', 'quiz-question-text', question.question[lang] || question.question['en']);
+                const questionText = Utils.createElement('h2', 'quiz-question-text', quizQuestions[currentQuestion].question);
                 
                 const optionsContainer = Utils.createElement('div', 'flex flex-col gap-2');
-                question.options.forEach((option, index) => {
+                quizQuestions[currentQuestion].options.forEach((option, index) => {
                     const optionElement = Utils.createElement('div', 'quiz-option');
-                    optionElement.textContent = option.text[lang] || option.text['en'];
+                    optionElement.textContent = option.text;
                     optionElement.dataset.index = index;
                     
                     if (answers[currentQuestion] === index) {
@@ -2340,17 +1932,14 @@
                 
                 const navigation = Utils.createElement('div', 'quiz-navigation');
                 
-                const prevButton = Utils.createElement('button', 'btn btn-outline', Utils.translate('learningStyle.previous'));
+                const prevButton = Utils.createElement('button', 'btn btn-outline', 'Previous');
                 prevButton.type = 'button';
                 if (currentQuestion === 0) {
                     prevButton.disabled = true;
                 }
                 prevButton.addEventListener('click', goToPreviousQuestion);
                 
-                const nextButtonText = currentQuestion === quizQuestions.length - 1 ? 
-                    Utils.translate('learningStyle.submit') : 
-                    Utils.translate('learningStyle.next');
-                const nextButton = Utils.createElement('button', 'btn btn-primary', nextButtonText);
+                const nextButton = Utils.createElement('button', 'btn btn-primary', currentQuestion === quizQuestions.length - 1 ? 'Submit' : 'Next');
                 nextButton.type = 'button';
                 if (answers[currentQuestion] === undefined) {
                     nextButton.disabled = true;
@@ -2433,7 +2022,6 @@
         const LearningStyleResultPage = (() => {
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const style = learningStyles[state.learningStyle];
                 
                 const container = Utils.createElement('div', 'flex flex-col items-center justify-center h-screen animate-fade');
@@ -2442,17 +2030,11 @@
                 
                 const icon = Utils.createElement('i', `${style.icon} text-6xl text-primary mb-4`);
                 
-                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', 
-                    Utils.translate('learningStyle.yourStyle', { style: style.name[lang] || style.name['en'] })
-                );
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', `You are a ${style.name}!`);
                 
-                const description = Utils.createElement('p', 'text-gray-600 mb-6', 
-                    style.description[lang] || style.description['en']
-                );
+                const description = Utils.createElement('p', 'text-gray-600 mb-6', style.description);
                 
-                const continueButton = Utils.createElement('button', 'btn btn-primary', 
-                    Utils.translate('continueToDashboard')
-                );
+                const continueButton = Utils.createElement('button', 'btn btn-primary', 'Continue to Dashboard');
                 continueButton.addEventListener('click', () => {
                     AppState.setState({ currentPage: 'dashboard' });
                 });
@@ -2500,9 +2082,7 @@
                 const streakIcon = Utils.createElement('i', 'fas fa-fire streak-icon');
                 const streakCount = Utils.createElement('span', 'streak-count', `${state.streak}d`);
                 
-                const streakTooltip = Utils.createElement('span', 'tooltip-text', 
-                    Utils.translate('navbar.streak', { days: state.streak })
-                );
+                const streakTooltip = Utils.createElement('span', 'tooltip-text', `Current streak: ${state.streak} days`);
                 streakTooltip.style.whiteSpace = 'nowrap';
                 
                 streakContainer.appendChild(streakIcon);
@@ -2514,9 +2094,7 @@
                 const levelBadge = Utils.createElement('div', 'level-badge', state.level);
                 const xpText = Utils.createElement('span', null, `${state.xp} XP`);
                 
-                const levelTooltip = Utils.createElement('span', 'tooltip-text', 
-                    Utils.translate('navbar.level', { level: state.level, xp: state.xp })
-                );
+                const levelTooltip = Utils.createElement('span', 'tooltip-text', `Level ${state.level} - ${state.xp} XP`);
                 levelTooltip.style.whiteSpace = 'nowrap';
                 
                 levelContainer.appendChild(levelBadge);
@@ -2533,7 +2111,7 @@
                 
                 // Dark mode toggle
                 const darkModeItem = Utils.createElement('div', 'settings-item');
-                const darkModeLabel = Utils.createElement('span', null, Utils.translate('navbar.settings.darkMode'));
+                const darkModeLabel = Utils.createElement('span', null, 'Dark Mode');
                 const darkModeToggle = Utils.createElement('label', 'theme-toggle');
                 const darkModeInput = Utils.createElement('input');
                 darkModeInput.type = 'checkbox';
@@ -2552,7 +2130,7 @@
                 
                 // Animations toggle
                 const animationsItem = Utils.createElement('div', 'settings-item');
-                const animationsLabel = Utils.createElement('span', null, Utils.translate('navbar.settings.animations'));
+                const animationsLabel = Utils.createElement('span', null, 'Animations');
                 const animationsToggle = Utils.createElement('input');
                 animationsToggle.type = 'checkbox';
                 animationsToggle.checked = state.animationsEnabled;
@@ -2565,7 +2143,7 @@
                 
                 // Language selector
                 const languageItem = Utils.createElement('div', 'settings-item');
-                const languageLabel = Utils.createElement('span', null, Utils.translate('navbar.settings.language'));
+                const languageLabel = Utils.createElement('span', null, 'Language');
                 const languageSelect = Utils.createElement('select');
                 const englishOption = Utils.createElement('option', null, 'English');
                 englishOption.value = 'en';
@@ -2617,11 +2195,17 @@
                 const state = AppState.getState();
                 const sidebar = Utils.createElement('div', `sidebar ${state.sidebarOpen ? 'open' : ''}`);
                 
-                const navItems = Utils.translate('navbar.menu');
+                const navItems = [
+                    { icon: 'fas fa-home', text: 'Dashboard', page: 'dashboard' },
+                    { icon: 'fas fa-book', text: 'My Courses', page: 'courses' },
+                    { icon: 'fas fa-trophy', text: 'Achievements', page: 'achievements' },
+                    { icon: 'fas fa-chart-line', text: 'Progress', page: 'progress' },
+                    { icon: 'fas fa-cog', text: 'Settings', page: 'settings' }
+                ];
                 
                 navItems.forEach(item => {
                     const navItem = Utils.createElement('a', `sidebar-item ${state.currentPage === item.page ? 'active' : ''}`);
-                    const icon = Utils.createElement('i', item.icon || 'fas fa-circle');
+                    const icon = Utils.createElement('i', item.icon);
                     const text = Utils.createElement('span', null, item.text);
                     
                     navItem.appendChild(icon);
@@ -2646,31 +2230,26 @@
         const DashboardPage = (() => {
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const container = Utils.createElement('div', 'main-content');
                 
                 const header = Utils.createElement('div', 'dashboard-header');
-                const title = Utils.createElement('h1', 'dashboard-title', Utils.translate('dashboard.title'));
+                const title = Utils.createElement('h1', 'dashboard-title', 'Math Learning Dashboard');
                 
                 header.appendChild(title);
                 container.appendChild(header);
                 
                 // Welcome message with learning style
                 const welcomeCard = Utils.createElement('div', 'card mb-6');
-                const welcomeText = Utils.createElement('p', null, 
-                    Utils.translate('dashboard.welcome', { name: state.user?.name || Utils.translate('student') })
-                );
+                const welcomeText = Utils.createElement('p', null, `Welcome back, ${state.user?.name || 'Student'}!`);
                 const learningStyleText = Utils.createElement('p', null);
                 
                 if (state.learningStyle) {
                     const style = learningStyles[state.learningStyle];
                     const styleIcon = Utils.createElement('i', `${style.icon} mr-2`);
                     learningStyleText.appendChild(styleIcon);
-                    learningStyleText.appendChild(document.createTextNode(
-                        Utils.translate('dashboard.learningStyle', { style: style.name[lang] || style.name['en'] })
-                    ));
+                    learningStyleText.appendChild(document.createTextNode(`Your learning style: ${style.name}`));
                 } else {
-                    learningStyleText.textContent = Utils.translate('dashboard.completeAssessment');
+                    learningStyleText.textContent = 'Complete the learning style assessment to personalize your experience';
                 }
                 
                 welcomeCard.appendChild(welcomeText);
@@ -2681,30 +2260,10 @@
                 const statsContainer = Utils.createElement('div', 'grid grid-cols-2 md:grid-cols-4 gap-4 mb-6');
                 
                 const stats = [
-                    { 
-                        icon: 'fas fa-book', 
-                        color: 'bg-primary', 
-                        label: Utils.translate('dashboard.stats.topicsStarted'), 
-                        value: 4 
-                    },
-                    { 
-                        icon: 'fas fa-check-circle', 
-                        color: 'bg-success', 
-                        label: Utils.translate('dashboard.stats.topicsCompleted'), 
-                        value: 2 
-                    },
-                    { 
-                        icon: 'fas fa-star', 
-                        color: 'bg-warning', 
-                        label: Utils.translate('dashboard.stats.currentStreak'), 
-                        value: `${state.streak} ${Utils.translate('days')}` 
-                    },
-                    { 
-                        icon: 'fas fa-trophy', 
-                        color: 'bg-danger', 
-                        label: Utils.translate('dashboard.stats.badgesEarned'), 
-                        value: 2 
-                    }
+                    { icon: 'fas fa-book', color: 'bg-primary', label: 'Topics Started', value: 4 },
+                    { icon: 'fas fa-check-circle', color: 'bg-success', label: 'Topics Completed', value: 2 },
+                    { icon: 'fas fa-star', color: 'bg-warning', label: 'Current Streak', value: `${state.streak} days` },
+                    { icon: 'fas fa-trophy', color: 'bg-danger', label: 'Badges Earned', value: 2 }
                 ];
                 
                 stats.forEach(stat => {
@@ -2730,7 +2289,7 @@
                 container.appendChild(statsContainer);
                 
                 // Categories
-                const categoriesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', Utils.translate('dashboard.categories'));
+                const categoriesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Math Categories');
                 container.appendChild(categoriesTitle);
                 
                 const categoriesGrid = Utils.createElement('div', 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6');
@@ -2748,12 +2307,8 @@
                     bg.style.backgroundColor = getRandomColor();
                     
                     const overlay = Utils.createElement('div', 'category-overlay');
-                    const categoryName = Utils.createElement('h3', 'category-title', 
-                        Utils.getTranslatedText(category.name)
-                    );
-                    const categoryDesc = Utils.createElement('p', 'text-sm', 
-                        Utils.getTranslatedText(category.description)
-                    );
+                    const categoryName = Utils.createElement('h3', 'category-title', category.name);
+                    const categoryDesc = Utils.createElement('p', 'text-sm', category.description);
                     
                     const progress = Utils.createElement('div', 'category-progress');
                     const progressFill = Utils.createElement('div', 'category-progress-fill');
@@ -2774,7 +2329,7 @@
                 container.appendChild(categoriesGrid);
                 
                 // Badges section
-                const badgesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', Utils.translate('dashboard.badges'));
+                const badgesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', 'Recent Badges');
                 container.appendChild(badgesTitle);
                 
                 const badgesGrid = Utils.createElement('div', 'grid grid-cols-2 md:grid-cols-4 gap-4');
@@ -2783,12 +2338,8 @@
                     const badgeCard = Utils.createElement('div', 'card p-4 flex flex-col items-center text-center');
                     
                     const badgeIcon = Utils.createElement('i', 'fas fa-trophy text-3xl text-warning mb-2');
-                    const badgeName = Utils.createElement('h3', 'font-bold mb-1', 
-                        Utils.getTranslatedText(badge.name)
-                    );
-                    const badgeDesc = Utils.createElement('p', 'text-sm text-gray-600', 
-                        Utils.getTranslatedText(badge.description)
-                    );
+                    const badgeName = Utils.createElement('h3', 'font-bold mb-1', badge.name);
+                    const badgeDesc = Utils.createElement('p', 'text-sm text-gray-600', badge.description);
                     
                     badgeCard.appendChild(badgeIcon);
                     badgeCard.appendChild(badgeName);
@@ -2816,7 +2367,6 @@
         const CategoryPage = (() => {
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const category = categories.find(c => c.id === state.currentCategory);
                 
                 if (!category) {
@@ -2829,7 +2379,7 @@
                 // Back button
                 const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
                 const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
-                const backText = Utils.createElement('span', null, Utils.translate('category.back'));
+                const backText = Utils.createElement('span', null, 'Back to Dashboard');
                 
                 backButton.appendChild(backIcon);
                 backButton.appendChild(backText);
@@ -2842,20 +2392,14 @@
                 // Category header
                 const header = Utils.createElement('div', 'flex items-start justify-between mb-6');
                 const titleGroup = Utils.createElement('div');
-                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', 
-                    Utils.getTranslatedText(category.name)
-                );
-                const description = Utils.createElement('p', 'text-gray-600', 
-                    Utils.getTranslatedText(category.description)
-                );
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', category.name);
+                const description = Utils.createElement('p', 'text-gray-600', category.description);
                 
                 titleGroup.appendChild(title);
                 titleGroup.appendChild(description);
                 
                 const progressGroup = Utils.createElement('div', 'flex flex-col items-end');
-                const progressText = Utils.createElement('span', 'font-bold', 
-                    Utils.translate('category.complete', { percent: category.progress })
-                );
+                const progressText = Utils.createElement('span', 'font-bold', `${category.progress}% Complete`);
                 const progressBar = Utils.createElement('div', 'progress-bar w-40');
                 const progressFill = Utils.createElement('div', 'progress-fill');
                 progressFill.style.width = `${category.progress}%`;
@@ -2870,7 +2414,7 @@
                 container.appendChild(header);
                 
                 // Topics list
-                const topicsTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', Utils.translate('category.topics'));
+                const topicsTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Topics');
                 container.appendChild(topicsTitle);
                 
                 const topicsGrid = Utils.createElement('div', 'grid grid-cols-1 md:grid-cols-2 gap-4');
@@ -2885,36 +2429,18 @@
                     });
                     
                     const header = Utils.createElement('div', 'topic-header');
-                    const title = Utils.createElement('h3', 'topic-title', 
-                        Utils.getTranslatedText(topic.name)
-                    );
-                    
-                    let statusText = '';
-                    if (topic.completed) {
-                        statusText = Utils.translate('category.status.completed');
-                    } else if (topic.completed === false) {
-                        statusText = Utils.translate('category.status.inProgress');
-                    } else {
-                        statusText = Utils.translate('category.status.notStarted');
-                    }
-                    
+                    const title = Utils.createElement('h3', 'topic-title', topic.name);
                     const status = Utils.createElement('span', `topic-status ${topic.completed ? 'completed' : topic.completed === false ? 'in-progress' : 'not-started'}`);
-                    status.textContent = statusText;
+                    status.textContent = topic.completed ? 'Completed' : topic.completed === false ? 'In Progress' : 'Not Started';
                     
                     header.appendChild(title);
                     header.appendChild(status);
                     
-                    const description = Utils.createElement('p', 'topic-description', 
-                        Utils.getTranslatedText(topic.description)
-                    );
+                    const description = Utils.createElement('p', 'topic-description', topic.description);
                     
                     const footer = Utils.createElement('div', 'topic-footer');
-                    const exercisesCount = Utils.createElement('span', 'text-sm text-gray-600', 
-                        Utils.translate('category.exercises', { count: topic.exercises.length })
-                    );
-                    const startButton = Utils.createElement('button', 'btn btn-primary btn-sm', 
-                        topic.completed ? Utils.translate('category.review') : Utils.translate('category.start')
-                    );
+                    const exercisesCount = Utils.createElement('span', 'text-sm text-gray-600', `${topic.exercises.length} exercises`);
+                    const startButton = Utils.createElement('button', 'btn btn-primary btn-sm', topic.completed ? 'Review' : 'Start');
                     
                     footer.appendChild(exercisesCount);
                     footer.appendChild(startButton);
@@ -2937,7 +2463,6 @@
         const TopicPage = (() => {
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const category = categories.find(c => c.id === state.currentCategory);
                 const topic = category?.topics.find(t => t.id === state.currentTopic);
                 
@@ -2951,9 +2476,7 @@
                 // Back button
                 const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
                 const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
-                const backText = Utils.createElement('span', null, 
-                    Utils.translate('topic.back', { category: Utils.getTranslatedText(category.name) })
-                );
+                const backText = Utils.createElement('span', null, `Back to ${category.name}`);
                 
                 backButton.appendChild(backIcon);
                 backButton.appendChild(backText);
@@ -2965,12 +2488,8 @@
                 
                 // Topic header
                 const header = Utils.createElement('div', 'mb-6');
-                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', 
-                    Utils.getTranslatedText(topic.name)
-                );
-                const description = Utils.createElement('p', 'text-gray-600 mb-4', 
-                    Utils.getTranslatedText(topic.description)
-                );
+                const title = Utils.createElement('h1', 'text-2xl font-bold mb-2', topic.name);
+                const description = Utils.createElement('p', 'text-gray-600 mb-4', topic.description);
                 
                 header.appendChild(title);
                 header.appendChild(description);
@@ -2986,7 +2505,7 @@
                 container.appendChild(header);
                 
                 // Video lesson
-                const videoTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', Utils.translate('topic.videoLesson'));
+                const videoTitle = Utils.createElement('h2', 'text-xl font-bold mb-4', 'Video Lesson');
                 container.appendChild(videoTitle);
                 
                 const videoPlayer = Utils.createElement('div', 'video-player');
@@ -2998,19 +2517,19 @@
                 container.appendChild(videoPlayer);
                 
                 // Exercises
-                const exercisesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', Utils.translate('topic.exercises'));
+                const exercisesTitle = Utils.createElement('h2', 'text-xl font-bold mb-4 mt-8', 'Practice Exercises');
                 container.appendChild(exercisesTitle);
                 
                 if (topic.exercises.length === 0) {
                     const emptyState = Utils.createElement('div', 'card p-8 text-center');
                     const emptyIcon = Utils.createElement('i', 'fas fa-book-open text-3xl text-gray-400 mb-4');
-                    const emptyText = Utils.createElement('p', 'text-gray-600', Utils.translate('topic.noExercises'));
+                    const emptyText = Utils.createElement('p', 'text-gray-600', 'No exercises available for this topic yet. Check back soon!');
                     
                     emptyState.appendChild(emptyIcon);
                     emptyState.appendChild(emptyText);
                     container.appendChild(emptyState);
                 } else {
-                    const startButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('startExercises'));
+                    const startButton = Utils.createElement('button', 'btn btn-primary', 'Start Exercises');
                     startButton.addEventListener('click', () => {
                         AppState.setState({ 
                             currentPage: 'exercise',
@@ -3034,7 +2553,6 @@
             
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const category = categories.find(c => c.id === state.currentCategory);
                 const topic = category?.topics.find(t => t.id === state.currentTopic);
                 const exercise = topic?.exercises[state.currentExercise];
@@ -3049,9 +2567,7 @@
                 // Back button
                 const backButton = Utils.createElement('button', 'btn btn-ghost mb-4 flex items-center gap-2');
                 const backIcon = Utils.createElement('i', 'fas fa-arrow-left');
-                const backText = Utils.createElement('span', null, 
-                    Utils.translate('exercise.back', { topic: Utils.getTranslatedText(topic.name) })
-                );
+                const backText = Utils.createElement('span', null, `Back to ${topic.name}`);
                 
                 backButton.appendChild(backIcon);
                 backButton.appendChild(backText);
@@ -3062,18 +2578,11 @@
                 container.appendChild(backButton);
                 
                 // Progress indicator
-                const progressText = Utils.createElement('p', 'text-center mb-4', 
-                    Utils.translate('exercise.progress', {
-                        current: state.currentExercise + 1,
-                        total: topic.exercises.length
-                    })
-                );
+                const progressText = Utils.createElement('p', 'text-center mb-4', `Exercise ${state.currentExercise + 1} of ${topic.exercises.length}`);
                 container.appendChild(progressText);
                 
                 // Question
-                const question = Utils.createElement('div', 'exercise-question', 
-                    Utils.getTranslatedText(exercise.question)
-                );
+                const question = Utils.createElement('div', 'exercise-question', exercise.question);
                 container.appendChild(question);
                 
                 // Options
@@ -3081,7 +2590,7 @@
                 
                 exercise.options.forEach((option, index) => {
                     const optionElement = Utils.createElement('div', 'exercise-option');
-                    optionElement.textContent = Utils.getTranslatedText(option);
+                    optionElement.textContent = option;
                     optionElement.dataset.index = index;
                     
                     if (showFeedback) {
@@ -3106,12 +2615,8 @@
                 // Feedback
                 if (showFeedback) {
                     const feedback = Utils.createElement('div', `exercise-feedback ${isCorrect ? 'correct' : 'incorrect'}`);
-                    const feedbackTitle = Utils.createElement('h3', 'font-bold mb-2', 
-                        isCorrect ? Utils.translate('exercise.feedback.correct') : Utils.translate('exercise.feedback.incorrect')
-                    );
-                    const feedbackText = Utils.createElement('p', null, 
-                        Utils.getTranslatedText(exercise.explanation)
-                    );
+                    const feedbackTitle = Utils.createElement('h3', 'font-bold mb-2', isCorrect ? 'Correct! 🎉' : 'Incorrect 😕');
+                    const feedbackText = Utils.createElement('p', null, exercise.explanation);
                     
                     feedback.appendChild(feedbackTitle);
                     feedback.appendChild(feedbackText);
@@ -3126,7 +2631,7 @@
                 const navigation = Utils.createElement('div', 'exercise-navigation');
                 
                 if (state.currentExercise > 0) {
-                    const prevButton = Utils.createElement('button', 'btn btn-outline', Utils.translate('previous'));
+                    const prevButton = Utils.createElement('button', 'btn btn-outline', 'Previous');
                     prevButton.addEventListener('click', () => {
                         AppState.setState({ 
                             currentExercise: state.currentExercise - 1,
@@ -3140,14 +2645,12 @@
                 }
                 
                 if (!showFeedback) {
-                    const checkButton = Utils.createElement('button', 'btn btn-primary', Utils.translate('exercise.check'));
+                    const checkButton = Utils.createElement('button', 'btn btn-primary', 'Check Answer');
                     checkButton.disabled = selectedOption === null;
                     checkButton.addEventListener('click', checkAnswer);
                     navigation.appendChild(checkButton);
                 } else {
-                    const nextButtonText = state.currentExercise < topic.exercises.length - 1 ? 
-                        Utils.translate('exercise.next') : 
-                        Utils.translate('exercise.finish');
+                    const nextButtonText = state.currentExercise < topic.exercises.length - 1 ? 'Next Exercise' : 'Finish Topic';
                     const nextButton = Utils.createElement('button', 'btn btn-primary', nextButtonText);
                     nextButton.addEventListener('click', () => {
                         if (state.currentExercise < topic.exercises.length - 1) {
@@ -3226,7 +2729,6 @@
         const AIAssistant = (() => {
             const render = () => {
                 const state = AppState.getState();
-                const lang = state.language || 'en';
                 const container = Utils.createElement('div', 'assistant-container');
                 
                 const button = Utils.createElement('button', 'assistant-button animate-pulse');
@@ -3240,7 +2742,7 @@
                     const chat = Utils.createElement('div', 'assistant-chat shadow-lg');
                     
                     const header = Utils.createElement('div', 'assistant-header');
-                    const title = Utils.createElement('div', 'assistant-title', Utils.translate('assistant.title'));
+                    const title = Utils.createElement('div', 'assistant-title', 'LearnZy AI Assistant');
                     const closeButton = Utils.createElement('button', 'assistant-close');
                     const closeIcon = Utils.createElement('i', 'fas fa-times');
                     closeButton.appendChild(closeIcon);
@@ -3260,7 +2762,7 @@
                     
                     const inputContainer = Utils.createElement('div', 'assistant-input');
                     const input = Utils.createElement('input', 'assistant-input-field');
-                    input.placeholder = Utils.translate('assistant.placeholder');
+                    input.placeholder = 'Ask a math question...';
                     const sendButton = Utils.createElement('button', 'assistant-send');
                     const sendIcon = Utils.createElement('i', 'fas fa-paper-plane');
                     sendButton.appendChild(sendIcon);
@@ -3305,9 +2807,7 @@
                 try {
                     const response = await mockAPI.aiAssistant(message);
                     if (response.success) {
-                        const lang = AppState.getState().language || 'en';
-                        const botResponse = response.response[lang] || response.response['en'];
-                        const updatedMessages = [...newMessages, { sender: 'bot', text: botResponse }];
+                        const updatedMessages = [...newMessages, { sender: 'bot', text: response.response }];
                         AppState.setState({ messages: updatedMessages });
                     }
                 } catch (error) {
@@ -3391,4 +2891,3 @@
     </script>
 </body>
 </html>
-
