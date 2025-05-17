@@ -335,6 +335,27 @@
             border: 1px solid var(--border);
         }
         
+        .theory-content {
+            padding: 10px;
+            background-color: var(--bg);
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+        
+        .theory-content h3 {
+            color: var(--primary);
+            margin: 15px 0 10px 0;
+        }
+        
+        .theory-content ul {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .theory-content p {
+            margin-bottom: 10px;
+        }
+        
         .exercise-question {
             margin-bottom: 15px;
             font-weight: 500;
@@ -861,30 +882,74 @@
     </div>
     
     <script>
-        // Mock Data
+        // Enhanced Mock Data with Detailed Explanations and Concrete Exercises
         const chapters = [
             {
                 id: 1,
                 title: "Capitolul 1: Mulțimea numerelor",
                 description: "Învață despre mulțimile de numere și proprietățile lor.",
+                theory: `
+                    <h3>1. Numere Naturale (ℕ)</h3>
+                    <p>Numerele naturale sunt numerele folosite pentru numărare: 1, 2, 3, 4, ...</p>
+                    <p><strong>Proprietăți:</strong></p>
+                    <ul>
+                        <li>Orice număr natural are un succesor (n+1)</li>
+                        <li>Adunarea și înmulțirea sunt întotdeauna operații interne</li>
+                        <li>Scăderea și împărțirea nu sunt întotdeauna posibile</li>
+                    </ul>
+                    
+                    <h3>2. Numere Întregi (ℤ)</h3>
+                    <p>Extindem mulțimea numerelor naturale pentru a include și numerele negative și zero: ..., -2, -1, 0, 1, 2, ...</p>
+                    <p><strong>Exemplu practic:</strong> Temperaturile sub zero, datorii</p>
+                    
+                    <h3>3. Numere Raționale (ℚ)</h3>
+                    <p>Numere ce pot fi exprimate ca fracții a/b unde a și b sunt întregi: 1/2, -3/4, 2/1</p>
+                    <p><strong>Reprezentare zecimală:</strong> Fie finită (0.5) fie periodică (0.333...)</p>
+                `,
                 exercises: [
                     {
                         id: 1,
-                        question: "Care este mulțimea numerelor naturale?",
-                        answer: "Mulțimea numerelor naturale este {1, 2, 3, ...}",
-                        visualHint: "Imaginează-ți un șir crescător de numere începând cu 1.",
-                        auditoryHint: "Ascultă cum se numără în ordine crescătoare: 1, 2, 3, 4...",
-                        kinestheticHint: "Scrie primul 10 numere naturale pe o foaie de hârtie.",
-                        logicalHint: "Numerele naturale sunt cele folosite pentru numărare, începând cu 1."
+                        question: "Determinați care dintre următoarele numere sunt naturale: -3, 0, 5, 2/3, 12",
+                        answer: "5, 12",
+                        visualHint: "Imaginează-ți numerele pe o axă. Numerele naturale sunt la dreapta lui 0, fără zecimale.",
+                        auditoryHint: "Gândește-te la numerele pe care le-ai folosi când numeri obiecte: 1, 2, 3...",
+                        kinestheticHint: "Scrie numerele pe cartonașe și separă-le în două grămezi: naturale și nenaturale.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Identifică numerele întregi pozitive
+                            2. Elimină numerele negative (-3)
+                            3. Elimină numerele fracționare (2/3)
+                            4. Elimină zero (0) conform definiției românești
+                            5. Rămân 5 și 12
+                        `
                     },
                     {
                         id: 2,
-                        question: "Ce este un număr întreg?",
-                        answer: "Numerele întregi includ numerele naturale, opusele lor și zero: {..., -2, -1, 0, 1, 2, ...}",
-                        visualHint: "Imaginează-ți o linie numerică care se extinde la infinit în ambele direcții.",
-                        auditoryHint: "Gândește-te la temperaturi: pozitive, negative și zero.",
-                        kinestheticHint: "Folosește o linie numerică și marchează punctele pentru numere întregi.",
-                        logicalHint: "Dacă aduni sau scazi două numere întregi, rezultatul este tot un număr întreg."
+                        question: "Calculați suma: (-5) + 8 + (-3) + 2",
+                        answer: "2",
+                        visualHint: "Folosește axa numerelor: pornește de la -5, adaugă 8 (ajungi la 3), scade 3 (ajungi la 0), adaugă 2.",
+                        auditoryHint: "Citește cu voce tare: 'minus 5 plus 8 fac 3, plus minus 3 fac 0, plus 2 fac 2'.",
+                        kinestheticHint: "Folosește bile colorate: roșii pentru numere negative, albastre pentru pozitive. Combină-le și vezi ce rămâne.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Grupează numerele negative: (-5) + (-3) = -8
+                            2. Grupează numerele pozitive: 8 + 2 = 10
+                            3. Adună rezultatele: -8 + 10 = 2
+                        `
+                    },
+                    {
+                        id: 3,
+                        question: "Scrieți ca fracție ireductibilă numărul rațional 0.75",
+                        answer: "3/4",
+                        visualHint: "Imaginează-ți un întreg împărțit în 4 părți egale. 0.75 reprezintă 3 din aceste părți.",
+                        auditoryHint: "Zero virgulă șapte cinci se citește 'șaptezeci și cinci de sutimi', adică 75/100, care se simplifică la 3/4.",
+                        kinestheticHint: "Taie un cerc în 4 părți egale și umbrește 3 părți. Vei vedea că reprezintă 3/4 din întreg.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Scrie ca fracție zecimală: 0.75 = 75/100
+                            2. Simplifică fracția prin împărțire la 25: 75÷25 = 3, 100÷25 = 4
+                            3. Rezultat: 3/4
+                        `
                     }
                 ],
                 themes: [
@@ -892,13 +957,36 @@
                         id: 1,
                         title: "Numere naturale",
                         description: "Numerele folosite pentru numărare",
-                        svg: '<svg viewBox="0 0 200 100"><rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/><text x="100" y="55" text-anchor="middle" fill="#2196F3" font-family="Arial" font-size="14">1, 2, 3, 4, 5, ...</text></svg>'
+                        svg: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="30" y1="50" x2="170" y2="50" stroke="#2196F3" stroke-width="2"/>
+                            <circle cx="40" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
+                            <text x="40" y="80" text-anchor="middle" fill="#2196F3">1</text>
+                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">2</text>
+                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">3</text>
+                            <text x="100" y="30" text-anchor="middle" fill="#2196F3">...</text>
+                        </svg>`
                     },
                     {
                         id: 2,
                         title: "Numere întregi",
                         description: "Numere pozitive, negative și zero",
-                        svg: '<svg viewBox="0 0 200 100"><line x1="100" y1="20" x2="100" y2="80" stroke="#2196F3" stroke-width="2"/><circle cx="100" cy="50" r="3" fill="#2196F3"/><text x="50" y="40" text-anchor="middle" fill="#2196F3" font-family="Arial" font-size="14">-2, -1,</text><text x="100" y="40" text-anchor="middle" fill="#2196F3" font-family="Arial" font-size="14">0,</text><text x="150" y="40" text-anchor="middle" fill="#2196F3" font-family="Arial" font-size="14">1, 2</text></svg>'
+                        svg: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="100" y1="20" x2="100" y2="80" stroke="#2196F3" stroke-width="2"/>
+                            <circle cx="100" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="120" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="140" cy="50" r="3" fill="#2196F3"/>
+                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">-2</text>
+                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">-1</text>
+                            <text x="100" y="80" text-anchor="middle" fill="#2196F3">0</text>
+                            <text x="120" y="80" text-anchor="middle" fill="#2196F3">1</text>
+                            <text x="140" y="80" text-anchor="middle" fill="#2196F3">2</text>
+                        </svg>`
                     }
                 ]
             },
@@ -906,24 +994,70 @@
                 id: 2,
                 title: "Capitolul 2: Funcții derivabile",
                 description: "Explorează conceptul de derivată și aplicațiile sale.",
+                theory: `
+                    <h3>1. Definiția derivatei</h3>
+                    <p>Derivata unei funcții într-un punct reprezintă panta tangentei la graficul funcției în acel punct.</p>
+                    <p><strong>Definiție matematică:</strong></p>
+                    <p>f'(x₀) = lim<sub>h→0</sub> [f(x₀+h) - f(x₀)]/h</p>
+                    
+                    <h3>2. Reguli de derivare</h3>
+                    <ul>
+                        <li><strong>Derivata unei constante:</strong> c' = 0</li>
+                        <li><strong>Derivata puterii:</strong> (xⁿ)' = n·xⁿ⁻¹</li>
+                        <li><strong>Derivata sumei:</strong> (f+g)' = f' + g'</li>
+                        <li><strong>Derivata produsului:</strong> (f·g)' = f'·g + f·g'</li>
+                    </ul>
+                    
+                    <h3>3. Interpretarea geometrică</h3>
+                    <p>Derivata măsoară rata de schimbare a funcției. Dacă derivata este pozitivă, funcția este crescătoare.</p>
+                `,
                 exercises: [
                     {
-                        id: 3,
-                        question: "Care este derivata funcției f(x) = x²?",
-                        answer: "f'(x) = 2x",
-                        visualHint: "Imaginează-ți parabola y=x² și cum panta tangentei crește liniar.",
+                        id: 4,
+                        question: "Calculați derivata funcției f(x) = 3x² - 4x + 2",
+                        answer: "6x - 4",
+                        visualHint: "Imaginează-ți parabola funcției și cum panta tangentei se schimbă în fiecare punct.",
                         auditoryHint: "Ascultă regula: derivata lui x la puterea n este n ori x la puterea n-1.",
-                        kinestheticHint: "Desenează parabola și trasează tangente în diferite puncte pentru a vedea pantele.",
-                        logicalHint: "Aplică regula de derivare a puterii: d/dx(x^n) = n*x^(n-1)."
+                        kinestheticHint: "Scrie funcția și aplică regulile de derivare pas cu pas pe hârtie.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Derivați fiecare termen separat
+                            2. Aplicați regula puterii: (3x²)' = 6x
+                            3. Derivată liniară: (-4x)' = -4
+                            4. Derivată constantă: (2)' = 0
+                            5. Combinați rezultatele: 6x - 4
+                        `
                     },
                     {
-                        id: 4,
-                        question: "Ce reprezintă geometric derivata unei funcții într-un punct?",
-                        answer: "Derivata reprezintă panta tangentei la graficul funcției în acel punct.",
-                        visualHint: "Imaginează-ți o curbă și o dreaptă care o atinge într-un singur punct.",
-                        auditoryHint: "Gândește-te la derivată ca la „înclinația” curbei într-un punct specific.",
-                        kinestheticHint: "Folosește o riglă pentru a simula tangenta la o curbă desenată pe hârtie.",
-                        logicalHint: "Derivata este limita raportului dintre variația lui y și variația lui x când Δx tinde la 0."
+                        id: 5,
+                        question: "Determinați panta tangentei la graficul funcției f(x) = x³ în punctul x = 2",
+                        answer: "12",
+                        visualHint: "Desenați graficul lui x³ și trasați tangenta în punctul x=2. Observați panta abruptă.",
+                        auditoryHint: "Calculați derivata (3x²), apoi înlocuiți x=2: 3*(2)² = 12.",
+                        kinestheticHint: "Folosiți o riglă pentru a simula tangenta pe un grafic desenat.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Calculați derivata: f'(x) = 3x²
+                            2. Evaluați în x=2: f'(2) = 3*(2)² = 12
+                            3. Panta tangentei este valoarea derivatei în acel punct
+                        `
+                    },
+                    {
+                        id: 6,
+                        question: "Aflați ecuația tangentei la graficul funcției f(x) = √x în punctul x=4",
+                        answer: "y = (1/4)x + 1",
+                        visualHint: "Desenați graficul rădăcinii și tangenta în punctul (4,2). Panta este 1/4.",
+                        auditoryHint: "Calculați f(4)=2, derivata f'(x)=1/(2√x), f'(4)=1/4. Ecuația: y-2=(1/4)(x-4).",
+                        kinestheticHint: "Folosiți o riglă pentru a simula tangenta în punctul (4,2) cu panta 1/4.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Calculați f(4) = √4 = 2
+                            2. Calculați derivata f'(x) = 1/(2√x)
+                            3. Calculați f'(4) = 1/4
+                            4. Ecuația tangentei: y - f(4) = f'(4)(x - 4)
+                            5. y - 2 = (1/4)(x - 4)
+                            6. y = (1/4)x + 1
+                        `
                     }
                 ],
                 themes: [
@@ -931,13 +1065,118 @@
                         id: 3,
                         title: "Derivata",
                         description: "Rata de schimbare a unei funcții",
-                        svg: '<svg viewBox="0 0 200 100"><path d="M20,80 Q50,20 100,50 T180,20" fill="none" stroke="#2196F3" stroke-width="2"/><line x1="100" y1="50" x2="150" y2="20" stroke="#FF5722" stroke-width="2"/><circle cx="100" cy="50" r="3" fill="#FF5722"/></svg>'
+                        svg: `<svg viewBox="0 0 200 100">
+                            <path d="M20,80 Q50,20 100,50 T180,20" fill="none" stroke="#2196F3" stroke-width="2"/>
+                            <line x1="100" y1="50" x2="150" y2="20" stroke="#FF5722" stroke-width="2"/>
+                            <circle cx="100" cy="50" r="3" fill="#FF5722"/>
+                            <text x="100" y="20" text-anchor="middle" fill="#FF5722" font-size="12">f'(x) = panta tangentei</text>
+                        </svg>`
                     },
                     {
                         id: 4,
                         title: "Reguli de derivare",
                         description: "Reguli pentru calculul derivatelor",
-                        svg: '<svg viewBox="0 0 200 100"><text x="20" y="30" font-family="Arial" font-size="12" fill="#2196F3">(x^n)\' = n*x^(n-1)</text><text x="20" y="50" font-family="Arial" font-size="12" fill="#2196F3">(sin x)\' = cos x</text><text x="20" y="70" font-family="Arial" font-size="12" fill="#2196F3">(e^x)\' = e^x</text></svg>'
+                        svg: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <text x="20" y="30" font-family="Arial" font-size="12" fill="#2196F3">(xⁿ)' = n·xⁿ⁻¹</text>
+                            <text x="20" y="50" font-family="Arial" font-size="12" fill="#2196F3">(c·f)' = c·f'</text>
+                            <text x="20" y="70" font-family="Arial" font-size="12" fill="#2196F3">(f+g)' = f' + g'</text>
+                            <text x="120" y="30" font-family="Arial" font-size="12" fill="#2196F3">(eˣ)' = eˣ</text>
+                            <text x="120" y="50" font-family="Arial" font-size="12" fill="#2196F3">(ln x)' = 1/x</text>
+                        </svg>`
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Capitolul 3: Geometrie analitică",
+                description: "Studiul geometric folosind coordonate și ecuații.",
+                theory: `
+                    <h3>1. Puncte și distanțe</h3>
+                    <p>Distanța dintre două puncte A(x₁,y₁) și B(x₂,y₂):</p>
+                    <p>d = √[(x₂-x₁)² + (y₂-y₁)²]</p>
+                    
+                    <h3>2. Ecuația dreptei</h3>
+                    <p><strong>Forma generală:</strong> ax + by + c = 0</p>
+                    <p><strong>Forma pantă-ordonată:</strong> y = mx + n</p>
+                    <p>unde m este panta, n este ordonata la origine</p>
+                    
+                    <h3>3. Cercul</h3>
+                    <p>Ecuația cercului cu centrul în (a,b) și rază r:</p>
+                    <p>(x-a)² + (y-b)² = r²</p>
+                `,
+                exercises: [
+                    {
+                        id: 7,
+                        question: "Calculați distanța dintre punctele A(2,3) și B(5,7)",
+                        answer: "5",
+                        visualHint: "Desenați punctele pe un sistem de axe și formați un triunghi dreptunghic.",
+                        auditoryHint: "Aplicați formula distanței: radical din (5-2)² plus (7-3)².",
+                        kinestheticHint: "Folosiți o riglă pentru a măsura distanța pe un desen la scară.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Calculați diferențele: Δx = 5-2 = 3, Δy = 7-3 = 4
+                            2. Aplicați teorema lui Pitagora: √(3² + 4²) = √(9+16) = √25 = 5
+                        `
+                    },
+                    {
+                        id: 8,
+                        question: "Determinați ecuația dreptei care trece prin punctele (1,2) și (3,8)",
+                        answer: "y = 3x - 1",
+                        visualHint: "Desenați punctele și observați că pentru fiecare unitate pe x, y crește cu 3.",
+                        auditoryHint: "Calculați panta m = (8-2)/(3-1) = 3, apoi găsiți n din y = mx + n.",
+                        kinestheticHint: "Folosiți două puncte fizice și un fir pentru a simula dreapta.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Calculați panta m = (y₂-y₁)/(x₂-x₁) = (8-2)/(3-1) = 6/2 = 3
+                            2. Folosiți un punct în y = mx + n: 2 = 3*1 + n ⇒ n = -1
+                            3. Ecuația: y = 3x - 1
+                        `
+                    },
+                    {
+                        id: 9,
+                        question: "Aflați centrul și raza cercului cu ecuația (x-2)² + (y+3)² = 16",
+                        answer: "Centrul (2,-3), raza 4",
+                        visualHint: "Comparați cu forma standard (x-a)² + (y-b)² = r² pentru a identifica centrul și raza.",
+                        auditoryHint: "Din ecuație, centrul are coordonatele opuse semnelor din paranteze: (2,-3), iar r²=16 deci r=4.",
+                        kinestheticHint: "Desenați cercul pe hârtie milimetrică folosind centrul și raza.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Comparați cu forma standard: (x-a)² + (y-b)² = r²
+                            2. Identificați a=2 (din x-2)
+                            3. Identificați b=-3 (din y+3)
+                            4. Identificați r²=16 ⇒ r=4
+                        `
+                    }
+                ],
+                themes: [
+                    {
+                        id: 5,
+                        title: "Distanța dintre puncte",
+                        description: "Calculul distanței în plan",
+                        svg: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="30" y1="70" x2="70" y2="30" stroke="#2196F3" stroke-width="2"/>
+                            <circle cx="30" cy="70" r="3" fill="#FF5722"/>
+                            <circle cx="70" cy="30" r="3" fill="#FF5722"/>
+                            <text x="30" y="85" text-anchor="middle" fill="#FF5722">A(x₁,y₁)</text>
+                            <text x="70" y="15" text-anchor="middle" fill="#FF5722">B(x₂,y₂)</text>
+                            <text x="50" y="50" text-anchor="middle" fill="#2196F3">d = √[(x₂-x₁)² + (y₂-y₁)²]</text>
+                        </svg>`
+                    },
+                    {
+                        id: 6,
+                        title: "Ecuația dreptei",
+                        description: "Reprezentarea algebrică a unei drepte",
+                        svg: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="30" y1="70" x2="170" y2="30" stroke="#2196F3" stroke-width="2"/>
+                            <text x="100" y="60" text-anchor="middle" fill="#2196F3">y = mx + n</text>
+                            <text x="170" y="35" text-anchor="end" fill="#FF5722" font-size="10">panta m</text>
+                            <line x1="160" y1="30" x2="160" y2="50" stroke="#FF5722" stroke-width="1"/>
+                            <line x1="160" y1="50" x2="180" y2="50" stroke="#FF5722" stroke-width="1"/>
+                            <text x="30" y="85" text-anchor="middle" fill="#FF5722" font-size="10">n (ordonata)</text>
+                        </svg>`
                     }
                 ]
             }
@@ -1197,6 +1436,15 @@
                 renderKinestheticExercises();
             } else {
                 chapters.forEach(chapter => {
+                    // Add theory section before exercises
+                    const theorySection = document.createElement('div');
+                    theorySection.className = 'exercise-card';
+                    theorySection.innerHTML = `
+                        <h3>Teorie: ${chapter.title}</h3>
+                        <div class="theory-content">${chapter.theory}</div>
+                    `;
+                    mainContent.appendChild(theorySection);
+                    
                     const chapterSection = document.createElement('div');
                     chapterSection.className = 'chapter-card slide-in';
                     
@@ -1299,11 +1547,11 @@
                         if (selectedLearningStyle === 'logica') {
                             const logicalHelpBtn = actions.querySelector('.logical-help');
                             logicalHelpBtn.addEventListener('click', () => {
-                                const steps = exercise.logicalHint.split('. ');
+                                const steps = exercise.logicalHint.split('\n');
                                 let stepsHTML = '<ol>';
                                 steps.forEach(step => {
                                     if (step.trim()) {
-                                        stepsHTML += `<li>${step.trim()}.</li>`;
+                                        stepsHTML += `<li>${step.trim()}</li>`;
                                     }
                                 });
                                 stepsHTML += '</ol>';
