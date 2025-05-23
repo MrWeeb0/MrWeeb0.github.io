@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnZy</title>
+    <title>GOUT - Platforma de Matematică</title>
     <style>
         /* Reset and Base Styles */
         * {
@@ -688,6 +688,123 @@
         .slide-in {
             animation: slideIn 0.5s ease-out;
         }
+
+        /* Premium Subscription Card Styles */
+        .payment-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        
+        .payment-header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .payment-header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 16px 0;
+        }
+        
+        .price span {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        
+        .payment-body {
+            padding: 24px;
+        }
+        
+        .benefits {
+            margin-bottom: 24px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+        
+        .benefit-item i {
+            color: var(--success);
+            margin-right: 12px;
+            font-size: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .payment-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .payment-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        .payment-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .payment-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .payment-btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .payment-btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .payment-footer {
+            text-align: center;
+            padding: 0 24px 24px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .secure {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+            color: var(--success);
+            font-weight: 500;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -729,11 +846,12 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="app-container">
         <header>
-            <div class="logo">LearnZy</div>
+            <div class="logo">GOUT</div>
             <button class="settings-btn" id="settingsBtn">⚙️</button>
         </header>
         
@@ -751,6 +869,10 @@
                     <span class="nav-icon">📚</span>
                     <span>Teme</span>
                 </li>
+                <li class="nav-item" data-view="premium">
+                    <span class="nav-icon">⭐</span>
+                    <span>Premium</span>
+                </li>
                 <li class="nav-item" data-view="support">
                     <span class="nav-icon">🆘</span>
                     <span>Suport</span>
@@ -764,7 +886,7 @@
         
         <main id="mainContent">
             <!-- Content will be dynamically loaded here -->
-            <h1 class="page-title">Bine ai venit pe platforma LearnZy!</h1>
+            <h1 class="page-title">Bine ai venit pe platforma GOUT!</h1>
             <p>Selectează o secțiune din meniul lateral pentru a începe.</p>
         </main>
         
@@ -863,6 +985,67 @@
         </div>
     </div>
     
+    <!-- Premium Subscription Modal -->
+    <div class="modal-overlay" id="premiumModal">
+        <div class="modal" style="max-width: 450px;">
+            <div class="payment-card">
+                <div class="payment-header">
+                    <h1>Abonament Premium</h1>
+                    <p>Acces nelimitat la toate funcționalitățile</p>
+                    <div class="price">200 <span>MDL/lună</span></div>
+                </div>
+                
+                <div class="payment-body">
+                    <div class="benefits">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Acces complet la toate caracteristicile</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Asistență prioritară</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Actualizări periodice</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Anulare oricând</span>
+                        </div>
+                    </div>
+                    
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="card-number" class="payment-label">Număr card</label>
+                            <input type="text" id="card-number" class="payment-input" placeholder="1234 5678 9012 3456">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-expiry" class="payment-label">Data expirării</label>
+                            <input type="text" id="card-expiry" class="payment-input" placeholder="MM/AA">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card-cvc" class="payment-label">CVC</label>
+                            <input type="text" id="card-cvc" class="payment-input" placeholder="123">
+                        </div>
+                        
+                        <button type="submit" class="payment-btn payment-btn-primary">Plătește 200 MDL</button>
+                    </form>
+                </div>
+                
+                <div class="payment-footer">
+                    <p>Plata se reînnoiește automat. Poți anula oricând.</p>
+                    <div class="secure">
+                        <i class="fas fa-lock"></i>
+                        <span>Plată securizată</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Support Chat -->
     <div class="support-chat">
         <div class="chat-panel" id="chatPanel">
@@ -872,6 +1055,7 @@
                 <div class="faq-item">Cum pot rezolva exercițiile?</div>
                 <div class="faq-item">Unde găsesc explicații suplimentare?</div>
                 <div class="faq-item">Cum schimb stilul de învățare?</div>
+                <div class="faq-item">Ce beneficii are abonamentul Premium?</div>
             </div>
             <div class="chat-input">
                 <input type="text" class="chat-input-field" id="chatInput" placeholder="Scrie întrebarea ta...">
@@ -1202,10 +1386,12 @@
         let chatMessages = [
             { sender: 'bot', text: 'Bună! Cu ce te pot ajuta astăzi?' }
         ];
+        let isPremiumUser = false;
 
         // DOM Elements
         const onboardingModal = document.getElementById('onboardingModal');
         const settingsModal = document.getElementById('settingsModal');
+        const premiumModal = document.getElementById('premiumModal');
         const settingsBtn = document.getElementById('settingsBtn');
         const saveSettingsBtn = document.getElementById('saveSettingsBtn');
         const prevBtn = document.getElementById('prevBtn');
@@ -1221,6 +1407,7 @@
         const chatBody = document.getElementById('chatBody');
         const chatInput = document.getElementById('chatInput');
         const chatSendBtn = document.getElementById('chatSendBtn');
+        const paymentForm = document.getElementById('paymentForm');
 
         // Initialize App
         function initApp() {
@@ -1249,6 +1436,11 @@
                 teacherModeToggle.checked = true;
                 panelLabel.textContent = 'Profesor';
                 document.querySelectorAll('.teacher-only').forEach(el => el.style.display = 'flex');
+            }
+            
+            const savedPremiumStatus = localStorage.getItem('isPremiumUser');
+            if (savedPremiumStatus === 'true') {
+                isPremiumUser = true;
             }
             
             if (selectedLearningStyle) {
@@ -1303,6 +1495,11 @@
                 document.querySelectorAll('.teacher-only').forEach(el => el.style.display = 'flex');
             }
             
+            const savedPremiumStatus = localStorage.getItem('isPremiumUser');
+            if (savedPremiumStatus === 'true') {
+                isPremiumUser = true;
+            }
+            
             if (selectedLearningStyle) {
                 learningStyleDisplay.value = capitalizeFirstLetter(selectedLearningStyle);
             }
@@ -1321,6 +1518,9 @@
                     break;
                 case 'themes':
                     renderThemesView();
+                    break;
+                case 'premium':
+                    renderPremiumView();
                     break;
                 case 'support':
                     renderSupportView();
@@ -1345,9 +1545,32 @@
             description.className = 'fade-in';
             description.style.marginTop = '20px';
             
+            if (isPremiumUser) {
+                description.innerHTML = `
+                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71; margin-bottom: 20px;">
+                        <h3 style="margin-top: 0; color: #2ecc71;">⭐ Ești utilizator Premium!</h3>
+                        <p>Ai acces la toate funcționalitățile platformei.</p>
+                    </div>
+                `;
+            } else {
+                description.innerHTML = `
+                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 4px solid #f39c12; margin-bottom: 20px;">
+                        <h3 style="margin-top: 0; color: #f39c12;">🔓 Deblochează toate funcționalitățile</h3>
+                        <p>Upgrade la Premium pentru acces complet la toate resursele și caracteristicile platformei.</p>
+                        <button class="btn btn-primary" id="upgradeBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                    </div>
+                `;
+                
+                document.getElementById('upgradeBtn')?.addEventListener('click', () => {
+                    currentView = 'premium';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+            }
+            
             switch(selectedLearningStyle) {
                 case 'vizual':
-                    description.innerHTML = `
+                    description.innerHTML += `
                         <p>Deoarece ai un stil de învățare vizual, platforma va pune accent pe:</p>
                         <ul>
                             <li>Diagrame și grafice explicative</li>
@@ -1358,7 +1581,7 @@
                     `;
                     break;
                 case 'auditiv':
-                    description.innerHTML = `
+                    description.innerHTML += `
                         <p>Deoarece ai un stil de învățare auditiv, platforma va pune accent pe:</p>
                         <ul>
                             <li>Explicații audio pentru concepte</li>
@@ -1369,7 +1592,7 @@
                     `;
                     break;
                 case 'kinestezic':
-                    description.innerHTML = `
+                    description.innerHTML += `
                         <p>Deoarece ai un stil de învățare kinestezic, platforma va pune accent pe:</p>
                         <ul>
                             <li>Exerciții practice interactive</li>
@@ -1380,7 +1603,7 @@
                     `;
                     break;
                 case 'logica':
-                    description.innerHTML = `
+                    description.innerHTML += `
                         <p>Deoarece ai un stil de învățare logică, platforma va pune accent pe:</p>
                         <ul>
                             <li>Pași logici și structurați</li>
@@ -1395,11 +1618,170 @@
             mainContent.appendChild(description);
         }
 
+        function renderPremiumView() {
+            const title = document.createElement('h1');
+            title.className = 'page-title';
+            title.textContent = 'Abonament Premium';
+            mainContent.appendChild(title);
+            
+            if (isPremiumUser) {
+                const premiumStatus = document.createElement('div');
+                premiumStatus.className = 'exercise-card';
+                premiumStatus.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success); margin-bottom: 15px;"></i>
+                        <h3 style="margin-bottom: 10px;">Ești deja utilizator Premium!</h3>
+                        <p>Ai acces la toate funcționalitățile platformei.</p>
+                        <p>Abonamentul tău se reînnoiește automat în fiecare lună.</p>
+                    </div>
+                `;
+                mainContent.appendChild(premiumStatus);
+            } else {
+                // Show the premium subscription card
+                const premiumCard = document.createElement('div');
+                premiumCard.className = 'payment-card';
+                premiumCard.innerHTML = `
+                    <div class="payment-header">
+                        <h1>Abonament Premium</h1>
+                        <p>Acces nelimitat la toate funcționalitățile</p>
+                        <div class="price">200 <span>MDL/lună</span></div>
+                    </div>
+                    
+                    <div class="payment-body">
+                        <div class="benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Acces complet la toate caracteristicile</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Asistență prioritară</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Actualizări periodice</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Anulare oricând</span>
+                            </div>
+                        </div>
+                        
+                        <form id="paymentFormInline">
+                            <div class="form-group">
+                                <label for="card-number-inline" class="payment-label">Număr card</label>
+                                <input type="text" id="card-number-inline" class="payment-input" placeholder="1234 5678 9012 3456">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-expiry-inline" class="payment-label">Data expirării</label>
+                                <input type="text" id="card-expiry-inline" class="payment-input" placeholder="MM/AA">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-cvc-inline" class="payment-label">CVC</label>
+                                <input type="text" id="card-cvc-inline" class="payment-input" placeholder="123">
+                            </div>
+                            
+                            <button type="submit" class="payment-btn payment-btn-primary">Plătește 200 MDL</button>
+                        </form>
+                    </div>
+                    
+                    <div class="payment-footer">
+                        <p>Plata se reînnoiește automat. Poți anula oricând.</p>
+                        <div class="secure">
+                            <i class="fas fa-lock"></i>
+                            <span>Plată securizată</span>
+                        </div>
+                    </div>
+                `;
+                mainContent.appendChild(premiumCard);
+                
+                // Add event listener for the inline form
+                document.getElementById('paymentFormInline')?.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    processPayment();
+                });
+            }
+            
+            // Add FAQ section
+            const faqSection = document.createElement('div');
+            faqSection.className = 'exercise-card';
+            faqSection.style.marginTop = '20px';
+            faqSection.innerHTML = `
+                <h3>Întrebări frecvente</h3>
+                
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Când voi avea acces la funcționalitățile Premium?</strong>
+                    <p style="margin-top: 5px;">Imediat după ce plata este confirmată.</p>
+                </div>
+                
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Cum pot anula abonamentul?</strong>
+                    <p style="margin-top: 5px;">Poți anula oricând din secțiunea de setări.</p>
+                </div>
+                
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Ce metode de plată acceptați?</strong>
+                    <p style="margin-top: 5px;">Acceptăm toate cardurile Visa, Mastercard și Maestro.</p>
+                </div>
+            `;
+            mainContent.appendChild(faqSection);
+        }
+
         function renderExercisesView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
             title.textContent = 'Exerciții';
             mainContent.appendChild(title);
+            
+            if (!isPremiumUser) {
+                const premiumPrompt = document.createElement('div');
+                premiumPrompt.className = 'exercise-card';
+                premiumPrompt.style.backgroundColor = '#fff3e0';
+                premiumPrompt.style.borderLeft = '4px solid #f39c12';
+                premiumPrompt.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 24px;">🔒</div>
+                        <div>
+                            <h3 style="margin-top: 0;">Acces restricționat</h3>
+                            <p>Pentru a accesa toate exercițiile, upgrade la Premium.</p>
+                            <button class="btn btn-primary" id="upgradeExercisesBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                        </div>
+                    </div>
+                `;
+                mainContent.appendChild(premiumPrompt);
+                
+                document.getElementById('upgradeExercisesBtn')?.addEventListener('click', () => {
+                    currentView = 'premium';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+                
+                // Show only limited exercises for free users
+                const freeExercises = document.createElement('div');
+                freeExercises.className = 'exercise-card';
+                freeExercises.innerHTML = `
+                    <h3>Exerciții disponibile (versiune gratuită)</h3>
+                    <p>Ai acces la un număr limitat de exerciții. Upgrade la Premium pentru acces complet.</p>
+                    
+                    <div style="margin-top: 15px;">
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>3 exerciții pe capitol</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Feedback limitat</span>
+                        </div>
+                        <div class="benefit-item">
+                            <i class="fas fa-times-circle" style="color: var(--error);"></i>
+                            <span>Fără acces la soluții detaliate</span>
+                        </div>
+                    </div>
+                `;
+                mainContent.appendChild(freeExercises);
+            }
             
             // Show learning style specific hint
             const hint = document.createElement('div');
@@ -1458,7 +1840,10 @@
                     const chapterContent = document.createElement('div');
                     chapterContent.className = 'chapter-content';
                     
-                    chapter.exercises.forEach(exercise => {
+                    // Show only first 3 exercises for free users
+                    const exercisesToShow = isPremiumUser ? chapter.exercises : chapter.exercises.slice(0, 3);
+                    
+                    exercisesToShow.forEach(exercise => {
                         const exerciseCard = document.createElement('div');
                         exerciseCard.className = 'exercise-card';
                         
@@ -1482,16 +1867,18 @@
                         
                         // Add learning style specific help
                         let styleHelp = '';
-                        switch(selectedLearningStyle) {
-                            case 'vizual':
-                                styleHelp = `<button class="btn btn-secondary visual-help" data-hint="${exercise.visualHint}" style="margin-right: 10px;">Ajutor Vizual</button>`;
-                                break;
-                            case 'auditiv':
-                                styleHelp = `<button class="btn btn-secondary auditory-help" style="margin-right: 10px;">Ascultă Explicația</button>`;
-                                break;
-                            case 'logica':
-                                styleHelp = `<button class="btn btn-secondary logical-help" data-hint="${exercise.logicalHint}" style="margin-right: 10px;">Pași Logici</button>`;
-                                break;
+                        if (isPremiumUser) {
+                            switch(selectedLearningStyle) {
+                                case 'vizual':
+                                    styleHelp = `<button class="btn btn-secondary visual-help" data-hint="${exercise.visualHint}" style="margin-right: 10px;">Ajutor Vizual</button>`;
+                                    break;
+                                case 'auditiv':
+                                    styleHelp = `<button class="btn btn-secondary auditory-help" style="margin-right: 10px;">Ascultă Explicația</button>`;
+                                    break;
+                                case 'logica':
+                                    styleHelp = `<button class="btn btn-secondary logical-help" data-hint="${exercise.logicalHint}" style="margin-right: 10px;">Pași Logici</button>`;
+                                    break;
+                            }
                         }
                         
                         actions.innerHTML = `
@@ -1511,18 +1898,25 @@
                             } else {
                                 feedback.textContent = '✗ Incorect. Încearcă din nou.';
                                 feedback.className = 'exercise-feedback incorrect';
+                                
+                                if (isPremiumUser) {
+                                    // Show more detailed feedback for premium users
+                                    setTimeout(() => {
+                                        feedback.textContent += ` Răspuns corect: ${correctAnswer}`;
+                                    }, 1000);
+                                }
                             }
                         });
                         
                         // Add event listeners for help buttons
-                        if (selectedLearningStyle === 'vizual') {
+                        if (isPremiumUser && selectedLearningStyle === 'vizual') {
                             const visualHelpBtn = actions.querySelector('.visual-help');
                             visualHelpBtn.addEventListener('click', () => {
                                 alert(exercise.visualHint);
                             });
                         }
                         
-                        if (selectedLearningStyle === 'auditiv') {
+                        if (isPremiumUser && selectedLearningStyle === 'auditiv') {
                             const auditoryHelpBtn = actions.querySelector('.auditory-help');
                             auditoryHelpBtn.addEventListener('click', () => {
                                 // In a real app, this would play audio
@@ -1544,7 +1938,7 @@
                             });
                         }
                         
-                        if (selectedLearningStyle === 'logica') {
+                        if (isPremiumUser && selectedLearningStyle === 'logica') {
                             const logicalHelpBtn = actions.querySelector('.logical-help');
                             logicalHelpBtn.addEventListener('click', () => {
                                 const steps = exercise.logicalHint.split('\n');
@@ -1597,6 +1991,27 @@
                         chapterContent.appendChild(exerciseCard);
                     });
                     
+                    if (!isPremiumUser && chapter.exercises.length > 3) {
+                        const premiumLock = document.createElement('div');
+                        premiumLock.className = 'exercise-card';
+                        premiumLock.style.backgroundColor = '#f5f5f5';
+                        premiumLock.style.textAlign = 'center';
+                        premiumLock.style.padding = '20px';
+                        premiumLock.innerHTML = `
+                            <i class="fas fa-lock" style="font-size: 24px; color: #666; margin-bottom: 10px;"></i>
+                            <p>Upgrade la Premium pentru a accesa toate exercițiile</p>
+                            <button class="btn btn-primary" style="margin-top: 10px;">Deblochează exerciții</button>
+                        `;
+                        
+                        premiumLock.querySelector('button').addEventListener('click', () => {
+                            currentView = 'premium';
+                            renderView(currentView);
+                            setActiveNavItem(currentView);
+                        });
+                        
+                        chapterContent.appendChild(premiumLock);
+                    }
+                    
                     chapterHeader.addEventListener('click', () => {
                         const isCollapsed = chapterContent.classList.toggle('expanded');
                         chapterHeader.querySelector('.chapter-toggle').classList.toggle('collapsed', !isCollapsed);
@@ -1612,6 +2027,26 @@
         function renderKinestheticExercises() {
             const dragDropExercise = document.createElement('div');
             dragDropExercise.className = 'exercise-card';
+            
+            if (!isPremiumUser) {
+                dragDropExercise.innerHTML = `
+                    <div style="text-align: center; padding: 20px;">
+                        <i class="fas fa-lock" style="font-size: 48px; color: #666; margin-bottom: 15px;"></i>
+                        <h3 style="margin-bottom: 10px;">Exerciții interactive disponibile doar pentru Premium</h3>
+                        <p>Upgrade la Premium pentru a accesa exercițiile practice interactive.</p>
+                        <button class="btn btn-primary" id="upgradeKinestheticBtn" style="margin-top: 15px;">Upgrade la Premium</button>
+                    </div>
+                `;
+                
+                document.getElementById('upgradeKinestheticBtn')?.addEventListener('click', () => {
+                    currentView = 'premium';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+                
+                mainContent.appendChild(dragDropExercise);
+                return;
+            }
             
             dragDropExercise.innerHTML = `
                 <div class="exercise-question">Aranjăți numerele în ordine crescătoare:</div>
@@ -1701,6 +2136,30 @@
             title.textContent = 'Teme';
             mainContent.appendChild(title);
             
+            if (!isPremiumUser) {
+                const premiumPrompt = document.createElement('div');
+                premiumPrompt.className = 'exercise-card';
+                premiumPrompt.style.backgroundColor = '#fff3e0';
+                premiumPrompt.style.borderLeft = '4px solid #f39c12';
+                premiumPrompt.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 24px;">🔒</div>
+                        <div>
+                            <h3 style="margin-top: 0;">Acces restricționat</h3>
+                            <p>Pentru a accesa toate resursele vizuale, upgrade la Premium.</p>
+                            <button class="btn btn-primary" id="upgradeThemesBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                        </div>
+                    </div>
+                `;
+                mainContent.appendChild(premiumPrompt);
+                
+                document.getElementById('upgradeThemesBtn')?.addEventListener('click', () => {
+                    currentView = 'premium';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+            }
+            
             // Show learning style specific hint for visual learners
             if (selectedLearningStyle === 'vizual') {
                 const hint = document.createElement('div');
@@ -1724,7 +2183,10 @@
                 const chapterContent = document.createElement('div');
                 chapterContent.className = 'chapter-content';
                 
-                chapter.themes.forEach(theme => {
+                // Show only first theme for free users
+                const themesToShow = isPremiumUser ? chapter.themes : chapter.themes.slice(0, 1);
+                
+                themesToShow.forEach(theme => {
                     const themeCard = document.createElement('div');
                     themeCard.className = 'exercise-card';
                     
@@ -1736,6 +2198,27 @@
                     
                     chapterContent.appendChild(themeCard);
                 });
+                
+                if (!isPremiumUser && chapter.themes.length > 1) {
+                    const premiumLock = document.createElement('div');
+                    premiumLock.className = 'exercise-card';
+                    premiumLock.style.backgroundColor = '#f5f5f5';
+                    premiumLock.style.textAlign = 'center';
+                    premiumLock.style.padding = '20px';
+                    premiumLock.innerHTML = `
+                        <i class="fas fa-lock" style="font-size: 24px; color: #666; margin-bottom: 10px;"></i>
+                        <p>Upgrade la Premium pentru a accesa toate resursele vizuale</p>
+                        <button class="btn btn-primary" style="margin-top: 10px;">Deblochează resurse</button>
+                    `;
+                    
+                    premiumLock.querySelector('button').addEventListener('click', () => {
+                        currentView = 'premium';
+                        renderView(currentView);
+                        setActiveNavItem(currentView);
+                    });
+                    
+                    chapterContent.appendChild(premiumLock);
+                }
                 
                 chapterHeader.addEventListener('click', () => {
                     const isCollapsed = chapterContent.classList.toggle('expanded');
@@ -1769,6 +2252,10 @@
                 <div class="exercise-card">
                     <h3>Cum pot contacta un profesor?</h3>
                     <p>Dacă ești în modul Profesor, poți folosi butonul "Class Dashboard". Altfel, folosește chat-ul pentru suport.</p>
+                </div>
+                <div class="exercise-card">
+                    <h3>Ce beneficii are abonamentul Premium?</h3>
+                    <p>Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară.</p>
                 </div>
             `;
             
@@ -1852,6 +2339,68 @@
             document.body.appendChild(modal);
         }
 
+        function processPayment() {
+            // In a real app, this would process the payment
+            // For demo purposes, we'll just simulate a successful payment
+            
+            // Show loading state
+            const submitBtn = document.querySelector('#paymentForm button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Se procesează...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success message
+                const successModal = document.createElement('div');
+                successModal.style.position = 'fixed';
+                successModal.style.top = '0';
+                successModal.style.left = '0';
+                successModal.style.right = '0';
+                successModal.style.bottom = '0';
+                successModal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+                successModal.style.display = 'flex';
+                successModal.style.justifyContent = 'center';
+                successModal.style.alignItems = 'center';
+                successModal.style.zIndex = '1000';
+                
+                const modalContent = document.createElement('div');
+                modalContent.style.backgroundColor = 'white';
+                modalContent.style.padding = '30px';
+                modalContent.style.borderRadius = '8px';
+                modalContent.style.maxWidth = '400px';
+                modalContent.style.width = '90%';
+                modalContent.style.textAlign = 'center';
+                
+                modalContent.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 48px; color: #2ecc71; margin-bottom: 15px;"></i>
+                    <h3 style="margin-bottom: 10px;">Plată efectuată cu succes!</h3>
+                    <p>Abonamentul tău Premium a fost activat. Acum ai acces la toate funcționalitățile platformei.</p>
+                    <button style="margin-top: 20px; padding: 10px 20px; background: #4a6bff; color: white; border: none; border-radius: 6px; cursor: pointer;">Înțeles</button>
+                `;
+                
+                const closeBtn = modalContent.querySelector('button');
+                closeBtn.addEventListener('click', () => {
+                    document.body.removeChild(successModal);
+                    premiumModal.classList.remove('active');
+                    
+                    // Update premium status
+                    isPremiumUser = true;
+                    localStorage.setItem('isPremiumUser', 'true');
+                    
+                    // Refresh the current view
+                    renderView(currentView);
+                });
+                
+                successModal.appendChild(modalContent);
+                document.body.appendChild(successModal);
+                
+                // Reset button
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+
         function animateSuccess(element) {
             const originalBg = element.style.backgroundColor;
             element.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
@@ -1920,7 +2469,20 @@
                 currentView = view;
                 renderView(view);
                 setActiveNavItem(view);
+                
+                // Show premium modal if clicking on premium nav item
+                if (view === 'premium') {
+                    premiumModal.classList.add('active');
+                } else {
+                    premiumModal.classList.remove('active');
+                }
             });
+        });
+
+        // Payment form submission
+        paymentForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            processPayment();
         });
 
         // Onboarding modal navigation
@@ -2017,7 +2579,13 @@
                 
                 // Simulate bot response after delay
                 setTimeout(() => {
-                    const botResponse = "Am înțeles întrebarea ta. Un profesor va răspunde în curând. (Acesta este un răspuns simulat)";
+                    let botResponse = "";
+                    
+                    if (message.toLowerCase().includes('premium') || message.toLowerCase().includes('abonament')) {
+                        botResponse = "Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară. Poți afla mai multe în secțiunea Premium din meniu.";
+                    } else {
+                        botResponse = mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
+                    }
                     
                     const botMsg = document.createElement('div');
                     botMsg.className = 'chat-message bot';
@@ -2040,7 +2608,11 @@
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('faq-item')) {
                 const question = e.target.textContent;
-                const answer = "Acesta este un răspuns simulat la întrebarea ta. Într-o implementare reală, acesta ar fi un răspuns specific din baza noastră de cunoștințe.";
+                let answer = "Acesta este un răspuns simulat la întrebarea ta. Într-o implementare reală, acesta ar fi un răspuns specific din baza noastră de cunoștințe.";
+                
+                if (question.includes('Premium') || question.includes('abonament')) {
+                    answer = "Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară. Costă 200 MDL pe lună și poți anula oricând.";
+                }
                 
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-message bot';
