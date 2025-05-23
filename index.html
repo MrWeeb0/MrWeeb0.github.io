@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GOUT - Platforma de Matematică</title>
+    <title>LearnZy - Platforma de Matematică</title>
     <style>
         /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         :root {
-            --primary: #4a6bff;
-            --primary-dark: #3a56cc;
-            --secondary: #ff6b6b;
-            --text: #333;
-            --text-light: #666;
-            --bg: #f5f7fa;
-            --card-bg: #fff;
-            --sidebar-bg: #2c3e50;
-            --sidebar-text: #ecf0f1;
-            --success: #2ecc71;
-            --error: #e74c3c;
-            --warning: #f39c12;
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --primary-dark: #3a0ca3;
+            --secondary: #f72585;
+            --accent: #4cc9f0;
+            --text: #2b2d42;
+            --text-light: #8d99ae;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --sidebar-bg: #2b2d42;
+            --sidebar-text: #edf2f4;
+            --success: #4caf50;
+            --error: #f44336;
+            --warning: #ff9800;
             --border: #e0e0e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --radius: 12px;
         }
         
         body {
@@ -34,6 +38,8 @@
             color: var(--text);
             line-height: 1.6;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         /* Layout */
         .app-container {
@@ -42,8 +48,8 @@
                 "sidebar header"
                 "sidebar main"
                 "sidebar footer";
-            grid-template-columns: 250px 1fr;
-            grid-template-rows: 60px 1fr 40px;
+            grid-template-columns: 280px 1fr;
+            grid-template-rows: 70px 1fr 50px;
             min-height: 100vh;
         }
         
@@ -52,29 +58,61 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            padding: 0 30px;
             background-color: var(--card-bg);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             z-index: 10;
+            position: sticky;
+            top: 0;
         }
         
         .logo {
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 700;
+            font-size: 1.8rem;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--secondary);
+        }
+        
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
         }
         
         .settings-btn {
             background: none;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
             color: var(--text-light);
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .settings-btn:hover {
             color: var(--primary);
+            transform: rotate(30deg);
         }
         
         sidebar {
@@ -82,6 +120,7 @@
             background-color: var(--sidebar-bg);
             color: var(--sidebar-text);
             padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
         }
         
         .nav-menu {
@@ -89,30 +128,37 @@
         }
         
         .nav-item {
-            padding: 12px 20px;
+            padding: 15px 25px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
+            gap: 15px;
+            margin: 5px 10px;
+            border-radius: var(--radius);
         }
         
         .nav-item:hover {
             background-color: rgba(255,255,255,0.1);
+            transform: translateX(5px);
         }
         
         .nav-item.active {
             background-color: var(--primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .nav-icon {
-            margin-right: 10px;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
         }
         
         main {
             grid-area: main;
-            padding: 20px;
+            padding: 30px;
             overflow-y: auto;
+            background-color: var(--bg);
         }
         
         footer {
@@ -122,10 +168,128 @@
             align-items: center;
             background-color: var(--card-bg);
             border-top: 1px solid var(--border);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-light);
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.05);
         }
         
+        /* Dashboard Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card h3 {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .stat-card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .stat-card .progress {
+            height: 6px;
+            background-color: #eee;
+            border-radius: 3px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+
+        .stat-card .progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        /* Course Cards */
+        .course-card {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            margin-bottom: 25px;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .course-header {
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .course-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .course-progress {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .course-content {
+            padding: 20px;
+        }
+
+        .course-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .course-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .course-actions {
+            display: flex;
+            gap: 10px;
+        }
+
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -150,11 +314,11 @@
         
         .modal {
             background-color: var(--card-bg);
-            border-radius: 8px;
+            border-radius: var(--radius);
             width: 90%;
             max-width: 500px;
             padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
             transform: translateY(-20px);
             transition: transform 0.3s;
         }
@@ -202,9 +366,9 @@
         .option {
             padding: 12px 15px;
             background-color: var(--bg);
-            border-radius: 6px;
+            border-radius: var(--radius);
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: all 0.3s;
             border: 1px solid var(--border);
         }
         
@@ -225,41 +389,76 @@
         }
         
         .btn {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: none;
-            border-radius: 6px;
+            border-radius: var(--radius);
             cursor: pointer;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .btn-primary {
             background-color: var(--primary);
             color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .btn-primary:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
         }
         
         .btn-secondary {
             background-color: var(--bg);
             color: var(--text);
+            border: 1px solid var(--border);
         }
         
         .btn-secondary:hover {
             background-color: #e0e0e0;
+            transform: translateY(-2px);
         }
         
         .btn-disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .btn-icon {
+            padding: 10px;
+            border-radius: 50%;
+            min-width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
         
         /* Content Styles */
         .page-title {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--primary);
+            font-size: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .page-subtitle {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            max-width: 800px;
         }
         
         .chapters-container {
@@ -270,20 +469,20 @@
         
         .chapter-card {
             background-color: var(--card-bg);
-            border-radius: 8px;
+            border-radius: var(--radius);
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
         }
         
         .chapter-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .chapter-header {
-            padding: 15px;
-            background-color: var(--primary);
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             cursor: pointer;
             display: flex;
@@ -292,7 +491,8 @@
         }
         
         .chapter-title {
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .chapter-toggle {
@@ -312,7 +512,7 @@
         }
         
         .chapter-content.expanded {
-            padding: 15px;
+            padding: 20px;
             max-height: 1000px;
         }
         
@@ -324,22 +524,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            border-radius: var(--radius);
+            overflow: hidden;
         }
         
         .exercise-card {
             background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .exercise-card:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
         }
         
         .theory-content {
-            padding: 10px;
+            padding: 15px;
             background-color: var(--bg);
-            border-radius: 6px;
-            margin: 10px 0;
+            border-radius: var(--radius);
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
         }
         
         .theory-content h3 {
@@ -358,17 +566,26 @@
         
         .exercise-question {
             margin-bottom: 15px;
-            font-weight: 500;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
         
         .exercise-answer {
             width: 100%;
-            padding: 10px;
+            padding: 15px;
             border: 1px solid var(--border);
-            border-radius: 4px;
-            margin-bottom: 10px;
-            min-height: 80px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            min-height: 100px;
             resize: vertical;
+            font-family: inherit;
+            transition: border 0.3s;
+        }
+
+        .exercise-answer:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
         }
         
         .exercise-actions {
@@ -388,7 +605,32 @@
         .incorrect {
             color: var(--error);
         }
-        
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            background-color: var(--primary-light);
+            color: white;
+        }
+
+        .badge-secondary {
+            background-color: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .badge-success {
+            background-color: var(--success);
+        }
+
+        .badge-warning {
+            background-color: var(--warning);
+        }
+
         /* Support Chat */
         .support-chat {
             position: fixed;
@@ -401,46 +643,62 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .chat-btn:hover {
             transform: scale(1.1);
-            background-color: var(--primary-dark);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
         
         .chat-panel {
             position: absolute;
-            bottom: 70px;
+            bottom: 80px;
             right: 0;
             width: 350px;
             max-height: 500px;
             background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-radius: var(--radius);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             overflow: hidden;
             display: none;
             flex-direction: column;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s;
         }
         
         .chat-panel.active {
             display: flex;
+            transform: translateY(0);
+            opacity: 1;
         }
         
         .chat-header {
             padding: 15px;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            font-weight: 500;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
         }
         
         .chat-body {
@@ -453,14 +711,17 @@
         }
         
         .chat-message {
-            padding: 10px 15px;
+            padding: 12px 16px;
             border-radius: 18px;
             max-width: 80%;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            box-shadow: var(--shadow);
         }
         
         .chat-message.user {
             align-self: flex-end;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border-bottom-right-radius: 5px;
         }
@@ -473,58 +734,83 @@
         }
         
         .faq-item {
-            padding: 10px;
+            padding: 12px;
             margin-bottom: 10px;
             background-color: var(--bg);
-            border-radius: 6px;
+            border-radius: var(--radius);
             cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .faq-item:hover {
             background-color: #e0e5ff;
+            transform: translateX(5px);
         }
         
         .chat-input {
             display: flex;
-            padding: 10px;
+            padding: 12px;
             border-top: 1px solid var(--border);
+            background-color: var(--card-bg);
         }
         
         .chat-input-field {
             flex: 1;
-            padding: 10px;
+            padding: 12px 15px;
             border: 1px solid var(--border);
-            border-radius: 20px;
+            border-radius: 30px;
             outline: none;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .chat-input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
         }
         
         .chat-send-btn {
             margin-left: 10px;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
             border: none;
             border-radius: 50%;
             width: 40px;
             height: 40px;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .chat-send-btn:hover {
+            transform: scale(1.1);
         }
         
         /* Settings Modal */
         .settings-option {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .settings-label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: var(--text);
         }
         
         .settings-select, .settings-input {
             width: 100%;
-            padding: 8px 10px;
+            padding: 10px 12px;
             border: 1px solid var(--border);
-            border-radius: 4px;
+            border-radius: var(--radius);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .settings-select:focus, .settings-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
         }
         
         .toggle-switch {
@@ -580,34 +866,38 @@
         /* Learning Style Specific */
         .visual-hint {
             display: none;
-            padding: 10px;
+            padding: 15px;
             background-color: #e3f2fd;
             border-left: 4px solid #2196f3;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
         }
         
         .auditory-hint {
             display: none;
-            padding: 10px;
+            padding: 15px;
             background-color: #e8f5e9;
             border-left: 4px solid #4caf50;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
         }
         
         .kinesthetic-hint {
             display: none;
-            padding: 10px;
+            padding: 15px;
             background-color: #fff3e0;
             border-left: 4px solid #ff9800;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
         }
         
         .logical-hint {
             display: none;
-            padding: 10px;
+            padding: 15px;
             background-color: #f3e5f5;
             border-left: 4px solid #9c27b0;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
         }
         
         .visual-icon {
@@ -630,27 +920,40 @@
         .drag-drop-container {
             border: 2px dashed var(--border);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: var(--radius);
             margin-bottom: 20px;
+            background-color: var(--bg);
         }
         
         .drag-item {
             padding: 10px 15px;
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
             color: white;
-            border-radius: 4px;
+            border-radius: var(--radius);
             margin: 5px;
             cursor: move;
             display: inline-block;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .drag-item:hover {
+            transform: scale(1.05);
         }
         
         .drop-area {
             min-height: 100px;
             border: 2px dashed var(--primary);
-            border-radius: 8px;
+            border-radius: var(--radius);
             margin-top: 20px;
             padding: 15px;
             background-color: rgba(74, 107, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .drop-area.active {
+            background-color: rgba(74, 107, 255, 0.1);
+            border-color: var(--primary-dark);
         }
         
         /* Audio Player */
@@ -680,6 +983,12 @@
             from { transform: translateY(20px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
         
         .fade-in {
             animation: fadeIn 0.5s ease-out;
@@ -689,111 +998,126 @@
             animation: slideIn 0.5s ease-out;
         }
 
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
         /* Premium Subscription Card Styles */
         .payment-card {
-            background-color: white;
-            border-radius: 16px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 420px;
+            max-width: 450px;
             overflow: hidden;
             margin: 20px auto;
+            border: 1px solid var(--border);
         }
         
         .payment-header {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
-            padding: 24px;
+            padding: 30px;
             text-align: center;
         }
         
         .payment-header h1 {
             font-size: 24px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         
         .price {
             font-size: 48px;
             font-weight: 700;
-            margin: 16px 0;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 5px;
         }
         
         .price span {
             font-size: 18px;
             font-weight: 400;
+            margin-top: 10px;
         }
         
         .payment-body {
-            padding: 24px;
+            padding: 30px;
         }
         
         .benefits {
-            margin-bottom: 24px;
+            margin-bottom: 25px;
         }
         
         .benefit-item {
             display: flex;
             align-items: center;
-            margin-bottom: 12px;
-            color: var(--dark);
+            margin-bottom: 15px;
+            color: var(--text);
         }
         
         .benefit-item i {
             color: var(--success);
-            margin-right: 12px;
+            margin-right: 15px;
             font-size: 20px;
         }
         
         .form-group {
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
         
         .payment-label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
-            color: var(--dark);
+            color: var(--text);
         }
         
         .payment-input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             font-size: 16px;
-            transition: border 0.3s;
+            transition: all 0.3s;
+            font-family: inherit;
         }
         
         .payment-input:focus {
             outline: none;
             border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
         }
         
         .payment-btn {
             width: 100%;
-            padding: 14px;
+            padding: 16px;
             border: none;
-            border-radius: 8px;
+            border-radius: var(--radius);
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: all 0.3s;
+            margin-top: 10px;
         }
         
         .payment-btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
         .payment-btn-primary:hover {
-            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         
         .payment-footer {
             text-align: center;
-            padding: 0 24px 24px;
-            color: #666;
+            padding: 0 30px 30px;
+            color: var(--text-light);
             font-size: 14px;
         }
         
@@ -801,12 +1125,113 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 16px;
+            margin-top: 20px;
             color: var(--success);
             font-weight: 500;
+            gap: 8px;
         }
-        
+
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+        }
+
+        .featured-content {
+            max-width: 70%;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .featured-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+
+        .featured-image {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        /* Recent Activity */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .activity-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-content {
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
         /* Responsive */
+        @media (max-width: 992px) {
+            .featured-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .featured-content {
+                max-width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .featured-image {
+                width: 120px;
+                height: 120px;
+            }
+        }
+
         @media (max-width: 768px) {
             .app-container {
                 grid-template-areas:
@@ -814,15 +1239,15 @@
                     "main"
                     "footer";
                 grid-template-columns: 1fr;
-                grid-template-rows: 60px 1fr 40px;
+                grid-template-rows: 70px 1fr 50px;
             }
             
             sidebar {
                 position: fixed;
-                top: 60px;
-                left: -250px;
-                width: 250px;
-                height: calc(100vh - 60px);
+                top: 70px;
+                left: -280px;
+                width: 280px;
+                height: calc(100vh - 70px);
                 transition: left 0.3s;
                 z-index: 100;
             }
@@ -844,6 +1269,10 @@
                 width: 90vw;
                 right: 5vw;
             }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -851,34 +1280,42 @@
 <body>
     <div class="app-container">
         <header>
-            <div class="logo">GOUT</div>
-            <button class="settings-btn" id="settingsBtn">⚙️</button>
+            <div class="logo">
+                <i class="fas fa-square-root-alt logo-icon"></i>
+                <span>GOUT</span>
+            </div>
+            <div class="user-actions">
+                <button class="settings-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <div class="user-avatar" id="userAvatar">U</div>
+            </div>
         </header>
         
         <sidebar>
             <ul class="nav-menu">
                 <li class="nav-item active" data-view="home">
-                    <span class="nav-icon">🏠</span>
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
                     <span>Acasă</span>
                 </li>
                 <li class="nav-item" data-view="exercises">
-                    <span class="nav-icon">📝</span>
+                    <span class="nav-icon"><i class="fas fa-pen-fancy"></i></span>
                     <span>Exerciții</span>
                 </li>
                 <li class="nav-item" data-view="themes">
-                    <span class="nav-icon">📚</span>
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
                     <span>Teme</span>
                 </li>
                 <li class="nav-item" data-view="premium">
-                    <span class="nav-icon">⭐</span>
+                    <span class="nav-icon"><i class="fas fa-crown"></i></span>
                     <span>Premium</span>
                 </li>
                 <li class="nav-item" data-view="support">
-                    <span class="nav-icon">🆘</span>
+                    <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
                     <span>Suport</span>
                 </li>
                 <li class="nav-item teacher-only" data-view="dashboard" style="display: none;">
-                    <span class="nav-icon">📊</span>
+                    <span class="nav-icon"><i class="fas fa-chart-line"></i></span>
                     <span>Class Dashboard</span>
                 </li>
             </ul>
@@ -887,7 +1324,7 @@
         <main id="mainContent">
             <!-- Content will be dynamically loaded here -->
             <h1 class="page-title">Bine ai venit pe platforma GOUT!</h1>
-            <p>Selectează o secțiune din meniul lateral pentru a începe.</p>
+            <p class="page-subtitle">Platforma ta interactivă de învățare a matematicii, adaptată stilului tău de învățare.</p>
         </main>
         
         <footer>
@@ -906,10 +1343,18 @@
                 <div class="question active" id="question1">
                     <h3 class="question-title">1. Cum preferi să înveți informații noi?</h3>
                     <div class="options">
-                        <div class="option" data-value="vizual">Prin imagini, diagrame sau scheme</div>
-                        <div class="option" data-value="auditiv">Ascultând explicații sau discuții</div>
-                        <div class="option" data-value="kinestezic">Prin practică și experiențe hands-on</div>
-                        <div class="option" data-value="logica">Prin analiză logică și pași structurați</div>
+                        <div class="option" data-value="vizual">
+                            <i class="fas fa-eye"></i> Prin imagini, diagrame sau scheme
+                        </div>
+                        <div class="option" data-value="auditiv">
+                            <i class="fas fa-headphones"></i> Ascultând explicații sau discuții
+                        </div>
+                        <div class="option" data-value="kinestezic">
+                            <i class="fas fa-hands"></i> Prin practică și experiențe hands-on
+                        </div>
+                        <div class="option" data-value="logica">
+                            <i class="fas fa-brain"></i> Prin analiză logică și pași structurați
+                        </div>
                     </div>
                 </div>
                 
@@ -944,8 +1389,12 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" id="prevBtn" disabled>Înapoi</button>
-                <button class="btn btn-primary" id="nextBtn">Următorul</button>
+                <button class="btn btn-secondary" id="prevBtn" disabled>
+                    <i class="fas fa-arrow-left"></i> Înapoi
+                </button>
+                <button class="btn btn-primary" id="nextBtn">
+                    Următorul <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -978,16 +1427,26 @@
                         <span class="toggle-label" id="panelLabel">Elev</span>
                     </label>
                 </div>
+
+                <div class="settings-option">
+                    <label class="settings-label">Notificări</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="saveSettingsBtn">Salvează</button>
+                <button class="btn btn-primary" id="saveSettingsBtn">
+                    <i class="fas fa-save"></i> Salvează
+                </button>
             </div>
         </div>
     </div>
     
     <!-- Premium Subscription Modal -->
     <div class="modal-overlay" id="premiumModal">
-        <div class="modal" style="max-width: 450px;">
+        <div class="modal" style="max-width: 500px;">
             <div class="payment-card">
                 <div class="payment-header">
                     <h1>Abonament Premium</h1>
@@ -1031,7 +1490,9 @@
                             <input type="text" id="card-cvc" class="payment-input" placeholder="123">
                         </div>
                         
-                        <button type="submit" class="payment-btn payment-btn-primary">Plătește 200 MDL</button>
+                        <button type="submit" class="payment-btn payment-btn-primary">
+                            <i class="fas fa-lock"></i> Plătește 200 MDL
+                        </button>
                     </form>
                 </div>
                 
@@ -1049,7 +1510,12 @@
     <!-- Support Chat -->
     <div class="support-chat">
         <div class="chat-panel" id="chatPanel">
-            <div class="chat-header">Suport GOUT</div>
+            <div class="chat-header">
+                Suport GOUT
+                <button class="chat-close" id="chatCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
             <div class="chat-body" id="chatBody">
                 <div class="chat-message bot">Bună! Cu ce te pot ajuta astăzi?</div>
                 <div class="faq-item">Cum pot rezolva exercițiile?</div>
@@ -1059,10 +1525,14 @@
             </div>
             <div class="chat-input">
                 <input type="text" class="chat-input-field" id="chatInput" placeholder="Scrie întrebarea ta...">
-                <button class="chat-send-btn" id="chatSendBtn">➤</button>
+                <button class="chat-send-btn" id="chatSendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
-        <button class="chat-btn" id="chatBtn">💬</button>
+        <button class="chat-btn" id="chatBtn">
+            <i class="fas fa-comment-dots"></i>
+        </button>
     </div>
     
     <script>
@@ -1072,6 +1542,7 @@
                 id: 1,
                 title: "Capitolul 1: Mulțimea numerelor",
                 description: "Învață despre mulțimile de numere și proprietățile lor.",
+                progress: 65,
                 theory: `
                     <h3>1. Numere Naturale (ℕ)</h3>
                     <p>Numerele naturale sunt numerele folosite pentru numărare: 1, 2, 3, 4, ...</p>
@@ -1178,6 +1649,7 @@
                 id: 2,
                 title: "Capitolul 2: Funcții derivabile",
                 description: "Explorează conceptul de derivată și aplicațiile sale.",
+                progress: 30,
                 theory: `
                     <h3>1. Definiția derivatei</h3>
                     <p>Derivata unei funcții într-un punct reprezintă panta tangentei la graficul funcției în acel punct.</p>
@@ -1275,6 +1747,7 @@
                 id: 3,
                 title: "Capitolul 3: Geometrie analitică",
                 description: "Studiul geometric folosind coordonate și ecuații.",
+                progress: 10,
                 theory: `
                     <h3>1. Puncte și distanțe</h3>
                     <p>Distanța dintre două puncte A(x₁,y₁) și B(x₂,y₂):</p>
@@ -1404,10 +1877,12 @@
         const navItems = document.querySelectorAll('.nav-item');
         const chatBtn = document.getElementById('chatBtn');
         const chatPanel = document.getElementById('chatPanel');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
         const chatBody = document.getElementById('chatBody');
         const chatInput = document.getElementById('chatInput');
         const chatSendBtn = document.getElementById('chatSendBtn');
         const paymentForm = document.getElementById('paymentForm');
+        const userAvatar = document.getElementById('userAvatar');
 
         // Initialize App
         function initApp() {
@@ -1446,6 +1921,14 @@
             if (selectedLearningStyle) {
                 learningStyleDisplay.value = capitalizeFirstLetter(selectedLearningStyle);
             }
+
+            // Set user avatar initial
+            updateUserAvatar();
+        }
+
+        function updateUserAvatar() {
+            const userName = localStorage.getItem('userName') || 'Utilizator';
+            userAvatar.textContent = userName.charAt(0).toUpperCase();
         }
 
         function showOnboardingModal() {
@@ -1457,6 +1940,10 @@
             localStorage.setItem('onboardingCompleted', 'true');
             localStorage.setItem('learningStyle', selectedLearningStyle);
             learningStyleDisplay.value = capitalizeFirstLetter(selectedLearningStyle);
+            
+            // Set a default username
+            localStorage.setItem('userName', 'Utilizator');
+            updateUserAvatar();
             
             // Redirect based on learning style
             switch(selectedLearningStyle) {
@@ -1534,106 +2021,227 @@
         function renderHomeView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Bine ai venit pe platforma GOUT!';
+            title.innerHTML = '<i class="fas fa-home"></i> Bine ai venit pe platforma GOUT!';
             mainContent.appendChild(title);
             
             const subtitle = document.createElement('p');
-            subtitle.textContent = `Stilul tău de învățare este: ${capitalizeFirstLetter(selectedLearningStyle)}.`;
+            subtitle.className = 'page-subtitle';
+            subtitle.textContent = `Platforma ta interactivă de învățare a matematicii, adaptată stilului tău de învățare: ${capitalizeFirstLetter(selectedLearningStyle)}.`;
             mainContent.appendChild(subtitle);
-            
-            const description = document.createElement('div');
-            description.className = 'fade-in';
-            description.style.marginTop = '20px';
-            
-            if (isPremiumUser) {
-                description.innerHTML = `
-                    <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 4px solid #2ecc71; margin-bottom: 20px;">
-                        <h3 style="margin-top: 0; color: #2ecc71;">⭐ Ești utilizator Premium!</h3>
-                        <p>Ai acces la toate funcționalitățile platformei.</p>
+
+            // Featured Banner
+            const featuredBanner = document.createElement('div');
+            featuredBanner.className = 'featured-banner';
+            featuredBanner.innerHTML = `
+                <div class="featured-content">
+                    <div class="featured-title">Îmbunătățește-ți abilitățile matematice!</div>
+                    <div class="featured-text">Descoperă cele mai bune resurse adaptate stilului tău de învățare și urcă pe scara succesului.</div>
+                    <button class="btn btn-primary" id="startLearningBtn">
+                        <i class="fas fa-rocket"></i> Începe să înveți
+                    </button>
+                </div>
+                <img src="https://via.placeholder.com/150" alt="Math Learning" class="featured-image">
+            `;
+            mainContent.appendChild(featuredBanner);
+
+            // Stats Grid
+            const statsGrid = document.createElement('div');
+            statsGrid.className = 'stats-grid';
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <h3>Progres total</h3>
+                    <div class="value">42%</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 42%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Exerciții completate</h3>
+                    <div class="value">15</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 30%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Zile consecutive</h3>
+                    <div class="value">7</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 25%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Nivel de expertiză</h3>
+                    <div class="value">Începător</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 20%"></div>
+                    </div>
+                </div>
+            `;
+            mainContent.appendChild(statsGrid);
+
+            // Recent Activity
+            const activityTitle = document.createElement('h2');
+            activityTitle.style.margin = '30px 0 15px 0';
+            activityTitle.textContent = 'Activitate recentă';
+            mainContent.appendChild(activityTitle);
+
+            const activityList = document.createElement('div');
+            activityList.className = 'activity-list';
+            activityList.innerHTML = `
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Ai completat exercițiul "Derivata funcției"</div>
+                        <div class="activity-time">Acum 2 ore</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Ai vizionat tema "Numere întregi"</div>
+                        <div class="activity-time">Acum 1 zi</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Ai obținut realizarea "Primii pași"</div>
+                        <div class="activity-time">Acum 3 zile</div>
+                    </div>
+                </div>
+            `;
+            mainContent.appendChild(activityList);
+
+            // Courses Section
+            const coursesTitle = document.createElement('h2');
+            coursesTitle.style.margin = '30px 0 15px 0';
+            coursesTitle.textContent = 'Capitole recomandate';
+            mainContent.appendChild(coursesTitle);
+
+            chapters.forEach(chapter => {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                courseCard.innerHTML = `
+                    <div class="course-header">
+                        <div class="course-title">${chapter.title}</div>
+                        <div class="course-progress">${chapter.progress}%</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-description">${chapter.description}</div>
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-book-open"></i>
+                                ${chapter.themes.length} teme
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-pen-fancy"></i>
+                                ${chapter.exercises.length} exerciții
+                            </div>
+                        </div>
+                        <div class="course-actions">
+                            <button class="btn btn-primary btn-sm start-chapter-btn" data-id="${chapter.id}">
+                                <i class="fas fa-play"></i> Începe
+                            </button>
+                            <button class="btn btn-secondary btn-sm view-chapter-btn" data-id="${chapter.id}">
+                                <i class="fas fa-eye"></i> Vezi detalii
+                            </button>
+                        </div>
                     </div>
                 `;
-            } else {
-                description.innerHTML = `
-                    <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 4px solid #f39c12; margin-bottom: 20px;">
-                        <h3 style="margin-top: 0; color: #f39c12;">🔓 Deblochează toate funcționalitățile</h3>
-                        <p>Upgrade la Premium pentru acces complet la toate resursele și caracteristicile platformei.</p>
-                        <button class="btn btn-primary" id="upgradeBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                mainContent.appendChild(courseCard);
+            });
+
+            // Add event listeners for course buttons
+            document.querySelectorAll('.start-chapter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentView = 'exercises';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+            });
+
+            document.querySelectorAll('.view-chapter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentView = 'themes';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+            });
+
+            // Start Learning Button
+            document.getElementById('startLearningBtn')?.addEventListener('click', () => {
+                currentView = 'exercises';
+                renderView(currentView);
+                setActiveNavItem(currentView);
+            });
+
+            // Premium Section
+            if (!isPremiumUser) {
+                const premiumSection = document.createElement('div');
+                premiumSection.className = 'course-card';
+                premiumSection.style.marginTop = '30px';
+                premiumSection.style.borderLeft = '4px solid var(--warning)';
+                premiumSection.innerHTML = `
+                    <h3 style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-crown" style="color: var(--warning);"></i>
+                        Upgrade la Premium
+                    </h3>
+                    <p style="margin: 15px 0;">Deblochează toate funcționalitățile platformei și accesează conținut exclusiv.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Free</h4>
+                            <ul style="margin-left: 20px; color: var(--text-light);">
+                                <li>3 exerciții/capitol</li>
+                                <li>1 temă/capitol</li>
+                                <li>Feedback limitat</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Premium</h4>
+                            <ul style="margin-left: 20px; color: var(--text-light);">
+                                <li>Toate exercițiile</li>
+                                <li>Toate temele</li>
+                                <li>Feedback detaliat</li>
+                                <li>Asistență prioritară</li>
+                            </ul>
+                        </div>
                     </div>
+                    <button class="btn btn-primary" id="upgradeHomeBtn">
+                        <i class="fas fa-gem"></i> Upgrade acum
+                    </button>
                 `;
-                
-                document.getElementById('upgradeBtn')?.addEventListener('click', () => {
+                mainContent.appendChild(premiumSection);
+
+                document.getElementById('upgradeHomeBtn')?.addEventListener('click', () => {
                     currentView = 'premium';
                     renderView(currentView);
                     setActiveNavItem(currentView);
                 });
             }
-            
-            switch(selectedLearningStyle) {
-                case 'vizual':
-                    description.innerHTML += `
-                        <p>Deoarece ai un stil de învățare vizual, platforma va pune accent pe:</p>
-                        <ul>
-                            <li>Diagrame și grafice explicative</li>
-                            <li>Scheme colorate pentru înțelegerea conceptelor</li>
-                            <li>Animări care ilustrează procese matematice</li>
-                        </ul>
-                        <p>Explorează secțiunea <strong>Teme</strong> pentru a vedea resursele vizuale disponibile.</p>
-                    `;
-                    break;
-                case 'auditiv':
-                    description.innerHTML += `
-                        <p>Deoarece ai un stil de învățare auditiv, platforma va pune accent pe:</p>
-                        <ul>
-                            <li>Explicații audio pentru concepte</li>
-                            <li>Discuții și dialoguri despre probleme</li>
-                            <li>Registre verbale și mnemonici</li>
-                        </ul>
-                        <p>Explorează secțiunea <strong>Exerciții</strong> pentru a asculta explicații audio.</p>
-                    `;
-                    break;
-                case 'kinestezic':
-                    description.innerHTML += `
-                        <p>Deoarece ai un stil de învățare kinestezic, platforma va pune accent pe:</p>
-                        <ul>
-                            <li>Exerciții practice interactive</li>
-                            <li>Manipularea obiectelor matematice</li>
-                            <li>Simulări și experimente</li>
-                        </ul>
-                        <p>Explorează secțiunea <strong>Exerciții</strong> pentru activități practice.</p>
-                    `;
-                    break;
-                case 'logica':
-                    description.innerHTML += `
-                        <p>Deoarece ai un stil de învățare logică, platforma va pune accent pe:</p>
-                        <ul>
-                            <li>Pași logici și structurați</li>
-                            <li>Relații cauză-efect</li>
-                            <li>Scheme și algoritmi</li>
-                        </ul>
-                        <p>Explorează secțiunea <strong>Exerciții</strong> pentru explicații detaliate.</p>
-                    `;
-                    break;
-            }
-            
-            mainContent.appendChild(description);
         }
 
         function renderPremiumView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Abonament Premium';
+            title.innerHTML = '<i class="fas fa-crown"></i> Abonament Premium';
             mainContent.appendChild(title);
             
             if (isPremiumUser) {
                 const premiumStatus = document.createElement('div');
                 premiumStatus.className = 'exercise-card';
+                premiumStatus.style.textAlign = 'center';
+                premiumStatus.style.padding = '40px 20px';
                 premiumStatus.innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success); margin-bottom: 15px;"></i>
-                        <h3 style="margin-bottom: 10px;">Ești deja utilizator Premium!</h3>
-                        <p>Ai acces la toate funcționalitățile platformei.</p>
-                        <p>Abonamentul tău se reînnoiește automat în fiecare lună.</p>
-                    </div>
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Ești deja utilizator Premium!</h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">Ai acces la toate funcționalitățile platformei.</p>
+                    <p style="color: var(--text-light);">Abonamentul tău se reînnoiește automat în fiecare lună.</p>
                 `;
                 mainContent.appendChild(premiumStatus);
             } else {
@@ -1683,7 +2291,9 @@
                                 <input type="text" id="card-cvc-inline" class="payment-input" placeholder="123">
                             </div>
                             
-                            <button type="submit" class="payment-btn payment-btn-primary">Plătește 200 MDL</button>
+                            <button type="submit" class="payment-btn payment-btn-primary">
+                                <i class="fas fa-lock"></i> Plătește 200 MDL
+                            </button>
                         </form>
                     </div>
                     
@@ -1707,23 +2317,25 @@
             // Add FAQ section
             const faqSection = document.createElement('div');
             faqSection.className = 'exercise-card';
-            faqSection.style.marginTop = '20px';
+            faqSection.style.marginTop = '30px';
             faqSection.innerHTML = `
-                <h3>Întrebări frecvente</h3>
+                <h3 style="margin-bottom: 20px;">
+                    <i class="fas fa-question-circle"></i> Întrebări frecvente
+                </h3>
                 
                 <div class="faq-item" style="margin-top: 15px;">
                     <strong>Când voi avea acces la funcționalitățile Premium?</strong>
-                    <p style="margin-top: 5px;">Imediat după ce plata este confirmată.</p>
+                    <p style="margin-top: 8px; color: var(--text-light);">Imediat după ce plata este confirmată.</p>
                 </div>
                 
                 <div class="faq-item" style="margin-top: 15px;">
                     <strong>Cum pot anula abonamentul?</strong>
-                    <p style="margin-top: 5px;">Poți anula oricând din secțiunea de setări.</p>
+                    <p style="margin-top: 8px; color: var(--text-light);">Poți anula oricând din secțiunea de setări.</p>
                 </div>
                 
                 <div class="faq-item" style="margin-top: 15px;">
                     <strong>Ce metode de plată acceptați?</strong>
-                    <p style="margin-top: 5px;">Acceptăm toate cardurile Visa, Mastercard și Maestro.</p>
+                    <p style="margin-top: 8px; color: var(--text-light);">Acceptăm toate cardurile Visa, Mastercard și Maestro.</p>
                 </div>
             `;
             mainContent.appendChild(faqSection);
@@ -1732,7 +2344,7 @@
         function renderExercisesView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Exerciții';
+            title.innerHTML = '<i class="fas fa-pen-fancy"></i> Exerciții';
             mainContent.appendChild(title);
             
             if (!isPremiumUser) {
@@ -1742,11 +2354,15 @@
                 premiumPrompt.style.borderLeft = '4px solid #f39c12';
                 premiumPrompt.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 24px;">🔒</div>
+                        <div style="font-size: 24px; color: #f39c12;">
+                            <i class="fas fa-lock"></i>
+                        </div>
                         <div>
                             <h3 style="margin-top: 0;">Acces restricționat</h3>
                             <p>Pentru a accesa toate exercițiile, upgrade la Premium.</p>
-                            <button class="btn btn-primary" id="upgradeExercisesBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                            <button class="btn btn-primary" id="upgradeExercisesBtn" style="margin-top: 10px;">
+                                <i class="fas fa-crown"></i> Upgrade la Premium
+                            </button>
                         </div>
                     </div>
                 `;
@@ -1788,19 +2404,19 @@
             switch(selectedLearningStyle) {
                 case 'vizual':
                     hint.className = 'visual-hint';
-                    hint.innerHTML = '<span class="visual-icon">👁️</span> <strong>Sfat vizual:</strong> Încearcă să vizualizezi problema în mintea ta sau deseneaz-o pe hârtie.';
+                    hint.innerHTML = '<span class="visual-icon"><i class="fas fa-eye"></i></span> <strong>Sfat vizual:</strong> Încearcă să vizualizezi problema în mintea ta sau deseneaz-o pe hârtie.';
                     break;
                 case 'auditiv':
                     hint.className = 'auditory-hint';
-                    hint.innerHTML = '<span class="auditory-icon">👂</span> <strong>Sfat auditiv:</strong> Citește problema cu voce tare sau ascultă explicația audio.';
+                    hint.innerHTML = '<span class="auditory-icon"><i class="fas fa-headphones"></i></span> <strong>Sfat auditiv:</strong> Citește problema cu voce tare sau ascultă explicația audio.';
                     break;
                 case 'kinestezic':
                     hint.className = 'kinesthetic-hint';
-                    hint.innerHTML = '<span class="kinesthetic-icon">✋</span> <strong>Sfat kinestezic:</strong> Încearcă să manipulezi obiecte sau să folosești mișcarea pentru a înțelege conceptul.';
+                    hint.innerHTML = '<span class="kinesthetic-icon"><i class="fas fa-hands"></i></span> <strong>Sfat kinestezic:</strong> Încearcă să manipulezi obiecte sau să folosești mișcarea pentru a înțelege conceptul.';
                     break;
                 case 'logica':
                     hint.className = 'logical-hint';
-                    hint.innerHTML = '<span class="logical-icon">🧠</span> <strong>Sfat logic:</strong> Descompune problema în pași mai mici și analizează relațiile dintre ele.';
+                    hint.innerHTML = '<span class="logical-icon"><i class="fas fa-brain"></i></span> <strong>Sfat logic:</strong> Descompune problema în pași mai mici și analizează relațiile dintre ele.';
                     break;
             }
             hint.style.display = 'block';
@@ -1809,7 +2425,7 @@
             // Add AI help button
             const aiHelpBtn = document.createElement('button');
             aiHelpBtn.className = 'btn btn-primary';
-            aiHelpBtn.textContent = 'Cere ajutor AI';
+            aiHelpBtn.innerHTML = '<i class="fas fa-robot"></i> Cere ajutor AI';
             aiHelpBtn.style.marginBottom = '20px';
             aiHelpBtn.addEventListener('click', showAIHint);
             mainContent.appendChild(aiHelpBtn);
@@ -1859,8 +2475,8 @@
                         actions.className = 'exercise-actions';
                         
                         const checkBtn = document.createElement('button');
-                        checkBtn.className = 'btn btn-primary';
-                        checkBtn.textContent = 'Verifică';
+                        checkBtn.className = 'btn btn-primary btn-sm';
+                        checkBtn.innerHTML = '<i class="fas fa-check"></i> Verifică';
                         
                         const feedback = document.createElement('div');
                         feedback.className = 'exercise-feedback';
@@ -1870,13 +2486,19 @@
                         if (isPremiumUser) {
                             switch(selectedLearningStyle) {
                                 case 'vizual':
-                                    styleHelp = `<button class="btn btn-secondary visual-help" data-hint="${exercise.visualHint}" style="margin-right: 10px;">Ajutor Vizual</button>`;
+                                    styleHelp = `<button class="btn btn-secondary btn-sm visual-help" data-hint="${exercise.visualHint}" style="margin-right: 10px;">
+                                        <i class="fas fa-eye"></i> Ajutor Vizual
+                                    </button>`;
                                     break;
                                 case 'auditiv':
-                                    styleHelp = `<button class="btn btn-secondary auditory-help" style="margin-right: 10px;">Ascultă Explicația</button>`;
+                                    styleHelp = `<button class="btn btn-secondary btn-sm auditory-help" style="margin-right: 10px;">
+                                        <i class="fas fa-headphones"></i> Ascultă Explicația
+                                    </button>`;
                                     break;
                                 case 'logica':
-                                    styleHelp = `<button class="btn btn-secondary logical-help" data-hint="${exercise.logicalHint}" style="margin-right: 10px;">Pași Logici</button>`;
+                                    styleHelp = `<button class="btn btn-secondary btn-sm logical-help" data-hint="${exercise.logicalHint}" style="margin-right: 10px;">
+                                        <i class="fas fa-brain"></i> Pași Logici
+                                    </button>`;
                                     break;
                             }
                         }
@@ -1927,9 +2549,11 @@
                                 audioPlayer.className = 'audio-player';
                                 audioPlayer.innerHTML = `
                                     <div style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-                                        <button style="width: 30px; height: 30px; border-radius: 50%; background: #4a6bff; color: white; border: none;">▶</button>
+                                        <button style="width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: white; border: none;">
+                                            <i class="fas fa-play"></i>
+                                        </button>
                                         <div style="flex-grow: 1; height: 4px; background: #ddd; border-radius: 2px;">
-                                            <div style="width: 30%; height: 100%; background: #4a6bff; border-radius: 2px;"></div>
+                                            <div style="width: 30%; height: 100%; background: var(--primary); border-radius: 2px;"></div>
                                         </div>
                                         <span style="font-size: 12px;">0:30 / 1:45</span>
                                     </div>
@@ -1970,9 +2594,11 @@
                                 modalContent.style.width = '90%';
                                 
                                 modalContent.innerHTML = `
-                                    <h3 style="margin-bottom: 15px; color: #4a6bff;">Pași logici pentru rezolvare:</h3>
+                                    <h3 style="margin-bottom: 15px; color: var(--primary);">Pași logici pentru rezolvare:</h3>
                                     ${stepsHTML}
-                                    <button style="margin-top: 20px; padding: 8px 16px; background: #4a6bff; color: white; border: none; border-radius: 4px;">Închide</button>
+                                    <button style="margin-top: 20px; padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 4px;">
+                                        <i class="fas fa-times"></i> Închide
+                                    </button>
                                 `;
                                 
                                 const closeBtn = modalContent.querySelector('button');
@@ -2000,7 +2626,9 @@
                         premiumLock.innerHTML = `
                             <i class="fas fa-lock" style="font-size: 24px; color: #666; margin-bottom: 10px;"></i>
                             <p>Upgrade la Premium pentru a accesa toate exercițiile</p>
-                            <button class="btn btn-primary" style="margin-top: 10px;">Deblochează exerciții</button>
+                            <button class="btn btn-primary" style="margin-top: 10px;">
+                                <i class="fas fa-crown"></i> Deblochează exerciții
+                            </button>
                         `;
                         
                         premiumLock.querySelector('button').addEventListener('click', () => {
@@ -2034,7 +2662,9 @@
                         <i class="fas fa-lock" style="font-size: 48px; color: #666; margin-bottom: 15px;"></i>
                         <h3 style="margin-bottom: 10px;">Exerciții interactive disponibile doar pentru Premium</h3>
                         <p>Upgrade la Premium pentru a accesa exercițiile practice interactive.</p>
-                        <button class="btn btn-primary" id="upgradeKinestheticBtn" style="margin-top: 15px;">Upgrade la Premium</button>
+                        <button class="btn btn-primary" id="upgradeKinestheticBtn" style="margin-top: 15px;">
+                            <i class="fas fa-crown"></i> Upgrade la Premium
+                        </button>
                     </div>
                 `;
                 
@@ -2059,7 +2689,9 @@
                 </div>
                 <div class="drop-area">Trage numerele aici în ordine corectă</div>
                 <div class="exercise-actions">
-                    <button class="btn btn-primary" id="checkOrderBtn">Verifică</button>
+                    <button class="btn btn-primary" id="checkOrderBtn">
+                        <i class="fas fa-check"></i> Verifică
+                    </button>
                     <div class="exercise-feedback"></div>
                 </div>
             `;
@@ -2092,20 +2724,21 @@
             
             dropArea.addEventListener('dragover', e => {
                 e.preventDefault();
+                dropArea.classList.add('active');
             });
             
             dropArea.addEventListener('dragenter', e => {
                 e.preventDefault();
-                dropArea.style.backgroundColor = 'rgba(74, 107, 255, 0.1)';
+                dropArea.classList.add('active');
             });
             
             dropArea.addEventListener('dragleave', () => {
-                dropArea.style.backgroundColor = 'rgba(74, 107, 255, 0.05)';
+                dropArea.classList.remove('active');
             });
             
             dropArea.addEventListener('drop', e => {
                 e.preventDefault();
-                dropArea.style.backgroundColor = 'rgba(74, 107, 255, 0.05)';
+                dropArea.classList.remove('active');
                 
                 if (draggedItem) {
                     const clone = draggedItem.cloneNode(true);
@@ -2133,7 +2766,7 @@
         function renderThemesView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Teme';
+            title.innerHTML = '<i class="fas fa-book"></i> Teme';
             mainContent.appendChild(title);
             
             if (!isPremiumUser) {
@@ -2143,11 +2776,15 @@
                 premiumPrompt.style.borderLeft = '4px solid #f39c12';
                 premiumPrompt.innerHTML = `
                     <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 24px;">🔒</div>
+                        <div style="font-size: 24px; color: #f39c12;">
+                            <i class="fas fa-lock"></i>
+                        </div>
                         <div>
                             <h3 style="margin-top: 0;">Acces restricționat</h3>
                             <p>Pentru a accesa toate resursele vizuale, upgrade la Premium.</p>
-                            <button class="btn btn-primary" id="upgradeThemesBtn" style="margin-top: 10px;">Upgrade la Premium</button>
+                            <button class="btn btn-primary" id="upgradeThemesBtn" style="margin-top: 10px;">
+                                <i class="fas fa-crown"></i> Upgrade la Premium
+                            </button>
                         </div>
                     </div>
                 `;
@@ -2164,7 +2801,7 @@
             if (selectedLearningStyle === 'vizual') {
                 const hint = document.createElement('div');
                 hint.className = 'visual-hint';
-                hint.innerHTML = '<span class="visual-icon">👁️</span> <strong>Sfat vizual:</strong> Studiază cu atenție diagramele și imaginile pentru a înțelege mai bine conceptele.';
+                hint.innerHTML = '<span class="visual-icon"><i class="fas fa-eye"></i></span> <strong>Sfat vizual:</strong> Studiază cu atenție diagramele și imaginile pentru a înțelege mai bine conceptele.';
                 hint.style.display = 'block';
                 mainContent.appendChild(hint);
             }
@@ -2208,7 +2845,9 @@
                     premiumLock.innerHTML = `
                         <i class="fas fa-lock" style="font-size: 24px; color: #666; margin-bottom: 10px;"></i>
                         <p>Upgrade la Premium pentru a accesa toate resursele vizuale</p>
-                        <button class="btn btn-primary" style="margin-top: 10px;">Deblochează resurse</button>
+                        <button class="btn btn-primary" style="margin-top: 10px;">
+                            <i class="fas fa-crown"></i> Deblochează resurse
+                        </button>
                     `;
                     
                     premiumLock.querySelector('button').addEventListener('click', () => {
@@ -2234,7 +2873,7 @@
         function renderSupportView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Suport';
+            title.innerHTML = '<i class="fas fa-question-circle"></i> Suport';
             mainContent.appendChild(title);
             
             const supportContent = document.createElement('div');
@@ -2265,7 +2904,7 @@
         function renderDashboardView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.textContent = 'Class Dashboard';
+            title.innerHTML = '<i class="fas fa-chart-line"></i> Class Dashboard';
             mainContent.appendChild(title);
             
             const dashboardContent = document.createElement('div');
@@ -2325,9 +2964,13 @@
             modalContent.style.width = '90%';
             
             modalContent.innerHTML = `
-                <h3 style="margin-bottom: 15px; color: #4a6bff;">Sugestie AI:</h3>
+                <h3 style="margin-bottom: 15px; color: var(--primary);">
+                    <i class="fas fa-robot"></i> Sugestie AI:
+                </h3>
                 <p style="margin-bottom: 20px;">${randomHint}</p>
-                <button style="padding: 8px 16px; background: #4a6bff; color: white; border: none; border-radius: 4px;">OK</button>
+                <button style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 4px;">
+                    <i class="fas fa-check"></i> OK
+                </button>
             `;
             
             const closeBtn = modalContent.querySelector('button');
@@ -2345,8 +2988,8 @@
             
             // Show loading state
             const submitBtn = document.querySelector('#paymentForm button[type="submit"]');
-            const originalBtnText = submitBtn.textContent;
-            submitBtn.textContent = 'Se procesează...';
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Se procesează...';
             submitBtn.disabled = true;
             
             // Simulate API call
@@ -2373,10 +3016,12 @@
                 modalContent.style.textAlign = 'center';
                 
                 modalContent.innerHTML = `
-                    <i class="fas fa-check-circle" style="font-size: 48px; color: #2ecc71; margin-bottom: 15px;"></i>
+                    <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success); margin-bottom: 15px;"></i>
                     <h3 style="margin-bottom: 10px;">Plată efectuată cu succes!</h3>
                     <p>Abonamentul tău Premium a fost activat. Acum ai acces la toate funcționalitățile platformei.</p>
-                    <button style="margin-top: 20px; padding: 10px 20px; background: #4a6bff; color: white; border: none; border-radius: 6px; cursor: pointer;">Înțeles</button>
+                    <button style="margin-top: 20px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer;">
+                        <i class="fas fa-thumbs-up"></i> Înțeles
+                    </button>
                 `;
                 
                 const closeBtn = modalContent.querySelector('button');
@@ -2396,19 +3041,16 @@
                 document.body.appendChild(successModal);
                 
                 // Reset button
-                submitBtn.textContent = originalBtnText;
+                submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
             }, 1500);
         }
 
         function animateSuccess(element) {
-            const originalBg = element.style.backgroundColor;
-            element.style.backgroundColor = 'rgba(46, 204, 113, 0.2)';
-            element.style.transition = 'background-color 0.5s';
-            
+            element.classList.add('pulse');
             setTimeout(() => {
-                element.style.backgroundColor = originalBg;
-            }, 1000);
+                element.classList.remove('pulse');
+            }, 2000);
         }
 
         function setActiveNavItem(view) {
@@ -2495,7 +3137,7 @@
                 prevBtn.disabled = false;
                 
                 if (currentQuestion === 4) {
-                    nextBtn.textContent = 'Finalizează';
+                    nextBtn.innerHTML = '<i class="fas fa-check"></i> Finalizează';
                 }
             } else {
                 // Calculate learning style based on selected options
@@ -2530,7 +3172,7 @@
                 currentQuestion--;
                 document.getElementById(`question${currentQuestion}`).classList.add('active');
                 
-                nextBtn.textContent = 'Următorul';
+                nextBtn.innerHTML = 'Următorul <i class="fas fa-arrow-right"></i>';
                 
                 if (currentQuestion === 1) {
                     prevBtn.disabled = true;
@@ -2553,6 +3195,10 @@
         // Chat functionality
         chatBtn.addEventListener('click', () => {
             chatPanel.classList.toggle('active');
+        });
+
+        chatCloseBtn.addEventListener('click', () => {
+            chatPanel.classList.remove('active');
         });
 
         chatSendBtn.addEventListener('click', sendMessage);
