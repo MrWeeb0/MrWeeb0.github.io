@@ -1,9 +1,10 @@
+continue this code:
 <!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LearnZy - Platforma de Matematică</title>
+    <title>GOUT - Platforma de Matematică</title>
     <style>
         /* Reset and Base Styles */
         * {
@@ -1214,6 +1215,72 @@
             color: var(--text-light);
         }
 
+        /* Lesson Page Styles */
+        .lesson-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .lesson-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 15px;
+        }
+
+        .lesson-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .lesson-description {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .lesson-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .lesson-section {
+            background-color: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .lesson-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .lesson-progress {
+            width: 100%;
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .lesson-progress-bar {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .featured-banner {
@@ -1273,6 +1340,14 @@
             .stats-grid {
                 grid-template-columns: 1fr;
             }
+
+            .lesson-container {
+                padding: 15px;
+            }
+
+            .lesson-content {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -1298,13 +1373,13 @@
                     <span class="nav-icon"><i class="fas fa-home"></i></span>
                     <span>Acasă</span>
                 </li>
+                <li class="nav-item" data-view="lessons">
+                    <span class="nav-icon"><i class="fas fa-book"></i></span>
+                    <span>Lecții</span>
+                </li>
                 <li class="nav-item" data-view="exercises">
                     <span class="nav-icon"><i class="fas fa-pen-fancy"></i></span>
                     <span>Exerciții</span>
-                </li>
-                <li class="nav-item" data-view="themes">
-                    <span class="nav-icon"><i class="fas fa-book"></i></span>
-                    <span>Teme</span>
                 </li>
                 <li class="nav-item" data-view="premium">
                     <span class="nav-icon"><i class="fas fa-crown"></i></span>
@@ -1537,30 +1612,71 @@
     
     <script>
         // Enhanced Mock Data with Detailed Explanations and Concrete Exercises
-        const chapters = [
+        const lessons = [
             {
                 id: 1,
-                title: "Capitolul 1: Mulțimea numerelor",
+                title: "Mulțimea numerelor",
                 description: "Învață despre mulțimile de numere și proprietățile lor.",
                 progress: 65,
-                theory: `
-                    <h3>1. Numere Naturale (ℕ)</h3>
-                    <p>Numerele naturale sunt numerele folosite pentru numărare: 1, 2, 3, 4, ...</p>
-                    <p><strong>Proprietăți:</strong></p>
-                    <ul>
-                        <li>Orice număr natural are un succesor (n+1)</li>
-                        <li>Adunarea și înmulțirea sunt întotdeauna operații interne</li>
-                        <li>Scăderea și împărțirea nu sunt întotdeauna posibile</li>
-                    </ul>
-                    
-                    <h3>2. Numere Întregi (ℤ)</h3>
-                    <p>Extindem mulțimea numerelor naturale pentru a include și numerele negative și zero: ..., -2, -1, 0, 1, 2, ...</p>
-                    <p><strong>Exemplu practic:</strong> Temperaturile sub zero, datorii</p>
-                    
-                    <h3>3. Numere Raționale (ℚ)</h3>
-                    <p>Numere ce pot fi exprimate ca fracții a/b unde a și b sunt întregi: 1/2, -3/4, 2/1</p>
-                    <p><strong>Reprezentare zecimală:</strong> Fie finită (0.5) fie periodică (0.333...)</p>
-                `,
+                sections: [
+                    {
+                        title: "Numere Naturale (ℕ)",
+                        content: `
+                            <p>Numerele naturale sunt numerele folosite pentru numărare: 1, 2, 3, 4, ...</p>
+                            <p><strong>Proprietăți:</strong></p>
+                            <ul>
+                                <li>Orice număr natural are un succesor (n+1)</li>
+                                <li>Adunarea și înmulțirea sunt întotdeauna operații interne</li>
+                                <li>Scăderea și împărțirea nu sunt întotdeauna posibile</li>
+                            </ul>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="30" y1="50" x2="170" y2="50" stroke="#2196F3" stroke-width="2"/>
+                            <circle cx="40" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
+                            <text x="40" y="80" text-anchor="middle" fill="#2196F3">1</text>
+                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">2</text>
+                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">3</text>
+                            <text x="100" y="30" text-anchor="middle" fill="#2196F3">...</text>
+                        </svg>`
+                    },
+                    {
+                        title: "Numere Întregi (ℤ)",
+                        content: `
+                            <p>Extindem mulțimea numerelor naturale pentru a include și numerele negative și zero: ..., -2, -1, 0, 1, 2, ...</p>
+                            <p><strong>Exemplu practic:</strong> Temperaturile sub zero, datorii</p>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <line x1="100" y1="20" x2="100" y2="80" stroke="#2196F3" stroke-width="2"/>
+                            <circle cx="100" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="120" cy="50" r="3" fill="#2196F3"/>
+                            <circle cx="140" cy="50" r="3" fill="#2196F3"/>
+                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">-2</text>
+                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">-1</text>
+                            <text x="100" y="80" text-anchor="middle" fill="#2196F3">0</text>
+                            <text x="120" y="80" text-anchor="middle" fill="#2196F3">1</text>
+                            <text x="140" y="80" text-anchor="middle" fill="#2196F3">2</text>
+                        </svg>`
+                    },
+                    {
+                        title: "Numere Raționale (ℚ)",
+                        content: `
+                            <p>Numere ce pot fi exprimate ca fracții a/b unde a și b sunt întregi: 1/2, -3/4, 2/1</p>
+                            <p><strong>Reprezentare zecimală:</strong> Fie finită (0.5) fie periodică (0.333...)</p>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <text x="20" y="40" font-family="Arial" font-size="14" fill="#2196F3">1/2 = 0.5</text>
+                            <text x="20" y="60" font-family="Arial" font-size="14" fill="#2196F3">1/3 = 0.333...</text>
+                            <text x="20" y="80" font-family="Arial" font-size="14" fill="#2196F3">3/4 = 0.75</text>
+                        </svg>`
+                    }
+                ],
                 exercises: [
                     {
                         id: 1,
@@ -1591,85 +1707,52 @@
                             2. Grupează numerele pozitive: 8 + 2 = 10
                             3. Adună rezultatele: -8 + 10 = 2
                         `
-                    },
-                    {
-                        id: 3,
-                        question: "Scrieți ca fracție ireductibilă numărul rațional 0.75",
-                        answer: "3/4",
-                        visualHint: "Imaginează-ți un întreg împărțit în 4 părți egale. 0.75 reprezintă 3 din aceste părți.",
-                        auditoryHint: "Zero virgulă șapte cinci se citește 'șaptezeci și cinci de sutimi', adică 75/100, care se simplifică la 3/4.",
-                        kinestheticHint: "Taie un cerc în 4 părți egale și umbrește 3 părți. Vei vedea că reprezintă 3/4 din întreg.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Scrie ca fracție zecimală: 0.75 = 75/100
-                            2. Simplifică fracția prin împărțire la 25: 75÷25 = 3, 100÷25 = 4
-                            3. Rezultat: 3/4
-                        `
-                    }
-                ],
-                themes: [
-                    {
-                        id: 1,
-                        title: "Numere naturale",
-                        description: "Numerele folosite pentru numărare",
-                        svg: `<svg viewBox="0 0 200 100">
-                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
-                            <line x1="30" y1="50" x2="170" y2="50" stroke="#2196F3" stroke-width="2"/>
-                            <circle cx="40" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
-                            <text x="40" y="80" text-anchor="middle" fill="#2196F3">1</text>
-                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">2</text>
-                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">3</text>
-                            <text x="100" y="30" text-anchor="middle" fill="#2196F3">...</text>
-                        </svg>`
-                    },
-                    {
-                        id: 2,
-                        title: "Numere întregi",
-                        description: "Numere pozitive, negative și zero",
-                        svg: `<svg viewBox="0 0 200 100">
-                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
-                            <line x1="100" y1="20" x2="100" y2="80" stroke="#2196F3" stroke-width="2"/>
-                            <circle cx="100" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="60" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="80" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="120" cy="50" r="3" fill="#2196F3"/>
-                            <circle cx="140" cy="50" r="3" fill="#2196F3"/>
-                            <text x="60" y="80" text-anchor="middle" fill="#2196F3">-2</text>
-                            <text x="80" y="80" text-anchor="middle" fill="#2196F3">-1</text>
-                            <text x="100" y="80" text-anchor="middle" fill="#2196F3">0</text>
-                            <text x="120" y="80" text-anchor="middle" fill="#2196F3">1</text>
-                            <text x="140" y="80" text-anchor="middle" fill="#2196F3">2</text>
-                        </svg>`
                     }
                 ]
             },
             {
                 id: 2,
-                title: "Capitolul 2: Funcții derivabile",
+                title: "Funcții derivabile",
                 description: "Explorează conceptul de derivată și aplicațiile sale.",
                 progress: 30,
-                theory: `
-                    <h3>1. Definiția derivatei</h3>
-                    <p>Derivata unei funcții într-un punct reprezintă panta tangentei la graficul funcției în acel punct.</p>
-                    <p><strong>Definiție matematică:</strong></p>
-                    <p>f'(x₀) = lim<sub>h→0</sub> [f(x₀+h) - f(x₀)]/h</p>
-                    
-                    <h3>2. Reguli de derivare</h3>
-                    <ul>
-                        <li><strong>Derivata unei constante:</strong> c' = 0</li>
-                        <li><strong>Derivata puterii:</strong> (xⁿ)' = n·xⁿ⁻¹</li>
-                        <li><strong>Derivata sumei:</strong> (f+g)' = f' + g'</li>
-                        <li><strong>Derivata produsului:</strong> (f·g)' = f'·g + f·g'</li>
-                    </ul>
-                    
-                    <h3>3. Interpretarea geometrică</h3>
-                    <p>Derivata măsoară rata de schimbare a funcției. Dacă derivata este pozitivă, funcția este crescătoare.</p>
-                `,
+                sections: [
+                    {
+                        title: "Definiția derivatei",
+                        content: `
+                            <p>Derivata unei funcții într-un punct reprezintă panta tangentei la graficul funcției în acel punct.</p>
+                            <p><strong>Definiție matematică:</strong></p>
+                            <p>f'(x₀) = lim<sub>h→0</sub> [f(x₀+h) - f(x₀)]/h</p>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
+                            <path d="M20,80 Q50,20 100,50 T180,20" fill="none" stroke="#2196F3" stroke-width="2"/>
+                            <line x1="100" y1="50" x2="150" y2="20" stroke="#FF5722" stroke-width="2"/>
+                            <circle cx="100" cy="50" r="3" fill="#FF5722"/>
+                            <text x="100" y="20" text-anchor="middle" fill="#FF5722" font-size="12">f'(x) = panta tangentei</text>
+                        </svg>`
+                    },
+                    {
+                        title: "Reguli de derivare",
+                        content: `
+                            <ul>
+                                <li><strong>Derivata unei constante:</strong> c' = 0</li>
+                                <li><strong>Derivata puterii:</strong> (xⁿ)' = n·xⁿ⁻¹</li>
+                                <li><strong>Derivata sumei:</strong> (f+g)' = f' + g'</li>
+                                <li><strong>Derivata produsului:</strong> (f·g)' = f'·g + f·g'</li>
+                            </ul>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
+                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
+                            <text x="20" y="30" font-family="Arial" font-size="12" fill="#2196F3">(xⁿ)' = n·xⁿ⁻¹</text>
+                            <text x="20" y="50" font-family="Arial" font-size="12" fill="#2196F3">(c·f)' = c·f'</text>
+                            <text x="20" y="70" font-family="Arial" font-size="12" fill="#2196F3">(f+g)' = f' + g'</text>
+                            <text x="120" y="30" font-family="Arial" font-size="12" fill="#2196F3">(eˣ)' = eˣ</text>
+                            <text x="120" y="50" font-family="Arial" font-size="12" fill="#2196F3">(ln x)' = 1/x</text>
+                        </svg>`
+                    }
+                ],
                 exercises: [
                     {
-                        id: 4,
+                        id: 3,
                         question: "Calculați derivata funcției f(x) = 3x² - 4x + 2",
                         answer: "6x - 4",
                         visualHint: "Imaginează-ți parabola funcției și cum panta tangentei se schimbă în fiecare punct.",
@@ -1683,135 +1766,22 @@
                             4. Derivată constantă: (2)' = 0
                             5. Combinați rezultatele: 6x - 4
                         `
-                    },
-                    {
-                        id: 5,
-                        question: "Determinați panta tangentei la graficul funcției f(x) = x³ în punctul x = 2",
-                        answer: "12",
-                        visualHint: "Desenați graficul lui x³ și trasați tangenta în punctul x=2. Observați panta abruptă.",
-                        auditoryHint: "Calculați derivata (3x²), apoi înlocuiți x=2: 3*(2)² = 12.",
-                        kinestheticHint: "Folosiți o riglă pentru a simula tangenta pe un grafic desenat.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Calculați derivata: f'(x) = 3x²
-                            2. Evaluați în x=2: f'(2) = 3*(2)² = 12
-                            3. Panta tangentei este valoarea derivatei în acel punct
-                        `
-                    },
-                    {
-                        id: 6,
-                        question: "Aflați ecuația tangentei la graficul funcției f(x) = √x în punctul x=4",
-                        answer: "y = (1/4)x + 1",
-                        visualHint: "Desenați graficul rădăcinii și tangenta în punctul (4,2). Panta este 1/4.",
-                        auditoryHint: "Calculați f(4)=2, derivata f'(x)=1/(2√x), f'(4)=1/4. Ecuația: y-2=(1/4)(x-4).",
-                        kinestheticHint: "Folosiți o riglă pentru a simula tangenta în punctul (4,2) cu panta 1/4.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Calculați f(4) = √4 = 2
-                            2. Calculați derivata f'(x) = 1/(2√x)
-                            3. Calculați f'(4) = 1/4
-                            4. Ecuația tangentei: y - f(4) = f'(4)(x - 4)
-                            5. y - 2 = (1/4)(x - 4)
-                            6. y = (1/4)x + 1
-                        `
-                    }
-                ],
-                themes: [
-                    {
-                        id: 3,
-                        title: "Derivata",
-                        description: "Rata de schimbare a unei funcții",
-                        svg: `<svg viewBox="0 0 200 100">
-                            <path d="M20,80 Q50,20 100,50 T180,20" fill="none" stroke="#2196F3" stroke-width="2"/>
-                            <line x1="100" y1="50" x2="150" y2="20" stroke="#FF5722" stroke-width="2"/>
-                            <circle cx="100" cy="50" r="3" fill="#FF5722"/>
-                            <text x="100" y="20" text-anchor="middle" fill="#FF5722" font-size="12">f'(x) = panta tangentei</text>
-                        </svg>`
-                    },
-                    {
-                        id: 4,
-                        title: "Reguli de derivare",
-                        description: "Reguli pentru calculul derivatelor",
-                        svg: `<svg viewBox="0 0 200 100">
-                            <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
-                            <text x="20" y="30" font-family="Arial" font-size="12" fill="#2196F3">(xⁿ)' = n·xⁿ⁻¹</text>
-                            <text x="20" y="50" font-family="Arial" font-size="12" fill="#2196F3">(c·f)' = c·f'</text>
-                            <text x="20" y="70" font-family="Arial" font-size="12" fill="#2196F3">(f+g)' = f' + g'</text>
-                            <text x="120" y="30" font-family="Arial" font-size="12" fill="#2196F3">(eˣ)' = eˣ</text>
-                            <text x="120" y="50" font-family="Arial" font-size="12" fill="#2196F3">(ln x)' = 1/x</text>
-                        </svg>`
                     }
                 ]
             },
             {
                 id: 3,
-                title: "Capitolul 3: Geometrie analitică",
+                title: "Geometrie analitică",
                 description: "Studiul geometric folosind coordonate și ecuații.",
                 progress: 10,
-                theory: `
-                    <h3>1. Puncte și distanțe</h3>
-                    <p>Distanța dintre două puncte A(x₁,y₁) și B(x₂,y₂):</p>
-                    <p>d = √[(x₂-x₁)² + (y₂-y₁)²]</p>
-                    
-                    <h3>2. Ecuația dreptei</h3>
-                    <p><strong>Forma generală:</strong> ax + by + c = 0</p>
-                    <p><strong>Forma pantă-ordonată:</strong> y = mx + n</p>
-                    <p>unde m este panta, n este ordonata la origine</p>
-                    
-                    <h3>3. Cercul</h3>
-                    <p>Ecuația cercului cu centrul în (a,b) și rază r:</p>
-                    <p>(x-a)² + (y-b)² = r²</p>
-                `,
-                exercises: [
+                sections: [
                     {
-                        id: 7,
-                        question: "Calculați distanța dintre punctele A(2,3) și B(5,7)",
-                        answer: "5",
-                        visualHint: "Desenați punctele pe un sistem de axe și formați un triunghi dreptunghic.",
-                        auditoryHint: "Aplicați formula distanței: radical din (5-2)² plus (7-3)².",
-                        kinestheticHint: "Folosiți o riglă pentru a măsura distanța pe un desen la scară.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Calculați diferențele: Δx = 5-2 = 3, Δy = 7-3 = 4
-                            2. Aplicați teorema lui Pitagora: √(3² + 4²) = √(9+16) = √25 = 5
-                        `
-                    },
-                    {
-                        id: 8,
-                        question: "Determinați ecuația dreptei care trece prin punctele (1,2) și (3,8)",
-                        answer: "y = 3x - 1",
-                        visualHint: "Desenați punctele și observați că pentru fiecare unitate pe x, y crește cu 3.",
-                        auditoryHint: "Calculați panta m = (8-2)/(3-1) = 3, apoi găsiți n din y = mx + n.",
-                        kinestheticHint: "Folosiți două puncte fizice și un fir pentru a simula dreapta.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Calculați panta m = (y₂-y₁)/(x₂-x₁) = (8-2)/(3-1) = 6/2 = 3
-                            2. Folosiți un punct în y = mx + n: 2 = 3*1 + n ⇒ n = -1
-                            3. Ecuația: y = 3x - 1
-                        `
-                    },
-                    {
-                        id: 9,
-                        question: "Aflați centrul și raza cercului cu ecuația (x-2)² + (y+3)² = 16",
-                        answer: "Centrul (2,-3), raza 4",
-                        visualHint: "Comparați cu forma standard (x-a)² + (y-b)² = r² pentru a identifica centrul și raza.",
-                        auditoryHint: "Din ecuație, centrul are coordonatele opuse semnelor din paranteze: (2,-3), iar r²=16 deci r=4.",
-                        kinestheticHint: "Desenați cercul pe hârtie milimetrică folosind centrul și raza.",
-                        logicalHint: `
-                            Pași de rezolvare:
-                            1. Comparați cu forma standard: (x-a)² + (y-b)² = r²
-                            2. Identificați a=2 (din x-2)
-                            3. Identificați b=-3 (din y+3)
-                            4. Identificați r²=16 ⇒ r=4
-                        `
-                    }
-                ],
-                themes: [
-                    {
-                        id: 5,
-                        title: "Distanța dintre puncte",
-                        description: "Calculul distanței în plan",
-                        svg: `<svg viewBox="0 0 200 100">
+                        title: "Puncte și distanțe",
+                        content: `
+                            <p>Distanța dintre două puncte A(x₁,y₁) și B(x₂,y₂):</p>
+                            <p>d = √[(x₂-x₁)² + (y₂-y₁)²]</p>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
                             <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
                             <line x1="30" y1="70" x2="70" y2="30" stroke="#2196F3" stroke-width="2"/>
                             <circle cx="30" cy="70" r="3" fill="#FF5722"/>
@@ -1822,10 +1792,13 @@
                         </svg>`
                     },
                     {
-                        id: 6,
                         title: "Ecuația dreptei",
-                        description: "Reprezentarea algebrică a unei drepte",
-                        svg: `<svg viewBox="0 0 200 100">
+                        content: `
+                            <p><strong>Forma generală:</strong> ax + by + c = 0</p>
+                            <p><strong>Forma pantă-ordonată:</strong> y = mx + n</p>
+                            <p>unde m este panta, n este ordonata la origine</p>
+                        `,
+                        visualAid: `<svg viewBox="0 0 200 100">
                             <rect x="10" y="10" width="180" height="80" fill="#e3f2fd" stroke="#2196F3"/>
                             <line x1="30" y1="70" x2="170" y2="30" stroke="#2196F3" stroke-width="2"/>
                             <text x="100" y="60" text-anchor="middle" fill="#2196F3">y = mx + n</text>
@@ -1834,6 +1807,21 @@
                             <line x1="160" y1="50" x2="180" y2="50" stroke="#FF5722" stroke-width="1"/>
                             <text x="30" y="85" text-anchor="middle" fill="#FF5722" font-size="10">n (ordonata)</text>
                         </svg>`
+                    }
+                ],
+                exercises: [
+                    {
+                        id: 4,
+                        question: "Calculați distanța dintre punctele A(2,3) și B(5,7)",
+                        answer: "5",
+                        visualHint: "Desenați punctele pe un sistem de axe și formați un triunghi dreptunghic.",
+                        auditoryHint: "Aplicați formula distanței: radical din (5-2)² plus (7-3)².",
+                        kinestheticHint: "Folosiți o riglă pentru a măsura distanța pe un desen la scară.",
+                        logicalHint: `
+                            Pași de rezolvare:
+                            1. Calculați diferențele: Δx = 5-2 = 3, Δy = 7-3 = 4
+                            2. Aplicați teorema lui Pitagora: √(3² + 4²) = √(9+16) = √25 = 5
+                        `
                     }
                 ]
             }
@@ -1860,6 +1848,7 @@
             { sender: 'bot', text: 'Bună! Cu ce te pot ajuta astăzi?' }
         ];
         let isPremiumUser = false;
+        let currentLessonId = null;
 
         // DOM Elements
         const onboardingModal = document.getElementById('onboardingModal');
@@ -1948,16 +1937,16 @@
             // Redirect based on learning style
             switch(selectedLearningStyle) {
                 case 'vizual':
-                    currentView = 'themes';
+                    currentView = 'lessons';
                     break;
                 case 'auditiv':
                     currentView = 'exercises';
                     break;
                 case 'kinestezic':
-                    currentView = 'exercises'; // Will show drag and drop
+                    currentView = 'exercises';
                     break;
                 case 'logica':
-                    currentView = 'exercises'; // Will show logical steps
+                    currentView = 'lessons';
                     break;
             }
             
@@ -2000,11 +1989,14 @@
                 case 'home':
                     renderHomeView();
                     break;
+                case 'lessons':
+                    renderLessonsView();
+                    break;
+                case 'lesson':
+                    renderLessonView();
+                    break;
                 case 'exercises':
                     renderExercisesView();
-                    break;
-                case 'themes':
-                    renderThemesView();
                     break;
                 case 'premium':
                     renderPremiumView();
@@ -2102,7 +2094,7 @@
                         <i class="fas fa-book"></i>
                     </div>
                     <div class="activity-content">
-                        <div class="activity-title">Ai vizionat tema "Numere întregi"</div>
+                        <div class="activity-title">Ai vizionat lecția "Numere întregi"</div>
                         <div class="activity-time">Acum 1 zi</div>
                     </div>
                 </div>
@@ -2118,47 +2110,56 @@
             `;
             mainContent.appendChild(activityList);
 
-            // Courses Section
-            const coursesTitle = document.createElement('h2');
-            coursesTitle.style.margin = '30px 0 15px 0';
-            coursesTitle.textContent = 'Capitole recomandate';
-            mainContent.appendChild(coursesTitle);
+            // Lessons Section
+            const lessonsTitle = document.createElement('h2');
+            lessonsTitle.style.margin = '30px 0 15px 0';
+            lessonsTitle.textContent = 'Lecții recomandate';
+            mainContent.appendChild(lessonsTitle);
 
-            chapters.forEach(chapter => {
-                const courseCard = document.createElement('div');
-                courseCard.className = 'course-card';
-                courseCard.innerHTML = `
+            lessons.forEach(lesson => {
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'course-card';
+                lessonCard.innerHTML = `
                     <div class="course-header">
-                        <div class="course-title">${chapter.title}</div>
-                        <div class="course-progress">${chapter.progress}%</div>
+                        <div class="course-title">${lesson.title}</div>
+                        <div class="course-progress">${lesson.progress}%</div>
                     </div>
                     <div class="course-content">
-                        <div class="course-description">${chapter.description}</div>
+                        <div class="course-description">${lesson.description}</div>
                         <div class="course-meta">
                             <div class="meta-item">
                                 <i class="fas fa-book-open"></i>
-                                ${chapter.themes.length} teme
+                                ${lesson.sections.length} secțiuni
                             </div>
                             <div class="meta-item">
                                 <i class="fas fa-pen-fancy"></i>
-                                ${chapter.exercises.length} exerciții
+                                ${lesson.exercises.length} exerciții
                             </div>
                         </div>
                         <div class="course-actions">
-                            <button class="btn btn-primary btn-sm start-chapter-btn" data-id="${chapter.id}">
+                            <button class="btn btn-primary btn-sm start-lesson-btn" data-id="${lesson.id}">
                                 <i class="fas fa-play"></i> Începe
                             </button>
-                            <button class="btn btn-secondary btn-sm view-chapter-btn" data-id="${chapter.id}">
-                                <i class="fas fa-eye"></i> Vezi detalii
+                            <button class="btn btn-secondary btn-sm view-exercises-btn" data-id="${lesson.id}">
+                                <i class="fas fa-pen-fancy"></i> Exerciții
                             </button>
                         </div>
                     </div>
                 `;
-                mainContent.appendChild(courseCard);
+                mainContent.appendChild(lessonCard);
             });
 
-            // Add event listeners for course buttons
-            document.querySelectorAll('.start-chapter-btn').forEach(btn => {
+            // Add event listeners for lesson buttons
+            document.querySelectorAll('.start-lesson-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentLessonId = btn.dataset.id;
+                    currentView = 'lesson';
+                    renderView(currentView);
+                    setActiveNavItem('lessons');
+                });
+            });
+
+            document.querySelectorAll('.view-exercises-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     currentView = 'exercises';
                     renderView(currentView);
@@ -2166,17 +2167,9 @@
                 });
             });
 
-            document.querySelectorAll('.view-chapter-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    currentView = 'themes';
-                    renderView(currentView);
-                    setActiveNavItem(currentView);
-                });
-            });
-
             // Start Learning Button
             document.getElementById('startLearningBtn')?.addEventListener('click', () => {
-                currentView = 'exercises';
+                currentView = 'lessons';
                 renderView(currentView);
                 setActiveNavItem(currentView);
             });
@@ -2197,8 +2190,7 @@
                         <div>
                             <h4 style="margin-bottom: 10px;">Free</h4>
                             <ul style="margin-left: 20px; color: var(--text-light);">
-                                <li>3 exerciții/capitol</li>
-                                <li>1 temă/capitol</li>
+                                <li>3 exerciții/lecție</li>
                                 <li>Feedback limitat</li>
                             </ul>
                         </div>
@@ -2206,7 +2198,6 @@
                             <h4 style="margin-bottom: 10px;">Premium</h4>
                             <ul style="margin-left: 20px; color: var(--text-light);">
                                 <li>Toate exercițiile</li>
-                                <li>Toate temele</li>
                                 <li>Feedback detaliat</li>
                                 <li>Asistență prioritară</li>
                             </ul>
@@ -2226,119 +2217,171 @@
             }
         }
 
-        function renderPremiumView() {
+        function renderLessonsView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.innerHTML = '<i class="fas fa-crown"></i> Abonament Premium';
+            title.innerHTML = '<i class="fas fa-book"></i> Lecții';
             mainContent.appendChild(title);
             
-            if (isPremiumUser) {
-                const premiumStatus = document.createElement('div');
-                premiumStatus.className = 'exercise-card';
-                premiumStatus.style.textAlign = 'center';
-                premiumStatus.style.padding = '40px 20px';
-                premiumStatus.innerHTML = `
-                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Ești deja utilizator Premium!</h3>
-                    <p style="margin-bottom: 20px; font-size: 1.1rem;">Ai acces la toate funcționalitățile platformei.</p>
-                    <p style="color: var(--text-light);">Abonamentul tău se reînnoiește automat în fiecare lună.</p>
-                `;
-                mainContent.appendChild(premiumStatus);
-            } else {
-                // Show the premium subscription card
-                const premiumCard = document.createElement('div');
-                premiumCard.className = 'payment-card';
-                premiumCard.innerHTML = `
-                    <div class="payment-header">
-                        <h1>Abonament Premium</h1>
-                        <p>Acces nelimitat la toate funcționalitățile</p>
-                        <div class="price">200 <span>MDL/lună</span></div>
-                    </div>
-                    
-                    <div class="payment-body">
-                        <div class="benefits">
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Acces complet la toate caracteristicile</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Asistență prioritară</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Actualizări periodice</span>
-                            </div>
-                            <div class="benefit-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Anulare oricând</span>
-                            </div>
-                        </div>
-                        
-                        <form id="paymentFormInline">
-                            <div class="form-group">
-                                <label for="card-number-inline" class="payment-label">Număr card</label>
-                                <input type="text" id="card-number-inline" class="payment-input" placeholder="1234 5678 9012 3456">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="card-expiry-inline" class="payment-label">Data expirării</label>
-                                <input type="text" id="card-expiry-inline" class="payment-input" placeholder="MM/AA">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="card-cvc-inline" class="payment-label">CVC</label>
-                                <input type="text" id="card-cvc-inline" class="payment-input" placeholder="123">
-                            </div>
-                            
-                            <button type="submit" class="payment-btn payment-btn-primary">
-                                <i class="fas fa-lock"></i> Plătește 200 MDL
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <div class="payment-footer">
-                        <p>Plata se reînnoiește automat. Poți anula oricând.</p>
-                        <div class="secure">
+            if (!isPremiumUser) {
+                const premiumPrompt = document.createElement('div');
+                premiumPrompt.className = 'exercise-card';
+                premiumPrompt.style.backgroundColor = '#fff3e0';
+                premiumPrompt.style.borderLeft = '4px solid #f39c12';
+                premiumPrompt.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 24px; color: #f39c12;">
                             <i class="fas fa-lock"></i>
-                            <span>Plată securizată</span>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0;">Acces restricționat</h3>
+                            <p>Pentru a accesa toate lecțiile, upgrade la Premium.</p>
+                            <button class="btn btn-primary" id="upgradeLessonsBtn" style="margin-top: 10px;">
+                                <i class="fas fa-crown"></i> Upgrade la Premium
+                            </button>
                         </div>
                     </div>
                 `;
-                mainContent.appendChild(premiumCard);
+                mainContent.appendChild(premiumPrompt);
                 
-                // Add event listener for the inline form
-                document.getElementById('paymentFormInline')?.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    processPayment();
+                document.getElementById('upgradeLessonsBtn')?.addEventListener('click', () => {
+                    currentView = 'premium';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
                 });
             }
             
-            // Add FAQ section
-            const faqSection = document.createElement('div');
-            faqSection.className = 'exercise-card';
-            faqSection.style.marginTop = '30px';
-            faqSection.innerHTML = `
-                <h3 style="margin-bottom: 20px;">
-                    <i class="fas fa-question-circle"></i> Întrebări frecvente
-                </h3>
-                
-                <div class="faq-item" style="margin-top: 15px;">
-                    <strong>Când voi avea acces la funcționalitățile Premium?</strong>
-                    <p style="margin-top: 8px; color: var(--text-light);">Imediat după ce plata este confirmată.</p>
-                </div>
-                
-                <div class="faq-item" style="margin-top: 15px;">
-                    <strong>Cum pot anula abonamentul?</strong>
-                    <p style="margin-top: 8px; color: var(--text-light);">Poți anula oricând din secțiunea de setări.</p>
-                </div>
-                
-                <div class="faq-item" style="margin-top: 15px;">
-                    <strong>Ce metode de plată acceptați?</strong>
-                    <p style="margin-top: 8px; color: var(--text-light);">Acceptăm toate cardurile Visa, Mastercard și Maestro.</p>
+            // Show learning style specific hint for visual learners
+            if (selectedLearningStyle === 'vizual') {
+                const hint = document.createElement('div');
+                hint.className = 'visual-hint';
+                hint.innerHTML = '<span class="visual-icon"><i class="fas fa-eye"></i></span> <strong>Sfat vizual:</strong> Studiază cu atenție diagramele și imaginile pentru a înțelege mai bine conceptele.';
+                hint.style.display = 'block';
+                mainContent.appendChild(hint);
+            }
+            
+            lessons.forEach(lesson => {
+                const lessonCard = document.createElement('div');
+                lessonCard.className = 'course-card';
+                lessonCard.innerHTML = `
+                    <div class="course-header">
+                        <div class="course-title">${lesson.title}</div>
+                        <div class="course-progress">${lesson.progress}%</div>
+                    </div>
+                    <div class="course-content">
+                        <div class="course-description">${lesson.description}</div>
+                        <div class="course-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-book-open"></i>
+                                ${lesson.sections.length} secțiuni
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-pen-fancy"></i>
+                                ${lesson.exercises.length} exerciții
+                            </div>
+                        </div>
+                        <div class="course-actions">
+                            <button class="btn btn-primary btn-sm start-lesson-btn" data-id="${lesson.id}">
+                                <i class="fas fa-play"></i> Începe
+                            </button>
+                            <button class="btn btn-secondary btn-sm view-exercises-btn" data-id="${lesson.id}">
+                                <i class="fas fa-pen-fancy"></i> Exerciții
+                            </button>
+                        </div>
+                    </div>
+                `;
+                mainContent.appendChild(lessonCard);
+            });
+
+            // Add event listeners for lesson buttons
+            document.querySelectorAll('.start-lesson-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentLessonId = btn.dataset.id;
+                    currentView = 'lesson';
+                    renderView(currentView);
+                });
+            });
+
+            document.querySelectorAll('.view-exercises-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentView = 'exercises';
+                    renderView(currentView);
+                    setActiveNavItem(currentView);
+                });
+            });
+        }
+
+        function renderLessonView() {
+            const lesson = lessons.find(l => l.id == currentLessonId);
+            if (!lesson) {
+                currentView = 'lessons';
+                renderView(currentView);
+                return;
+            }
+
+            const container = document.createElement('div');
+            container.className = 'lesson-container';
+            
+            // Lesson header
+            const header = document.createElement('div');
+            header.className = 'lesson-header';
+            header.innerHTML = `
+                <h1 class="lesson-title">${lesson.title}</h1>
+                <p class="lesson-description">${lesson.description}</p>
+                <div class="lesson-progress">
+                    <div class="lesson-progress-bar" style="width: ${lesson.progress}%"></div>
                 </div>
             `;
-            mainContent.appendChild(faqSection);
+            container.appendChild(header);
+            
+            // Lesson content
+            const content = document.createElement('div');
+            content.className = 'lesson-content';
+            
+            // Add sections
+            lesson.sections.forEach((section, index) => {
+                const sectionElement = document.createElement('div');
+                sectionElement.className = 'lesson-section';
+                sectionElement.innerHTML = `
+                    <h2 class="section-title">${index + 1}. ${section.title}</h2>
+                    <div class="theory-content">
+                        ${section.content}
+                    </div>
+                    <div class="theme-svg">
+                        ${section.visualAid}
+                    </div>
+                `;
+                content.appendChild(sectionElement);
+            });
+            
+            // Navigation buttons
+            const navigation = document.createElement('div');
+            navigation.className = 'lesson-navigation';
+            navigation.innerHTML = `
+                <button class="btn btn-secondary" id="backToLessonsBtn">
+                    <i class="fas fa-arrow-left"></i> Înapoi la lecții
+                </button>
+                <button class="btn btn-primary" id="goToExercisesBtn">
+                    <i class="fas fa-pen-fancy"></i> Exerciții
+                </button>
+            `;
+            
+            container.appendChild(content);
+            container.appendChild(navigation);
+            mainContent.appendChild(container);
+            
+            // Add event listeners
+            document.getElementById('backToLessonsBtn').addEventListener('click', () => {
+                currentView = 'lessons';
+                renderView(currentView);
+                setActiveNavItem(currentView);
+            });
+            
+            document.getElementById('goToExercisesBtn').addEventListener('click', () => {
+                currentView = 'exercises';
+                renderView(currentView);
+                setActiveNavItem(currentView);
+            });
         }
 
         function renderExercisesView() {
@@ -2384,7 +2427,7 @@
                     <div style="margin-top: 15px;">
                         <div class="benefit-item">
                             <i class="fas fa-check-circle"></i>
-                            <span>3 exerciții pe capitol</span>
+                            <span>3 exerciții pe lecție</span>
                         </div>
                         <div class="benefit-item">
                             <i class="fas fa-check-circle"></i>
@@ -2433,35 +2476,20 @@
             if (selectedLearningStyle === 'kinestezic') {
                 renderKinestheticExercises();
             } else {
-                chapters.forEach(chapter => {
-                    // Add theory section before exercises
-                    const theorySection = document.createElement('div');
-                    theorySection.className = 'exercise-card';
-                    theorySection.innerHTML = `
-                        <h3>Teorie: ${chapter.title}</h3>
-                        <div class="theory-content">${chapter.theory}</div>
+                lessons.forEach(lesson => {
+                    const lessonSection = document.createElement('div');
+                    lessonSection.className = 'exercise-card';
+                    lessonSection.innerHTML = `
+                        <h3 style="margin-bottom: 15px;">${lesson.title}</h3>
                     `;
-                    mainContent.appendChild(theorySection);
-                    
-                    const chapterSection = document.createElement('div');
-                    chapterSection.className = 'chapter-card slide-in';
-                    
-                    const chapterHeader = document.createElement('div');
-                    chapterHeader.className = 'chapter-header';
-                    chapterHeader.innerHTML = `
-                        <div class="chapter-title">${chapter.title}</div>
-                        <div class="chapter-toggle">▼</div>
-                    `;
-                    
-                    const chapterContent = document.createElement('div');
-                    chapterContent.className = 'chapter-content';
                     
                     // Show only first 3 exercises for free users
-                    const exercisesToShow = isPremiumUser ? chapter.exercises : chapter.exercises.slice(0, 3);
+                    const exercisesToShow = isPremiumUser ? lesson.exercises : lesson.exercises.slice(0, 3);
                     
                     exercisesToShow.forEach(exercise => {
                         const exerciseCard = document.createElement('div');
                         exerciseCard.className = 'exercise-card';
+                        exerciseCard.style.marginTop = '15px';
                         
                         const question = document.createElement('div');
                         question.className = 'exercise-question';
@@ -2614,10 +2642,10 @@
                         exerciseCard.appendChild(question);
                         exerciseCard.appendChild(answerArea);
                         exerciseCard.appendChild(actions);
-                        chapterContent.appendChild(exerciseCard);
+                        lessonSection.appendChild(exerciseCard);
                     });
                     
-                    if (!isPremiumUser && chapter.exercises.length > 3) {
+                    if (!isPremiumUser && lesson.exercises.length > 3) {
                         const premiumLock = document.createElement('div');
                         premiumLock.className = 'exercise-card';
                         premiumLock.style.backgroundColor = '#f5f5f5';
@@ -2637,17 +2665,10 @@
                             setActiveNavItem(currentView);
                         });
                         
-                        chapterContent.appendChild(premiumLock);
+                        lessonSection.appendChild(premiumLock);
                     }
                     
-                    chapterHeader.addEventListener('click', () => {
-                        const isCollapsed = chapterContent.classList.toggle('expanded');
-                        chapterHeader.querySelector('.chapter-toggle').classList.toggle('collapsed', !isCollapsed);
-                    });
-                    
-                    chapterSection.appendChild(chapterHeader);
-                    chapterSection.appendChild(chapterContent);
-                    mainContent.appendChild(chapterSection);
+                    mainContent.appendChild(lessonSection);
                 });
             }
         }
@@ -2763,111 +2784,119 @@
             });
         }
 
-        function renderThemesView() {
+        function renderPremiumView() {
             const title = document.createElement('h1');
             title.className = 'page-title';
-            title.innerHTML = '<i class="fas fa-book"></i> Teme';
+            title.innerHTML = '<i class="fas fa-crown"></i> Abonament Premium';
             mainContent.appendChild(title);
             
-            if (!isPremiumUser) {
-                const premiumPrompt = document.createElement('div');
-                premiumPrompt.className = 'exercise-card';
-                premiumPrompt.style.backgroundColor = '#fff3e0';
-                premiumPrompt.style.borderLeft = '4px solid #f39c12';
-                premiumPrompt.innerHTML = `
-                    <div style="display: flex; align-items: center; gap: 15px;">
-                        <div style="font-size: 24px; color: #f39c12;">
-                            <i class="fas fa-lock"></i>
+            if (isPremiumUser) {
+                const premiumStatus = document.createElement('div');
+                premiumStatus.className = 'exercise-card';
+                premiumStatus.style.textAlign = 'center';
+                premiumStatus.style.padding = '40px 20px';
+                premiumStatus.innerHTML = `
+                    <i class="fas fa-check-circle" style="font-size: 60px; color: var(--success); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Ești deja utilizator Premium!</h3>
+                    <p style="margin-bottom: 20px; font-size: 1.1rem;">Ai acces la toate funcționalitățile platformei.</p>
+                    <p style="color: var(--text-light);">Abonamentul tău se reînnoiește automat în fiecare lună.</p>
+                `;
+                mainContent.appendChild(premiumStatus);
+            } else {
+                // Show the premium subscription card
+                const premiumCard = document.createElement('div');
+                premiumCard.className = 'payment-card';
+                premiumCard.innerHTML = `
+                    <div class="payment-header">
+                        <h1>Abonament Premium</h1>
+                        <p>Acces nelimitat la toate funcționalitățile</p>
+                        <div class="price">200 <span>MDL/lună</span></div>
+                    </div>
+                    
+                    <div class="payment-body">
+                        <div class="benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Acces complet la toate caracteristicile</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Asistență prioritară</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Actualizări periodice</span>
+                            </div>
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Anulare oricând</span>
+                            </div>
                         </div>
-                        <div>
-                            <h3 style="margin-top: 0;">Acces restricționat</h3>
-                            <p>Pentru a accesa toate resursele vizuale, upgrade la Premium.</p>
-                            <button class="btn btn-primary" id="upgradeThemesBtn" style="margin-top: 10px;">
-                                <i class="fas fa-crown"></i> Upgrade la Premium
+                        
+                        <form id="paymentFormInline">
+                            <div class="form-group">
+                                <label for="card-number-inline" class="payment-label">Număr card</label>
+                                <input type="text" id="card-number-inline" class="payment-input" placeholder="1234 5678 9012 3456">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-expiry-inline" class="payment-label">Data expirării</label>
+                                <input type="text" id="card-expiry-inline" class="payment-input" placeholder="MM/AA">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-cvc-inline" class="payment-label">CVC</label>
+                                <input type="text" id="card-cvc-inline" class="payment-input" placeholder="123">
+                            </div>
+                            
+                            <button type="submit" class="payment-btn payment-btn-primary">
+                                <i class="fas fa-lock"></i> Plătește 200 MDL
                             </button>
+                        </form>
+                    </div>
+                    
+                    <div class="payment-footer">
+                        <p>Plata se reînnoiește automat. Poți anula oricând.</p>
+                        <div class="secure">
+                            <i class="fas fa-lock"></i>
+                            <span>Plată securizată</span>
                         </div>
                     </div>
                 `;
-                mainContent.appendChild(premiumPrompt);
+                mainContent.appendChild(premiumCard);
                 
-                document.getElementById('upgradeThemesBtn')?.addEventListener('click', () => {
-                    currentView = 'premium';
-                    renderView(currentView);
-                    setActiveNavItem(currentView);
+                // Add event listener for the inline form
+                document.getElementById('paymentFormInline')?.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    processPayment();
                 });
             }
             
-            // Show learning style specific hint for visual learners
-            if (selectedLearningStyle === 'vizual') {
-                const hint = document.createElement('div');
-                hint.className = 'visual-hint';
-                hint.innerHTML = '<span class="visual-icon"><i class="fas fa-eye"></i></span> <strong>Sfat vizual:</strong> Studiază cu atenție diagramele și imaginile pentru a înțelege mai bine conceptele.';
-                hint.style.display = 'block';
-                mainContent.appendChild(hint);
-            }
-            
-            chapters.forEach(chapter => {
-                const chapterCard = document.createElement('div');
-                chapterCard.className = 'chapter-card slide-in';
+            // Add FAQ section
+            const faqSection = document.createElement('div');
+            faqSection.className = 'exercise-card';
+            faqSection.style.marginTop = '30px';
+            faqSection.innerHTML = `
+                <h3 style="margin-bottom: 20px;">
+                    <i class="fas fa-question-circle"></i> Întrebări frecvente
+                </h3>
                 
-                const chapterHeader = document.createElement('div');
-                chapterHeader.className = 'chapter-header';
-                chapterHeader.innerHTML = `
-                    <div class="chapter-title">${chapter.title}</div>
-                    <div class="chapter-toggle">▼</div>
-                `;
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Când voi avea acces la funcționalitățile Premium?</strong>
+                    <p style="margin-top: 8px; color: var(--text-light);">Imediat după ce plata este confirmată.</p>
+                </div>
                 
-                const chapterContent = document.createElement('div');
-                chapterContent.className = 'chapter-content';
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Cum pot anula abonamentul?</strong>
+                    <p style="margin-top: 8px; color: var(--text-light);">Poți anula oricând din secțiunea de setări.</p>
+                </div>
                 
-                // Show only first theme for free users
-                const themesToShow = isPremiumUser ? chapter.themes : chapter.themes.slice(0, 1);
-                
-                themesToShow.forEach(theme => {
-                    const themeCard = document.createElement('div');
-                    themeCard.className = 'exercise-card';
-                    
-                    themeCard.innerHTML = `
-                        <h3 style="margin-bottom: 10px;">${theme.title}</h3>
-                        <p style="margin-bottom: 15px; color: var(--text-light);">${theme.description}</p>
-                        <div class="theme-svg">${theme.svg}</div>
-                    `;
-                    
-                    chapterContent.appendChild(themeCard);
-                });
-                
-                if (!isPremiumUser && chapter.themes.length > 1) {
-                    const premiumLock = document.createElement('div');
-                    premiumLock.className = 'exercise-card';
-                    premiumLock.style.backgroundColor = '#f5f5f5';
-                    premiumLock.style.textAlign = 'center';
-                    premiumLock.style.padding = '20px';
-                    premiumLock.innerHTML = `
-                        <i class="fas fa-lock" style="font-size: 24px; color: #666; margin-bottom: 10px;"></i>
-                        <p>Upgrade la Premium pentru a accesa toate resursele vizuale</p>
-                        <button class="btn btn-primary" style="margin-top: 10px;">
-                            <i class="fas fa-crown"></i> Deblochează resurse
-                        </button>
-                    `;
-                    
-                    premiumLock.querySelector('button').addEventListener('click', () => {
-                        currentView = 'premium';
-                        renderView(currentView);
-                        setActiveNavItem(currentView);
-                    });
-                    
-                    chapterContent.appendChild(premiumLock);
-                }
-                
-                chapterHeader.addEventListener('click', () => {
-                    const isCollapsed = chapterContent.classList.toggle('expanded');
-                    chapterHeader.querySelector('.chapter-toggle').classList.toggle('collapsed', !isCollapsed);
-                });
-                
-                chapterCard.appendChild(chapterHeader);
-                chapterCard.appendChild(chapterContent);
-                mainContent.appendChild(chapterCard);
-            });
+                <div class="faq-item" style="margin-top: 15px;">
+                    <strong>Ce metode de plată acceptați?</strong>
+                    <p style="margin-top: 8px; color: var(--text-light);">Acceptăm toate cardurile Visa, Mastercard și Maestro.</p>
+                </div>
+            `;
+            mainContent.appendChild(faqSection);
         }
 
         function renderSupportView() {
@@ -2879,26 +2908,103 @@
             const supportContent = document.createElement('div');
             supportContent.innerHTML = `
                 <p>Dacă ai întrebări sau probleme, te rugăm să folosești chat-ul din colțul din dreapta jos al ecranului.</p>
-                <h2 style="margin: 20px 0 10px 0;">Întrebări frecvente</h2>
+                                <h2 style="margin: 25px 0 15px 0;">Contactează-ne</h2>
+                
                 <div class="exercise-card">
-                    <h3>Cum pot schimba stilul meu de învățare?</h3>
-                    <p>Stilul de învățare poate fi vizualizat în setări, dar nu poate fi schimbat direct. Pentru a-l reseta, ștergeți datele browserului pentru acest site.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h3 style="margin-top: 0;"><i class="fas fa-envelope"></i> Email</h3>
+                            <p>support@goutplatform.ro</p>
+                            <p>Răspundem în 24 de ore</p>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0;"><i class="fas fa-phone"></i> Telefon</h3>
+                            <p>+373 22 123 456</p>
+                            <p>Luni-Vineri, 9:00-17:00</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="exercise-card">
-                    <h3>Unde găsesc mai multe exerciții?</h3>
-                    <p>Noi adăugăm constant noi exerciții. Verifică periodic secțiunea de exerciții pentru conținut nou.</p>
-                </div>
-                <div class="exercise-card">
-                    <h3>Cum pot contacta un profesor?</h3>
-                    <p>Dacă ești în modul Profesor, poți folosi butonul "Class Dashboard". Altfel, folosește chat-ul pentru suport.</p>
-                </div>
-                <div class="exercise-card">
-                    <h3>Ce beneficii are abonamentul Premium?</h3>
-                    <p>Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară.</p>
+                
+                <h2 style="margin: 25px 0 15px 0;">Întrebări frecvente</h2>
+                
+                <div class="chapters-container">
+                    <div class="chapter-card">
+                        <div class="chapter-header">
+                            <div class="chapter-title">Cont și autentificare</div>
+                            <div class="chapter-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="exercise-card">
+                                <strong>Cum îmi resetez parola?</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Apasă pe "Ai uitat parola" pe pagina de login și urmează instrucțiunile.</p>
+                            </div>
+                            <div class="exercise-card">
+                                <strong>Cum schimb adresa de email?</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Poți schimba emailul din secțiunea de setări a contului.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-header">
+                            <div class="chapter-title">Plată și facturare</div>
+                            <div class="chapter-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="exercise-card">
+                                <strong>Când voi fi facturat?</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Facturarea are loc în fiecare lună în aceeași zi.</p>
+                            </div>
+                            <div class="exercise-card">
+                                <strong>Cum obțin o factură?</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Facturile sunt trimise automat pe email.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chapter-card">
+                        <div class="chapter-header">
+                            <div class="chapter-title">Probleme tehnice</div>
+                            <div class="chapter-toggle">
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="chapter-content">
+                            <div class="exercise-card">
+                                <strong>Aplicația nu funcționează corect</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Încearcă să ștergi cache-ul browserului sau să folosești un alt browser.</p>
+                            </div>
+                            <div class="exercise-card">
+                                <strong>Nu pot accesa anumite lecții</strong>
+                                <p style="margin-top: 8px; color: var(--text-light);">Verifică dacă ai conexiune la internet sau contactează suportul.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             `;
-            
             mainContent.appendChild(supportContent);
+            
+            // Add toggle functionality for FAQ sections
+            document.querySelectorAll('.chapter-header').forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const toggle = header.querySelector('.chapter-toggle');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        content.style.padding = null;
+                        toggle.classList.remove('collapsed');
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.padding = '20px';
+                        toggle.classList.add('collapsed');
+                    }
+                });
+            });
         }
 
         function renderDashboardView() {
@@ -2907,54 +3013,170 @@
             title.innerHTML = '<i class="fas fa-chart-line"></i> Class Dashboard';
             mainContent.appendChild(title);
             
-            const dashboardContent = document.createElement('div');
-            dashboardContent.innerHTML = `
-                <div class="exercise-card">
-                    <h3>Statistici clasă</h3>
-                    <p style="margin: 10px 0;">Număr elevi: 24</p>
-                    <div style="display: flex; gap: 20px; margin: 15px 0;">
-                        <div style="flex: 1;">
-                            <h4>Stiluri de învățare</h4>
-                            <p>Vizual: 8 elevi</p>
-                            <p>Auditiv: 6 elevi</p>
-                            <p>Kinestezic: 5 elevi</p>
-                            <p>Logică: 5 elevi</p>
-                        </div>
-                        <div style="flex: 1;">
-                            <h4>Progres capitole</h4>
-                            <p>Capitolul 1: 78% complet</p>
-                            <p>Capitolul 2: 45% complet</p>
-                            <p>Capitolul 3: 12% complet</p>
-                        </div>
+            const subtitle = document.createElement('p');
+            subtitle.className = 'page-subtitle';
+            subtitle.textContent = 'Monitorizează progresul clasei tale și gestionează elevii.';
+            mainContent.appendChild(subtitle);
+            
+            // Stats Grid
+            const statsGrid = document.createElement('div');
+            statsGrid.className = 'stats-grid';
+            statsGrid.innerHTML = `
+                <div class="stat-card">
+                    <h3>Elevi înscriși</h3>
+                    <div class="value">24</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 80%"></div>
                     </div>
                 </div>
-                <div class="exercise-card">
-                    <h3>Exerciții dificile</h3>
-                    <ul style="margin: 10px 0 0 20px;">
-                        <li>Derivata funcției compuse (42% rata de eșec)</li>
-                        <li>Teorema lui Pitagora (35% rata de eșec)</li>
-                        <li>Mulțimi de numere (28% rata de eșec)</li>
-                    </ul>
+                <div class="stat-card">
+                    <h3>Progres mediu</h3>
+                    <div class="value">65%</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 65%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Lecții completate</h3>
+                    <div class="value">142</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 45%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h3>Participare</h3>
+                    <div class="value">78%</div>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: 78%"></div>
+                    </div>
                 </div>
             `;
+            mainContent.appendChild(statsGrid);
             
-            mainContent.appendChild(dashboardContent);
+            // Students Table
+            const tableTitle = document.createElement('h2');
+            tableTitle.style.margin = '30px 0 15px 0';
+            tableTitle.textContent = 'Elevi';
+            mainContent.appendChild(tableTitle);
+            
+            const studentsTable = document.createElement('div');
+            studentsTable.className = 'exercise-card';
+            studentsTable.style.overflowX = 'auto';
+            studentsTable.innerHTML = `
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <th style="padding: 12px; text-align: left;">Nume</th>
+                            <th style="padding: 12px; text-align: left;">Progres</th>
+                            <th style="padding: 12px; text-align: left;">Ultima activitate</th>
+                            <th style="padding: 12px; text-align: left;">Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">Ionescu Maria</td>
+                            <td style="padding: 12px;">
+                                <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                    <div style="width: 85%; height: 100%; background: var(--success); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px;">85%</span>
+                            </td>
+                            <td style="padding: 12px;">Acum 2 ore</td>
+                            <td style="padding: 12px;">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">Popescu Andrei</td>
+                            <td style="padding: 12px;">
+                                <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                    <div style="width: 72%; height: 100%; background: var(--success); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px;">72%</span>
+                            </td>
+                            <td style="padding: 12px;">Acum 1 zi</td>
+                            <td style="padding: 12px;">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;">Dumitrescu Ana</td>
+                            <td style="padding: 12px;">
+                                <div style="width: 100%; height: 8px; background: #eee; border-radius: 4px;">
+                                    <div style="width: 45%; height: 100%; background: var(--warning); border-radius: 4px;"></div>
+                                </div>
+                                <span style="font-size: 12px;">45%</span>
+                            </td>
+                            <td style="padding: 12px;">Acum 3 zile</td>
+                            <td style="padding: 12px;">
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-envelope"></i>
+                                </button>
+                                <button class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-chart-line"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+            mainContent.appendChild(studentsTable);
+            
+            // Add Student Button
+            const addStudentBtn = document.createElement('button');
+            addStudentBtn.className = 'btn btn-primary';
+            addStudentBtn.style.marginTop = '20px';
+            addStudentBtn.innerHTML = '<i class="fas fa-plus"></i> Adaugă elev';
+            addStudentBtn.addEventListener('click', () => {
+                alert('Funcționalitatea de adăugare elev va fi implementată în versiuni viitoare.');
+            });
+            mainContent.appendChild(addStudentBtn);
+        }
+
+        function setActiveNavItem(view) {
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.view === view) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+
+        function animateSuccess(element) {
+            element.style.animation = 'pulse 1s';
+            setTimeout(() => {
+                element.style.animation = '';
+            }, 1000);
         }
 
         function showAIHint() {
-            const randomHint = mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
+            const randomResponse = mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
             
-            const modal = document.createElement('div');
-            modal.style.position = 'fixed';
-            modal.style.top = '0';
-            modal.style.left = '0';
-            modal.style.right = '0';
-            modal.style.bottom = '0';
-            modal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-            modal.style.display = 'flex';
-            modal.style.justifyContent = 'center';
-            modal.style.alignItems = 'center';
-            modal.style.zIndex = '1000';
+            const aiModal = document.createElement('div');
+            aiModal.style.position = 'fixed';
+            aiModal.style.top = '0';
+            aiModal.style.left = '0';
+            aiModal.style.right = '0';
+            aiModal.style.bottom = '0';
+            aiModal.style.backgroundColor = 'rgba(0,0,0,0.7)';
+            aiModal.style.display = 'flex';
+            aiModal.style.justifyContent = 'center';
+            aiModal.style.alignItems = 'center';
+            aiModal.style.zIndex = '1000';
             
             const modalContent = document.createElement('div');
             modalContent.style.backgroundColor = 'white';
@@ -2964,107 +3186,58 @@
             modalContent.style.width = '90%';
             
             modalContent.innerHTML = `
-                <h3 style="margin-bottom: 15px; color: var(--primary);">
-                    <i class="fas fa-robot"></i> Sugestie AI:
-                </h3>
-                <p style="margin-bottom: 20px;">${randomHint}</p>
-                <button style="padding: 8px 16px; background: var(--primary); color: white; border: none; border-radius: 4px;">
-                    <i class="fas fa-check"></i> OK
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 style="margin: 0;">Asistent GOUT AI</h3>
+                </div>
+                <p>${randomResponse}</p>
+                <button class="btn btn-primary" style="margin-top: 20px;">
+                    <i class="fas fa-thumbs-up"></i> Am înțeles
                 </button>
             `;
             
             const closeBtn = modalContent.querySelector('button');
             closeBtn.addEventListener('click', () => {
-                document.body.removeChild(modal);
+                document.body.removeChild(aiModal);
             });
             
-            modal.appendChild(modalContent);
-            document.body.appendChild(modal);
+            aiModal.appendChild(modalContent);
+            document.body.appendChild(aiModal);
         }
 
         function processPayment() {
-            // In a real app, this would process the payment
-            // For demo purposes, we'll just simulate a successful payment
-            
-            // Show loading state
-            const submitBtn = document.querySelector('#paymentForm button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Se procesează...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
+            // Simulate payment processing
             setTimeout(() => {
+                isPremiumUser = true;
+                localStorage.setItem('isPremiumUser', 'true');
+                
+                // Close the modal
+                premiumModal.classList.remove('active');
+                
                 // Show success message
-                const successModal = document.createElement('div');
-                successModal.style.position = 'fixed';
-                successModal.style.top = '0';
-                successModal.style.left = '0';
-                successModal.style.right = '0';
-                successModal.style.bottom = '0';
-                successModal.style.backgroundColor = 'rgba(0,0,0,0.7)';
-                successModal.style.display = 'flex';
-                successModal.style.justifyContent = 'center';
-                successModal.style.alignItems = 'center';
-                successModal.style.zIndex = '1000';
-                
-                const modalContent = document.createElement('div');
-                modalContent.style.backgroundColor = 'white';
-                modalContent.style.padding = '30px';
-                modalContent.style.borderRadius = '8px';
-                modalContent.style.maxWidth = '400px';
-                modalContent.style.width = '90%';
-                modalContent.style.textAlign = 'center';
-                
-                modalContent.innerHTML = `
-                    <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success); margin-bottom: 15px;"></i>
-                    <h3 style="margin-bottom: 10px;">Plată efectuată cu succes!</h3>
-                    <p>Abonamentul tău Premium a fost activat. Acum ai acces la toate funcționalitățile platformei.</p>
-                    <button style="margin-top: 20px; padding: 10px 20px; background: var(--primary); color: white; border: none; border-radius: 6px; cursor: pointer;">
-                        <i class="fas fa-thumbs-up"></i> Înțeles
-                    </button>
+                const successMsg = document.createElement('div');
+                successMsg.className = 'exercise-card';
+                successMsg.style.backgroundColor = '#e8f5e9';
+                successMsg.style.borderLeft = '4px solid var(--success)';
+                successMsg.style.marginTop = '20px';
+                successMsg.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 24px; color: var(--success);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h3 style="margin-top: 0;">Plata a fost procesată cu succes!</h3>
+                            <p>Acum ai acces la toate funcționalitățile Premium.</p>
+                        </div>
+                    </div>
                 `;
+                mainContent.prepend(successMsg);
                 
-                const closeBtn = modalContent.querySelector('button');
-                closeBtn.addEventListener('click', () => {
-                    document.body.removeChild(successModal);
-                    premiumModal.classList.remove('active');
-                    
-                    // Update premium status
-                    isPremiumUser = true;
-                    localStorage.setItem('isPremiumUser', 'true');
-                    
-                    // Refresh the current view
-                    renderView(currentView);
-                });
-                
-                successModal.appendChild(modalContent);
-                document.body.appendChild(successModal);
-                
-                // Reset button
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
+                // Update the view
+                renderView(currentView);
             }, 1500);
-        }
-
-        function animateSuccess(element) {
-            element.classList.add('pulse');
-            setTimeout(() => {
-                element.classList.remove('pulse');
-            }, 2000);
-        }
-
-        function setActiveNavItem(view) {
-            navItems.forEach(item => {
-                if (item.dataset.view === view) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-        }
-
-        function capitalizeFirstLetter(string) {
-            return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
         // Event Listeners
@@ -3080,7 +3253,6 @@
             localStorage.setItem('darkMode', darkMode);
             localStorage.setItem('teacherMode', isTeacherMode);
             
-            // Apply changes
             if (darkMode) {
                 document.body.classList.add('dark-mode');
             } else {
@@ -3093,77 +3265,9 @@
             } else {
                 panelLabel.textContent = 'Elev';
                 document.querySelectorAll('.teacher-only').forEach(el => el.style.display = 'none');
-                
-                // If currently on dashboard, go back to home
-                if (currentView === 'dashboard') {
-                    currentView = 'home';
-                    renderView(currentView);
-                    setActiveNavItem(currentView);
-                }
             }
             
             settingsModal.classList.remove('active');
-        });
-
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const view = item.dataset.view;
-                currentView = view;
-                renderView(view);
-                setActiveNavItem(view);
-                
-                // Show premium modal if clicking on premium nav item
-                if (view === 'premium') {
-                    premiumModal.classList.add('active');
-                } else {
-                    premiumModal.classList.remove('active');
-                }
-            });
-        });
-
-        // Payment form submission
-        paymentForm?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            processPayment();
-        });
-
-        // Onboarding modal navigation
-        nextBtn.addEventListener('click', () => {
-            if (currentQuestion < 4) {
-                document.getElementById(`question${currentQuestion}`).classList.remove('active');
-                currentQuestion++;
-                document.getElementById(`question${currentQuestion}`).classList.add('active');
-                
-                prevBtn.disabled = false;
-                
-                if (currentQuestion === 4) {
-                    nextBtn.innerHTML = '<i class="fas fa-check"></i> Finalizează';
-                }
-            } else {
-                // Calculate learning style based on selected options
-                const selectedOptions = document.querySelectorAll('.option.selected');
-                const styleCounts = {
-                    vizual: 0,
-                    auditiv: 0,
-                    kinestezic: 0,
-                    logica: 0
-                };
-                
-                selectedOptions.forEach(option => {
-                    styleCounts[option.dataset.value]++;
-                });
-                
-                // Determine dominant style
-                let maxCount = 0;
-                for (const style in styleCounts) {
-                    if (styleCounts[style] > maxCount) {
-                        maxCount = styleCounts[style];
-                        selectedLearningStyle = style;
-                    }
-                }
-                
-                hideOnboardingModal();
-            }
         });
 
         prevBtn.addEventListener('click', () => {
@@ -3172,27 +3276,65 @@
                 currentQuestion--;
                 document.getElementById(`question${currentQuestion}`).classList.add('active');
                 
-                nextBtn.innerHTML = 'Următorul <i class="fas fa-arrow-right"></i>';
-                
                 if (currentQuestion === 1) {
                     prevBtn.disabled = true;
                 }
+                
+                nextBtn.textContent = 'Următorul <i class="fas fa-arrow-right"></i>';
             }
         });
 
-        // Option selection in onboarding
+        nextBtn.addEventListener('click', () => {
+            const currentQuestionElement = document.getElementById(`question${currentQuestion}`);
+            const selectedOption = currentQuestionElement.querySelector('.option.selected');
+            
+            if (!selectedOption && currentQuestion < 4) {
+                alert('Te rugăm să selectezi o opțiune înainte de a continua.');
+                return;
+            }
+            
+            if (currentQuestion < 4) {
+                // Count learning style selections
+                if (selectedOption) {
+                    const style = selectedOption.dataset.value;
+                    if (!selectedLearningStyle) {
+                        selectedLearningStyle = style;
+                    } else if (selectedLearningStyle !== style) {
+                        selectedLearningStyle = 'mixt';
+                    }
+                }
+                
+                currentQuestionElement.classList.remove('active');
+                currentQuestion++;
+                document.getElementById(`question${currentQuestion}`).classList.add('active');
+                prevBtn.disabled = false;
+                
+                if (currentQuestion === 4) {
+                    nextBtn.innerHTML = '<i class="fas fa-check"></i> Finalizează';
+                }
+            } else {
+                // Last question - finish onboarding
+                hideOnboardingModal();
+            }
+        });
+
         document.querySelectorAll('.option').forEach(option => {
             option.addEventListener('click', () => {
-                // Remove selection from other options in this question
-                option.parentNode.querySelectorAll('.option').forEach(opt => {
+                option.parentElement.querySelectorAll('.option').forEach(opt => {
                     opt.classList.remove('selected');
                 });
-                
                 option.classList.add('selected');
             });
         });
 
-        // Chat functionality
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const view = item.dataset.view;
+                renderView(view);
+                setActiveNavItem(view);
+            });
+        });
+
         chatBtn.addEventListener('click', () => {
             chatPanel.classList.toggle('active');
         });
@@ -3217,65 +3359,45 @@
                 userMsg.textContent = message;
                 chatBody.appendChild(userMsg);
                 
-                // Add to chat history
-                chatMessages.push({ sender: 'user', text: message });
-                
                 // Clear input
                 chatInput.value = '';
                 
-                // Simulate bot response after delay
+                // Scroll to bottom
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // Simulate bot response after a delay
                 setTimeout(() => {
-                    let botResponse = "";
-                    
-                    if (message.toLowerCase().includes('premium') || message.toLowerCase().includes('abonament')) {
-                        botResponse = "Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară. Poți afla mai multe în secțiunea Premium din meniu.";
-                    } else {
-                        botResponse = mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
-                    }
-                    
+                    const botResponse = mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
                     const botMsg = document.createElement('div');
                     botMsg.className = 'chat-message bot';
                     botMsg.textContent = botResponse;
                     chatBody.appendChild(botMsg);
-                    
-                    // Add to chat history
-                    chatMessages.push({ sender: 'bot', text: botResponse });
-                    
-                    // Scroll to bottom
                     chatBody.scrollTop = chatBody.scrollHeight;
                 }, 1000);
-                
-                // Scroll to bottom
-                chatBody.scrollTop = chatBody.scrollHeight;
             }
         }
 
-        // FAQ items
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('faq-item')) {
-                const question = e.target.textContent;
-                let answer = "Acesta este un răspuns simulat la întrebarea ta. Într-o implementare reală, acesta ar fi un răspuns specific din baza noastră de cunoștințe.";
-                
-                if (question.includes('Premium') || question.includes('abonament')) {
-                    answer = "Abonamentul Premium oferă acces la toate exercițiile, resurse vizuale complete, feedback detaliat și asistență prioritară. Costă 200 MDL pe lună și poți anula oricând.";
-                }
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const question = item.textContent.trim();
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user';
+                userMsg.textContent = question;
+                chatBody.appendChild(userMsg);
                 
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-message bot';
-                botMsg.textContent = answer;
+                botMsg.textContent = "Voi încerca să vă ajut cu această întrebare. " + mockAIResponses[Math.floor(Math.random() * mockAIResponses.length)];
                 chatBody.appendChild(botMsg);
                 
-                // Add to chat history
-                chatMessages.push({ sender: 'bot', text: answer });
-                
-                // Open chat panel if not open
-                if (!chatPanel.classList.contains('active')) {
-                    chatPanel.classList.add('active');
-                }
-                
-                // Scroll to bottom
+                chatPanel.classList.add('active');
                 chatBody.scrollTop = chatBody.scrollHeight;
-            }
+            });
+        });
+
+        paymentForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            processPayment();
         });
 
         // Initialize the app
