@@ -788,262 +788,82 @@ continue this code:
         }
         
         /* Settings Modal */
-        /* Enhanced Settings Styles */
-.settings-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-}
+        .settings-option {
+            margin-bottom: 20px;
+        }
+        
+        .settings-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .settings-select, .settings-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            transition: all 0.3s;
+        }
 
-.settings-tab {
-    padding: 12px 20px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    font-weight: 500;
-    color: var(--text-light);
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.settings-tab.active {
-    color: var(--primary);
-    border-bottom-color: var(--primary);
-    background-color: rgba(67, 97, 238, 0.05);
-}
-
-.settings-tab:hover {
-    background-color: rgba(67, 97, 238, 0.1);
-}
-
-.settings-tab-content {
-    display: none;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.settings-tab-content.active {
-    display: block;
-}
-
-.settings-section {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border);
-}
-
-.settings-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.settings-section-title {
-    color: var(--primary);
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.settings-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 12px;
-    border-radius: var(--radius);
-    transition: background-color 0.3s;
-}
-
-.settings-option:hover {
-    background-color: rgba(67, 97, 238, 0.05);
-}
-
-.settings-option-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 500;
-}
-
-.color-themes {
-    display: flex;
-    gap: 10px;
-}
-
-.color-theme {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-}
-
-.color-theme:hover {
-    transform: scale(1.1);
-}
-
-.color-theme.active {
-    border-color: var(--text);
-    box-shadow: 0 0 0 2px var(--primary);
-}
-
-.settings-input, .settings-select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-family: inherit;
-    background-color: var(--card-bg);
-    color: var(--text);
-    transition: all 0.3s;
-}
-
-.settings-input:focus, .settings-select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
-}
-
-.settings-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238d99ae' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 35px;
-}
-        /* Enhanced Settings Styles */
-.settings-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 20px;
-}
-
-.settings-tab {
-    padding: 12px 20px;
-    cursor: pointer;
-    border-bottom: 3px solid transparent;
-    font-weight: 500;
-    color: var(--text-light);
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.settings-tab.active {
-    color: var(--primary);
-    border-bottom-color: var(--primary);
-    background-color: rgba(67, 97, 238, 0.05);
-}
-
-.settings-tab:hover {
-    background-color: rgba(67, 97, 238, 0.1);
-}
-
-.settings-tab-content {
-    display: none;
-    animation: fadeIn 0.3s ease-out;
-}
-
-.settings-tab-content.active {
-    display: block;
-}
-
-.settings-section {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid var(--border);
-}
-
-.settings-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.settings-section-title {
-    color: var(--primary);
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.settings-option {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    padding: 12px;
-    border-radius: var(--radius);
-    transition: background-color 0.3s;
-}
-
-.settings-option:hover {
-    background-color: rgba(67, 97, 238, 0.05);
-}
-
-.settings-option-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-weight: 500;
-}
-
-.color-themes {
-    display: flex;
-    gap: 10px;
-}
-
-.color-theme {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-}
-
-.color-theme:hover {
-    transform: scale(1.1);
-}
-
-.color-theme.active {
-    border-color: var(--text);
-    box-shadow: 0 0 0 2px var(--primary);
-}
-
-.settings-input, .settings-select {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-family: inherit;
-    background-color: var(--card-bg);
-    color: var(--text);
-    transition: all 0.3s;
-}
-
-.settings-input:focus, .settings-select:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
-}
-
-.settings-select {
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238d99ae' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 12px;
-    padding-right: 35px;
-}
+        .settings-select:focus, .settings-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: var(--primary);
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-label {
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
         /* Learning Style Specific */
         .visual-hint {
             display: none;
@@ -1655,155 +1475,49 @@ continue this code:
     </div>
     
     <!-- Settings Modal -->
-    <!-- Settings Modal -->
-<div class="modal-overlay" id="settingsModal">
-    <div class="modal" style="max-width: 600px;">
-        <div class="modal-header">
-            <h2 class="modal-title"><i class="fas fa-cog"></i> Setări</h2>
-            <p>Personalizează-ți experiența de învățare</p>
-        </div>
-        <div class="modal-body">
-            <div class="settings-tabs">
-                <div class="settings-tab active" data-tab="general">
-                    <i class="fas fa-sliders-h"></i> Generale
-                </div>
-                <div class="settings-tab" data-tab="account">
-                    <i class="fas fa-user"></i> Cont
-                </div>
-                <div class="settings-tab" data-tab="notifications">
-                    <i class="fas fa-bell"></i> Notificări
-                </div>
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title">Setări</h2>
             </div>
-            
-            <div class="settings-tab-content active" id="generalTab">
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-paint-brush"></i> Aspect
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <i class="fas fa-moon"></i>
-                            <span>Mod întuneric</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="darkModeToggle">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    
-                
+            <div class="modal-body">
+                <div class="settings-option">
+                    <label class="settings-label">Stil de învățare</label>
+                    <input type="text" class="settings-input" id="learningStyleDisplay" readonly>
                 </div>
                 
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-user-tie"></i> Rol
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <span>Panou</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="teacherModeToggle">
-                            <span class="toggle-slider"></span>
-                            <span class="toggle-label" id="panelLabel">Elev</span>
-                        </label>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="settings-tab-content" id="accountTab">
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-user-circle"></i> Profil
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <label class="settings-label">Nume</label>
-                        <input type="text" class="settings-input" id="userNameInput" placeholder="Introdu numele tău">
-                    </div>
-                    
-                    <div class="settings-option">
-                        <label class="settings-label">Email</label>
-                        <input type="email" class="settings-input" id="userEmailInput" placeholder="Introdu adresa de email">
-                    </div>
-                    
-                    <div class="settings-option">
-                        <label class="settings-label">Stil de învățare</label>
-                        <select class="settings-select" id="learningStyleSelect">
-                            <option value="vizual">Vizual</option>
-                            <option value="auditiv">Auditiv</option>
-                            <option value="kinestezic">Kinestezic</option>
-                            <option value="logica">Logic</option>
-                            <option value="mixt">Mixt</option>
-                        </select>
-                    </div>
+                <div class="settings-option">
+                    <label class="settings-label">Mod întuneric</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="toggle-slider"></span>
+                    </label>
                 </div>
                 
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-lock"></i> Securitate
-                    </h3>
-                    
-                    <button class="btn btn-secondary" id="changePasswordBtn">
-                        <i class="fas fa-key"></i> Schimbă parola
-                    </button>
+                <div class="settings-option">
+                    <label class="settings-label">Panou</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="teacherModeToggle">
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-label" id="panelLabel">Elev</span>
+                    </label>
+                </div>
+
+                <div class="settings-option">
+                    <label class="settings-label">Notificări</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
                 </div>
             </div>
-            
-            <div class="settings-tab-content" id="notificationsTab">
-                <div class="settings-section">
-                    <h3 class="settings-section-title">
-                        <i class="fas fa-bell"></i> Preferințe notificări
-                    </h3>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <i class="fas fa-envelope"></i>
-                            <span>Notificări email</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="emailNotificationsToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Notificări push</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="pushNotificationsToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    
-                    <div class="settings-option">
-                        <div class="settings-option-label">
-                            <i class="fas fa-trophy"></i>
-                            <span>Realizări</span>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="achievementsToggle" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveSettingsBtn">
+                    <i class="fas fa-save"></i> Salvează
+                </button>
             </div>
-        </div>
-        <div class="modal-footer" style="justify-content: space-between;">
-            <button class="btn btn-secondary" id="resetSettingsBtn">
-                <i class="fas fa-undo"></i> Resetează
-            </button>
-            <button class="btn btn-primary" id="saveSettingsBtn">
-                <i class="fas fa-save"></i> Salvează modificările
-            </button>
         </div>
     </div>
-</div>
     
     <!-- Premium Subscription Modal -->
     <div class="modal-overlay" id="premiumModal">
